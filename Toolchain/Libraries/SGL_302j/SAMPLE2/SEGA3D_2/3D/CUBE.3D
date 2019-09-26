@@ -1,0 +1,124 @@
+SEGA 3D
+model	new_1
+{
+	vertices	8
+	{
+		(-1.53787e-02, 6.02842e+00,-4.32139e+00),( 5.77350e-01, 5.77350e-01,-5.77350e-01)		;0
+		(-1.53787e-02, 6.02842e+00, 4.32139e+00),( 5.77350e-01, 5.77350e-01, 5.77350e-01)		;1
+		(-1.53787e-02,-2.61436e+00, 4.32139e+00),( 5.77350e-01,-5.77350e-01, 5.77350e-01)		;2
+		(-1.53787e-02,-2.61436e+00,-4.32139e+00),( 5.77350e-01,-5.77350e-01,-5.77350e-01)		;3
+		(-8.65816e+00, 6.02842e+00, 4.32139e+00),(-5.77350e-01, 5.77350e-01, 5.77350e-01)		;4
+		(-8.65816e+00, 6.02842e+00,-4.32139e+00),(-5.77350e-01, 5.77350e-01,-5.77350e-01)		;5
+		(-8.65816e+00,-2.61436e+00,-4.32139e+00),(-5.77350e-01,-5.77350e-01,-5.77350e-01)		;6
+		(-8.65816e+00,-2.61436e+00, 4.32139e+00),(-5.77350e-01,-5.77350e-01, 5.77350e-01)		;7
+	}
+	polygons	6
+	{
+		(  0,  1,  2,  3),( 1.00000e+00,-2.44667e-12, 2.20961e-11),(AVE)		;0
+		(  4,  5,  6,  7),(-1.00000e+00, 1.66863e-08,-2.86883e-09),(AVE)		;1
+		(  0,  5,  4,  1),( 5.26996e-09, 1.00000e+00, 7.67126e-09),(AVE)		;2
+		(  2,  7,  6,  3),( 5.35681e-09,-1.00000e+00, 2.98170e-09),(AVE)		;3
+		(  1,  4,  7,  2),(-7.45374e-09,-1.83187e-09, 1.00000e+00),(AVE)		;4
+		(  5,  0,  3,  6),( 7.45374e-09,-1.83187e-09,-1.00000e+00),(AVE)		;5
+	}
+}
+material	fix_1
+{
+	type			(TEXT|GOUR)
+	texture			"Saturn.dg2"
+	color			0x7fff
+	gour_offset		0x4210
+	gour_color		(0x10,0x10,0x10),(0x10,0x10,0x10),(0x10,0x10,0x10),(0x10,0x10,0x10)
+	direction		2,3,0,1
+}
+material	fix_2
+{
+	type			(TEXT|GOUR)
+	texture			"Tails.dg2"
+	color			0x7fff
+	gour_offset		0x4210
+	gour_color		(0x10,0x10,0x10),(0x10,0x10,0x10),(0x10,0x10,0x10),(0x10,0x10,0x10)
+	direction		2,3,0,1
+}
+material	fix_3
+{
+	type			(TEXT|GOUR)
+	texture			"mika.dg2"
+	color			0x7fff
+	gour_offset		0x4210
+	gour_color		(0x10,0x10,0x10),(0x10,0x10,0x10),(0x10,0x10,0x10),(0x10,0x10,0x10)
+	direction		0,1,2,3
+}
+slips	new_1
+{
+	fix_2
+	fix_2
+	fix_3
+	fix_3
+	fix_1
+	fix_1
+}
+object	WORLD
+{
+	new_1,( 1.00000e+00, 1.00000e+00, 1.00000e+00),( 0.00000e+00, 0.00000e+00, 0.00000e+00),( 0.00000e+00, 0.00000e+00, 0.00000e+00),(0,0,0)
+	{
+	}
+}
+light
+{
+	vector	1	; number of light
+	{
+		( 5.27273e-01, 1.81818e-02, 8.36364e-01)	; 0
+	}
+}
+attribute	new_1
+{
+	{
+		type			(TEXT|GOUR)
+		texture			"Tails.dg2"
+		color			0x7fff, 0xce73
+		gour_color		(0x0e,0x0e,0x0e),(0x0b,0x0b,0x0b),(0x14,0x14,0x14),(0x17,0x17,0x17)
+		direction		2,3,0,1
+		zsort			(AVE)	; DISP
+	}
+	{
+		type			(TEXT|GOUR)
+		texture			"Tails.dg2"
+		color			0x7fff, 0xb18c
+		gour_color		(0x07,0x07,0x07),(0x0a,0x0a,0x0a),(0x13,0x13,0x13),(0x10,0x10,0x10)
+		direction		2,3,0,1
+		zsort			(AVE)	; NO DISP
+	}
+	{
+		type			(TEXT|GOUR)
+		texture			"mika.dg2"
+		color			0x7fff, 0xe318
+		gour_color		(0x14,0x14,0x14),(0x10,0x10,0x10),(0x13,0x13,0x13),(0x17,0x17,0x17)
+		direction		0,1,2,3
+		zsort			(AVE)	; DISP
+	}
+	{
+		type			(TEXT|GOUR)
+		texture			"mika.dg2"
+		color			0x7fff, 0x9ce7
+		gour_color		(0x0e,0x0e,0x0e),(0x0a,0x0a,0x0a),(0x07,0x07,0x07),(0x0b,0x0b,0x0b)
+		direction		0,1,2,3
+		zsort			(AVE)	; NO DISP
+	}
+	{
+		type			(TEXT|GOUR)
+		texture			"Saturn.dg2"
+		color			0x7fff, 0xca52
+		gour_color		(0x0a,0x0a,0x0a),(0x0e,0x0e,0x0e),(0x17,0x17,0x17),(0x13,0x13,0x13)
+		direction		2,3,0,1
+		zsort			(AVE)	; DISP
+	}
+	{
+		type			(TEXT|GOUR)
+		texture			"Saturn.dg2"
+		color			0x7fff, 0xb5ad
+		gour_color		(0x0b,0x0b,0x0b),(0x07,0x07,0x07),(0x10,0x10,0x10),(0x14,0x14,0x14)
+		direction		2,3,0,1
+		zsort			(AVE)	; NO DISP
+	}
+}

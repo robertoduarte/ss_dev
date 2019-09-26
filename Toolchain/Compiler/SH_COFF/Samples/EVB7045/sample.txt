@@ -1,0 +1,8 @@
+All programs must be flashed into FLASH ROM.
+
+App1 - Simple program. Just to know how to build an application.
+App2 - Simple LED blinking program.
+App3 - Sample Program Demonstrating use of Serial port. Uses SCI0.
+App4 - Sample Program Demonstrating use of Library functions.
+App5 - Simple Mini-menu program. Provides menu on SCI0.
+App6 - Sample C++ program. Uses global constructor.

@@ -1,0 +1,75 @@
+#
+#������ makefile �̗��p�����
+# 1. �f�B���N�g���̐ݒ�𒲐����Ă��������B
+#    �}�N�� GCC, SEGALIB, SEGASMP ���`���Ă��������B
+# 2. �R���t�B�M�����[�V�����t�@�C�� sample.cfg ���쐬���Ă��������B
+#    �}�N�� TARGET �� OBJS ���`���Ă��������B
+# 3. �}�N�� PROJ ���w�肵�� make �����s���Ă��������B
+#
+
+#
+#�����̃t�@�C���Ŏg���Ă���}�N���̐���
+#  �i�R�}���h���C���Œ�`���܂��j
+#  PROJ         �T���v���̂���f�B���N�g�����w�肵�Ă��������B
+#  NDEBUG       �����[�X�o�[�W�����̃I�u�W�F�N�g����肽���Ƃ��ɒ�`���܂��B
+#  
+#  �i���̃t�@�C�� makefile �̒��Œ�`���Ă���܂��j
+#  CC           �b�R���p�C�����w�肵�܂��B�i���s�\�Ȍ`�ŋL�q���Ă��������j
+#  CFLAGS       �b�R���p�C���̃I�v�V�������w�肵�܂��B
+#               �i���FSPR �́A�œK������Ɠ����܂���B�����͒������ł��B�j
+#  AS           �A�Z���u�����w�肵�܂��B�i���s�\�Ȍ`�ŋL�q���Ă��������j
+#  ASFLAGS      �A�Z���u���̃I�v�V�������w�肵�܂��B
+#  AR           ���C�u�����A�����w�肵�܂��B�i���s�\�Ȍ`�ŋL�q���Ă��������j
+#  ARFLAGS      ���C�u�����A���̃I�v�V�������w�肵�܂��B
+#  GCC          �f�m�t�̂���f�B���N�g�����w�肵�܂��B
+#  SEGASMP      �r�a�k�̃T���v���̂���f�B���N�g�����w�肵�܂��B
+#  SEGALIB      �r�a�k�̃��C�u�����̂���f�B���N�g�����w�肵�܂��B
+#  LOCATE_FILE  �������̃��P�[�V�������L�q�����t�@�C���ł��B
+#  ENTRY_POINT  �T���v���v���O�����̎��s�J�n�A�h���X���w�肵�܂��B
+#  LIBS         �����N���郉�C�u�������w�肵�܂��B
+#  INCDIR       �w�b�_�t�@�C���̂���f�B���N�g�����w�肵�܂��B
+#  LIBDIR       ���C�u�����t�@�C����u���f�B���N�g�����w�肵�܂��B
+#  OBJDIR       �I�u�W�F�N�g�t�@�C����u���f�B���N�g�����w�肵�܂��B
+#  SRCDIR       �\�[�X�t�@�C���̂���f�B���N�g�����w�肵�܂��B
+#  
+#  �i�R���t�B�M�����[�V�����t�@�C�� sample.cfg �̒��Œ�`���܂��j
+#  TARGET       �T���v���v���O�����̖��O���w�肵�܂��B
+#               �i�t�@�C���̃v���C�}���l�[���ɂȂ�܂��j
+#  OBJS         �����N����I�u�W�F�N�g�t�@�C�����w�肵�܂��B
+#
+
+CC = gcc
+AS = gasm
+AR = ar
+
+GCC     = ../gccsh
+
+LIBDIR  = lib
+INCDIR  = include
+OBJDIR  = $(PROJ)
+SRCDIR  = $(PROJ)
+CFLAGS  = -Wall -m2 -D_SH -DMODEL_S -I$(GCC)/include -I$(INCDIR)
+ASFLAGS =
+ARFLAGS = rv
+RMFLAGS = -f
+TARGET2 = $(LIBDIR)/sega_sat.a
+
+include	$(SRCDIR)/objects
+
+all: $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(AR) $(ARFLAGS) $@ $?
+	$(AR) $(ARFLAGS) $(TARGET2) $?
+
+.SUFFIXES:
+.SUFFIXES: .a .o .src .c
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	$(CC) -c $(CFLAGS) $(_CFLAGS) -o $@ $<
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.src
+	$(AS) $< $(ASFLAGS) $(_ASFLAGS) -o $@
+
+clean:
+	del $(PROJ)\*.o

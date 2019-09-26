@@ -1,0 +1,111 @@
+
+�V�X�e���̏������Ɋւ���֐��ɂ���
+
+�� void slInitSystem(Uint16 TVMode , TEXTURE *txtbl , Sint8 Count)
+  �@�\ : �V�X�e���S�̂̏������A�e�N�X�`����`�e�[�u���̓o�^�A�t���[���؂�ւ�
+	 �J�E���g�̐ݒ���s���܂��B
+  ���� : �𑜓x(�s�u���[�h)�ɂ���ăV�X�e���N���b�N��؂�ւ��邽�߁A�u�q�`�l
+	 ���̓��e������ꍇ������܂��̂ŁA�V�X�e���X�^�[�g�̒���ɂP�x����
+	 ���s���Ă��������B
+  ���ӂQ : �t���[���؂�ւ��J�E���g�Ƀ}�C�i�X���w�肵���ꍇ�A�؂�ւ��J�E���g
+	 �o��(�|�Q�ł���΂Q�u�����L���O)�̌�A�u�c�o�P�̃t���[���o�b�t�@�ւ�
+	 �������ݏI�����`�F�b�N���A�������݊�����҂��Đ؂�ւ����s�Ȃ��܂��B
+	 �������A�C���^�[���[�X���[�h���w�肵���ꍇ�ɂ͂��̎w��͖�������܂��B
+
+slInitSystem() �����s�����ۂɐݒ肳�����́B
+
+�X�v���C�g�A�y�сA�|���S���p�̃E�B���h�E�T�C�Y�A�����_�ʒu
+	Left		: 0
+	Top		: 0
+	Right		: ScreenXSize - 1
+	Bottom		: ScreenYSize - 1
+	Zlimit		: 0x7fff
+	CenterX		: ScreenXSize / 2
+	CenterY		: ScreenYSize / 2
+	PersAngle	: 90�K
+	ZdspLevel	: 1
+	ClipSizeX	: 320
+	ClipSizeY	: 512
+
+�X�N���[���֌W
+	�\�������X�N���[����		: NBG0 , NBG1 , RBG0
+	�X�N���[���̃v���C�I���e�B	: NBG0 NBG1 NBG2 NBG3 RBG0
+					    �V   �R   �Q   �P   �S
+	�X�v���C�g�O(�|���S��)�̃v���C�I���e�B	�U
+	���̑��̃X�v���C�g			�T
+	�X�N���[���̐F��		: �e�ʂƂ��Q�T�U�F���[�h
+	�J���[�q�`�l���[�h		: �P(�R�Q�V�U�W�F���Q�O�S�W�F)
+	�u�q�`�l����			: �o���N�`�A�a�Ƃ��ɕ���
+	�L�����N�^�f�[�^		: �m�a�f�O�A�m�a�f�P �Q�T�d�U�O�O�O�O�`
+					: �q�a�f�O �Q�T�d�O�O�O�O�O�`
+	�L�����N�^�T�C�Y		: �e�ʂƂ��W���W�h�b�g
+	�p�^�[���l�[���f�[�^		: �m�a�f�O �Q�T�d�V�U�O�O�O�`
+					: �m�a�f�P �Q�T�d�V�W�O�O�O�`
+					: �q�a�f�O �o�` �Q�T�d�S�O�O�O�O�`
+					: �q�a�f�O �o�a �Q�T�d�T�O�O�O�O�`
+	�p�^�[���l�[���T�C�Y		: �m�a�f�O �P���[�h
+					: �Z�����Ƃɔ��]�t���P�O�r�b�g�p�^�[���l�[��
+					: �m�a�f�P �y�сA�q�a�f�O �P���[�h
+					: ���]�����A�P�Q�r�b�g�p�^�[���l�[��
+	�v���[���T�C�Y			: �e�ʂƂ��U�S���U�S�Z��
+	�o�b�N��ʃJ���[		: �Q�T�d�R�e�e�e�d �� ��(�q=�O�A�f=�O�A�a=�O)
+	��]�p�����[�^			: �Q�T�d�R�e�e�O�O ����
+	�X�v���C�g�f�[�^		: �p���b�g�Ƃq�f�a�`���Ƃ̍���
+
+	���U�C�N�A�J���[�I�t�Z�b�g���̓�����ʋ@�\�͎g�p����
+
+�� Bool slSetTVMode(Uint16 TVMode)
+  �@�\ : �w�肳�ꂽ�s�u���[�h�ɐݒ肵�܂��B
+	 �V�X�e���N���b�N��؂�ւ���悤�ȏꍇ�AFALSE ��Ԃ��܂��B
+	 �V�X�e���N���b�N�͂Q�p�ӂ���Ă���A�������̉𑜓x�ɂ���Đ؂�ւ��
+	 �܂��B
+
+	 �R�Q�O�A�U�S�O�h�b�g <--> �R�T�Q�A�V�O�S�h�b�g
+	 (�Q�U.�W�S�l�g��)	   (�Q�W.�U�S�l�g��)		<�m�s�r�b>
+	 (�Q�U.�U�U�l�g��)	   (�Q�W.�S�S�l�g��)		<�o�`�k>
+
+	 ���̂��߁A�R�Q�O�h�b�g���[�h����U�S�O�h�b�g���[�h�ւ͐؂�ւ��邱�Ƃ�
+	 �ł��܂����A�R�T�Q�h�b�g�ɐ؂�ւ��悤�Ƃ���ƃG���[�ɂȂ�܂��B
+	 �܂��A�c�����̉𑜓x���S�S�W�܂��͂S�W�O���C���ɂ���ꍇ�ɂ̓C���^�[��
+	 �[�X�ƂȂ邽�߁A�Q�C���^���v�g�łP�t���[���ɂȂ�܂��̂ŁA�t���[���̐�
+	 ��ւ��J�E���^���Q�̔{���ɂȂ�悤�ɒ�������܂��B�����A�C���^�[���[�X
+	 ���[�h���P�C���^���v�g�ŏ����������ꍇ�ɂ͖{�֐������s�����̂��A
+	 (Sint8)SynchConst ���P�ɂ��AslInitSynch() �֐������s���Ă��������B
+	 �{�֐��ł� �w�肳�ꂽ�𑜓x�ɂ��A�X�v���C�g�p�E�B���h�E�̏�����(�S��
+	 �ʃT�C�Y)�A�p�[�X�̕ύX(��p�X�O�K)�A�X�v���C�g�f�[�^�^�C�v�̕ύX���s
+	 ���܂��B
+	 �X�v���C�g�f�[�^�^�C�v�� �S�r�b�g�̓��A�r�b�g�R�݂̂�ύX���܂��B
+
+  ���� : �{�֐��ł͈ȉ��̐ݒ�͕ύX����܂���B�{�֐����s��ɕK�v�ɉ����Đݒ肵
+	 �Ă��������B
+	 �� �u�c�o�Q�T�C�N�����[�h
+	 �� �X�N���[����ʗp�̃E�B���h�E
+	 �� �X�v���C�g�\���O�����E�l(ZdspLevel)
+
+	 �܂��A��ʂɃm�C�Y�����邱�Ƃ�����܂��̂ŁA�K�v�ɉ����� slTVOff()�֐�
+	 �����s���Ă��������B
+
+�� Bool slSetScrTVMode(Uint16 TVMode)
+  �@�\ : �X�N���[������(�u�c�o�Q)�Ɋւ��镔���̂s�u���[�h��ݒ肵�܂��B
+	 ��L�� slSetTVMode �֐��Ɠ��l�ɃV�X�e���N���b�N��؂�ւ���悤�ȏꍇ
+	 FALSE ��Ԃ��܂��B
+  ���� : �X�v���C�g���C���^�[���[�X���[�h�ŕ\�������ꍇ�A�X�N���[�����K���C��
+	 �^�[���[�X���[�h�ɂ��ĉ������B
+	 ����� EvenFrame �� OddFrame �Ƃ��u�c�o�Q�̃X�e�[�^�X���瓾�Ă��邽��
+	 �ł��B
+
+�� Bool slSetSprTVMode(Uint16 TVMode)
+  �@�\ : �X�v���C�g����(�u�c�o�P)�Ɋւ��镔���̂s�u���[�h��ݒ肵�܂��B
+	 ��L�� slSetTVMode �֐��Ɠ��l�ɃV�X�e���N���b�N��؂�ւ���悤�ȏꍇ
+	 FALSE ��Ԃ��܂��B
+	 �܂��A�C���^�[���[�X���[�h�ɐ؂�ւ���ꍇ�ɂ́A�Q�C���^���v�g�łP�t��
+	 �[���ƂȂ�悤�ɃJ�E���^�𒲐����܂��B
+	 �X�v���C�g�p�E�B���h�E�̏������A�p�[�X�ݒ�(��p�X�O��)�A�X�v���C�g�f�[
+	 �^�^�C�v�̕ύX���s�Ȃ��܂��B
+	 �X�v���C�g�f�[�^�^�C�v�� �S�r�b�g�̓��A�r�b�g�R�݂̂�ύX���܂��B
+
+�� Bool slDynamicFrame(Uint16 flag)
+  �@�\ : �������̃t���[���`�F���W�Ƃu�c�o�P�̕`��I���҂�(�_�C�i�~�b�N)�t���[��
+	 �`�F���W�Ƃ�؂�ւ��܂��B
+	 flag �ɂ� ON �܂��� OFF �̂����ꂩ���w�肵�܂��B
+	 �C���^�[���[�X���[�h�̏ꍇ�ɂ� FALSE ��Ԃ��܂��B

@@ -1,0 +1,10 @@
+#
+#�����̃t�@�C���� makefile ���� include ����܂��B
+#  TARGET �ɂ̓��C�u�����̃t�@�C�������w�肵�Ă��������B
+#  OBJS �ɂ̓��C�u��������邽�߂� dependencies ���w�肵�Ă��������B
+#
+TARGET=	$(LIBDIR)/sega_dbg.a
+
+OBJS=	$(OBJDIR)/dbg_disp.o\
+		$(OBJDIR)/dbg_moni.o\
+		$(OBJDIR)/dbg_intr.o

@@ -1,0 +1,162 @@
+
+�� �f�o�b�O�p�e�L�X�g�\�����C�u����
+
+void *slLocate((Uint16)xps , (Uint16)yps)
+    �@�\ : �e�L�X�g�\���p�̃A�h���X(�J�����g�X�N���[��)��Ԃ��܂��B
+	   xps , yps �� ��ʏ�ł̃Z���ʒu(�ʏ�O�`�U�R)�Ŏw�肵�܂��B
+
+void slCurScrn((Uint16)scrn)
+    �@�\ : slLocate() ����сAset_vbar() �Ŏg�p����X�N���[����ݒ肵�܂��B
+	   scrn �ɂ͈ȉ��̂U�̓��̂����ꂩ���w�肵�܂��B
+	   scnNBG0 , scnNBG1 , scnNBG2 , scnNBG3 , scnRBGA , scnRBGB
+
+void slCurColor((Uint16)Palette)
+    �@�\ : slPrint???() , slDisp???() �ŕ\�����镶���̃p���b�g�ԍ����w�肵��
+	   ���BPalette �ɂ� �O�`�P�T �̂����ꂩ���w�肵�܂��B
+
+void slDispHex((Uint32)val , (void *)dspadd)
+    �@�\ : �w�肳�ꂽ�ϐ����W���̂P�U�i���ŕ\�����܂��B
+
+void slPrintHex((Uint32)val , (void *)dspadd)
+    �@�\ : �w�肳�ꂽ�ϐ����W���̂P�U�i���ŕ\�����܂��B
+	   ��ʂ̂O�̓X�y�[�X�ɑ��܂��B
+
+void slPrintFX((FIXED)val , (void *)dspadd)
+    �@�\ : �Œ菬���_�̃f�[�^�������_�\�����܂��B
+	   ��������ʂ̂O�ƁA���������ʂ̂O�̓X�y�[�X�ɑ��܂��B
+	   �������A�������͂��ꂼ��T���̂P�O�i���ɂȂ�܂��B
+
+void slPrintMatrix((MATRIX)mtrx , (void *)dspadd)
+    �@�\ : slPrintFX() ���g�p���āA�}�g���N�X(�Rx�S)�̕\�������܂��B
+	   mtrx �� CURRENT ���w�肵���ꍇ�A�}�g���N�X�X�^�b�N�̃J�����g�}�g��
+	   �N�X��\�����܂��B
+
+Uint32 slHex2Dec((Uint32)val)
+    �@�\ : �R�Q�r�b�g�̃o�C�i���f�[�^���W���܂ł̂a.�b.�c.�f�[�^�ɕϊ����܂��B
+	   �W�����z����悤�Ȓl(�P�O�O�O�O�O�O�O(d) = �T�e�T�d�P�O�O(h) �ȏ�)
+	   ���w�肵���ꍇ�A�ŏ�ʂ̒l�����������Ȃ�܂��B
+
+void slPrint((char *)string , (void *)dspadd)
+    �@�\ : �w�肳�ꂽ�������\�����܂��B
+	   ������̏I���R�[�h�� �m�t�k�k ����(�R�[�h�O) �ł��B
+
+void slExtendScroll((void *)tbl , (void *)dspadd)
+    �@�\ : �R�}���h���k���ꂽ�X�N���[���}�b�v���u�q�`�l�ɓW�J���܂��B
+	   �g�p�ł���t�@���N�V�����ɂ͈ȉ��̂��̂�����A sl_macro.h ���ɓo�^
+	   ����Ă��܂��B
+
+ �t�@���N�V���� :	�@�\
+  End()			���k�f�[�^�̏I��
+  LocateA0(adr)		�u�q�`�l�`�O�̈�ł̃A�h���X�w��
+  LocateA1(adr)		�u�q�`�l�`�P�̈�ł̃A�h���X�w��
+  LocateB0(adr)		�u�q�`�l�a�O�̈�ł̃A�h���X�w��
+  LocateB1(adr)		�u�q�`�l�a�P�̈�ł̃A�h���X�w��
+  Set(cnt)		�w�肳�ꂽ�������f�[�^���Z�b�g(���̌�Ɏ��f�[�^������)
+  Stock(cnt)		�X�g�b�N�o�b�t�@�ɃZ�b�g���Ȃ���f�[�^���Z�b�g(��)
+  Same(cnt,chr)		�����L�����N�^�𑱂��ăZ�b�g����
+  Inc(cnt,chr)		�L�����N�^�i���o�[�𑝂₵�Ȃ���Z�b�g����
+  Inc2(cnt,chr)		�L�����N�^�i���o�[���Q�����₵�Ȃ���Z�b�g����
+  Dec(cnt,chr)		�L�����N�^�i���o�[�����炵�Ȃ���Z�b�g����
+  Dec2(cnt,chr)		�L�����N�^�i���o�[���Q�����炵�Ȃ���Z�b�g����
+  Vline(cnt,chr)	�����L�����N�^���c�ɕ��ׂ�
+  VlineMinus(cnt,chr)	�����L�����N�^���c�ɕ��ׂ�(�����)
+  Skip(offset)		�\���A�h���X���I�t�Z�b�g�����炷(�I�t�Z�b�g�͂P�o�C�g)
+  Skip2(offset)		�\���A�h���X���I�t�Z�b�g�����炷(�I�t�Z�b�g�͂Q�o�C�g)
+  Copy(src,cnt)		���łɃZ�b�g����Ă���f�[�^���R�s�[����(�R�s�[���̓A�h���X)
+  RelCopy(src,cnt)	���łɃZ�b�g����Ă���f�[�^���R�s�[����(�R�s�[���͑���)
+  Fill(cnt,chr)		�����L�����N�^�𑱂��ăZ�b�g����(�|�C���^�͓����Ȃ�)
+			(�b�o�t�̂c.�l.�`.���g�p)
+  Block(hcnt,vcnt)	���A�c�̃Z�������w�肵�A���̒��ɑ����f�[�^���Z�b�g���܂��B
+			(�|�C���^�̓u���b�N�̉E�ׂֈړ�����)
+  BlockInc(hcnt,vcnt,chr) ���A�c�̃Z�������w�肵�A���̒����L�����N�^�i���o�[��
+			���₵�Ȃ��疄�߂�(�|�C���^�̓u���b�N�̉E�ׂֈړ�����)
+  BlockInc2(hcnt,vcnt,chr) ���A�c�̃Z�������w�肵�A���̒����L�����N�^�i���o�[��
+			�Q�����₵�Ȃ��疄�߂�(�|�C���^�̓u���b�N�̉E�ׂֈړ�����)
+  One(chr)		�ЂƂ����L�����N�^���Z�b�g���܂��B
+  High(cnt,chr)		��ʃo�C�g�̓����L�����N�^���Z�b�g���܂��B�J�E���g�͂��̃Z����
+			�܂߂������Z�b�g���A���̃}�N���̌�ɂ� LChar �}�N���������܂��B
+  BlockFill(hcnt,vcnt,chr) ���A�c�̃Z�������w�肵�A���̒��𓯂��L�����N�^�i���o�[��
+			���߂܂�(�|�C���^�̓u���b�N�̉E�ׂֈړ�����)�B
+  Add(cnt,chr,add)	�L�����N�^�i���o�[���w�肳�ꂽ�������₵�Ȃ���Z�b�g����B
+			(������l�͕����t���W�r�b�g)
+  BlockAdd(hcnt,vcnt,chr,add) ���A�c�̃Z�������w�肵�A���̒����L�����N�^�i���o�[�𑝂�
+			���Ȃ���Z�b�g����(�|�C���^�̓u���b�N�̉E�ׂֈړ�����)�B
+			(������l�͕����t���W�r�b�g)
+  Loop(cnt)		���� Until() �܂ł̊Ԃ��w�肳�ꂽ�񐔌J��Ԃ����s����B
+  Until()		�������A�l�X�g���邱�Ƃ͂ł��Ȃ��B
+
+  Char1(c)		�P�Z�����̎��f�[�^
+  Char2(c1,c2)		�Q�Z�����̎��f�[�^
+   ...
+  Char8(c1,c2,c3,c4,c5,c6,c7,c8) �W�Z�����̎��f�[�^
+  LChar1(c)		High �p�� �L�����N�^�f�[�^(���ʃo�C�g�̂�)
+  LChar2(c1,c2)		�Q�Z�����̉��ʃo�C�g�f�[�^
+   ...
+  LChar8(c1,c2,c3,c4,c5,c6,c7,c8) �W�Z�����̉��ʃo�C�g�f�[�^
+
+
+ �g�p��)
+
+#define	    SpaceCHR	0x0000
+#define	    WhiteCHR	0x00fe
+
+    Uint8 SceneMap_1[] = {
+	Fill(Page , Space) ,			/* �P�y�[�W�����X�y�[�X�ł��߂� */
+	Loop(4) ,				/* ���̌�AUntil() �����S��J��Ԃ� */
+	    BlockFill(8 , 8 , WhiteCHR) ,	/* �Wx�W�̃u���b�N�� WhiteCHR �ł��߂� */
+	    Skip(8) ,				/* �u���b�N�̎��̈ʒu����W�Z�����|�C���^���ړ� */
+	    BlockFill(8 , 8 , WhiteCHR) ,
+	    Skip(8) ,
+	    BlockFill(8 , 8 , WhiteCHR) ,
+	    Skip(8) ,
+	    BlockFill(8 , 8 , WhiteCHR) ,
+	    Skip2(7 * Line + 16) ,		/* �|�C���^�̈ړ��ʂ��P�o�C�g�𒴂��Ă���̂� Skip2 ���g�p */
+	    BlockFill(8 , 8 , WhiteCHR) ,
+	    Skip(8) ,
+	    BlockFill(8 , 8 , WhiteCHR) ,
+	    Skip(8) ,
+	    BlockFill(8 , 8 , WhiteCHR) ,
+	    Skip(8) ,
+	    BlockFill(8 , 8 , WhiteCHR) ,
+	    Skip2(7 * Line) ,
+	Until() ,
+	End()
+    } ;
+
+void set_vbar((Uint16)xps)
+    �@�\ : �b�o�t�̉ғ����Ԃ𒲂ׂ邽�߂̏c�_��\�����܂��B�������͕\�����ʒu�ł��B
+
+void reset_vbar((Uint16)xps)
+    �@�\ : ��L�� set_vbar() �ŕ\�����ꂽ�c�_�������܂��B
+
+    �����Q�̊֐��ƁA�r�f�I�����֐� slSynch() �Ƃ�g�ݍ��킹�� �b�o�t�̉ғ����Ԃ�
+    ���ׂ܂��B
+
+  ��)
+    while(-1){
+	slExecuteEvent() ;	/* �C�x���g���� */
+
+	reset_vbar(39) ;	/* �c�_�̏��� */
+	slSynch() ;		/* �r�f�I�����҂� */
+	set_vbar(39) ;		/* �c�_�̕\�� */
+    }
+
+    ��ʕ\�����n�܂�̂� slSynch() �I������ł�����A�����łu�q�`�l�ɏc�_���Z�b�g��
+    �܂��B slExecuteEvent() �ŁA�C�x���g���������s����A���ׂẴC�x���g���I������
+    �Ƃ���ŁA���̏c�_���u�q�`�l�����������ƁA���̃^�C�~���O�����̕\���ł͏c�_
+    �������Ȃ��Ȃ�A�c�_�̌����Ă����������b�o�t���ғ����Ă������ԂɂȂ�܂��B
+  ���� : ���̊֐��͏c�̉𑜓x�ɂ��Z�b�g����L�����N�^�̍s�����ω����܂��B
+    ��𑜓x(�Q�Q�S�܂��͂Q�S�O���C��)�̏ꍇ�A�㕔�̂R�Q�s���A���𑜓x(�S�S�W�܂���
+    �S�W�O���C�� �C���^���[�X)�̏ꍇ�U�S�s�������������܂��B
+
+void *slLocateNbg((Uint16)xps , (Uint16)yps , (Uint16)scrn)
+    �@�\ : �m�[�}���X�N���[���ʂ̕\���A�h���X��Ԃ��܂��B
+	   xps , yps �� ��ʏ�ł̃Z���ʒu(�ʏ�O�`�P�Q�V)�Ŏw�肵�܂��B
+	   scrn �� scnNBG0,scnNBG1,scnNBG2,scnNBG3 �̂����ꂩ���w�肵�܂��B
+
+void *slLocatePage((Uint16)xps , (Uint16)yps , (Uint16)page)
+    �@�\ : �X�N���[���ʂ̕\���A�h���X��Ԃ��܂��B
+	   xps , yps �� ��ʏ�ł̃Z���ʒu(�ʏ�O�`�U�R)�Ŏw�肵�܂��B
+	   page �� �u�q�`�l�̐擪����O���Q�O�O�O�P�ʂŐ������y�[�W�i���o�[���w�肵
+	   �܂��B
+

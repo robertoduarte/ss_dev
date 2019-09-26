@@ -1,0 +1,56 @@
+Program Name: 
+Bitwise Operators
+
+
+Purpose:
+Demonstrate the use of bitwise operators.
+
+
+Target Board and setting:
+EVB 7055
+
+
+File List:
+
+readme.txt	- This file. Description of project.
+hwinit.c	- Implementation of function hw_initialise. 
+vects.c		- Vector table entry.
+ioaddrs.h	- I/O register description and address definition.
+		  Various CPU/PORT Register definitions.
+bitwise.c	- Main program file. Contains logic for LED display. MySleep() function.
+bitwise.lnk	- Linker Script. Positions code, data at desired place.
+bitwise.ram.lnk	- Linker Script for RAM target. Positions code, data at desired place.
+start.s		- Start up routine. Calls hw_initialise() and followed by main().
+hwinit.c	- Hardware initialisation routine and vector table.
+makefile	- Project make file.
+
+
+Summary:
+
+This program uses following bit wise operators,
+1. ~
+2. |
+3. &
+4. >>
+5. <<
+
+
+
+Special Notes / instructions:
+Program must be flashed into FLASH ROM. Alternatively if you have HDI monitor 
+or GDB stub, you can build RAM image and download it.
+
+The program should observe following LED glowing pattern continuously
+
+Both LED's OFF
+Both LED's ON 
+Only red LED's ON
+Only green LED's ON
+Only red LED's ON 
+Only green LED's ON
+Both LED's OFF
+Red LED ON
+Compliment both LED's
+Compliment both LED's
+
+After this pattern there would long delay and same pattern will be repeated again.

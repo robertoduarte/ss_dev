@@ -1,0 +1,131 @@
+;PreProcess for VCDEMU <VCDPRE> Ver 2.14 Released at 29-Sep-1994
+;Copyright (c) 1994 Victor Company of Japan, Limited (JVC)
+[TOC]
+CatalogNo 0123456789
+DiscType RomXa
+  Tno    1
+    ControlCode 196
+    BeginTime 00:00:00
+    TotalINo 1
+    Index 00:02:00
+    EndTime 00:04:16
+    Mode 1
+    Gap 75
+  EndTrack
+  Tno    2
+    ControlCode 128
+    BeginTime 00:04:17
+    Pause 150
+    TotalINo 1
+    Index 00:06:17
+    EndTime 00:14:16
+    Mode 99
+  EndTrack
+  Tno    3
+    ControlCode 128
+    BeginTime 00:14:17
+    TotalINo 1
+    Index 00:14:17
+    EndTime 00:22:16
+    Mode 99
+  EndTrack
+  Tno    4
+    ControlCode 128
+    BeginTime 00:22:17
+    TotalINo 1
+    Index 00:22:17
+    EndTime 00:30:16
+    Mode 99
+  EndTrack
+  Tno    5
+    ControlCode 128
+    BeginTime 00:30:17
+    TotalINo 1
+    Index 00:30:17
+    EndTime 00:38:16
+    Mode 99
+  EndTrack
+LeadOut 00:38:17
+[REL]
+CdImageFile		JVC.DSK
+LeadInSize		0
+Tno		1
+	TotalFNo	3
+		LocalFNo	1
+		IsoFile		jvc.pvd
+		TotalCNo	1
+			DosFile	jvc.pvd
+				DosLength	43008	0
+				StLsn	0
+				EndLsn	20
+				LocalCNo 1
+			EndDosFile
+		EndIsoFile
+		LocalFNo	2
+		IsoFile		ABCDEFG1.DAT;1
+		TotalCNo	1
+			DosFile	pat_1.dat
+				DosLength	10740	0
+				StLsn	21
+				EndLsn	26
+				LocalCNo 1
+			EndDosFile
+		EndIsoFile
+		LocalFNo	3
+		IsoFile		D10.DAT;1
+		TotalCNo	1
+			DosFile	pat_10.dat
+				DosLength	133120	0
+				StLsn	27
+				EndLsn	91
+				LocalCNo 1
+			EndDosFile
+		EndIsoFile
+Tno		2
+	TotalFNo	1
+		LocalFNo	1
+		IsoFile		CDDA1;1
+		TotalCNo	1
+			DosFile	snd8_1.dat
+				DosLength	1411200	0
+				StLsn	317
+				EndLsn	916
+				LocalCNo 1
+			EndDosFile
+		EndIsoFile
+Tno		3
+	TotalFNo	1
+		LocalFNo	1
+		IsoFile		CDDA2;1
+		TotalCNo	1
+			DosFile	snd8_1.dat
+				DosLength	1411200	0
+				StLsn	917
+				EndLsn	1516
+				LocalCNo 1
+			EndDosFile
+		EndIsoFile
+Tno		4
+	TotalFNo	1
+		LocalFNo	1
+		IsoFile		CDDA3;1
+		TotalCNo	1
+			DosFile	snd8_3.dat
+				DosLength	1411200	0
+				StLsn	1517
+				EndLsn	2116
+				LocalCNo 1
+			EndDosFile
+		EndIsoFile
+Tno		5
+	TotalFNo	1
+		LocalFNo	1
+		IsoFile		CDDA4;1
+		TotalCNo	1
+			DosFile	snd8_3.dat
+				DosLength	1411200	0
+				StLsn	2117
+				EndLsn	2716
+				LocalCNo 1
+			EndDosFile
+		EndIsoFile

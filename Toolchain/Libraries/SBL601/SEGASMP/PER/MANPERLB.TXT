@@ -1,0 +1,1102 @@
+******************************************************************
+Peripheral Library Reference                          MANPERLB.TXT
+******************************************************************
+
+******************************************************************
+Contents
+******************************************************************
+
+  - About the New Demo Programs
+  - Conceptual Overview
+  - High-Level Interface Library for the SBL Peripheral Library
+  - File List
+  - Implementation Method
+  - Currently Supported Peripheral Devices
+  - Function List
+
+Note: This high-level interface library uses the existing
+      Peripheral Library as a submodule.  Therefore, the cautions
+      and restrictions that apply to the existing peripheral
+      library also apply to the high-level interface library.
+
+******************************************************************
+About the New Demo Programs
+******************************************************************
+
+- smpclib
+
+  This directory contains the high-level interface library.
+  For details, refer to smpclib.doc and smpclib.ref.
+
+- smpper7
+
+  Sample usage of high-level interface library
+
+- smpper8
+
+  Sample of how to convert mouse movement into trigger
+  information.
+
+- smpper12
+
+  Sample of how to read the Stunner data.
+
+
+******************************************************************
+Conceptual Overview
+******************************************************************
+
+The data structure returned by the SBL Peripheral Library is as
+follows:
+
+    struct port_t {
+        struct peripheral_t {
+            Uint8   type;
+            Uint8   size;
+            Uint8   data[m];
+        } peripheral[n];
+    } port[2];
+
+Where,
+
+  m is the data size specified by PER_LInit()
+  n is the maximum number of recognized peripherals divided by 2
+    as specified by PER_LInit()
+    (Note that m and n are always 1 or more)
+
+Because the m and n values cannot be determined during at compile
+time with this library, structures are not used, and
+implementation is done as a simple byte array.  To use the
+structure above to access the library's return data, do the
+following:
+
+  PER_LInit( PER_KD_PER, 2*n, m, port, 0 );
+
+******************************************************************
+The basic concept of the High-Level Interface Library is to access
+the library's return data using structures.
+******************************************************************
+
+******************************************************************
+High-Level Interface Library for the SBL Peripheral Library
+******************************************************************
+
+The SBL Peripheral Library only obtains peripheral data from the
+SMPC and inputs it into the buffer.  The user must perform all the
+required data processing tasks that follow.  For example, although
+obtaining trigger data is a fundamental process, the user must do
+all of this work on the application side given the functionality
+of the current library.
+
+* Process Of Obtaining Trigger Information
+
+Peripheral data is obtained from a device connected to a given
+port.  The ID is checked and a confirmation is made that the
+device is not disconnected or unknown.
+
+Next, check the ID, and determine the device type.  Read the
+trigger data from the peripheral data according to the type of
+device.  (When this is done, the application side must know
+information such as the significance of each bit in a peripheral's
+data byte.)
+
+If the key assignment changes, the trigger information is
+processed.
+
+* Did You Notice Something Here?
+
+The aforementioned process was referred to as the process of
+obtaining trigger information.  In addition, this process is also
+considered to be a fundamental process.  In other words, wouldn't
+it be great if someone came up with a function that would obtain
+trigger data?  Of course it is.  This is why this library was
+developed.
+
+When you use this high-level library, you are not burdened with
+the actual task of data acquisition and preprocessing.  These
+tasks are left to be handled by the current Peripheral Library, so
+only the logical processing of data needs to be done.  Because of
+this, the current Peripheral Library can be used in its entirety.
+
+Since this library is not a new peripheral library, there is no
+need to replace the current SBL Peripheral Library.  For projects
+that require the use of the functions of this library, link this
+library as well as the SBL Peripheral Library.  For projects that
+do not require these functions, nothing needs to be changed.
+Compatibility with the existing Peripheral Library is guaranteed.
+
+See the attached reference manual and source code for functions
+defined by this library and detailed information on objects, etc.
+
+******************************************************************
+File List
+******************************************************************
+
+per_1.c      High-Level Interface Library source
+per_2.c      Function group dependent on three constants
+per_3.src    Assembler version w/optimized PER_DisguiseTrigger()
+
+per_x.h      Definitions related to high-level interface functions
+per_trg.h    Definitions related to trigger data
+per_dev.h    Definitions related to general devices
+per_dgt.h    Definitions related to digital devices
+per_anlg.h   Definitions related to analog devices
+per_poin.h   Definitions related to pointing devices
+per_kbrd.h   Definitions related to keyboard devices
+per_md.h     Definitions related to Genesis devices
+
+******************************************************************
+Implementation Method
+******************************************************************
+
+Modify the three constant values defined in smpclib.h as required,
+recompile, and link along with the existing Peripheral Library to
+use.  The work area size used by the current Peripheral Library is
+determined by these values.
+
+Following are the default settings.  If these default settings are
+suitable, no recompilation is necessary, and the library can be
+linked into your application as-is.
+
+_MAX_PORT
+
+  Set by default to 2.
+  The number of ports attached to the SATURN
+  (normally set to 2)
+
+_MAX_PERIPHERAL
+
+  Set by default to 6.
+  The number of peripherals which can be connected to one port
+  (normally set to 6 or more to handle a 6Player)
+
+SZ_PERIPHERAL
+
+  Set by default to 5.
+  Maximum data size of one peripheral
+  For example, if your application supports both a mouse (data
+  size = 3) and a digital pad (data size = 2), set this item to
+  match the item with the higher data amount, which would be the
+  mouse in this case.
+  At this point, the maximum data size is 5 for analog devices.
+
+* Processing Procedure
+
+1. Initialize the peripheral interface environment.
+
+   Call PER_OpenPort().
+
+2. Set the V BLANK OUT interrupt handler.
+
+   Prepare the V BLANK OUT interrupt handler which calls
+   PER_GetPort()and set this in the vector.
+
+3. Get information from the specified input peripheral device.
+
+   Call PER_GetDevice?().
+
+4. Read the necessary data (e.g. trigger data) from the
+   information obtained in step 3.
+
+
+******************************************************************
+Currently Supported Peripheral Devices
+******************************************************************
+
+- Compatible Input Peripheral Devices
+
+* Standard Control Pad
+* Mouse
+* 6Player
+* Virtua Stick
+* Arcade Racer
+
+This interface library currently handles the peripherals above, as
+well as other input peripherals that are compatible with them.
+
+Compatible peripheral types are listed below:
+
+* Digital devices (peripheral type = 0)
+
+  Control Pad, Virtua Stick
+
+* Analog devices (peripheral type = 1)
+
+  Arcade Racer
+
+* Pointing devices (peripheral type = 2)
+
+  Mouse
+
+* Keyboard devices (peripheral type = 3)
+
+  No applicable products available in the market at this time.
+
+* Genesis devices (peripheral type = E)
+
+  No applicable products available in the market at this time.
+
+Note: The ID for the mouse is actually returned to SMPC as H'E3.
+However, the ID is converted by the Peripheral Library, so the ID
+obtained from the data is H'23.
+
+* Other Peripherals
+
+Caution is necessary in developing applications for the STUNNER
+GUN and MISSION STICK.
+
+- STUNNER
+
+With the existing Peripheral Library, it is possible to detect
+whether a device is connected to a control port by checking the
+port status.  However, in the case of the Stunner, the data is not
+stored in the buffer.  Therefore, the application must set the
+SMPC to the direct mode to obtain trigger data.  In addition, the
+application must also obtain the HV counter value directly from
+VDP2.
+
+- MISSION STICK
+
+Since the Mission Stick is not compatible with the 6Player, it
+must be used directly by connecting it to the Saturn's control
+port.  In other cases, if the Mission Stick is connected to the
+6Player, its peripheral data as well as the data of other
+peripherals may not be read correctly.
+
+******************************************************************
+Function List
+******************************************************************
+
+* PER_GetTrigger()
+
+  Get the trigger information at the specified timing.
+
+* PER_GetEdge()
+
+  Get the trigger information that changed between two
+  specified timings.
+
+* PER_GetPressEdge()
+
+  Get the trigger press information between two specified timings.
+
+* PER_GetReleaseEdge()
+
+  Get the trigger release information between two specified
+  timings.
+
+* PER_SetTriggerHandler()
+
+  Set the trigger handler for peripherals with the specified
+  ID.
+
+* PER_GetTriggerHandler()
+
+  Get the trigger handler for peripherals with the specified ID.
+
+* PER_DisguiseTrigger()
+
+  Convert the trigger information according to assignment tables.
+
+* PER_GetID()
+
+  Get the SATURN peripheral ID.
+
+* PER_GetType()
+
+  Get the peripheral type.
+
+* PER_GetSize()
+
+  Get the peripheral data size.
+
+* PER_GetAnalogXYZ()
+
+  Get the A/D converter output value of a standard analog device.
+
+* PER_GetPointerXY()
+
+  Get the movement amount of a standard pointing device.
+
+* PER_GetKeyboardType()
+
+  Get the type of standard keyboard device.
+
+******************************************************************
+Object List
+******************************************************************
+
+* SysDevice
+
+  Basic type of standard SATURN peripheral.
+
+* SysDevDigital
+
+  Standard SATURN digital device.
+
+* SysDevAnalog
+
+  Standard SATURN analog device.
+
+* SysDevPointer
+
+  Standard SATURN pointing device.
+
+* SysDevKeyboard
+
+  Standard SATURN keyboard device.
+
+* trigger_t
+
+  Trigger information
+
+* assigment_t
+
+  Trigger information conversion table (assignment table).
+
+* trigger_handler_t
+
+  Trigger handler (handler to get trigger information from device).
+
+******************************************************************
+Function Description
+******************************************************************
+
+* PER_GetID()
+
+  - Synopsis
+
+    #include"per_x.h"
+
+    id = PER_GetID( device );
+
+    Gets the SATURN peripheral ID
+
+
+  - Parameters
+
+    const SysDevice *device;
+
+    Device information
+
+
+  - Return Value
+
+    int id;
+
+    Returns the SATURN peripheral ID
+
+
+  - Dependent/Reference Objects
+
+    None
+
+* PER_GetType()
+
+  - Synopsis
+
+    #include"per_x.h"
+
+    type = PER_GetType( device );
+
+    Gets the peripheral type
+
+
+  - Parameters
+
+    const SysDevice *device;
+
+    Device information
+
+
+  - Return Value
+
+    int type;
+
+    Returns the peripheral type
+
+
+  - Dependent/Reference Objects
+
+    None
+
+
+* PER_GetSize()
+
+  - Synopsis
+
+    #include"per_x.h"
+
+    size = PER_GetSize( device );
+
+    Gets the size of device data (number of bytes)
+
+
+  - Parameters
+
+    const SysDevice *device;
+
+    Device information
+
+
+  - Return Value
+
+    int size;
+
+    Returns the size of device data
+
+
+  - Dependent/Reference Objects
+
+    None
+
+* PER_SetTriggerHandler()
+
+  - Synopsis
+
+    #include"per_x.h"
+
+    PER_SetTriggerHandler( id, handler );
+
+    Sets the trigger handler for a peripheral with the specified
+    ID.
+
+    ****
+    Note that the handler for device with "the specified ID" is
+    set here, not the "specified type."
+
+    The function (handler) defined here will be called when the
+    device data with the specified ID is passed to
+    PER_GetTrigger().
+
+    For a programing example, refer to GetTrigerDigital() in
+    saturn/segasmp/per/smpclib/per_x1.c.
+
+
+  - Parameters
+
+    int id;
+    trigger_handler_thandler;
+
+    <id> is the SATURN peripheral ID.
+
+    <handler> is a trigger handler.
+
+  - Return Value
+
+    None
+
+  - Dependent/Reference Objects
+
+    None
+
+* PER_GetTriggerHandler()
+
+  - Synopsis
+
+    #include"per_x.h"
+
+    handler = PER_GetTriggerHandler( id );
+
+    Gets the trigger handler for peripherals with the specified
+    ID.
+
+
+  - Parameters
+
+    intid;
+
+    SATURN peripheral ID
+
+
+  - Return Value
+
+    trigger_handler_thandler;
+
+    Returns the trigger handler.
+
+  - Dependent/Reference Objects
+
+    None
+
+* PER_GetTrigger()
+
+  - Synopsis
+
+    #include"per_x.h"
+
+    trigger = PER_GetTrigger( device );
+
+    Gets the trigger information according to the device type.
+
+    To retrieve trigger information from the device with the ID
+    registered by PER_SetTriggerHandler(), use the function
+    (handler) registered by the same PER_SetTriggerHandler().  If
+    a similar function is not available, use the default function
+    provided.  The input peripherals supported by the default
+    function are listed below.  When accessing trigger data from
+    peripherals other than those listed below, use
+    PER_SetTriggerHandler()
+
+  - Default Supported Input Peripherals
+
+    + Digital device
+
+      Peripherals which return 0x02 - 0x0f as the SATURN
+      peripheral ID.
+
+    + Analog device
+
+      Peripherals which return 0x12 - 0x1f as the SATURN
+      peripheral ID.
+
+    + Pointing device
+
+      Peripherals which return 0x22 - 0x2f as the SATURN
+      peripheral ID.
+
+    + Keyboard device
+
+      Peripherals which return 0x33 - 0x3f as the SATURN
+      peripheral ID.
+
+    + 3B pad for MEGA DRIVE
+
+      Peripherals which return 0xe1 as the SATURN peripheral ID.
+
+    + 6B pad for MEGA DRIVE
+
+      Peripherals which return 0xe2 as the SATURN peripheral ID.
+
+    + Mouse for MEGA DRIVE
+
+      Peripherals which return 0xe3 as the SATURN peripheral ID.
+
+
+  - Parameters
+
+    const SysDevice *device;
+
+    Device information
+
+
+  - Return Value
+
+    trigger_ttrigger;
+
+    Returns trigger information
+
+
+  - Dependent/Reference Objects
+
+    None
+
+
+* PER_GetEdge()
+
+  - Synopsis
+
+    #include"per_x.h"
+
+    edge = PER_GetEdge( t1, t2 );
+
+    Gets trigger edge information.
+
+    The edge information refers to the trigger information that
+    changed between the two timings <t1> and <t2>.
+
+
+  - Parameters
+
+    trigger_tt1;
+    trigger_tt2;
+
+    <t1> and <t2> are trigger information.
+    The sequence of <t1> and <t2> is interchangeable.
+
+
+  - Return Value
+
+    trigger_tedge;
+
+    Returns the trigger edge information.
+
+
+  - Dependent/Reference Objects
+
+    None
+
+* PER_GetPressEdge()
+
+  - Synopsis
+
+    #include"per_x.h"
+
+    edge = PER_GetPressEdge( prev, current );
+
+    Get the trigger press edge information.
+
+    The press edge information refers to the trigger data that
+    changed from released state to pressed state between the two
+    timings <prev> and <current>.
+
+
+  - Parameters
+
+    trigger_tprev;
+    trigger_tcurrent;
+
+    Both <prev> and <current> are trigger data.
+    The temporal relationship (<prev> < <current>) is assumed.
+
+
+  - Return Value
+
+    trigger_tedge;
+
+    Returns the trigger press edge information.
+
+  - Dependent/Reference Objects
+
+    None
+
+* PER_GetReleaseEdge()
+
+  - Synopsis
+
+    #include"per_x.h"
+
+    edge = PER_GetReleaseEdge( prev, current );
+
+    Get the trigger release edge information.
+
+    The release edge information refers to the trigger data that
+    changed from pressed state to released state between the two
+    timings <prev> and <current>.
+
+
+  - Parameters
+
+    trigger_tprev;
+    trigger_tcurrent;
+
+    Both <prev> and <current> are trigger information.
+    The temporal relationship (<prev> < <current>) is assumed.
+
+
+  - Return Value
+
+    trigger_tedge;
+
+    Returns the trigger release edge information.
+
+
+  - Dependent/Reference Objects
+
+    None
+
+
+* PER_DisguiseTrigger()
+
+  - Synopsis
+
+    #include"per_x.h"
+
+    trigger = PER_DisguiseTrigger( assignment, trigger );
+
+    Converts the trigger information <trigger> according to
+    assignment table <assignment>. If NULL is specified for
+    <assignment>, <trigger> is returned without conversion.
+
+    An assignment table is a trigger data array, and the array
+    index corresponds to the trigger data bit number.
+    For example, the values returned when bit 0 and bit 4 of the
+    <trigger> are TRUE are ( assignment[0] | assignment[4] ).
+
+    Normally, each member of an assignment[] corresponds to only
+    one trigger.  When multiple triggers are associated with one
+    member, care must be taken because when only one trigger is
+    pressed, it behaves as if multiple triggers are pressed.
+
+
+  - Parameters
+
+    const assignment_t *assignment;
+    trigger_ttrigger;
+
+    <assignment> is the trigger data assignment table
+    <trigger> is trigger data
+
+    If NULL is passed to <assignment>, <trigger> is returned as is
+    without being converted.
+
+
+  - Return Value
+
+    trigger_ttrigger;
+
+    Returns trigger information.
+
+
+  - Dependent/Reference Objects
+
+    None
+
+
+* PER_GetAnalogXYZ()
+
+  - Synopsis
+
+    #include"per_x.h"
+
+    PER_GetAnalogXYZ( analog, &x, &y, &z );
+
+    Gets the XYZ direction A/D converter output value from analog
+    devices.
+
+
+  - Parameters
+
+    const SysDevAnalog *analog;
+    int *x;
+    int *y;
+    int *z;
+
+    <analog> is analog device information.
+    <x> <y> <z> are XYZ direction A/D converter output values.
+
+    If NULL is passed to <x> <y> <z>, nothing is returned.
+
+    (right) -127 to +127 (left) is returned to <x>.
+    (up)    -127 to +127 (down) is returned to <y>.
+    (down)  -127 to +127 (up)   is returned to <z>.
+
+  - Return Value
+
+    None
+
+
+  - Dependent/Reference Objects
+
+    None
+
+
+* PER_GetKeyboardType()
+
+  - Synopsis
+
+    #include"per_x.h"
+
+    type = PER_GetKeyboardType( keyboard );
+
+    Gets the keyboard type.
+
+  - Parameters
+
+    const SysDevKeyboard *keyboard;
+
+    Keyboard device information
+
+
+  - Return Value
+
+    inttype;
+
+    Returns the keyboard type.
+
+
+  - Dependent/Reference Objects
+
+    None
+
+
+* PER_GetPointerXY()
+
+  - Synopsis
+
+    #include"per_x.h"
+
+    PER_GetPointerXY( pointer, &dx, &dy );
+
+    Gets the XY direction movement amount from pointing devices.
+
+    For X, a movement to the right is negative, and a movement to
+    the right is positive.
+
+    For Y, a movement upward is negative, and a movement downward
+    is positive.
+
+  - Parameters
+
+    const SysDevPointer *pointer;
+    int *dx;
+    int *dy;
+
+    <pointer> is pointing device information.
+    <dx> <dy> are XY direction shift information.
+
+    If NULL is passed to <dx> <dy>, nothing is returned.
+
+    (right) 255 to 255 (left) is returned to <dx>.
+    (up)    255 to 255 (down) is returned to <dy>.
+
+
+  - Return Value
+
+    None
+
+  - Dependent/Reference Objects
+
+    None
+
+******************************************************************
+Objects
+******************************************************************
+
+* SysDevice
+
+  This is an object which represents a standard SATURN peripheral.
+  All standard peripherals support is based on this object.
+  This object is the peripheral library return data.
+
+  - .type
+
+    SATURN peripheral type
+
+  - .size
+
+     Peripheral data size
+
+  - .data[]
+
+     Data
+
+* SysDevDigital
+
+  This is an object that represents a standard SATURN digital
+  device.
+  This object inherits the object SysDevice.
+  All support for standard digital devices are based on this
+  object.
+
+  - .type
+
+    SATURN peripheral type (==TYPE_DIGITAL)
+
+  - .size
+
+    Peripheral data size
+
+  - .data[]
+
+    Trigger information
+
+  - .expended[]
+
+    Extended data
+
+* SysDevAnalog
+
+  This is an object which represents a standard SATURN analog
+  device.
+  This object inherits the object SysDevice.
+  All support for standard analog devices are based on this
+  object.
+
+  - .type
+
+    SATURN peripheral type (==TYPE_ANALOG)
+
+  - .size
+
+     Peripheral data size
+
+  - .data[]
+
+     Trigger information
+
+  - .ax
+
+     X direction A/D converter output value (left 0 to right 255)
+
+  - .ay
+
+     Y direction A/D converter output value (up 0 to down 255)
+
+  - .az
+
+     Z direction A/D converter output value (down 0 to up 255)
+
+  - .expended[]
+
+     Extended data
+
+* SysDevPointer
+
+  This is an object which represents a standard SATURN pointing
+  device.
+  This object inherits the object SysDevice.
+  All support for standard pointing devices are based on this
+  object.
+
+  - .type
+
+    SATURN peripheral type (==TYPE_POINTER)
+
+  - .size
+
+    Peripheral data size
+
+  - .status
+
+    Trigger information, movement amount sign, movement amount
+    overflow.
+
+  - .dx
+  - .dy
+
+    XY direction movement amount absolute values (0 to 255)
+
+  - .expended[]
+
+    Expanded data
+
+* SysDevKeyboard
+
+  This is an object which represents a standard SATURN keyboard
+  device.
+  This object inherits the object SysDevice.
+  All support for standard keyboard devices are based on this
+  object.
+
+  - .type
+
+    SATURN peripheral type (==TYPE_KEYBOARD)
+
+  - .size
+
+     Extended data
+
+  - .data[]
+
+    Trigger information, keyboard type
+
+  - .shift
+
+    Shift key information (K_CAPS, K_NUM, K_SCROLL, K_BREAK,
+    K_MAKE)
+
+  - .c
+
+    Character number
+
+  - .expended[]
+
+    Extended data
+
+* DevMD3B
+
+  This is an object which represents a 3 button Genesis pad.
+  This object inherits the object SysDevice.
+
+  - .type
+
+    SATURN peripheral type (==TYPE_MD)
+
+  - .size
+
+    Peripheral data size (==1)
+
+  - .data[]
+
+    Trigger information
+
+* DevMD6B
+
+  This is an object which represents a 6 button Genesis pad.
+  This object inherits the object SysDevDigital.
+
+  - .type
+
+    SATURN peripheral type (==TYPE_MD)
+
+  - .size
+
+     Peripheral data size (==2)
+
+  - .data[]
+
+     Trigger information
+
+* DevMDMouse
+
+  An object which represents a Genesis mouse.
+  This object inherits the object SysDevPointer.
+
+  - .type
+
+    SATURN peripheral type (==TYPE_MD)
+
+  - .size
+
+    Peripheral data size (==3)
+
+  - .status
+
+    Trigger information, movement amount sign, movement amount
+    overflow.
+
+  - .dx
+  - .dy
+
+     XY direction movement amount absolute values (0 to 255)
+
+* trigger_t
+
+  - TRG_A     A button
+  - TRG_B     B button
+  - TRG_C     C button
+  - TRG_X     X button
+  - TRG_Y     Y button
+  - TRG_Z     Z button
+  - TRG_L     L button
+  - TRG_R     R button
+  - TRG_UP    Up
+  - TRG_DOWN  Down
+  - TRG_LEFT  Left
+  - TRG_RIGHT Right
+  - TRG_START Start button
+
+    The right button of the standard pointing device is TRG_A.
+    The center button of the standard pointing device is TRG_C.
+    The left button of the standard pointing device is TRG_B.
+    The standard pointing device has only TRG_START, A, B, and C.
+    The mode button of the Genesis 6B pad is TRG_R.
+    The Genesis 6B pad has no TRG_L.
+    The Genesis 3B pad has no TRG_X, Y, Z, L, or R.
+    Y, Z directional analog output is not possible with the Arcade
+    Racer.
+    The Arcade Racer has no TRG_LEFT, RIGHT, L, or R.
+
+    TRG_MODE: Genesis 6 button pad mode button
+    TRG_RESET: Software reset
+
+* assignment_t
+
+  The member sequence must not be changed.  The member sequence
+  corresponds to the trigger_t constant 'TRG_???' bit order.
+
+* trigger_handler_t
+
+  This is the function which fetches trigger information from the
+  device information.  Handlers set with PER_SetTriggerHandler()
+  are called when device information of a specified ID is passed
+  to PER_GetTrigger().
+
+  See GetTrigerDigital() in saturn/segasmp/per/smpclib/per_x1.c.
+  for more information
+
+
+
+
+

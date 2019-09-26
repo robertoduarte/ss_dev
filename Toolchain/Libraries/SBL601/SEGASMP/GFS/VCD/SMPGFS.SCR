@@ -1,0 +1,34 @@
+Disc    "SMPGFS.DSK"
+CatalogNo       0
+Session CDROM
+LeadIn  MODE1
+EndLeadIn
+Track   MODE1
+   Volume ISO9660 "SMPGFS.PVD"
+       PrimaryVolume    0:2:16
+           SystemIdentifier "SMPGFS"
+       EndPrimaryVolume
+   EndVolume
+   File SIZE10S.DAT;1
+       FileSource       "size10s.dat"
+       EndFileSource
+   EndFile
+   File SIZE2048.DAT;1
+       FileSource       "size2048.dat"
+       EndFileSource
+   EndFile
+   File SIMM1.DAT;1
+       FileSource       "simm1.dat"
+       EndFileSource
+   EndFile
+   File SIMM_DOS.DAT;1
+       FileSource       "simm_dos.dat"
+       EndFileSource
+   EndFile
+   PostGap 300
+EndTrack
+LeadOut MODE1
+    Empty 600
+EndLeadOut
+EndSession
+EndDisc

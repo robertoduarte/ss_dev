@@ -1,0 +1,17 @@
+#
+#�����̃t�@�C���� makefile ���� include ����܂��B
+#  TARGET �ɂ̓��C�u�����̃t�@�C�������w�肵�Ă��������B
+#  OBJS �ɂ̓��C�u��������邽�߂� dependencies ���w�肵�Ă��������B
+#
+TARGET=	$(LIBDIR)/sega_spr.a
+
+OBJS=	$(OBJDIR)/spr_slv.o\
+		$(OBJDIR)/spr_1c.o\
+		$(OBJDIR)/spr_2c.o\
+		$(OBJDIR)/spr_2a.o\
+		$(OBJDIR)/spr_3c0.o\
+		$(OBJDIR)/spr_3c1.o\
+		$(OBJDIR)/spr_3a0.o\
+		$(OBJDIR)/spr_3a1.o\
+		$(OBJDIR)/spr_3tri.o\
+		$(OBJDIR)/spr_3dsp.o

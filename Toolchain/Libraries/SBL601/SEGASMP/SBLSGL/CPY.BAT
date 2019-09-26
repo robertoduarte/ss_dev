@@ -1,0 +1,10 @@
+copy SBLSGL00\*.cof ..\cof
+copy SBLSGL00\*.abs ..\abs
+copy SBLSGL01\*.cof ..\cof
+copy SBLSGL01\*.abs ..\abs
+copy SBLSGL02\*.cof ..\cof
+copy SBLSGL02\*.abs ..\abs
+copy SBLSGL03\*.cof ..\cof
+copy SBLSGL03\*.abs ..\abs
+copy SBLSGL04\*.cof ..\cof
+copy SBLSGL04\*.abs ..\abs

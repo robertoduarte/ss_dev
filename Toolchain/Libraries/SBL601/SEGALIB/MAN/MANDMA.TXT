@@ -1,0 +1,294 @@
+******************************************************************
+*Document type: Library reference
+*Library prefix: dma
+*Library name: DMA
+*Version: 1.04
+*Creator: N.T
+*Created: 11/11/94
+*Comments: 2nd Step (8/22/94) -> 3rd Step (11/11/94) changes
+******************************************************************
+
+* Versions 1.02 and Version 1.03 were distributed on a case-by-
+  case basis
+
+******************************************************************
+Cautions When Upgrading to a New Version
+
+!!! Important !!!
+
+The header file has been changed, so be sure to recompile your
+applications that include header files.
+
+******************************************************************
+Revision History
+
+* 1994-09-23 Version 1.02
+* 1994-10-12 Version 1.03
+* 1994-11-11 Version 1.04
+* 1994-11-14 Version 1.04aH.O
+
+******************************************************************
+Description of Version 1.04a Changes
+
+* Implemented support for disabling access to DMA request/response
+  select control registers.
+
+  Fixed as described below:
+
+  1) Deleted the DMA_CPU_DREQ macro from the header file
+     sega_dma.h.
+  2) Modified the library so that a parameter check occurs
+     internally in the dma_cpu0.c file register set function
+     DMA_CpuSetPrm so that nothing only DMA_CPU_RXI and
+     DMA_CPU_TXI are set.
+
+******************************************************************
+Description of Version 1.04 Changes
+
+* Compile option changes
+
+  The library compile option /SP was changed to /NOSP.  This was
+  changed to avoid confusion that may be caused during debugging
+  due to the in-line expansion of functions that occurs when
+  the library is compiled with the /SP option.
+
+******************************************************************
+Description of Version 1.03 Changes
+
+* Bug Fixes
+
+  The following fixes were made for problems in Version 1.02
+  (9/30/94).
+
+* General
+
+  1. The DMA parameter mask item contents described in the manual
+     were incorrect.
+
+   - Problem description
+
+     The manual incorrectly states that "the mask constant-
+     specified bits do not make settings to registers."
+
+   - Fix
+
+     The statement was corrected to say that "the bits that are
+     not specified by the mask constant do not make settings to
+     registers."
+
+* High-level SCU DMA
+
+  1. The correct value is not returned when DMA_ScuResult() is
+     executed before DMA_ScuMemCopy().
+
+   - Problem description
+
+     The correct value is not returned when DMA_ScuResult() is
+     executed before DMA_ScuMemCopy().
+
+   - Fix
+
+     Corrected to return the correct value.
+
+* Low-level SCU DMA
+
+  1. The DMA completion interrupt vector is not restored.
+
+   - Problem description
+
+     The DMA completion interrupt vector is preserved at the start
+     of the DMA.  However, after DMA completion, the preserved
+     vector is not reset.
+
+   - Fix
+
+     All vectors preserved during channel DMA completion interrupt
+     processing are now reset.
+
+  2. Cannot specify the DMA parameter mask correctly
+
+   - Problem description
+
+     Settings to DXR (read address register) were made
+     unconditionally, regardless of the DMA parameter mask
+     constant setting.
+
+   - Fix
+
+     The mask constant was fixed.
+
+  3. Use of unsupported hardware feature by DMA_ScuAllStop
+     function.
+
+   - Problem description
+
+     The forced DMA termination register used by DMA_ScuAllStop
+     was eliminated due to SCU hardware restrictions.
+
+   - Fixes
+
+     This function was eliminated.
+
+  4. Use of unsupported hardware function DMA_ScuStop.
+
+   - Problem description
+
+     The function DMA_ScuAllStop existed in the library even
+     though it was not supported in hardware.
+
+   - Fix
+
+     This function was eliminated.
+
+* Low-level CPU DMA
+
+  1. Cannot specify the DMA parameter mask correctly
+
+   - Problem description
+
+     Settings to PR (priority mode) were made unconditionally,
+     regardless of the common DMA parameter mask constant setting.
+     Also, settings to SAR (DMA source address) were made
+     unconditionally regardless of the DMA parameter mask
+     constant setting.
+
+   - Fix
+
+     The mask constant was fixed.
+
+
+* Additions to the Manual
+
+  - Low-level SCU DMA
+
+    When using low-level SCU DMAs, enable the appropriate DMA
+    completion interrupt mask register for the channel being used.
+
+* Sample program fixes
+
+  Changes were made to make the following sample programs
+  compatible with this library.
+
+    SMPDMA10.C
+    SMPDMA12.C
+
+******************************************************************
+Description of Version 1.02 Changes
+
+* Bug fixes
+
+  Fixes for problems with 3rd Step as described below.  All
+  problems deal with SCU-based DMAs.
+
+  1. Accidental inclusion of debug code in sega_dma.lib.
+
+   - Problem description
+
+     Debug program was accidentally mixed with sega_dma.lib.  This
+     debug program wrote data near the 6060000 address.  In
+     addition, because /deb was specified in the compile option,
+     sega_dma.lib was larger than necessary.
+
+   - Fixes
+
+     1) Recompiled code.
+     2) Corrected dma.bat and dma.mk.
+
+  2. Use of restricted hardware interrupt status registers.
+
+   - Problem description
+
+     An interrupt status register that cannot be used because of
+     hardware restrictions was used. (There are cases when an
+     interrupt signal cannot be generated depending on the timing
+     of writes to the interrupt status register.)
+
+   - Fixes
+
+     The library was modified so that the interrupt status
+     registers are no longer used.  Interrupt processing is used
+     instead.  The following specifications in the DMA Library
+     were changed:
+
+     Since DMA completion interrupt processing is used in the SCU
+     DMA library, if an SCU DMA is executed during a higher
+     priority interrupt processing such as a V-Blank entry, the
+     completion of the DMA is delayed until the higher priority
+     interrupt processing is completed.  The two methods below
+     avoid this problem:
+
+     1) Execute SCU DMA as a mainline process.
+     2) Change the interrupt priority order.
+
+     Contact your local technical support representative regarding
+     the recommended method of setting up the interrupt priority
+     order for 2).
+
+* Specification Changes
+
+1) High-level SCU DMA
+
+The following function was added:
+
++------------------------+-------------------------+-------------+
+| Function specification | Initialize SCU DMA      | DMA_ScuInit |
++------------------------+-------------------------+-------------+
+
+Format:         void DMA_ScuInit(void)
+Input:          None
+Output:         None
+Function Value: None
+Function:       Initializes SCU DMA.  Execute this function before
+                executing DMA_ScuCopyMem() and DMA_ScuResult().
+
+!!! Important !!!
+
+The DMA mode 0 transfer completion interrupt processing is used in
+an SCU DMA.  Therefore, do not change the interrupt mask register
+setting of the DMA mode 0 transfer completion interrupt.
+
+2) Low-level SCU DMA
+
+The following function and data specifications were added:
+
++------------------------+------------------+--------------------+
+| Function specification | Get DMA status   | DMA_ScuGetStatus   |
++------------------------+------------------+--------------------+
+
+Format:         void DMA_ScuGetStatus(DmaScuStatus *status,
+                Uint32 ch)
+Input:          ch:     Input channel
+Output:         status: Status pointer
+Function Value: None
+Function:       Gets the status of the specified DMA channel.
+
+!!! Important !!!
+
+The same type of function existed in 2ndSTEP.  However, the
+following difference exists in this version:
+
+  DmaScuStatus structure members dxbk (DMA suspended state flag)
+  and dxwt (DMA wait flag) were removed.
+
++------------------------+------------------+--------------------+
+| Data specification     | Status           | DmaScuStatus       |
++------------------------+------------------+--------------------+
+
+Status has the following structure:
+
+struct {
+    Uint32 dxmv;
+}
+
+The following constants can be used by each member:
+
+dxmv /* DMA operation flag */
+
++-------------------+------------------------------+
+| Constant          | Explanation                  |
++-------------------+------------------------------+
+| DMA_SCU_MV        | Operating                    |
+| DMA_SCU_NO_MV     | Not operating                |
++--------------------------------------------------+
+
+***************************end of file****************************

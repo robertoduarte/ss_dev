@@ -1,0 +1,28 @@
+#
+#�����̃t�@�C���� makefile ���� include ����܂��B
+#  TARGET �ɂ̓��C�u�����̃t�@�C�������w�肵�Ă��������B
+#  OBJS �ɂ̓��C�u��������邽�߂� dependencies ���w�肵�Ă��������B
+#
+TARGET=$(LIBDIR)/sega_gfs.a
+OBJS=	$(OBJDIR)/gfs.o\
+	$(OBJDIR)/gfs_buf.o\
+	$(OBJDIR)/gfs_cdb.o\
+	$(OBJDIR)/gfs_cdc.o\
+	$(OBJDIR)/gfs_cdf.o\
+	$(OBJDIR)/gfs_dir.o\
+	$(OBJDIR)/gfs_trn.o
+
+TARGET1=$(LIBDIR)/segadgfs.a
+OBJS1=	$(OBJDIR)/gfsd.o\
+	$(OBJDIR)/gfsdbuf.o\
+	$(OBJDIR)/gfsdcdb.o\
+	$(OBJDIR)/gfsdcdc.o\
+	$(OBJDIR)/gfsdcdf.o\
+	$(OBJDIR)/gfsddir.o\
+	$(OBJDIR)/gfsdmmb.o\
+	$(OBJDIR)/gfsdmmc.o\
+	$(OBJDIR)/gfsdmmf.o\
+	$(OBJDIR)/gfsdsfb.o\
+	$(OBJDIR)/gfsdsff.o\
+	$(OBJDIR)/gfsdtrn.o
+

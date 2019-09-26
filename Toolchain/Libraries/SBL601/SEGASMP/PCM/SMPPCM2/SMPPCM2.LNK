@@ -1,0 +1,12 @@
+OUTPUT	smppcm2.abs
+INPUT	..\..\lib\strt1_h.obj
+INPUT	..\..\lib\strt2_h.obj
+INPUT	smppcm2.obj
+library	..\..\..\segalib\lib\sega_adp.lib
+library	..\..\..\segalib\lib\sega_cdc.lib
+library	..\..\..\segalib\lib\sega_sat.lib
+library	..\..\..\sh\lib\shcnpic.lib
+ENTRY	START
+START	P,SEGA_P,C,SEGA_C,D,SEGA_D,B,SEGA_B(06010000)
+PRINT	smppcm2.map
+EXIT

@@ -1,0 +1,517 @@
+;-----------------------------------------------------------------------------
+;  spr_2a.src -- SPR ���C�u���� 2A ���W���[��
+;  Copyright(c) 1994 SEGA
+;  Written by H.E on 1994-07-25 Ver.1.00
+;  Updated by H.E on 1995-02-07 Ver.1.00
+;
+;  ���̃��C�u�����̓X�v���C�g�\���g���i�Q�c�j�������W���[���ŁA�ȉ��̃��[�`��
+;  ���܂ށB
+;
+;  SPR_2SetDrawPrty         -  �R�}���h�`��v���C�I���e�B�̃Z�b�g
+;  flushDrawPrtyBlock       -  �R�}���h�`��v���C�I���e�B�u���b�N�̃t���b�V��
+;
+;----------------------------------------------------------------------------
+;
+          .IMPORT     _SpMstDrawPrtyBlk
+          .IMPORT     _SpDrawPrtyBlkMax
+          .IMPORT     _SpMstCmdPos
+          .IMPORT     _SpMstCmd
+          .IMPORT     _SpSlvCmd
+          .IMPORT     _SpCmdTblR
+          .IMPORT     _SpCmdNo
+;
+          .EXPORT     _SPR_2SetDrawPrty
+          .EXPORT     _flushDrawPrtyBlock
+          .EXPORT     _sprMemCpyL
+          .EXPORT     _sprMemCpyW
+;
+          .SECTION    SprDrawPrtyBlk,DUMMY
+topNo     .RES.W      1
+botNo     .RES.W      1
+;
+          .SECTION    SprSpCmd,DUMMY
+control   .RES.W      1
+link      .RES.W      1
+drawMode  .RES.W      1
+color     .RES.W      1
+charAddr  .RES.W      1
+charSize  .RES.W      1
+ax        .RES.W      1
+ay        .RES.W      1
+bx        .RES.W      1
+by        .RES.W      1
+cx        .RES.W      1
+cy        .RES.W      1
+dx        .RES.W      1
+dy        .RES.W      1
+grshAddr  .RES.W      1
+dummy     .RES.W      1
+;
+          .SECTION    SEGA_P,CODE,ALIGN=4
+;*****************************************************************************
+;*
+;* NAME:  sprMemCpyL - long memcpy
+;*
+;*      void sprMemCpyL(void *dst, void *src, int count);
+;*
+;* PARAMETERS :
+;*
+;*     (1) int   *dst   - <o>  �f�X�e�B�l�[�V����
+;*     (2) int   *src   - <i>  �\�[�X
+;*     (1) int   count  - <i>  �����O�̃R�s�[�J�E���g��
+;*
+;* DESCRIPTION:
+;*
+;*     �����O�P�ʂ̃������R�s�[
+;*
+;*
+;* POSTCONDITIONS:
+;*
+;*     No exist.
+;*
+;* CAVEATS:
+;*
+;*****************************************************************************
+;
+_sprMemCpyL:
+;
+          CMP/PL      R6
+          BF          MCL_99
+MCL_00:
+          MOV.L       @R5+,R0
+          MOV.L       R0,@R4
+          DT          R6
+          BF/S        MCL_00
+          ADD         #4,R4
+MCL_99:
+          RTS
+          NOP
+;
+;
+;*****************************************************************************
+;*
+;* NAME:  sprMemCpyW - word memcpy
+;*
+;*      void sprMemCpyW(void *dst, void *src, int count);
+;*
+;* PARAMETERS :
+;*
+;*     (1) int   *dst   - <o>  �f�X�e�B�l�[�V����
+;*     (2) int   *src   - <i>  �\�[�X
+;*     (1) int   count  - <i>  ���[�h�̃R�s�[�J�E���g��
+;*
+;* DESCRIPTION:
+;*
+;*     ���[�h�P�ʂ̃������R�s�[
+;*
+;*
+;* POSTCONDITIONS:
+;*
+;*     No exist.
+;*
+;* CAVEATS:
+;*
+;*****************************************************************************
+;
+_sprMemCpyW:
+;
+          CMP/PL      R6
+          BF          MCW_99
+MCW_00:
+          MOV.W       @R5+,R0
+          MOV.W       R0,@R4
+          DT          R6
+          BF/S        MCW_00
+          ADD         #2,R4
+MCW_99:
+          RTS
+          NOP
+;
+;
+;*****************************************************************************
+;*
+;* NAME:  SPR_2SetDrawPrty - Set Draw Priority Command Chain
+;*
+;*      void SPR_2SetDrawPrty(int drawPrtyNo);
+;*
+;* PARAMETERS :
+;*
+;*     (1) int   drawPrtyNo   - <i>  �R�}���h�`��v���C�I���e�B�ԍ�
+;*
+;* DESCRIPTION:
+;*
+;*     �R�}���h�`��v���C�I���e�B�Ǘ��u���b�N�ɃR�}���h�ԍ���ݒ肷��
+;*
+;*
+;* POSTCONDITIONS:
+;*
+;*     No exist.
+;*
+;* CAVEATS:
+;*
+;*****************************************************************************
+;
+_SPR_2SetDrawPrty:
+                                        ; R4 : drawPrtyNo
+;
+          MOV.L       SDP_SpDrawPrtyBlkMax,R1
+          MOV.L       @R1,R1            ; R1 : SpDrawPrtyBlkMax
+          CMP/GE      R1,R4		; if(SpDrawPrtyBlkMax > drawPrtyNo)
+          BF          SDP_02		;    goto SDP_02
+          MOV.L       R1,R4
+          ADD         #-1,R4		; drawPrtyNo = SpDrawPrtyBlkMax - 1
+SDP_02:
+          MOV.L       SDP_SpMstCmdPos,R5 ; R5 : @SpMstCmdPos
+          MOV.L       SDP_SpMstDrawPrtyBlk,R6
+          MOV.L       @R6,R6            ; R6 : SpMstDrawPrtyBlk
+          SHLL2       R4
+          ADD         R4,R6             ; R6 : &SpMstDrawPrtyBlk[drawPrtyNo]
+          MOV.W       @(topNo,R6),R0
+          EXTS.W      R0,R0             ; R0 = SpDrawPrtyBlk[drawPrtyNo].topNo
+          CMP/EQ      #-1,R0            ; if(R0 != 0xffff) goto SDP_00
+          BF          SDP_00
+          MOV.L       @R5,R0
+          BRA         SDP_01
+          MOV.W       R0,@(topNo,R6)    ; SpMstDrawPrtyBlk[drawPrtyNo].topNo =
+;                                              SpMstCmdPos
+SDP_00:
+          MOV.W       @(botNo,R6),R0    ; R0 = SpDrawPrtyBlk[drawPrtyNo].botNo
+          EXTU.W      R0,R0
+          MOV.L       SDP_SpMstCmd,R7   ; R7 : &SpMstCmd
+          MOV.L       @R7,R7
+          SHLL2       R0
+          SHLL2       R0
+          SHLL        R0
+          ADD         R0,R7             ; R7 : wSpCmd = SpMstCmd + R0 * 32
+          MOV.L       @R5,R0
+          MOV.W       R0,@(link,R7)     ; wSpCmd->link = SpMstCmdPos
+;
+SDP_01:
+          RTS
+          MOV.W       R0,@(botNo,R6)    ; SpMstDrawPrtyBlk[drawPrtyNo].botNo = 
+;                                                            SpMstCmdPos
+;
+	  .ALIGN      4
+SDP_SpMstDrawPrtyBlk:
+          .DATA.L     _SpMstDrawPrtyBlk
+SDP_SpDrawPrtyBlkMax:
+          .DATA.L     _SpDrawPrtyBlkMax
+SDP_SpMstCmdPos:
+          .DATA.L     _SpMstCmdPos
+SDP_SpMstCmd:
+          .DATA.L     _SpMstCmd
+;
+;
+;*****************************************************************************
+;*
+;* NAME:  flushDrawPrtyBlock()  - Flush Draw Priority Block
+;*
+;*     Vaddr chainTopCmdR = flushDrawPrtyBlock(entryCnt, mstZBlk,
+;*                                             slvZBlk, rtnChainLastCmd);
+;*
+;* PARAMETERS :
+;*
+;*     (1) int            entryCnt      - <i>  �R�}���h�`��v���C�I���e�B
+;*                                             �e�[�u���̃G���g����
+;*     (2) SprDrawPrtyBlk *mstZBlk      - <i>  �}�X�^���R�}���h�`��
+;*                                             �v���C�I���e�B�e�[�u��
+;*     (3) SprDrawPrtyBlk *slvZBlk      - <i>  �X���[�u���R�}���h�`��
+;*                                             �v���C�I���e�B�e�[�u��
+;*     (4) SprSpCmd       **rtnChainLastCmd   - <i>  �ŏI�R�}���h�G���A��
+;*                                                   �|�C���^���^�[���G���A
+;*
+;* DESCRIPTION:
+;*
+;*     �R�}���h�`��v���C�I���e�B�u���b�N�̃t���b�V��
+;*
+;* POSTCONDITIONS:
+;*
+;*         int            chainTopCmdR  - <o>  VRAM�����̐擪�R�}���h�A�h���X
+;*
+;* CAVEATS:
+;*
+;*****************************************************************************
+;
+_flushDrawPrtyBlock:
+;
+          MOV.L       R14,@-R15		; register save
+          MOV.L       R13,@-R15
+          MOV.L       R12,@-R15
+          MOV.L       R11,@-R15
+          MOV.L       R10,@-R15
+          MOV.L       R9,@-R15		; R5 : mstZBlk
+          MOV.L       R8,@-R15		; R6 : slvZBlk
+;
+          ADD         #-8,R15
+          MOV.L       R4,@(0,R15)	;    = entryCnt
+          MOV.L       R7,@(4,R15)	;    = rtnChainLastCmd
+;
+	  MOV	      #-1,R2		; R2 = 0xffffffff
+          MOV.L       FDP_SpMstCmd,R3
+          MOV.L       @R3,R3            ; R3 : SpMstCmd
+          MOV.L       FDP_SpSlvCmd,R4
+          MOV.L       @R4,R4            ; R4 : SpSlvCmd
+	  MOV	      #0,R8		; R8 : chainLastCmd = 0
+	  MOV	      #0,R9		; R9 : chainTopCmdR = 0
+          MOV.L       FDP_SpCmdNo,R0
+          MOV.L       @R0,R0
+          SHLL2	      R0
+          MOV.L       FDP_SpCmdTblR,R10
+          MOV.W       @R10,R10
+          EXTS.W      R10,R10           ; R10: mstCmdR =
+	  ADD         R0,R10		;           SpCmdTblR + (SpCmdNo<<2)
+          MOV.L       FDP_SpMstCmdPos,R0
+          MOV.L       @R0,R0
+          SHLL2	      R0
+          MOV.L       R10,R11           ; R11: slvCmdR =
+	  ADD         R0,R11		;           mstCmdR + (SpMstCmdPos<<2)
+;
+          MOV         R4,R0
+          CMP/EQ      #0,R0		; if(SpSlvCmd != 0)
+          BF          FDP_20		;     goto FDP_20
+;
+; Master Command Buffer Only
+;
+          MOV.L       @(0,R15),R0	; R0 = entryCnt
+FDP_100:
+	  CMP/EQ      #0,R0		; if(R0 == 0)
+	  BF          FDP_110		;    goto FDP_110
+	  BRA         FDP_EXIT		; goto FDP_EXIT
+	  NOP
+;
+FDP_110
+          MOV.W       @(topNo,R5),R0
+          EXTS.W      R0,R7             ; R7 : mstTopCmdNo = mstZBlk->topNo;
+          MOV.W       @(botNo,R5),R0
+          EXTS.W      R0,R14            ; R14: mstBotCmdNo = mstZBlk->botNo;
+          MOV.L       R2,R0
+          MOV.W       R0,@(topNo,R5)	; mstZBlk->topNo = 0xffff
+	  ADD         #4,R5		; mstZBlk++
+;
+	  CMP/EQ      R2,R7		; if(mstTopCmdNo == 0xffff)
+	  BT	      FDP_199		;     goto FDP_199
+	  MOV.L	      R7,R1		; R1 : wCmdNo = mstTopCmdNo
+FDP_101:
+	  CMP/EQ      R1,R14		; if(wCmdNo == mstBotCmdNo)
+	  BT	      FDP_102		;     goto FDP_102
+	  SHLL2	      R1
+	  SHLL2	      R1
+	  SHLL	      R1
+	  ADD	      R3,R1		; R1 : spCmd  = SpMstCmd + wCmdNo
+	  MOV.L	      R1,R12
+	  MOV.W       @(link,R12),R0
+          EXTS.W      R0,R0             ; R1 : wCmdNo = spCmd->link
+	  MOV.L	      R0,R1
+	  SHLL2	      R0
+	  ADD	      R10,R0
+	  BRA	      FDP_101		; goto FDP_101
+          MOV.W       R0,@(link,R12)	; spCmd->link = mstCmdR + (wCmdNo<<2)
+FDP_102:
+	  MOV.L       R8,R0
+	  CMP/EQ      #0,R0		; if(chainLastCmd == 0)
+	  BT 	      FDP_108		;     goto FDP_108
+	  MOV.L	      R7,R0
+	  SHLL2	      R0
+	  ADD	      R10,R0		; chainLastCmd->link = 
+          MOV.W       R0,@(link,R8)	;     mstCmdR + (mstTopCmdNo<<2)
+FDP_108:
+	  MOV.L       R9,R0
+	  CMP/EQ      #0,R0		; if(chainTopCmdR != 0)
+	  BF 	      FDP_109		;     goto FDP_109
+	  MOV.L	      R7,R9
+	  SHLL2	      R9		; chainTopCmdR = 
+	  ADD	      R10,R9		;     mstCmdR + (mstTopCmdNo<<2)
+FDP_109:
+	  MOV.L	      R14,R8
+	  SHLL2	      R8
+	  SHLL2	      R8
+	  SHLL	      R8
+	  ADD	      R3,R8		; chainLastCmd = SpMstCmd + mstBotCmdNo
+;
+FDP_199:
+          MOV.L       @(0,R15),R0	; R0 = entryCnt
+          ADD         #-1,R0
+          BRA         FDP_100		; goto FDP_100
+          MOV.L       R0,@(0,R15)	; R0 = entryCnt -= 1
+;
+; Master and Slave Command Buffer
+;
+FDP_20:
+          MOV.L       @(0,R15),R0	; R0 = entryCnt
+FDP_00:
+	  CMP/EQ      #0,R0		; if(R0 == 0)
+	  BT          FDP_EXIT		;    goto FDP_EXIT;
+;
+          MOV.W       @(topNo,R5),R0
+          EXTS.W      R0,R7             ; R7 : mstTopCmdNo = mstZBlk->topNo;
+          MOV.W       @(botNo,R5),R0
+          EXTS.W      R0,R14            ; R14: mstBotCmdNo = mstZBlk->botNo;
+          MOV.L       R2,R0
+          MOV.W       R0,@(topNo,R5)	; mstZBlk->topNo = 0xffff
+	  ADD         #4,R5		; mstZBlk++
+;
+	  CMP/EQ      R2,R7		; if(mstTopCmdNo == 0xffff)
+	  BT	      FDP_02		;     goto FDP_02
+	  MOV.L	      R7,R1		; R1 : wCmdNo = mstTopCmdNo
+FDP_01:
+	  CMP/EQ      R1,R14		; if(wCmdNo == mstBotCmdNo)
+	  BT	      FDP_02		;     goto FDP_02
+	  SHLL2	      R1
+	  SHLL2	      R1
+	  SHLL	      R1
+	  ADD	      R3,R1		; R1 : spCmd  = SpMstCmd + wCmdNo
+	  MOV.L	      R1,R12
+	  MOV.W       @(link,R12),R0
+          EXTS.W      R0,R0             ; R1 : wCmdNo = spCmd->link
+	  MOV.L	      R0,R1
+	  SHLL2	      R0
+	  ADD	      R10,R0
+	  BRA	      FDP_01		; goto FDP_01
+          MOV.W       R0,@(link,R12)	; spCmd->link = mstCmdR + (wCmdNo<<2)
+FDP_02:
+;
+          MOV.W       @(topNo,R6),R0
+          EXTS.W      R0,R12            ; R12: slvTopCmdNo = slvZBlk->topNo;
+          MOV.W       @(botNo,R6),R0
+          EXTS.W      R0,R13            ; R13: slvBotCmdNo = slvZBlk->botNo;
+          MOV.L       R2,R0
+          MOV.W       R0,@(topNo,R6)	; slvZBlk->topNo = 0xffff
+	  ADD         #4,R6		; slvZBlk++
+;
+	  CMP/EQ      R2,R12		; if(slvTopCmdNo == 0xffff)
+	  BT	      FDP_04		;     goto FDP_04
+	  MOV.L	      R12,R1		; R1 : wCmdNo = slvTopCmdNo
+FDP_03:
+	  CMP/EQ      R1,R13		; if(wCmdNo == slvBotCmdNo)
+	  BT	      FDP_04		;     goto FDP_04
+	  SHLL2	      R1
+	  SHLL2	      R1
+	  SHLL	      R1
+	  ADD	      R4,R1		; R1 : spCmd  = SpSlvCmd + wCmdNo
+	  MOV.L	      R1,R2
+          MOV.W       @(link,R2),R0
+          EXTS.W      R0,R0             ; R1 : wCmdNo = spCmd->link
+	  MOV.L	      R0,R1
+	  SHLL2	      R0
+	  ADD	      R11,R0
+	  BRA	      FDP_03		; goto FDP_03
+          MOV.W       R0,@(link,R2)	; spCmd->link = slvCmdR + (wCmdNo<<2)
+FDP_04:
+	  MOV	      #-1,R2		; R2 = 0xffffffff
+;
+	  CMP/EQ      R2,R7		; if(mstTopCmdNo == 0xffff)
+	  BT	      FDP_10		;     goto FDP_10
+	  CMP/EQ      R2,R12		; if(slvTopCmdNo == 0xffff)
+	  BT	      FDP_07		;     goto FDP_07
+	  MOV.L       R8,R0
+	  CMP/EQ      #0,R0		; if(chainLastCmd == 0)
+	  BT 	      FDP_05		;     goto FDP_05
+	  MOV.L	      R7,R0
+	  SHLL2	      R0
+	  ADD	      R10,R0		; chainLastCmd->link = 
+          MOV.W       R0,@(link,R8)	;     mstCmdR + (mstTopCmdNo<<2)
+FDP_05:
+	  MOV.L	      R14,R1
+	  SHLL2	      R1
+	  SHLL2	      R1
+	  SHLL	      R1
+	  ADD	      R3,R1		; R1 : spCmd  = SpMstCmd + mstBotCmdNo
+	  MOV.L	      R12,R0
+	  SHLL2	      R0
+	  ADD	      R11,R0		; spCmd->link = 
+          MOV.W       R0,@(link,R1)	;        slvCmdR + (slvTopCmdNo<<2)
+	  MOV.L       R9,R0
+	  CMP/EQ      #0,R0		; if(chainTopCmdR != 0)
+	  BF 	      FDP_06		;     goto FDP_06
+	  MOV.L	      R7,R9
+	  SHLL2	      R9		; chainTopCmdR = 
+	  ADD	      R10,R9		;     mstCmdR + (mstTopCmdNo<<2)
+FDP_06:
+	  MOV.L	      R13,R8
+	  SHLL2	      R8
+	  SHLL2	      R8
+	  SHLL	      R8
+          BRA	      FDP_99		; goto FDP_99
+	  ADD	      R4,R8		; chainLastCmd = SpSlvCmd + slvBotCmdNo
+;
+FDP_07:
+	  MOV.L       R8,R0
+	  CMP/EQ      #0,R0		; if(chainLastCmd == 0)
+	  BT 	      FDP_08		;     goto FDP_08
+	  MOV.L	      R7,R0
+	  SHLL2	      R0
+	  ADD	      R10,R0		; chainLastCmd->link = 
+          MOV.W       R0,@(link,R8)	;     mstCmdR + (mstTopCmdNo<<2)
+FDP_08:
+	  MOV.L       R9,R0
+	  CMP/EQ      #0,R0		; if(chainTopCmdR != 0)
+	  BF 	      FDP_09		;     goto FDP_09
+	  MOV.L	      R7,R9
+	  SHLL2	      R9		; chainTopCmdR = 
+	  ADD	      R10,R9		;     mstCmdR + (mstTopCmdNo<<2)
+FDP_09:
+	  MOV.L	      R14,R8
+	  SHLL2	      R8
+	  SHLL2	      R8
+	  SHLL	      R8
+          BRA	      FDP_99		; goto FDP_99
+	  ADD	      R3,R8		; chainLastCmd = SpMstCmd + mstBotCmdNo
+;
+FDP_10:
+	  CMP/EQ      R2,R12		; if(slvTopCmdNo == 0xffff)
+	  BT	      FDP_99		;     goto FDP_99
+	  MOV.L       R8,R0
+	  CMP/EQ      #0,R0		; if(chainLastCmd == 0)
+	  BT 	      FDP_11		;     goto FDP_11
+	  MOV.L	      R12,R0
+	  SHLL2	      R0
+	  ADD	      R11,R0		; chainLastCmd->link = 
+          MOV.W       R0,@(link,R8)	;     slvCmdR + (slvTopCmdNo<<2)
+FDP_11:
+	  MOV.L       R9,R0
+	  CMP/EQ      #0,R0		; if(chainTopCmdR != 0)
+	  BF 	      FDP_12		;     goto FDP_12
+	  MOV.L	      R12,R9
+	  SHLL2	      R9		; chainTopCmdR = 
+	  ADD	      R11,R9		;     slvCmdR + (slvTopCmdNo<<2)
+FDP_12:
+	  MOV.L	      R13,R8
+	  SHLL2	      R8
+	  SHLL2	      R8
+	  SHLL	      R8
+	  ADD	      R4,R8		; chainLastCmd = SpSlvCmd + slvBotCmdNo
+;
+FDP_99:
+          MOV.L       @(0,R15),R0	; R0 = entryCnt
+          ADD         #-1,R0
+          BRA         FDP_00		; goto FDP_00
+          MOV.L       R0,@(0,R15)	; R0 = entryCnt -= 1
+;
+FDP_EXIT:
+	  MOV.L	      @(4,R15),R7	; R7 = rtnChainLastCmd
+	  MOV.L	      R8,@R7		; *rtnChainLastCmd = chainLastCmd
+          MOV.L       R9,R0		; return chainTopCmdR
+;
+          ADD         #8,R15
+          MOV.L       @R15+,R8
+          MOV.L       @R15+,R9
+          MOV.L       @R15+,R10
+          MOV.L       @R15+,R11
+          MOV.L       @R15+,R12
+          MOV.L       @R15+,R13
+          RTS
+          MOV.L       @R15+,R14
+;
+	  .ALIGN      4
+FDP_SpMstCmd:
+          .DATA.L     _SpMstCmd
+FDP_SpSlvCmd:
+          .DATA.L     _SpSlvCmd
+FDP_SpCmdTblR:
+          .DATA.L     _SpCmdTblR
+FDP_SpCmdNo:
+          .DATA.L     _SpCmdNo
+FDP_SpMstCmdPos:
+          .DATA.L     _SpMstCmdPos
+;
+          .END

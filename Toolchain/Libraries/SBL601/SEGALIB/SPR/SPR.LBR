@@ -1,0 +1,12 @@
+create	sega_spr.lib
+add	spr_slv.obj
+add	spr_1c.obj
+add	spr_2c.obj
+add	spr_2a.obj
+add	spr_3c0.obj
+add	spr_3c1.obj
+add	spr_3a0.obj
+add	spr_3a1.obj
+add	spr_3tri.obj
+add	spr_3dsp.obj
+exit

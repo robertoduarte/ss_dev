@@ -1,0 +1,36 @@
+Program Name:
+Blink
+
+Purpose:
+This simple program demonstrates the use of GNU to build binary files.
+
+Target Board and setting:   
+
+EVB7045 
+Green LED connected Port E bit 5.
+
+File List:
+
+Readme.txt	: This file. Contains information about project.
+start.S  	: Startup file. Calls hw_initialise() and then main.
+7045map.h	: I/O register description and address definition for 7045.
+vects.c		: Vector table entry.
+hwinit.c	: Implementation of function hw_initialise.
+makefile.	: Make file for the project. It has two targets one default 
+		  for ROM and another for RAM.
+
+off.c    	: Main program file.
+off.lnk  	: linker script for the project.
+off.ram.lnk  	: linker script for building the project for debugging.
+
+
+Summary: 
+
+The main program will blink the green LED 4 times and keep the LED in ON state.
+User can change the code to observe desired effect.
+
+
+Special Notes / instructions:
+
+Program must be flashed into FLASH ROM. Alternatively if you have HDI monitor 
+or GDB stub, you can build RAM image and download it.

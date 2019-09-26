@@ -1,0 +1,15 @@
+#
+#�����̃t�@�C���� makefile ���� include ����܂��B
+#  TARGET �ɂ̓��C�u�����̃t�@�C�������w�肵�Ă��������B
+#  OBJS �ɂ̓��C�u��������邽�߂� dependencies ���w�肵�Ă��������B
+#
+TARGET=	$(LIBDIR)/sega_mth.a
+
+OBJS=	$(OBJDIR)/mth_curv.o\
+		$(OBJDIR)/mth_fixd.o\
+		$(OBJDIR)/mth_tri.o\
+		$(OBJDIR)/mth_rand.o\
+		$(OBJDIR)/mth_dsps.o\
+		$(OBJDIR)/mth_mtrx.o\
+		$(OBJDIR)/mth_ps2d.o\
+		$(OBJDIR)/mth_norm.o

@@ -1,0 +1,16 @@
+cd sblsgl00
+del *.cof
+go32 ..\..\..\gccsh\bin\make.exe
+cd ..\sblsgl01
+del *.cof
+go32 ..\..\..\gccsh\bin\make.exe
+cd ..\sblsgl02
+del *.cof
+go32 ..\..\..\gccsh\bin\make.exe
+cd ..\sblsgl03
+del *.cof
+go32 ..\..\..\gccsh\bin\make.exe
+cd ..\sblsgl04
+del *.cof
+go32 ..\..\..\gccsh\bin\make.exe
+cd ..

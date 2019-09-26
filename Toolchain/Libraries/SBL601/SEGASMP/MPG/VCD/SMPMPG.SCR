@@ -1,0 +1,40 @@
+Disc    "SMPMPG.DSK"
+CatalogNo       0
+Session SEMIXA
+LeadIn  MODE1
+EndLeadIn
+
+Track   MODE1
+   Volume ISO9660 "SMPMPG.PVD"
+       PrimaryVolume    0:2:16
+           SystemIdentifier "SMPMPG"
+       EndPrimaryVolume
+   EndVolume
+EndTrack
+
+Track MODE2
+	PreGap		150
+
+	File		VSL4A.MPG
+	SectorRate	75
+	Pack
+	MpegMultiplex
+	MpegStream	VSL4A.MPV VIDEO
+	BitRate		1150000.0
+	EndMpegStream
+	MpegStream	SL04A.MPA AUDIO
+	BitRate		192000.0
+	EndMpegStream
+	EndMpegMultiplex
+	EndFile
+
+	PostGap		150
+EndTrack
+
+LeadOut		MODE2
+Empty		600
+EndLeadOut
+
+EndSession
+EndDisc
+;====== End of file ====================================================

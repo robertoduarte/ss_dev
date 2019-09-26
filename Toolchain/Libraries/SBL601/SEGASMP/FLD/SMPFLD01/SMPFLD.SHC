@@ -1,0 +1,9 @@
+-i=..\..\..\segalib\include
+-deb
+-op=1
+-cp=7600
+-p=0
+-st=c
+-l
+-sh=(noso)
+-macsave=0

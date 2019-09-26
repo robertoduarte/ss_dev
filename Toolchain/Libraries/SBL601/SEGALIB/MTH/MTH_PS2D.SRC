@@ -1,0 +1,159 @@
+;-----------------------------------------------------------------------------
+;   spr_fmat.src -- SPR ���C�u���� FMAT ���W���[��
+;   Copyright(c) 1994 SEGA
+;   Written by T.S on 1994-01-24 Ver.0.80
+;   Updated by H.E on 1994-02-15 Ver.0.80
+;
+;   ���̃��C�u�����͓����ϊ��������W���[���ŁA
+;   �ȉ��̃��[�`�����܂ށB
+;
+;   MTH_Pers2D              -  �����ϊ�����
+;   MTH_ComputeBright       -  �|���S���̉B�ʔ���ƋP�x�v�Z
+;
+;-----------------------------------------------------------------------------
+;
+	.EXPORT _MTH_Pers2D
+	.EXPORT _MTH_ComputeBright
+	.SECTION SEGA_P,CODE,ALIGN=4
+;
+;-----------------------------------------------------------------------------
+;
+;  NAME : MTH_Pers2D  -  Persepect 3D to 2D
+;
+;        void  MTH_Pers2D(MthXyz *p3d, MthXy *unitPixel, XyInt *p2d);
+; 
+;  PARAMETERS
+; 
+;  �@�@(1) MthXyz   *p3d        - <i> R4 ���_���W�n�R�c���_���W
+;  �@�@(2) MthXy    *unitPixel  - <i> R5 �X�N���[���w�x�̒P�ʃs�N�Z����
+;  �@�@(3) XyInt    *p2d        - <o> R6 �����ϊ���X�N���[���Q�c���W
+; 
+;  DESCRIPTION
+; 
+; 	���_���W�n�̌��_�����_�Ƃ��� -1.0 �̂Ƃ���ɃX�N���[����ݒ肵�ĂR�c
+;       ����Q�c�ւ̓����ϊ����s���B�X�N���[����� 1.0 �̑傫�����X�N���[��
+;       �w�x�̒P�ʃs�N�Z�����ɑΉ�����B
+; 
+;  POSTCONDITIONS
+; 
+;  CAVEATS
+;  
+;-----------------------------------------------------------------------------
+;
+	.ALIGN	4
+_MTH_Pers2D:
+ 	STS.L	MACH,@-R15
+ 	STS.L	MACL,@-R15
+;
+; hz = MTH_Div(MTH_FIXED(1),p3d->z);
+;
+	MOV.L	A_DIV,R0           ;* FIXED(1) / p3d->z *
+	MOV.L   @(8,R4),R1
+	MOV.L	R1,@R0             ; <- p3d->z
+	MOV.L	#1,R1
+	MOV.L	R1,@(H'10,R0)      ; <- 0x00000001 (upper)
+	MOV.L	#0,R1
+	MOV.L	R1,@(H'14,R0)      ; <- 0x00000000 (lower)
+;
+; wx = MTH_Mul(p3d->x,unitPixel->x);
+;
+        MOV.L   @R4+,R1            ; R1 = p3d->x
+        MOV.L   @R5+,R2            ; R2 = unitPixel->x
+	DMULS.L R1,R2              ; MACH,L = R1 * R2
+ 	STS	MACH,R1
+ 	STS	MACL,R2            ; R1,R2 = MACH,MACL
+ 	XTRCT	R1,R2	           ; -> R2
+;	
+; wy = MTH_Mul(p3d->y,unitPixel->y);
+;
+        MOV.L   @R4+,R3            ; R3 = p3d->x
+        MOV.L   @R5+,R4            ; R4 = unitPixel->x
+	DMULS.L R3,R4              ; MACH,L = R3 * R4
+ 	STS	MACH,R3
+ 	STS	MACL,R4            ; R3,R4 = MACH,MACL
+ 	XTRCT	R3,R4	           ; -> R4
+;	
+ 	MOV.L	@(H'14,R0),R1      ; -> R1 (= 1/z)
+;
+; p2d->x = MTH_FixedToInt(MTH_Mul(wx,hz));
+;
+	DMULS.L R1,R2              ; MACH,L = x * (1/z)
+ 	STS	MACH,R2
+ 	STS	MACL,R3            ; R1,R2 = MACH,MACL
+ 	XTRCT	R2,R0	           ; -> R3
+	SHLR16	R0
+	MOV.W	R0,@R6             ; R3 -> pers X
+;
+; p2d->y = MTH_FixedToInt(MTH_Mul(wy,hz));
+;
+	DMULS.L R1,R4              ; MACH,L = x * (1/z)
+ 	STS	MACH,R2
+ 	STS	MACL,R3            ; R1,R2 = MACH,MACL
+ 	XTRCT	R2,R0	           ; -> R3
+ 	LDS.L	@R15+,MACL
+ 	LDS.L	@R15+,MACH
+	SHLR16	R0
+	RTS
+	MOV.W	R0,@(2,R6)         ; R3 -> pers Y
+;
+	.ALIGN	4
+A_DIV	.DATA.L	H'FFFFFF00
+;
+;
+;--------------------------------------------------------------------------
+;
+; NAME : MTH_ComputeBright  -  Compute Brightness
+;
+; PARAMETERS
+;
+; �@�@(1) MthXyz   *lightVector   - <i> �����x�N�g��
+; �@�@(2) MthXyz   *normalVector  - <i> �|���S���̖@���x�N�g��
+;
+; DESCRIPTION
+;
+;      �����x�N�g������|���S���ʂ̋P�x��Ԃ��B
+;
+; POSTCONDITIONS
+;
+;      Sint32   bright  :  0�i�Áj ���� 31�i���j
+;
+; CAVEATS
+;
+;-------------------------------------------------------------------------
+;
+	.ALIGN	4
+_MTH_ComputeBright:
+ 	STS	MACH,R1
+ 	STS	MACL,R2
+;
+; product = MTH_Product((Fixed32*)normVector, (Fixed32*)lightVector);
+;
+	CLRMAC
+	MAC.L   @R4+,@R5+
+	MAC.L   @R4+,@R5+
+	MAC.L   @R4+,@R5+
+ 	STS	MACH,R3
+ 	STS	MACL,R0
+;
+; color = MTH_FixedToInt((product + MTH_FIXED(1.0)) * (32/2));
+;
+	ADD	#1,R3
+ 	XTRCT	R3,R0	; xtract for Fixed32
+	MOV	#16,R3
+	DMULS.L R3,R0
+ 	STS	MACH,R3
+ 	STS	MACL,R0
+	SHLR16	R0
+;
+; return  color & 0x1f;
+;
+ 	LDS	R1,MACH
+ 	LDS	R2,MACL
+	RTS
+	AND	#H'1f,R0
+	NOP
+;
+;---------------------------------------------------------------------
+	.END
+;---------------------------------------------------------------------
+;   end of file

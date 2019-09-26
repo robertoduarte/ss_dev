@@ -1,0 +1,18 @@
+;------------------------------------------------------------------
+dir	LIBDIR(..\..\..\segalib\lib)
+INPUT   ..\..\lib\strt1_h.obj
+INPUT   ..\..\lib\strt2_h.obj
+LIBRARY ..\..\..\sh\lib\shcnpic.lib
+library $LIBDIR\sega_cdc.lib
+library $LIBDIR\sega_dma.lib
+library $LIBDIR\sega_csh.lib
+library $LIBDIR\sega_int.lib
+;------------------------------------------------------------------
+library $LIBDIR\sega_gfs.lib
+INPUT   smpgfs2.obj
+OUTPUT  smpgfs02.abs
+PRINT   smpgfs02.map
+START P,D,B(6010000)
+FORM A
+DEBUG
+EXIT

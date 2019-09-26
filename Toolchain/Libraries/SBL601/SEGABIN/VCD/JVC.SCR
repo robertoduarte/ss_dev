@@ -1,0 +1,50 @@
+Disc	"JVC.DSK"
+CatalogNo	0123456789
+Session ROMXA
+LeadIn MODE1
+EndLeadIn
+	Track	MODE1
+		Volume ISO9660 "jvc.pvd"
+		PrimaryVolume 00:02:16
+		EndPrimaryVolume
+		EndVolume
+		File 	ABCDEFG1.DAT
+			FileSource	"pat_1.dat"
+			EndFileSource
+		EndFile
+		File 	D10.DAT
+			FileSource	"pat_10.dat"
+			EndFileSource
+		EndFile
+		PostGap 150
+	EndTrack
+	Track	CDDA
+		Pause 150
+	   	File CDDA1
+		FileSource "snd8_1.dat"
+		EndFileSource
+		EndFile
+	EndTrack
+	Track	CDDA
+		File CDDA2
+		FileSource "snd8_1.dat"
+		EndFileSource
+		EndFile
+	EndTrack
+	Track	CDDA
+		File CDDA3
+		FileSource "snd8_3.dat"
+		EndFileSource
+		EndFile
+	EndTrack
+	Track	CDDA
+		File CDDA4
+		FileSource "snd8_3.dat"
+		EndFileSource
+		EndFile
+	EndTrack
+LeadOut CDDA
+	Empty 300
+EndLeadOut
+EndSession
+EndDisc

@@ -1,0 +1,7 @@
+create  sega_stm.lib
+add stm_init.obj
+add stm_svr.obj
+add stm_trn.obj
+add stm_acc.obj
+add stm_loc.obj
+exit

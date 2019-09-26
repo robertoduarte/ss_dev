@@ -1,0 +1,57 @@
+INTERUPT.TXT
+11/96
+
+Here is some sample code that works with SBL 6.0 to assist with 
+interrupts.
+
+QUESTIONS AND ANSWERS:
+
+Q:  I'm trying to DMA data from high work RAM to VDP2 VRAM during the 
+Timer 0 interrupt which is triggered by H-blank In.  
+
+A:  The timer 0 interrupt is not triggered from Hblank-in as such. The 
+timer 0 interrupt system. Timer 1 and Hblank do operate in an inter-related 
+fashion, but the interrupts themselves can all be maintained and processed 
+as separate entities.
+
+The best way to show this is by a working example. The LIBRARY\SBL6\INTERUPT
+directory contains a testbed program to demo Timer 0, 1 and Hblank interrupt 
+launch and handling.
+
+This sample is written for SBL 6.0 and GNU 2.7+, however, the principles 
+used are library independent. You can implement the same handlers in SGL.
+The macros you need for Timer 0 / 1 handling are held in sega_tim.h. 
+The main manual reference used is the SCU Users Manual found on this
+DTS CD and the JUNE 96 DTS CD, page 55 (ish).
+
+When you run the program you will see counters maintained by Timer 0, 1 
+and Hblank interrupt handlers. I have selected values that will generate 
+4 Timer 0 counts per frame and a Timer 1 counter which runs at approx half 
+the rate of the Hblank system. Each 1000 display frames, snapshots of each 
+of the counters are taken (the bracketed numbers).
+
+This sample ships with a cartdev coff and executable binary ready to run 
+(load / run address 0x06010000).
+
+To use within SBL 6.0 :
+
+1)	Create a new directory within the SBL 6.0 environment 
+	segasmp\tim\testtim0
+2)	Copy the all the files in the LIBRARY\SBL6\INTERUPT
+	directory to this new TESTTIM0 directory.
+3)	Build as follows :
+
+	make -fmakecoff.mak	to build cartdev coff
+	make -fmakebin.mak	to build executable binary 
+
+
+Q:  I've tried using SH2 DMA and SCU DMA channel 0 and get mixed results.
+I consistently get line tearing.  Do the SCU service routines to register 
+and reference interrupt processing routines add significant overhead?
+
+A:  The SCU routines to register and reference interrupt processing 
+routines don't add significant overhead. The transfer is very fast. However,
+actual DMA setup itself does have a fair overhead before it fires up.
+
+
+(Author: Ed Hollingshead - Senior Software Engineer - SoE DTS)

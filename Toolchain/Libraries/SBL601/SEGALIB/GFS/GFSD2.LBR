@@ -1,0 +1,5 @@
+library segadgfs.lib
+add gfsd_sfb.obj
+add gfsd_sff.obj
+end
+exit

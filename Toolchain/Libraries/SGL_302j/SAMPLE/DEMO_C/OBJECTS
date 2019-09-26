@@ -1,0 +1,6 @@
+# source_program
+SRCS = main.c aki_ashi.c aki_dou.c aki_kao.c aki_kata.c aki_ude.c aki_walk.c
+
+SYSOBJS = $(CMNDIR)/cinit.o $(SGLLDR)/sglarea.o
+OBJS = $(SRCS:.c=.o)
+LIBS = -lsgl

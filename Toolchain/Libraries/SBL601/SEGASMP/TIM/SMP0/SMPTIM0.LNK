@@ -1,0 +1,11 @@
+OUTPUT	smptim0.abs
+INPUT	..\..\lib\strt1_h.obj
+INPUT	..\..\lib\strt2_h.obj
+INPUT	smptim0.obj
+LIBRARY	..\..\..\segalib\lib\sega_int.lib
+LIBRARY	..\..\..\sh\lib\shcnpic.lib
+ENTRY	START
+;START	I,P,SEGA_P,C,SEGA_C,D,SEGA_D,B,SEGA_B,S(06010000)
+START	P,C,SEGA_C,D,SEGA_D,B,SEGA_B(06010000)
+PRINT 	smptim0.map
+EXIT

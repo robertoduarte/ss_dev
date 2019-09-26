@@ -1,0 +1,54 @@
+/* --------------------------------------------------------------------
+Announcement: Written by Wwashington @ newsmth forum. 2011/03/20 18:00.
+Please keep all information if you want to keep it, or redistribute it.
+-------------------------------------------------------------------- */
+
+01) The mkisofs with multi charsets and MD5, it's popular for years ago:
+
+mkisofs 2.01-bootcd.ru (i686-pc-mingw32)
+
+02) How to build ISO with -jcharset options, discover supported charset:
+
+mkisofs -jcharset help
+
+03) Some Bug Report of "mkisofs 2.01-bootcd.ru" cjk mingw win32 version:
+
+3a) There is NO Joliet Volume Name even you input "-V VolumeID" in shell.
+3b) For most mkisofs MinGW version, DOS Mode CJK Code hasn't been enable.
+
+------------------------------------------------------------------------------
+
+04) New versions of mkisofs with multi charsets and MD5, for Cygwin & MinGW.
+The Cygwin build is more compatible with Linux, the Mingw32 build is smaller.
+
+GNU Released by Joerg Schilling, Modified by Wwashington. With Great
+Thanks To: Japan NOBORU(NLS-CJK Patch), Alex Kopylov(MD5-Opt Patch).
+mkisofs 2.01-bootcd.ru-cjk-md5 (i686-pc-cygwin)
+
+GNU Released by Joerg Schilling, Modified by Wwashington. With Great
+Thanks To: Japan NOBORU(NLS-CJK Patch), Alex Kopylov(MD5-Opt Patch).
+mkisofs 2.01-bootcd.ru-cjk-md5 (i686-pc-mingw32)
+
+05) Some Test Scripts to show the problem when you make ISO image in Chinese.
+You can use this Sample Data to test your mkisofs 2.01 whether it is working.
+Important Message: -duplicates-once is MD5 Optimize, don't use -O option now.
+-cjk4dos-filenames and -cjk4unx-filenames are new options to support Chinese.
+
+Notes: cjk4dos and cjk4unx are force-mode to support multibyte charsets like 
+CJK Langs. If you can't make multibyte ISO, cjk4dos and cjk4unx are optional.
+
+REM /*  How to build ISO with Chinese Filenames:  */
+
+mkisofs -V "mydoc-≤‚ ‘" -r -J -jcharset cp936 -o mydoc1.iso mydoc
+
+REM /*  How to build ISO with MD5 Space Optimze:  */
+
+mkisofs -V "mydoc-≤‚ ‘" -r -J -duplicates-once -jcharset cp936 -o mydoc2.iso mydoc
+
+REM /*  How to build ISO Enabled DOS + Unix CJK:  */
+
+mkisofs -V "mydoc-≤‚ ‘" -r -J -duplicates-once -iso-level 1 -jcharset cp936 -cjk4dos-filenames -o mydoc3.iso mydoc
+
+mkisofs -V "mydoc-≤‚ ‘" -r -J -duplicates-once -iso-level 4 -jcharset cp936 -cjk4unx-filenames -o mydoc4.iso mydoc
+
+mkisofs -V "mydoc-≤‚ ‘" -r -J -duplicates-once -iso-level 1 -jcharset cp936 -cjk4dos-filenames -cjk4unx-filenames -o mydoc5.iso mydoc

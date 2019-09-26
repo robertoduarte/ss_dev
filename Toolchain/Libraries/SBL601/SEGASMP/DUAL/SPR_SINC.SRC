@@ -1,0 +1,154 @@
+;-----------------------------------------------------------------------------
+;   spr_sinc.src -- SPR ƒ‰ƒCƒuƒ‰ƒŠ SINC ƒ‚ƒWƒ…[ƒ‹
+;   Copyright(c) 1994 SEGA
+;   Written by Y.S on 1994-02-15 Ver.0.80
+;   Updated by H.E on 1994-02-15 Ver.0.80
+;
+;   ‚±‚Ìƒ‰ƒCƒuƒ‰ƒŠ‚Í‚r‚g‚É‚¨‚¯‚é‚r‚h‚mA‚b‚n‚rƒe[ƒuƒ‹ƒT[ƒ`ƒ‹[ƒ`ƒ“B
+;
+;   _fsin                   -  ‚O‚©‚ç‚W‚X“x‚Ì‚r‚h‚m’l‚ð•Ô‚·
+;   _fcos                   -  ‚P‚©‚ç‚X‚O“x‚Ì‚b‚n‚r’l‚ð•Ô‚·
+;
+;-----------------------------------------------------------------------------
+;
+	.EXPORT	_fsin
+	.EXPORT	_fcos
+;
+;	Cosine(a) Subroutine
+;	Cosine(a) = Sine(90-a)
+;	In :a		(R4)
+;	Out:Cosine(a)   (R0)
+; 
+	.SECTION	SEGA_P,CODE,ALIGN=4
+_fcos:
+	MOV.L	NINTY,R2	;90-a ->R4
+	NEG	R4,R4
+	ADD	R2,R4
+;
+;
+;	Sine (a) Subroutine 
+;	In:a = angle (0 - 89)(R4)
+;	Out:Sine(a)          (R0)
+;
+_fsin:
+	MOVA	SINTBL,R0	;sine table start address ->R1	
+	STS	MACL,R3
+
+	SWAP.W	R4,R1
+	EXTU.W	R1,R1
+	SHLL2	R1		;R0<-Entry of The Table
+	MOV.W	@(R0,R1),R2	;sin(a) GRAD->R2
+
+	ADD	#2,R0
+	MULU	R4,R2
+	MOV.W	@(R0,R1),R0	;sin(a) value->R0
+	STS	MACL,R2
+	EXTU.W	R0,R0
+	LDS	R3,MACL
+	SWAP.W	R2,R2
+	EXTU.W	R2,R2
+	RTS
+	ADD	R2,R0
+
+;	Constant Data definiton
+	.ALIGN	4
+NINTY	.DATA.L	H'005A0000	;90
+;Sine Table Data Area(AREA SIZE = 91 x 2 x 2 = 364BYTES
+;	 ALIGN=4
+SINTBL:
+;	         delta, value 
+	.DATA.W	H'0477,H'0000		;00deg
+	.DATA.W	H'0478,H'0477		;01deg
+	.DATA.W	H'0476,H'08EF		;02deg
+	.DATA.W	H'0476,H'0D65		;03deg
+	.DATA.W	H'0474,H'11DB		;04deg
+	.DATA.W	H'0473,H'164F		;05deg
+	.DATA.W	H'0470,H'1AC2		;06deg
+	.DATA.W	H'046E,H'1F32		;07deg
+	.DATA.W	H'046C,H'23A0		;08deg
+	.DATA.W	H'0468,H'280C		;09deg
+	.DATA.W	H'0464,H'2C74		;10deg
+	.DATA.W	H'0461,H'30D8		;11deg
+	.DATA.W	H'045D,H'3539		;12deg
+	.DATA.W	H'0458,H'3996		;13deg
+	.DATA.W	H'0453,H'3DEE		;14deg
+	.DATA.W	H'044F,H'4241		;15deg
+	.DATA.W	H'0448,H'4690		;16deg
+	.DATA.W	H'0443,H'4AD8		;17deg
+	.DATA.W	H'043D,H'4F1B		;18deg
+	.DATA.W	H'0436,H'5358		;19deg
+	.DATA.W	H'0430,H'578E		;20deg
+	.DATA.W	H'0428,H'5BBE		;21deg
+	.DATA.W	H'0420,H'5FE6		;22deg
+	.DATA.W	H'0419,H'6406		;23deg
+	.DATA.W	H'0411,H'681F		;24deg
+	.DATA.W	H'0409,H'6C30		;25deg
+	.DATA.W	H'03FF,H'7039		;26deg
+	.DATA.W	H'03F7,H'7438		;27deg
+	.DATA.W	H'03ED,H'782F		;28deg
+	.DATA.W	H'03E3,H'7C1C		;29deg
+	.DATA.W	H'03DA,H'7FFF		;30deg
+	.DATA.W	H'03CF,H'83D9		;31deg
+	.DATA.W	H'03C5,H'87A8		;32deg
+	.DATA.W	H'03BA,H'8B6D		;33deg
+	.DATA.W	H'03AE,H'8F27		;34deg
+	.DATA.W	H'03A4,H'92D5		;35deg
+	.DATA.W	H'0397,H'9679		;36deg
+	.DATA.W	H'038B,H'9A10		;37deg
+	.DATA.W	H'0380,H'9D9B		;38deg
+	.DATA.W	H'0372,H'A11B		;39deg
+	.DATA.W	H'0366,H'A48D		;40deg
+	.DATA.W	H'0359,H'A7F3		;41deg
+	.DATA.W	H'034B,H'AB4C		;42deg
+	.DATA.W	H'033E,H'AE97		;43deg
+	.DATA.W	H'032F,H'B1D5		;44deg
+	.DATA.W	H'0322,H'B504		;45deg
+	.DATA.W	H'0313,H'B826		;46deg
+	.DATA.W	H'0305,H'BB39		;47deg
+	.DATA.W	H'02F6,H'BE3E		;48deg
+	.DATA.W	H'02E7,H'C134		;49deg
+	.DATA.W	H'02D8,H'C41B		;50deg
+	.DATA.W	H'02C8,H'C6F3		;51deg
+	.DATA.W	H'02B8,H'C9BB		;52deg
+	.DATA.W	H'02A8,H'CC73		;53deg
+	.DATA.W	H'0298,H'CF1B		;54deg
+	.DATA.W	H'0288,H'D1B3		;55deg
+	.DATA.W	H'0278,H'D43B		;56deg
+	.DATA.W	H'0266,H'D6B3		;57deg
+	.DATA.W	H'0256,H'D919		;58deg
+	.DATA.W	H'0244,H'DB6F		;59deg
+	.DATA.W	H'0234,H'DDB3		;60deg
+	.DATA.W	H'0221,H'DFE7		;61deg
+	.DATA.W	H'0211,H'E208		;62deg
+	.DATA.W	H'01FE,H'E419		;63deg
+	.DATA.W	H'01EC,H'E617		;64deg
+	.DATA.W	H'01DB,H'E803		;65deg
+	.DATA.W	H'01C8,H'E9DE		;66deg
+	.DATA.W	H'01B5,H'EBA6		;67deg
+	.DATA.W	H'01A4,H'ED5B		;68deg
+	.DATA.W	H'0190,H'EEFF		;69deg
+	.DATA.W	H'017E,H'F08F		;70deg
+	.DATA.W	H'016B,H'F20D		;71deg
+	.DATA.W	H'0158,H'F378		;72deg
+	.DATA.W	H'0145,H'F4D0		;73deg
+	.DATA.W	H'0131,H'F615		;74deg
+	.DATA.W	H'011F,H'F746		;75deg
+	.DATA.W	H'010B,H'F865		;76deg
+	.DATA.W	H'00F7,H'F970		;77deg
+	.DATA.W	H'00E4,H'FA67		;78deg
+	.DATA.W	H'00D1,H'FB4B		;79deg
+	.DATA.W	H'00BD,H'FC1C		;80deg
+	.DATA.W	H'00A9,H'FCD9		;81deg
+	.DATA.W	H'0095,H'FD82		;82deg
+	.DATA.W	H'0081,H'FE17		;83deg
+	.DATA.W	H'006E,H'FE98		;84deg
+	.DATA.W	H'005A,H'FF06		;85deg
+	.DATA.W	H'0046,H'FF60		;86deg
+	.DATA.W	H'0032,H'FFA6		;87deg
+	.DATA.W	H'001E,H'FFD8		;88deg
+	.DATA.W	H'000A,H'FFF6		;89deg
+	.DATA.W	H'0000,H'FFFF		;90deg
+
+	.END
+
+;   end of file

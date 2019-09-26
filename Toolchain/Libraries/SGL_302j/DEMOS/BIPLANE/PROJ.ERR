@@ -1,0 +1,6 @@
+Snasm2 - satload (Coff File Loader) Version 0.1y of 14:34:43 Aug 10 1995
+(c) 1995 Cross Products Ltd, All rights reserved.
+for DOS/4GP & 68000, SH2, ASPI link.
+Issue of Soft Reset Failed
+Loading file sl.cof to target [1]
+ERROR: Failed to send data packet 0 to 40

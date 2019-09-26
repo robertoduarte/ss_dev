@@ -1,0 +1,1678 @@
+sglA27.o needed due to slTranslate
+sglA17.o needed due to slRotZ
+sglA18.o needed due to slRotY
+sglA19.o needed due to slRotX
+sglA28.o needed due to slScale
+sglIc0.o needed due to slInitSystem
+sglB001.o needed due to slTVOn
+sglF00.o needed due to slLocate
+sglF05.o needed due to slPrint
+sglB002.o needed due to slColRAMMode
+sglB016.o needed due to slBack1ColSet
+sglC04.o needed due to slZdspLevel
+sglB038.o needed due to slRparaInitSet
+sglB039.o needed due to slMakeKtable
+sglB200.o needed due to slCharRbg0
+sglB059.o needed due to slPlaneRA
+sglB035.o needed due to sl1MapRA
+sglB047.o needed due to slOverRA
+sglB040.o needed due to slKtableRA
+sglB043.o needed due to slRparaMode
+sglD00.o needed due to slDMACopy
+sglB014.o needed due to slScrTransparent
+sglB094.o needed due to slColRAMOffsetNbg0
+sglB015.o needed due to slScrAutoDisp
+sglA21.o needed due to slPushMatrix
+sglF02.o needed due to slPrintHex
+sglA20.o needed due to slInitMatrix
+sglC02.o needed due to slLight
+sglA16.o needed due to slLookAt
+sglC08.o needed due to slPutPolygon
+sglB042.o needed due to slCurRpara
+sglB045.o needed due to slScrMatConv
+sglB044.o needed due to slScrMatSet
+sglF12.o needed due to set_vbar
+sglI01.o needed due to slInitSynch
+sglH00.o needed due to slInitPeripheral
+sglA01.o needed due to GetSinCos
+sglA00.o needed due to _builtin_set_imask
+sglK01.o needed due to SynchCount
+sglJ00.o needed due to InitSlaveSH
+sglB000.o needed due to slInitScroll
+sglJ01.o needed due to SlaveControl
+sglI00.o needed due to slInitInterrupt
+sglC00.o needed due to slInitSprite
+sglA10.o needed due to slSquartDbl
+sglJ02.o needed due to sbMakePolygon
+sglA24.o needed due to slInversMatrix
+sglH02.o needed due to smpc_pfr_tbl
+sglH04.o needed due to slComPrmIntBack
+sglJ03.o needed due to sbMakeDMATable
+sglJ04.o needed due to sbMakeSprite
+sglJ05.o needed due to sbSortEntry
+sglH03.o needed due to slSmpcIntBack
+__main.o needed due to __main
+fp-bit.o needed due to __extendsfdf2
+dp-bit.o needed due to __muldf3
+_exit.o needed due to _exit_dummy_decl
+_lshiftrt.o needed due to __lshrsi3
+_lshrdi3.o needed due to __lshrdi3
+_ashiftlt.o needed due to __ashlsi3
+atexit.o needed due to atexit
+reent.o needed due to _impure_ptr
+malloc.o needed due to malloc
+mallocr.o needed due to _malloc_r
+sbrkr.o needed due to _sbrk_r
+memcpy.o needed due to memcpy
+syscalls.o needed due to _sbrk
+trap.o needed due to __trap34
+abort.o needed due to abort
+raise.o needed due to raise
+signalr.o needed due to _kill_r
+Allocating common _errno: 4 at 0 sbrkr.o
+**FILES**
+
+  ../common/cinit.o
+00000000 0000003c 2** 2d .text
+00000000 00000000 2** 2d .data
+00000000 00000000 2** 2d .bss
+
+  ../../lib/sglarea.o
+0000003c 00000000 2** 2d .text
+00000000 00000000 2** 2d .data
+00000000 00000000 2** 2d .bss
+00000000 00006540 2** 2d SLPROG
+
+  main.o
+0000003c 000007ec 2** 2d .text
+00000000 00000920 2** 2d .data
+00000000 00000000 2** 2d .bss
+
+  polygon.o
+00000828 00000000 2** 2d .text
+00000920 000035ec 2** 2d .data
+00000000 00000000 2** 2d .bss
+
+  pad.o
+00000828 00000184 2** 2d .text
+00003f0c 00000004 2** 2d .data
+00000000 00000008 2** 2d .bss
+
+  texture.o
+000009ac 00000000 2** 2d .text
+00003f10 00000758 2** 2d .data
+00000008 00000000 2** 2d .bss
+
+  scroll.o
+000009ac 00000000 2** 2d .text
+00004668 00001d00 2** 2d .data
+00000008 00000000 2** 2d .bss
+
+  action.o
+000009ac 0000039c 2** 2d .text
+00006368 00000760 2** 2d .data
+00000008 00000000 2** 2d .bss
+
+  sglA27.o
+00000d48 00000000 2** 2d .text
+00006ac8 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+00006540 00000050 2** 2d SLPROG
+
+  sglA17.o
+00000d48 00000000 2** 2d .text
+00006ac8 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+00006590 00000078 2** 2d SLPROG
+
+  sglA18.o
+00000d48 00000000 2** 2d .text
+00006ac8 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+00006608 00000078 2** 2d SLPROG
+
+  sglA19.o
+00000d48 00000000 2** 2d .text
+00006ac8 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+00006680 00000078 2** 2d SLPROG
+
+  sglA28.o
+00000d48 00000000 2** 2d .text
+00006ac8 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+000066f8 00000070 2** 2d SLPROG
+
+  sglIc0.o
+00000d48 00000130 2** 2d .text
+00006ac8 00000080 2** 2d .data
+00000008 00000000 2** 2d .bss
+
+  sglB001.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+00006768 00000020 2** 2d SLPROG
+
+  sglF00.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+00006788 0000004e 2** 2d SLPROG
+
+  sglF05.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+000067d8 0000001c 2** 2d SLPROG
+
+  sglB002.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+000067f4 0000001e 2** 2d SLPROG
+
+  sglB016.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+00006814 0000000c 2** 2d SLPROG
+
+  sglC04.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+00006820 0000002c 2** 2d SLPROG
+
+  sglB038.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+0000684c 00000070 2** 2d SLPROG
+
+  sglB039.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+000068bc 0000007e 2** 2d SLPROG
+
+  sglB200.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+0000693c 00000114 2** 2d SLPROG
+
+  sglB059.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+00006a50 0000000c 2** 2d SLPROG
+
+  sglB035.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+00006a5c 000000d4 2** 2d SLPROG
+
+  sglB047.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+00006b30 0000000c 2** 2d SLPROG
+
+  sglB040.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+00006b3c 00000058 2** 2d SLPROG
+
+  sglB043.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+00006b94 00000008 2** 2d SLPROG
+
+  sglD00.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+00006b9c 00000084 2** 2d SLPROG
+
+  sglB014.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+00006c20 00000008 2** 2d SLPROG
+
+  sglB094.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+00006c28 0000000c 2** 2d SLPROG
+
+  sglB015.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+00006c34 0000040c 2** 2d SLPROG
+
+  sglA21.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+00007040 00000048 2** 2d SLPROG
+
+  sglF02.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+00007088 0000003c 2** 2d SLPROG
+
+  sglA20.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+000070c4 0000042c 2** 2d SLPROG
+
+  sglC02.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+000074f0 00000030 2** 2d SLPROG
+
+  sglA16.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+00007520 000000d0 2** 2d SLPROG
+
+  sglC08.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+000075f0 00000a40 2** 2d SLPROG
+
+  sglB042.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+00008030 00000010 2** 2d SLPROG
+
+  sglB045.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+00008040 00000028 2** 2d SLPROG
+
+  sglB044.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+00008068 000004e4 2** 2d SLPROG
+
+  sglF12.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+0000854c 00000048 2** 2d SLPROG
+
+  sglI01.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+00008594 000003a4 2** 2d SLPROG
+
+  sglH00.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+00008938 00000fc8 2** 2d SLPROG
+
+  sglA01.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+00009900 0000411e 2** 2d SLPROG
+
+  sglA00.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+0000da20 00000020 2** 2d SLPROG
+
+  sglK01.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+
+  sglJ00.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+0000da40 00000074 2** 2d SLPROG
+
+  sglB000.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+0000dab4 00000bd0 2** 2d SLPROG
+
+  sglJ01.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+0000e684 000003a0 2** 2d SLPROG
+
+  sglI00.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+00000000 00000028 2** 2d SLSTART
+0000ea24 0000075c 2** 2d SLPROG
+
+  sglC00.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+0000f180 0000012c 2** 2d SLPROG
+
+  sglA10.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+0000f2ac 00000034 2** 2d SLPROG
+
+  sglJ02.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+0000f2e0 00000aba 2** 2d SLPROG
+
+  sglA24.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+0000fd9c 000003c2 2** 2d SLPROG
+
+  sglH02.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+00010160 00000470 2** 2d SLPROG
+
+  sglH04.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+000105d0 00000060 2** 2d SLPROG
+
+  sglJ03.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+00010630 00000140 2** 2d SLPROG
+
+  sglJ04.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+00010770 00000470 2** 2d SLPROG
+
+  sglJ05.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+00010be0 0000003c 2** 2d SLPROG
+
+  sglH03.o
+00000e78 00000000 2** 2d .text
+00006b48 00000000 2** 2d .data
+00000008 00000000 2** 2d .bss
+00010c1c 000000f0 2** 2d SLPROG
+
+  __main.o
+00000e78 000000a4 2** 2d .text
+00006b48 00000004 2** 2d .data
+00000008 00000004 2** 2d .bss
+
+  fp-bit.o
+00000f1c 00000afc 2** 2d .text
+00006b4c 00000000 2** 2d .data
+0000000c 00000010 2** 2d .bss
+
+  dp-bit.o
+00001a18 00001034 2** 2d .text
+00006b4c 00000000 2** 2d .data
+0000001c 00000014 2** 2d .bss
+
+  _exit.o
+00002a4c 00000000 2** 2d .text
+00006b4c 00000004 2** 2d .data
+00000030 00000000 2** 2d .bss
+
+  _lshiftrt.o
+00002a4c 00000090 2** 2d .text
+00006b50 00000000 2** 2d .data
+00000030 00000000 2** 2d .bss
+
+  _lshrdi3.o
+00002adc 00000078 2** 2d .text
+00006b50 00000000 2** 2d .data
+00000030 00000000 2** 2d .bss
+
+  _ashiftlt.o
+00002b54 00000090 2** 2d .text
+00006b50 00000000 2** 2d .data
+00000030 00000000 2** 2d .bss
+
+  atexit.o
+00002be4 0000007c 2** 2d .text
+00006b50 00000000 2** 2d .data
+00000030 00000000 2** 2d .bss
+
+  reent.o
+00002c60 00000110 2** 2d .text
+00006b50 00000318 2** 2d .data
+00000030 00000000 2** 2d .bss
+
+  malloc.o
+00002d70 00000064 2** 2d .text
+00006e68 00000000 2** 2d .data
+00000030 00000000 2** 2d .bss
+
+  mallocr.o
+00002dd4 00000204 2** 2d .text
+00006e68 00000000 2** 2d .data
+00000030 00000000 2** 2d .bss
+
+  sbrkr.o
+00002fd8 00000034 2** 2d .text
+00006e68 00000000 2** 2d .data
+00000030 00000000 2** 2d .bss
+00000034 00000004 2** 2d COMMON
+
+  memcpy.o
+0000300c 0000009c 2** 2d .text
+00006e68 00000000 2** 2d .data
+00000030 00000000 2** 2d .bss
+
+  syscalls.o
+000030a8 000002d4 2** 2d .text
+00006e68 00000000 2** 2d .data
+00000030 00000004 2** 2d .bss
+
+  trap.o
+0000337c 00000014 2** 2d .text
+00006e68 00000000 2** 2d .data
+00000034 00000000 2** 2d .bss
+
+  abort.o
+00003390 00000024 2** 2d .text
+00006e68 00000000 2** 2d .data
+00000034 00000000 2** 2d .bss
+
+  raise.o
+000033b4 00000054 2** 2d .text
+00006e68 00000000 2** 2d .data
+00000034 00000000 2** 2d .bss
+
+  signalr.o
+00003408 00000050 2** 2d .text
+00006e68 00000000 2** 2d .data
+00000034 00000000 2** 2d .bss
+
+**GLOBAL SYMBOLS**
+
+offset    section    offset   symbol
+00000038  .text      00000038 __getpid_r
+060ffcbf  *ABS*      060ffcbf _ENH_ColBank
+00000000  SLPROG     00000000 _InitSlaveSH
+060ffdc2  *ABS*      060ffdc2 _VDP2_CCRSB
+060ffc14  *ABS*      060ffc14 _UserFunction
+060ffde8  *ABS*      060ffde8 _nbg1_char_adr
+00000000  SLPROG     00000000 _slLookAt
+060fff10  *ABS*      060fff10 _Window1_Right
+0000181c  .data      0000181c _attribute_model_5
+00000840  .data      0000102c _scl_model_7
+00000000  .text      00000000 ___ashlsi3
+060ffca2  *ABS*      060ffca2 _WinPtr
+060ffef4  *ABS*      060ffef4 _Nbg3_PosX
+000009c4  .text      000009c4 ___fixsfsi
+00000288  .text      00000288 _ss_main
+000008b0  .text      000008b0 ___muldf3
+060ffc80  *ABS*      060ffc80 _MsScreenSizeX
+060ffd44  *ABS*      060ffd44 _Nbg1_PosY
+000000dc  SLPROG     000000dc _sin_cos_index_tbl
+0000000c  SLPROG     0000000c _slCharNbg0
+00000000  SLPROG     00000000 _slSin
+060ffc6c  *ABS*      060ffc6c _SlScreenDist
+00000164  .text      00000164 __exit
+00000fe4  .text      00000fe4 ___truncdfsf2
+060ffd3a  *ABS*      060ffd3a _VDP2_ZMXDN0
+00000310  .text      00000310 ___subsf3
+060ffc72  *ABS*      060ffc72 _MsWindowNumber
+000001a8  .text      000001a8 __getpid
+00000020  .text      00000020 _free
+060fff0a  *ABS*      060fff0a _Window1_Top
+000008d4  .data      000010c0 _pos_model_11
+060ffc1b  *ABS*      060ffc1b _PauseFlag
+060fff44  *ABS*      060fff44 _VRN0
+060ffc96  *ABS*      060ffc96 _SlWinYAdder
+060ffd30  *ABS*      060ffd30 _Nbg0_PosX
+0000001c  SLPROG     0000001c _SpriteBuf
+060ffd4c  *ABS*      060ffd4c _VDP2_ZMYN1
+00000224  .text      00000224 __utime
+00000000  SLPROG     00000000 _slInversMatrix
+00000020  .text      00000020 __raise_r
+0000009c  SLPROG     0000009c _slSetPortData1
+060ffcbc  *ABS*      060ffcbc _DMASt_SCU1
+060ffdfc  *ABS*      060ffdfc _nbg0_page_adr
+060ffd8e  *ABS*      060ffd8e _VDP2_WPEY1
+060ffd8a  *ABS*      060ffd8a _VDP2_WPSY1
+060ffd0a  *ABS*      060ffd0a _VDP2_MPCDN2
+060ffd06  *ABS*      060ffd06 _VDP2_MPCDN1
+060ffdae  *ABS*      060ffdae _VDP2_SFCCMD
+060fff98  *ABS*      060fff98 _SmpcTimeSetData
+00000000  SLPROG     00000000 _slPutPolygon
+00002068  .data      00002068 _PD_MODEL_7
+00000000  SLPROG     00000000 _slPrint
+060ffcf4  *ABS*      060ffcf4 _VDP2_PNCN2
+0000008c  SLPROG     0000008c _slGetPortData1
+060ffc90  *ABS*      060ffc90 _MsWinXAdder
+00000000  SLPROG     00000000 _slColRAMOffsetNbg0
+00000052  SLPROG     00000052 _slPageRbg0
+00000854  .data      00001040 _pos_model_7
+00000774  .data      00000f60 _pos_model_0
+060fffa8  *ABS*      060fffa8 _SmpcPortDir1
+060ffcac  *ABS*      060ffcac _MsZdpsfcnt
+00000000  SLSTART    06004000 ___Start
+00000a84  SLPROG     00000a84 stvtc_1
+060ffd56  *ABS*      060ffd56 _VDP2_SCYN3
+00000040  SLPROG     00000040 _RemainEvent
+000007ea  SLPROG     000007ea stvtc_4
+00000758  .data      00000758 _point_model_3
+00000df4  .text      00000df4 ___ledf2
+060ffca6  *ABS*      060ffca6 _DMAEndFlag
+060ffd04  *ABS*      060ffd04 _VDP2_MPABN1
+00000000  SLPROG     00000000 _slInitMatrix
+00002a24  .data      00002a24 _polygon_model_11
+0000017c  .text      0000017c __realloc_r
+060ffc18  *ABS*      060ffc18 _TransCount
+00000000  SLPROG     00000000 slSquartDbl
+00003458  .text      06007498 __etext
+00000814  .data      00001000 _pos_model_5
+00000040  .text      00000040 __write
+060ffd96  *ABS*      060ffd96 _VDP2_WCTLD
+00002590  .data      00002590 _attribute_model_9
+060ffdf0  *ABS*      060ffdf0 _nbg3_char_adr
+060ffce6  *ABS*      060ffce6 _VDP2_SFCODE
+0000087a  SLPROG     0000087a _slSetPortMode1
+060ffdce  *ABS*      060ffdce _VDP2_CCRLB
+00000038  .bss       0601f058 __bend
+060ffca9  *ABS*      060ffca9 _SlWindowNumber
+060fffaa  *ABS*      060fffaa _SmpcPortSelect
+060ffc98  *ABS*      060ffc98 _MsClipXAdder
+00000000  SLPROG     00000000 _slScrMatConv
+00000000  SLPROG     00000000 _slRparaMode
+060ffd7a  *ABS*      060ffd7a _VDP2_OVPNRB
+060ffe04  *ABS*      060ffe04 _nbg2_page_adr
+000001ea  SLPROG     000001ea RetPCMBuf
+060ffdaa  *ABS*      060ffdaa _VDP2_SFPRMD
+00001c68  .data      00001c68 _polygon_model_7
+060ffc40  *ABS*      060ffc40 _SprbufBias
+00000034  SLPROG     00000034 _slPopMatrix
+00000ab4  SLPROG     00000ab4 _Smpc_Status
+00000ee8  .text      00000ee8 ___fixdfsi
+00000800  .data      00000fec _scl_model_5
+060ffcad  *ABS*      060ffcad _SlZdpsfcnt
+000006dc  .text      000006dc ___cmpsf2
+00000052  SLPROG     00000052 _slSetPortDir2
+00002710  .data      00002710 _PD_MODEL_9
+00000514  .text      00000514 ___subdf3
+060ffe08  *ABS*      060ffe08 _nbg3_page_adr
+060ffdec  *ABS*      060ffdec _nbg2_char_adr
+060ffd14  *ABS*      060ffd14 _VDP2_MPEFRA
+00000aa8  .text      00000aa8 ___extendsfdf2
+00000000  .text      00000000 _cleanup_glue
+00000698  SLPROG     00000698 _slSmpcCashSend
+000000b8  SLPROG     000000b8 _slGetPortSelect1
+060fff74  *ABS*      060fff74 _SndTrnsFunc
+0000002a  SLPROG     0000002a _slComPrmSetTime
+00000068  SLPROG     00000068 _slPageNbg1
+060ffcee  *ABS*      060ffcee _VDP2_BMPNB
+060ffcfe  *ABS*      060ffcfe _VDP2_MPOFR
+060fffa2  *ABS*      060fffa2 _SmpcControlFlag
+0000075c  .data      00000f48 _opaStat
+060ffc10  *ABS*      060ffc10 _MainMode
+00000000  .text      00000000 __read
+060fff47  *ABS*      060fff47 _DMAOR
+060ffce8  *ABS*      060ffce8 _VDP2_CHCTLA
+00000000  SLPROG     00000000 _slCurRpara
+060ffdd0  *ABS*      060ffdd0 _VDP2_CLOFEN
+060ffd34  *ABS*      060ffd34 _VDP2_SCYN0
+0000001a  SLPROG     0000001a _slLocate
+060fff45  *ABS*      060fff45 _VRE0
+060fff08  *ABS*      060fff08 _Window1_Left
+060ffdf4  *ABS*      060ffdf4 _ra_char_adr
+00000000  SLPROG     00000000 _sbMakeDMATable
+0000014c  .text      0000014c __unlink
+060fffb0  *ABS*      060fffb0 _SystemSwitchBuf
+060fff34  *ABS*      060fff34 _Center1_PosX
+060ffcb8  *ABS*      060ffcb8 _SCUMC_ID
+00000084  .text      00000084 _pad_matrix
+060ffd30  *ABS*      060ffd30 _VDP2_SCXN0
+060ffd86  *ABS*      060ffd86 _VDP2_WPEY0
+060ffd68  *ABS*      060ffd68 _VDP2_LCTA
+060fffa0  *ABS*      060fffa0 _SmpcSemaphore
+060ffd1c  *ABS*      060ffd1c _VDP2_MPMNRA
+0000011c  SLPROG     0000011c _sin_tbl
+0000049e  SLPROG     0000049e _slIntBackCancel
+060ffd70  *ABS*      060ffd70 _VDP2_RPMD
+060ffc12  *ABS*      060ffc12 _SynchConst
+060fffa4  *ABS*      060fffa4 _SmpcComNumber
+00000150  SLPROG     00000150 _slSetPortExt1
+060ffc22  *ABS*      060ffc22 _IntCount
+00000000  SLPROG     00000000 _slRotX
+0000084c  .data      00001038 _ang_model_7
+00000860  SLPROG     00000860 _slGetPortMode1
+0000154c  .data      0000154c _polygon_model_5
+0000010c  .text      0000010c __open
+000001c0  .text      000001c0 __stat
+060ffd94  *ABS*      060ffd94 _VDP2_WCTLC
+000000c4  SLPROG     000000c4 _sbMakeRotSprite
+060fffb0  *ABS*      060fffb0 _SystemSwitch
+00000c6c  .text      00000c6c ___nedf2
+060ffc08  *ABS*      060ffc08 _EventNow
+00000010  SLPROG     00000010 _slCurColor
+060ffd88  *ABS*      060ffd88 _VDP2_WPSX1
+00000018  SLPROG     00000018 _slCharNbg1
+000035d8  .data      000035d8 _PD_MODEL_13
+00003440  .data      00003440 _attribute_model_13
+060ffd58  *ABS*      060ffd58 _VDP2_ZMCTL
+00000754  SLPROG     00000754 _slSmpcCashBlow
+060ffe84  *ABS*      060ffe84 _RotScrParB
+060ffd48  *ABS*      060ffd48 _VDP2_ZMXIN1
+060ffc84  *ABS*      060ffc84 _MsWindowSizeX
+060fff28  *ABS*      060fff28 _Center1_data
+0000000a  SLPROG     0000000a _slRotZSC
+000003f0  SLPROG     000003f0 smpc_pfr_tbl
+000002bc  .text      000002bc ___addsf3
+060fff1c  *ABS*      060fff1c _Win2Zlimit
+undefined                     _PerDigitalBuf 
+0000076c  .data      00000f58 _ang_model_0
+060ffcce  *ABS*      060ffcce _VDP2_RAMCTL
+060fff1f  *ABS*      060fff1f _Window2_dpscnt
+060ffcb1  *ABS*      060ffcb1 _NbPCMBf
+00000002  SLSTART    00000002 _slStartSGL
+00000084  SLPROG     00000084 _slPageNbg0
+060ffdb0  *ABS*      060ffdb0 _VDP2_PRISA
+0000077c  .text      0000077c ___nesf2
+00000a44  SLPROG     00000a44 _slRequestCommand
+060ffc00  *ABS*      060ffc00 _EventTop
+0000000c  SLPROG     0000000c _SortList
+060ffd10  *ABS*      060ffd10 _VDP2_MPABRA
+00000000  SLPROG     00000000 _slPushMatrix
+00000ae4  SLPROG     00000ae4 _SmpcStatusBuf
+000000a6  SLPROG     000000a6 _slSetPortData2
+060ffc38  *ABS*      060ffc38 _ZbufPtr
+00000406  SLPROG     00000406 _slSetResultBuffer
+060fff3c  *ABS*      060fff3c _RandWork
+060ffdc8  *ABS*      060ffdc8 _VDP2_CCRNA
+00000494  .text      00000494 ___mulsf3
+00000000  .text      00000000 _slInitSystem
+00000324  SLPROG     00000324 _Sound_Buf
+00000000  SLPROG     00000000 _slInitScroll
+060ffcb2  *ABS*      060ffcb2 _PCMBufFlag
+060ffc7a  *ABS*      060ffc7a _MsScreenTop
+00000158  .text      00000158 _isatty
+060ffd52  *ABS*      060ffd52 _VDP2_SCYN2
+060ffd32  *ABS*      060ffd32 _VDP2_SCXDN0
+060ffc70  *ABS*      060ffc70 _MsZlimit
+00000260  .text      00000260 __wait
+0000013c  SLPROG     0000013c _slGetPortExt1
+060ffd90  *ABS*      060ffd90 _VDP2_WCTLA
+060ffd1a  *ABS*      060ffd1a _VDP2_MPKLRA
+00000014  SLPROG     00000014 _get_imask
+060fffa1  *ABS*      060fffa1 _SmpcChangeFlag
+00000180  SLPROG     00000180 _slSetPortExt2
+000007cc  .data      00000fb8 _ang_model_3
+060ffd22  *ABS*      060ffd22 _VDP2_MPCDRB
+00000e5c  .text      00000e5c ___floatsidf
+060ffe0c  *ABS*      060ffe0c _ra_page_adr
+060ffd84  *ABS*      060ffd84 _VDP2_WPEX0
+00000000  SLPROG     00000000 _sl1MapRA
+060ffd40  *ABS*      060ffd40 _VDP2_SCXN1
+060ffd24  *ABS*      060ffd24 _VDP2_MPEFRB
+00001010  .data      00001010 _attribute_model_3
+00000020  SLPROG     00000020 _slGetPortDir2
+00000260  SLPROG     00000260 TVSizeTbl
+0000133c  .data      0000133c _point_model_5
+00000860  .data      0000104c _scl_model_8
+060ffcf0  *ABS*      060ffcf0 _VDP2_PNCN0
+060ffdd4  *ABS*      060ffdd4 _VDP2_COAR
+060ffcd0  *ABS*      060ffcd0 _VDP2_CYCA0L
+060fff5a  *ABS*      060fff5a _DRCR1
+000007b8  SLPROG     000007b8 SetPolygon
+060ffc13  *ABS*      060ffc13 _SynchCount
+000007d8  .text      000007d8 ___gtsf2
+00000000  .text      00000000 _raise
+060ffda6  *ABS*      060ffda6 _VDP2_CRAOFB
+0000004c  SLPROG     0000004c CurrentScreen
+00003198  .data      00003198 _polygon_model_13
+000008cc  .data      000010b8 _ang_model_11
+060fff78  *ABS*      060fff78 _SmpcComWtPtr
+00000184  .text      00000184 __kill
+00000146  SLPROG     00000146 _slGetPortExt2
+060ffc20  *ABS*      060ffc20 _MatrixCount
+00000000  SLPROG     00000000 _slBack1ColSet
+060ffcb5  *ABS*      060ffcb5 _SoundWrCount
+00000000  SLPROG     00000000 _slScale
+060ffdd2  *ABS*      060ffdd2 _VDP2_CLOFSL
+000007ac  .data      00000f98 _ang_model_2
+060ffcc6  *ABS*      060ffcc6 _VDP2_VRSIZE
+060fff88  *ABS*      060fff88 _SmpcResPointer
+060ffc73  *ABS*      060ffc73 _WinUseFlag
+0000000a  SLPROG     0000000a _MaxPolygons
+060ffcc0  *ABS*      060ffcc0 _VDP2_TVMD
+00000000  SLPROG     00000000 _slDMACopy
+00000794  .data      00000f80 _pos_model_1
+060fff59  *ABS*      060fff59 _VRE1
+00000900  .data      000010ec _scl_model_13
+060ffc8a  *ABS*      060ffc8a _MXVertices
+060ffddc  *ABS*      060ffddc _VDP2_COBG
+060ffc04  *ABS*      060ffc04 _EventLast
+060fff32  *ABS*      060fff32 _SlWindowSizeY
+00000000  SLPROG     00000000 _slScrMatSet
+000001e0  .text      000001e0 __chmod
+060fffa6  *ABS*      060fffa6 _SmpcPerControl
+00000000  .data      00000130 _IntPrioMask
+060ffdcc  *ABS*      060ffdcc _VDP2_CCRR
+060ffdda  *ABS*      060ffdda _VDP2_COBR
+00000000  .text      00000000 _memcpy
+060ffe18  *ABS*      060ffe18 _k_table_adr
+00000028  SLPROG     00000028 _CommandBuf
+060ffd02  *ABS*      060ffd02 _VDP2_MPCDN0
+0000003c  SLPROG     0000003c _MaxWorks
+0000029c  .text      0000029c __execv
+0000000a  SLPROG     0000000a _slRotYSC
+0000027c  .text      0000027c __execve
+00000d30  .text      00000d30 ___gedf2
+060ffd34  *ABS*      060ffd34 _VDP2_SCYIN0
+060fff7c  *ABS*      060fff7c _SmpcComRdPtr
+060ffef8  *ABS*      060ffef8 _Nbg3_PosY
+060ffd1e  *ABS*      060ffd1e _VDP2_MPOPRA
+060fff36  *ABS*      060fff36 _Center1_PosY
+00001328  .data      00001328 _PD_MODEL_3
+060ffc2c  *ABS*      060ffc2c _SpritePtr
+060ffe10  *ABS*      060ffe10 _rb_page_adr
+00000150  SLPROG     00000150 _setASC_4to8
+060ffd40  *ABS*      060ffd40 _VDP2_SCXIN1
+00000068  SLPROG     00000068 _SlaveCommand
+00000048  SLPROG     00000048 GetSinCos
+00000070  SLPROG     00000070 _slPageNbg2
+060ffef0  *ABS*      060ffef0 _Nbg2_PosY
+060fff06  *ABS*      060fff06 _FrameXOffset
+060ffd9c  *ABS*      060ffd9c _VDP2_LWTA1
+000008a0  SLPROG     000008a0 stvtc_3
+060ffc64  *ABS*      060ffc64 _ColorOffset
+060ffcf8  *ABS*      060ffcf8 _VDP2_PNCR
+060fffab  *ABS*      060fffab _SmpcPortExt
+000001b4  .text      000001b4 __raise
+060ffd80  *ABS*      060ffd80 _VDP2_WPSX0
+060ffd54  *ABS*      060ffd54 _VDP2_SCXN3
+060ffd0c  *ABS*      060ffd0c _VDP2_MPABN3
+00000000  .text      00000000 _get_pad
+00000ae8  .data      00000ae8 _polygon_model_3
+0000080c  .data      00000ff8 _ang_model_5
+060ffd38  *ABS*      060ffd38 _VDP2_ZMXN0
+060ffd78  *ABS*      060ffd78 _VDP2_OVPNRA
+000008f4  .data      000010e0 _pos_model_12
+00000914  .data      00001100 _pos_model_13
+00000028  SLPROG     00000028 _slSetPortDir1
+060ffd44  *ABS*      060ffd44 _VDP2_SCYIN1
+060ffdbc  *ABS*      060ffdbc _VDP2_PRIR
+060fffa7  *ABS*      060fffa7 _SmpcPerCommand
+060fffa5  *ABS*      060fffa5 _SmpcIntBackCom
+060ffd00  *ABS*      060ffd00 _VDP2_MPABN0
+060ffc44  *ABS*      060ffc44 _ComRdPtr
+00000000  SLPROG     00000000 _slInitSynch
+0000007c  .text      0000007c ___main
+00000100  SLPROG     00000100 _slSetPortSelect2
+060ffcfa  *ABS*      060ffcfa _VDP2_PLSZ
+00000430  SLPROG     00000430 smpc_ptf_tbl
+060fff8c  *ABS*      060fff8c _SmpcPerPointer
+060ffd4c  *ABS*      060ffd4c _VDP2_ZMYIN1
+0000003e  SLPROG     0000003e _WorkSize
+060ffd3e  *ABS*      060ffd3e _VDP2_ZMYDN0
+00000000  .text      00000000 __sbrk_r
+00006e68  .data      0601f018 __edata
+060fff64  *ABS*      060fff64 _TCR1
+00000000  .tors      060181b0 ___dtors
+060ffdca  *ABS*      060ffdca _VDP2_CCRNB
+0000090c  .data      000010f8 _ang_model_13
+000008f4  .text      000008f4 ___lesf2
+060ffc58  *ABS*      060ffc58 _SlLightVector
+00000000  .text      00000000 ___lshrsi3
+060ffc8c  *ABS*      060ffc8c _FrameSizeX
+060ffda0  *ABS*      060ffda0 _VDP2_SPCTL
+060ffcf2  *ABS*      060ffcf2 _VDP2_PNCN1
+00000078  SLPROG     00000078 _slPageNbg3
+060ffc78  *ABS*      060ffc78 _MsScreenLeft
+00000000  SLPROG     00000000 _slCurScrn
+060fff30  *ABS*      060fff30 _SlWindowSizeX
+060fff90  *ABS*      060fff90 _SmpcIntBackData
+00000720  .text      00000720 ___eqsf2
+0000088c  .data      00001078 _ang_model_9
+000005b0  .text      000005b0 ___divsf3
+00000ccc  .text      00000ccc ___gtdf2
+000007f4  .data      00000fe0 _pos_model_4
+00000024  SLPROG     00000024 _slCharNbg2
+0000012c  .text      0000012c __creat
+00000000  SLPROG     00000000 _slKtableRA
+00000aac  SLPROG     00000aac stvtc_0
+0000001e  SLPROG     0000001e _slUnitMatrix
+060ffe1c  *ABS*      060ffe1c _RotScrParA
+060ffdb6  *ABS*      060ffdb6 _VDP2_PRISD
+060ffc24  *ABS*      060ffc24 _MsPbufPtr
+060ffc68  *ABS*      060ffc68 _MsScreenDist
+060ffc3c  *ABS*      060ffc3c _FormTbl
+00000092  SLPROG     00000092 rbank_set
+00000000  .data      000000a4 __exit_dummy_ref
+00000000  .text      00000000 ___do_global_dtors
+060fff50  *ABS*      060fff50 _TCR0
+060fff12  *ABS*      060fff12 _Window1_Bottom
+060fff48  *ABS*      060fff48 _SAR0
+060ffcb0  *ABS*      060ffcb0 _Resolution
+060fff60  *ABS*      060fff60 _DAR1
+060ffdf8  *ABS*      060ffdf8 _rb_char_adr
+00000034  SLPROG     00000034 _PCM_WkSize
+060ffdc0  *ABS*      060ffdc0 _VDP2_CCRSA
+060ffd92  *ABS*      060ffd92 _VDP2_WCTLB
+00000000  .data      00000000 _map_vf
+060ffcd4  *ABS*      060ffcd4 _VDP2_CYCA1L
+060ffcde  *ABS*      060ffcde _VDP2_CYCB1U
+00000838  .text      00000838 ___gesf2
+060ffefc  *ABS*      060ffefc _Window1_data
+060ffca8  *ABS*      060ffca8 _DMASetFlag
+000007a0  .data      00000f8c _scl_model_2
+060fff2c  *ABS*      060fff2c _Center2_data
+0000207c  .data      0000207c _point_model_9
+00000780  .data      00000f6c _scl_model_1
+00000024  SLPROG     00000024 _slCos
+060ffcd2  *ABS*      060ffcd2 _VDP2_CYCA0U
+060ffd6c  *ABS*      060ffd6c _VDP2_BKTA
+060ffc0c  *ABS*      060ffc0c _EventCount
+060fff16  *ABS*      060fff16 _Window2_Bottom
+00000000  SLPROG     00000000 _set_imask
+000019e0  .data      000019e0 _point_model_7
+060ffc1c  *ABS*      060ffc1c _mtptr
+060ffcd6  *ABS*      060ffcd6 _VDP2_CYCA1U
+060ffd64  *ABS*      060ffd64 _VDP2_LSTA1
+060ffc1a  *ABS*      060ffc1a _TransRequest
+00000000  SLPROG     00000000 _slTVOn
+060ffd82  *ABS*      060ffd82 _VDP2_WPSY0
+0000086c  .data      00001058 _ang_model_8
+060ffca7  *ABS*      060ffca7 _gxMatrixCount
+00000000  SLPROG     00000000 _slCpuDMACopy
+060fff6c  *ABS*      060fff6c _PCMPtr
+060fff1b  *ABS*      060fff1b _Window1_dpscnt
+060ffd8c  *ABS*      060ffd8c _VDP2_WPEX1
+060ffc11  *ABS*      060ffc11 _SubMode
+060ffcc2  *ABS*      060ffcc2 _VDP2_EXTEN
+060ffce4  *ABS*      060ffce4 _VDP2_SFSEL
+060ffcbd  *ABS*      060ffcbd _DMASt_SCU2
+0000002c  SLPROG     0000002c _CLOfstBuf
+00000040  .text      00000040 _realloc
+060ffc21  *ABS*      060ffc21 _PrintColor
+060ffdde  *ABS*      060ffdde _VDP2_COBB
+000002b8  .text      000002b8 __pipe
+00002724  .data      00002724 _point_model_11
+060ffd44  *ABS*      060ffd44 _VDP2_SCYN1
+00000000  SLPROG     00000000 _slLight
+060ffd16  *ABS*      060ffd16 _VDP2_MPGHRA
+060ffc8e  *ABS*      060ffc8e _FrameSizeY
+060ffdac  *ABS*      060ffdac _VDP2_CCCTL
+060ffc88  *ABS*      060ffc88 _MXPolygons
+060ffd18  *ABS*      060ffd18 _VDP2_MPIJRA
+060ffde0  *ABS*      060ffde0 _VDP2_PRMSIZE
+000000cc  SLPROG     000000cc _slSetPortSelect1
+00000000  .text      00000000 _init_camera
+060fff68  *ABS*      060fff68 _CHCR1
+0000086c  SLPROG     0000086c _slGetPortMode2
+060ffd40  *ABS*      060ffd40 _Nbg1_PosX
+060fff0e  *ABS*      060fff0e _Window2_Top
+060fffa9  *ABS*      060fffa9 _SmpcPortDir2
+000007c0  SLPROG     000007c0 SetPosition
+00000200  .text      00000200 __chown
+060ffd4a  *ABS*      060ffd4a _VDP2_ZMXDN1
+060ffd3c  *ABS*      060ffd3c _VDP2_ZMYN0
+060ffcfc  *ABS*      060ffcfc _VDP2_MPOFN
+00000140  SLPROG     00000140 _RemainWork
+00000000  SLPROG     060074a0 __slprog_start
+060ffc9a  *ABS*      060ffc9a _MsClipYAdder
+00000f7c  .text      00000f7c ___negdf2
+060ffd76  *ABS*      060ffd76 _VDP2_KTAOF
+000000c2  SLPROG     000000c2 _slGetPortSelect2
+0000000a  SLPROG     0000000a _slRotXSC
+00002e98  .data      00002e98 _point_model_13
+00000144  .text      00000144 __free_r
+060fff70  *ABS*      060fff70 _SoundPtr
+00000880  .data      0000106c _scl_model_9
+00000820  .data      0000100c _scl_model_6
+00000c0c  .text      00000c0c ___eqdf2
+00000018  SLPROG     00000018 _slGetPortDir1
+060fff94  *ABS*      060fff94 _SmpcMemSetData
+00000020  .text      00000020 __lseek
+00000000  .tors      060181b0 ___ctors_end
+060ffc48  *ABS*      060ffc48 _ComWrPtr
+00000000  SLPROG     00000000 _slOverRA
+00000a50  .text      00000a50 ___negsf2
+060fff5c  *ABS*      060fff5c _SAR1
+060ffce2  *ABS*      060ffce2 _VDP2_MZCTL
+00000000  SLPROG     00000000 _slColRAMMode
+00000000  .text      00000000 _malloc
+060ffc0e  *ABS*      060ffc0e _WorkCount
+060ffd4e  *ABS*      060ffd4e _VDP2_ZMYDN1
+060ffc86  *ABS*      060ffc86 _MsWindowSizeY
+060ffca0  *ABS*      060ffca0 _SlZlimit
+00000050  SLPROG     00000050 _sbCalcPolygon
+060ffc28  *ABS*      060ffc28 _SlPbufPtr
+00000094  SLPROG     00000094 _slGetPortData2
+000007ec  .data      00000fd8 _ang_model_4
+00000038  .text      00000038 __reclaim_reent
+00000000  SLPROG     00000000 _slComPrmIntBack
+000007ac  SLPROG     000007ac SetTexture
+060fff14  *ABS*      060fff14 _Window2_Right
+00000000  SLPROG     00000000 _slZdspLevel
+060ffda2  *ABS*      060ffda2 _VDP2_SDCTL
+060ffc9c  *ABS*      060ffc9c _SlClipXAdder
+00000000  SLPROG     00000000 _SlaveControl
+000008c0  .data      000010ac _scl_model_11
+00000000  .text      00000000 _atexit
+060ffce0  *ABS*      060ffce0 _VDP2_BGON
+00000110  SLPROG     00000110 _slRandom
+060fff46  *ABS*      060fff46 _DRCR0
+00000800  .data      00000800 _cel_vf
+060fff38  *ABS*      060fff38 _Center2_PosX
+060ffccc  *ABS*      060ffccc _RotTransFlag
+00000000  .tors      060181b0 ___ctors
+00000000  SLPROG     00000000 _slRotY
+00000034  .text      00000034 ___do_global_ctors
+00000bc4  .text      00000bc4 ___cmpdf2
+060ffda4  *ABS*      060ffda4 _VDP2_CRAOFA
+00000000  SLPROG     00000000 _slPlaneRA
+060ffd50  *ABS*      060ffd50 _VDP2_SCXN2
+00000030  SLPROG     00000030 _PCM_Work
+00010d0c  SLPROG     060181ac __slprog_end
+060ffd0e  *ABS*      060ffd0e _VDP2_MPCDN3
+060ffc7c  *ABS*      060ffc7c _MsScreenRight
+00000000  .text      00000000 _abort
+060fff80  *ABS*      060fff80 _SmpcResOffset
+060ffcbe  *ABS*      060ffcbe _ENH_ColMode
+00000000  SLPROG     00000000 __builtin_set_imask
+0000083a  SLPROG     0000083a _slSetOptimize
+060ffd2e  *ABS*      060ffd2e _VDP2_MPOPRB
+060ffd72  *ABS*      060ffd72 _VDP2_RPRCTL
+0000005a  SLPROG     0000005a _slCashPurge
+00000894  .data      00001080 _pos_model_9
+00000874  .data      00001060 _pos_model_8
+060ffc30  *ABS*      060ffc30 _MsSdataPtr
+00000a84  .text      00000a84 ___make_fp
+0000003a  SLPROG     0000003a _slCharNbg3
+00000a74  .text      00000a74 ___divdf3
+000000cc  .text      000000cc __malloc_r
+060ffdc6  *ABS*      060ffdc6 _VDP2_CCRSD
+060ffd30  *ABS*      060ffd30 _VDP2_SCXIN0
+00000830  SLPROG     00000830 _slGetOptimize
+060ffd48  *ABS*      060ffd48 _VDP2_ZMXN1
+060ffc74  *ABS*      060ffc74 _TotalPolygons
+000007b4  .data      00000fa0 _pos_model_2
+060ffc34  *ABS*      060ffc34 _SlSdataPtr
+000002e0  SLPROG     000002e0 TVModeTbl
+060ffeec  *ABS*      060ffeec _Nbg2_PosX
+060ffd98  *ABS*      060ffd98 _VDP2_LWTA0
+00001900  .data      00001900 _pal_vf
+060ffcb6  *ABS*      060ffcb6 _FRT_Count
+00000000  SLPROG     00000000 _MasterStack
+060fff0c  *ABS*      060fff0c _Window2_Left
+00000000  .data      00000000 __exit_dummy_decl
+00000000  SLPROG     00000000 _slCharRbg0
+00000000  SLPROG     00000000 _slScrTransparent
+060ffd36  *ABS*      060ffd36 _VDP2_SCYDN0
+00000030  .text      00000030 _init_object
+00000000  .text      00000000 ___lshrdi3
+00000834  .data      00001020 _pos_model_6
+060ffcca  *ABS*      060ffcca _VDP2_VCNT
+00000fb4  .text      00000fb4 ___make_dp
+060ffdb2  *ABS*      060ffdb2 _VDP2_PRISB
+00000004  SLPROG     00000004 _SlaveStack
+060fff58  *ABS*      060fff58 _VRN1
+00000898  .text      00000898 ___ltsf2
+000002f4  SLPROG     000002f4 _slSmpcDirectAccess
+00000008  SLPROG     00000008 _MaxVertices
+00000000  SLPROG     00000000 _slRparaInitSet
+00000000  SLPROG     00000000 _sbSortEntry
+060ffcea  *ABS*      060ffcea _VDP2_CHCTLB
+00000000  SLPROG     00000000 _sbMakePolygon
+00000314  .data      00000424 __impure_ptr
+00000284  SLPROG     00000284 _PCM_Buf
+060ffda8  *ABS*      060ffda8 _VDP2_LNCLEN
+000007e0  .data      00000fcc _scl_model_4
+060ffcba  *ABS*      060ffcba _DMASt_CPU1
+00000060  .text      00000060 __close
+00000000  SLPROG     00000000 _reset_vbar
+00000ac2  SLPROG     00000ac2 _Per_Connect1
+00000034  SLPROG     00000034 _slDecMatrixPtr
+00000000  SLSTART    00000000 SGL_Start
+00000038  .bss       0601f058 _end
+060ffdd6  *ABS*      060ffdd6 _VDP2_COAG
+060ffc4c  *ABS*      060ffc4c _MsLightVector
+060ffcf6  *ABS*      060ffcf6 _VDP2_PNCN3
+060ffcb4  *ABS*      060ffcb4 _SoundRdCount
+060fffa3  *ABS*      060fffa3 _SmpcResetCount
+000019cc  .data      000019cc _PD_MODEL_5
+00000038  SLPROG     00000038 _MaxEvents
+060ffca4  *ABS*      060ffca4 _DispPolygons
+060ffdd8  *ABS*      060ffdd8 _VDP2_COAB
+060fff04  *ABS*      060fff04 _FrameYOffset
+0000000a  SLPROG     0000000a _slPushUnitMatrix
+0000000a  SLPROG     0000000a _slTVOff
+060ffd08  *ABS*      060ffd08 _VDP2_MPABN2
+00000000  SLPROG     00000000 _slInitSprite
+060fff4c  *ABS*      060fff4c _DAR0
+00000008  .text      00000008 _whichAction
+060ffcda  *ABS*      060ffcda _VDP2_CYCB0U
+0000082c  .data      00001018 _ang_model_6
+0000005e  SLPROG     0000005e _sbMakeSprite
+00001ee8  .data      00001ee8 _attribute_model_7
+060ffcec  *ABS*      060ffcec _VDP2_BMPNA
+00000758  .data      00000f44 _clipflag
+00000018  SLPROG     00000018 _Zbuffer
+00000020  SLPROG     00000020 _SpriteBufSize
+060ffc92  *ABS*      060ffc92 _MsWinYAdder
+060fff40  *ABS*      060fff40 _CDReadExec
+00000014  SLPROG     00000014 _slComPrmSetMemory
+00002540  SLPROG     00002540 _WorkBuf
+060ffd46  *ABS*      060ffd46 _VDP2_SCYDN1
+060ffc94  *ABS*      060ffc94 _SlWinXAdder
+00000064  SLPROG     00000064 _slSmpcIntBack
+060fff54  *ABS*      060fff54 _CHCR0
+00000374  SLPROG     00000374 _slInitPeripheral
+060ffdb8  *ABS*      060ffdb8 _VDP2_PRINA
+060ffcd8  *ABS*      060ffcd8 _VDP2_CYCB0L
+060ffdba  *ABS*      060ffdba _VDP2_PRINB
+00000492  SLPROG     00000492 _slCheckIntBackSet
+00000000  SLPROG     00000000 _slMakeKtable
+060ffd5c  *ABS*      060ffd5c _VDP2_VCSTA
+00000000  .bss       0601f020 __bstart
+000008ac  .data      00001098 _ang_model_10
+060ffe14  *ABS*      060ffe14 _rpara_vram_adr
+0000005a  SLPROG     0000005a _CSH_AllClr
+00000000  SLPROG     00000000 _slTranslate
+060ffd3c  *ABS*      060ffd3c _VDP2_ZMYIN0
+000007d4  .data      00000fc0 _pos_model_3
+060ffd34  *ABS*      060ffd34 _Nbg0_PosY
+060ffd2c  *ABS*      060ffd2c _VDP2_MPMNRB
+060ffdb4  *ABS*      060ffdb4 _VDP2_PRISC
+060fffb4  *ABS*      060fffb4 _UserSynchFunc
+060ffd38  *ABS*      060ffd38 _VDP2_ZMXIN0
+00000000  COMMON     00000000 _errno
+060fff24  *ABS*      060fff24 _Win2_ScreenDist
+00000a98  SLPROG     00000a98 stvtc_2
+060ffd60  *ABS*      060ffd60 _VDP2_LSTA0
+00000ac3  SLPROG     00000ac3 _Per_Connect2
+000000f8  .text      000000f8 __fstat
+060fff84  *ABS*      060fff84 _SmpcDirOffset
+0000038c  SLPROG     0000038c ErasePolygonData
+00000954  .text      00000954 ___floatsisf
+060ffdc4  *ABS*      060ffdc4 _VDP2_CCRSC
+00000004  SLPROG     00000004 _set_vbar
+00002310  .data      00002310 _polygon_model_9
+00000120  SLPROG     00000120 _setASC_1to8
+060fff3a  *ABS*      060fff3a _Center2_PosY
+060ffcdc  *ABS*      060ffcdc _VDP2_CYCB1L
+000007c0  .data      00000fac _scl_model_3
+00000000  .text      00000000 __kill_r
+060ffcb9  *ABS*      060ffcb9 _DMASt_CPU0
+060ffd20  *ABS*      060ffd20 _VDP2_MPABRB
+00000000  SLPROG     00000000 _slPrintHex
+00000014  SLPROG     00000014 _TransList
+060ffc7e  *ABS*      060ffc7e _MsScreenBottom
+00000024  SLPROG     00000024 _Pbuffer
+00000014  SLPROG     00000014 __builtin_get_imask
+00000d94  .text      00000d94 ___ltdf2
+000008a0  .data      0000108c _scl_model_10
+00000248  .text      00000248 __fork
+000004b8  SLPROG     000004b8 _SGL_ASCII_CG
+060ffc9e  *ABS*      060ffc9e _SlClipYAdder
+060ffe00  *ABS*      060ffe00 _nbg1_page_adr
+00000000  SLPROG     00000000 _slRotZ
+060fffac  *ABS*      060fffac _SmpcPerMode
+00000000  SLPROG     00000000 _slScrAutoDisp
+000008ec  .data      000010d8 _ang_model_12
+060ffd42  *ABS*      060ffd42 _VDP2_SCXDN1
+0000009c  .text      0000009c __sbrk
+00000000  .text      00000000 ___trap34
+060ffcc8  *ABS*      060ffcc8 _VDP2_HCNT
+000008e0  .data      000010cc _scl_model_12
+060ffd74  *ABS*      060ffd74 _VDP2_KTCTL
+000008b4  .data      000010a0 _pos_model_10
+0000001a  SLPROG     0000001a _slSynch
+00000abc  SLPROG     00000abc _Smpc_Peripheral
+060fff00  *ABS*      060fff00 _Window2_data
+060ffcbb  *ABS*      060ffcbb _DMASt_SCU0
+00000760  .data      00000f4c _scl_model_0
+060ffc82  *ABS*      060ffc82 _MsScreenSizeY
+000004b4  .text      000004b4 ___adddf3
+060ffd12  *ABS*      060ffd12 _VDP2_MPCDRA
+00000000  .tors      060181b0 ___dtors_end
+060ffcaa  *ABS*      060ffcaa _PutCount
+060ffd26  *ABS*      060ffd26 _VDP2_MPGHRB
+000008b8  SLPROG     000008b8 _slSetPortMode2
+060ffc76  *ABS*      060ffc76 _TotalVertices
+060fff18  *ABS*      060fff18 _Win1Zlimit
+060ffd28  *ABS*      060ffd28 _VDP2_MPIJRB
+00002ce0  .data      00002ce0 _attribute_model_11
+00000000  .text      00000000 _main
+00000010  SLPROG     00000010 _SortListSize
+0000003a  SLPROG     0000003a _EventSize
+000002f0  SLPROG     00000318 _slInitInterrupt
+060fff20  *ABS*      060fff20 _Win1_ScreenDist
+060ffd7c  *ABS*      060ffd7c _VDP2_RPTA
+060ffd5a  *ABS*      060ffd5a _VDP2_SCRCTL
+00000ab8  SLPROG     00000ab8 _Smpc_Result
+060ffde0  *ABS*      060ffde0 _ScrRotPtr
+0000012e  SLPROG     0000012e _PCM_EndCheck
+060ffd2a  *ABS*      060ffd2a _VDP2_MPKLRB
+060ffcc4  *ABS*      060ffcc4 _VDP2_TVSTAT
+060ffde4  *ABS*      060ffde4 _nbg0_char_adr
+00002e84  .data      00002e84 _PD_MODEL_11
+0000078c  .data      00000f78 _ang_model_1
+00000540  SLPROG     00000540 _EventBuf
+**MEMORY CONFIGURATION**
+
+name		origin   length   r_size   c_size    is    attributes
+*default*       00000000 ffffffff 00000000 0601f058 ()
+
+
+**LINK EDITOR MEMORY MAP**
+
+output   input     virtual
+section  section   address    tsize
+
+
+*ABS*             00000000     0     0 2**0 
+
+SLSTART           06004000    28     0 2**2 load alloc reloc contents 
+                  06004000 00000000 ___Start =.
+ from *(SLSTART)
+         SLSTART  06004000    28    28 2**2  coff-sh [../../lib/libsgl.a]sglI00.o(overhead 4056 bytes)
+                  06004002              _slStartSGL
+                  06004000              SGL_Start
+
+.text             06004040  3458     0 2**2 load alloc reloc contents 
+ from *(.text)
+         .text    06004040    3c    3c 2**2  coff-sh ../common/cinit.o(overhead 20280 bytes)
+                  06004040              _main
+         .text    0600407c   7ec   7ec 2**2  coff-sh main.o(overhead 8112 bytes)
+                  06004304              _ss_main
+                  0600407c              _init_camera
+                  060040ac              _init_object
+         .text    06004868   184   184 2**2  coff-sh pad.o(overhead 8112 bytes)
+                  060048ec              _pad_matrix
+                  06004868              _get_pad
+         .text    060049ec   39c   39c 2**2  coff-sh action.o(overhead 8112 bytes)
+                  060049f4              _whichAction
+         .text    06004d88   130   130 2**2  coff-sh [../../lib/libsgl.a]sglIc0.o(overhead 4056 bytes)
+                  06004d88              _slInitSystem
+         .text    06004eb8    a4    a4 2**2  coff-sh [C:\GCCSH\LIB\m2/libgcc.a]__main.o(overhead 4056 bytes)
+                  06004f34              ___main
+                  06004eb8              ___do_global_dtors
+                  06004eec              ___do_global_ctors
+         .text    06004f5c   afc   afc 2**2  coff-sh [C:\GCCSH\LIB\m2/libgcc.a]fp-bit.o(overhead 4056 bytes)
+                  06005920              ___fixsfsi
+                  0600526c              ___subsf3
+                  06005638              ___cmpsf2
+                  06005a04              ___extendsfdf2
+                  06005218              ___addsf3
+                  060056d8              ___nesf2
+                  060053f0              ___mulsf3
+                  06005734              ___gtsf2
+                  06005850              ___lesf2
+                  0600567c              ___eqsf2
+                  0600550c              ___divsf3
+                  06005794              ___gesf2
+                  060059ac              ___negsf2
+                  060059e0              ___make_fp
+                  060057f4              ___ltsf2
+                  060058b0              ___floatsisf
+         .text    06005a58  1034  1034 2**2  coff-sh [C:\GCCSH\LIB\m2/libgcc.a]dp-bit.o(overhead 4056 bytes)
+                  06006308              ___muldf3
+                  06006a3c              ___truncdfsf2
+                  0600684c              ___ledf2
+                  06006940              ___fixdfsi
+                  06005f6c              ___subdf3
+                  060066c4              ___nedf2
+                  060068b4              ___floatsidf
+                  06006788              ___gedf2
+                  06006724              ___gtdf2
+                  060069d4              ___negdf2
+                  06006664              ___eqdf2
+                  0600661c              ___cmpdf2
+                  060064cc              ___divdf3
+                  06006a0c              ___make_dp
+                  060067ec              ___ltdf2
+                  06005f0c              ___adddf3
+         .text    06006a8c    90    90 2**2  coff-sh [C:\GCCSH\LIB\m2/libgcc.a]_lshiftrt.o(overhead 4056 bytes)
+                  06006a8c              ___lshrsi3
+         .text    06006b1c    78    78 2**2  coff-sh [C:\GCCSH\LIB\m2/libgcc.a]_lshrdi3.o(overhead 4056 bytes)
+                  06006b1c              ___lshrdi3
+         .text    06006b94    90    90 2**2  coff-sh [C:\GCCSH\LIB\m2/libgcc.a]_ashiftlt.o(overhead 4056 bytes)
+                  06006b94              ___ashlsi3
+         .text    06006c24    7c    7c 2**2  coff-sh [C:\GCCSH\LIB\m2/libc.a]atexit.o(overhead 4056 bytes)
+                  06006c24              _atexit
+         .text    06006ca0   110   110 2**2  coff-sh [C:\GCCSH\LIB\m2/libc.a]reent.o(overhead 4056 bytes)
+                  06006ca0              _cleanup_glue
+                  06006cd8              __reclaim_reent
+         .text    06006db0    64    64 2**2  coff-sh [C:\GCCSH\LIB\m2/libc.a]malloc.o(overhead 4056 bytes)
+                  06006dd0              _free
+                  06006df0              _realloc
+                  06006db0              _malloc
+         .text    06006e14   204   204 2**2  coff-sh [C:\GCCSH\LIB\m2/libc.a]mallocr.o(overhead 4056 bytes)
+                  06006f90              __realloc_r
+                  06006f58              __free_r
+                  06006ee0              __malloc_r
+         .text    06007018    34    34 2**2  coff-sh [C:\GCCSH\LIB\m2/libc.a]sbrkr.o(overhead 4056 bytes)
+                  06007018              __sbrk_r
+         .text    0600704c    9c    9c 2**2  coff-sh [C:\GCCSH\LIB\m2/libc.a]memcpy.o(overhead 4056 bytes)
+                  0600704c              _memcpy
+         .text    060070e8   2d4   2d4 2**2  coff-sh [C:\GCCSH\LIB\m2/libc.a]syscalls.o(overhead 4056 bytes)
+                  0600724c              __exit
+                  06007290              __getpid
+                  0600730c              __utime
+                  06007128              __write
+                  060070e8              __read
+                  06007234              __unlink
+                  060071f4              __open
+                  060072a8              __stat
+                  06007240              _isatty
+                  06007348              __wait
+                  0600726c              __kill
+                  060072c8              __chmod
+                  06007384              __execv
+                  06007364              __execve
+                  0600729c              __raise
+                  06007214              __creat
+                  060073a0              __pipe
+                  060072e8              __chown
+                  06007108              __lseek
+                  06007148              __close
+                  060071e0              __fstat
+                  06007330              __fork
+                  06007184              __sbrk
+         .text    060073bc    14    14 2**2  coff-sh [C:\GCCSH\LIB\m2/libc.a]trap.o(overhead 4056 bytes)
+                  060073bc              ___trap34
+         .text    060073d0    24    24 2**2  coff-sh [C:\GCCSH\LIB\m2/libc.a]abort.o(overhead 4056 bytes)
+                  060073d0              _abort
+         .text    060073f4    54    54 2**2  coff-sh [C:\GCCSH\LIB\m2/libc.a]raise.o(overhead 4056 bytes)
+                  06007414              __raise_r
+                  060073f4              _raise
+         .text    06007448    50    50 2**2  coff-sh [C:\GCCSH\LIB\m2/libc.a]signalr.o(overhead 4056 bytes)
+                  06007480              __getpid_r
+                  06007448              __kill_r
+ from *(.strings)
+                  06007498 00003458 __etext =.
+
+SLPROG            060074a0 10d0c     0 2**2 load alloc reloc contents 
+                  060074a0 00000000 __slprog_start =.
+ from *(SLPROG)
+         SLPROG   060074a0  6540  6540 2**2  coff-sh ../../lib/sglarea.o(overhead 4056 bytes)
+                  060074bc              _SpriteBuf
+                  060074e0              _RemainEvent
+                  060074ac              _SortList
+                  060074aa              _MaxPolygons
+                  060074c8              _CommandBuf
+                  060074dc              _MaxWorks
+                  060074de              _WorkSize
+                  060074d4              _PCM_WkSize
+                  060074cc              _CLOfstBuf
+                  060075e0              _RemainWork
+                  060074d0              _PCM_Work
+                  060074a0              _MasterStack
+                  060074a4              _SlaveStack
+                  060074a8              _MaxVertices
+                  060074d8              _MaxEvents
+                  060074b8              _Zbuffer
+                  060074c0              _SpriteBufSize
+                  060099e0              _WorkBuf
+                  060074b4              _TransList
+                  060074c4              _Pbuffer
+                  060074b0              _SortListSize
+                  060074da              _EventSize
+                  060079e0              _EventBuf
+         SLPROG   0600d9e0    50    50 2**2  coff-sh [../../lib/libsgl.a]sglA27.o(overhead 4056 bytes)
+                  0600d9e0              _slTranslate
+         SLPROG   0600da30    78    78 2**2  coff-sh [../../lib/libsgl.a]sglA17.o(overhead 4056 bytes)
+                  0600da3a              _slRotZSC
+                  0600da30              _slRotZ
+         SLPROG   0600daa8    78    78 2**2  coff-sh [../../lib/libsgl.a]sglA18.o(overhead 4056 bytes)
+                  0600dab2              _slRotYSC
+                  0600daa8              _slRotY
+         SLPROG   0600db20    78    78 2**2  coff-sh [../../lib/libsgl.a]sglA19.o(overhead 4056 bytes)
+                  0600db20              _slRotX
+                  0600db2a              _slRotXSC
+         SLPROG   0600db98    70    70 2**2  coff-sh [../../lib/libsgl.a]sglA28.o(overhead 4056 bytes)
+                  0600db98              _slScale
+         SLPROG   0600dc08    20    20 2**2  coff-sh [../../lib/libsgl.a]sglB001.o(overhead 4056 bytes)
+                  0600dc08              _slTVOn
+                  0600dc12              _slTVOff
+         SLPROG   0600dc28    4e    4e 2**2  coff-sh [../../lib/libsgl.a]sglF00.o(overhead 4056 bytes)
+                  0600dc42              _slLocate
+                  0600dc38              _slCurColor
+                  0600dc74              CurrentScreen
+                  0600dc28              _slCurScrn
+         *fill*   0600dc76     2 0000
+         SLPROG   0600dc78    1c    1c 2**2  coff-sh [../../lib/libsgl.a]sglF05.o(overhead 4056 bytes)
+                  0600dc78              _slPrint
+         SLPROG   0600dc94    1e    1e 2**2  coff-sh [../../lib/libsgl.a]sglB002.o(overhead 4056 bytes)
+                  0600dc94              _slColRAMMode
+         *fill*   0600dcb2     2 0000
+         SLPROG   0600dcb4     c     c 2**2  coff-sh [../../lib/libsgl.a]sglB016.o(overhead 4056 bytes)
+                  0600dcb4              _slBack1ColSet
+         SLPROG   0600dcc0    2c    2c 2**2  coff-sh [../../lib/libsgl.a]sglC04.o(overhead 4056 bytes)
+                  0600dcc0              _slZdspLevel
+         SLPROG   0600dcec    70    70 2**2  coff-sh [../../lib/libsgl.a]sglB038.o(overhead 4056 bytes)
+                  0600dcec              _slRparaInitSet
+         SLPROG   0600dd5c    7e    7e 2**2  coff-sh [../../lib/libsgl.a]sglB039.o(overhead 4056 bytes)
+                  0600dd5c              _slMakeKtable
+         *fill*   0600ddda     2 0000
+         SLPROG   0600dddc   114   114 2**2  coff-sh [../../lib/libsgl.a]sglB200.o(overhead 4056 bytes)
+                  0600dde8              _slCharNbg0
+                  0600de2e              _slPageRbg0
+                  0600de44              _slPageNbg1
+                  0600ddf4              _slCharNbg1
+                  0600de60              _slPageNbg0
+                  0600de4c              _slPageNbg2
+                  0600de54              _slPageNbg3
+                  0600de00              _slCharNbg2
+                  0600de16              _slCharNbg3
+                  0600dddc              _slCharRbg0
+         SLPROG   0600def0     c     c 2**2  coff-sh [../../lib/libsgl.a]sglB059.o(overhead 4056 bytes)
+                  0600def0              _slPlaneRA
+         SLPROG   0600defc    d4    d4 2**2  coff-sh [../../lib/libsgl.a]sglB035.o(overhead 4056 bytes)
+                  0600defc              _sl1MapRA
+                  0600df8e              rbank_set
+         SLPROG   0600dfd0     c     c 2**2  coff-sh [../../lib/libsgl.a]sglB047.o(overhead 4056 bytes)
+                  0600dfd0              _slOverRA
+         SLPROG   0600dfdc    58    58 2**2  coff-sh [../../lib/libsgl.a]sglB040.o(overhead 4056 bytes)
+                  0600dfdc              _slKtableRA
+         SLPROG   0600e034     8     8 2**2  coff-sh [../../lib/libsgl.a]sglB043.o(overhead 4056 bytes)
+                  0600e034              _slRparaMode
+         SLPROG   0600e03c    84    84 2**2  coff-sh [../../lib/libsgl.a]sglD00.o(overhead 4056 bytes)
+                  0600e03c              _slDMACopy
+                  0600e03c              _slCpuDMACopy
+                  0600e096              _slCashPurge
+                  0600e096              _CSH_AllClr
+         SLPROG   0600e0c0     8     8 2**2  coff-sh [../../lib/libsgl.a]sglB014.o(overhead 4056 bytes)
+                  0600e0c0              _slScrTransparent
+         SLPROG   0600e0c8     c     c 2**2  coff-sh [../../lib/libsgl.a]sglB094.o(overhead 4056 bytes)
+                  0600e0c8              _slColRAMOffsetNbg0
+         SLPROG   0600e0d4   40c   40c 2**2  coff-sh [../../lib/libsgl.a]sglB015.o(overhead 4056 bytes)
+                  0600e0d4              _slScrAutoDisp
+         SLPROG   0600e4e0    48    48 2**2  coff-sh [../../lib/libsgl.a]sglA21.o(overhead 4056 bytes)
+                  0600e514              _slPopMatrix
+                  0600e4e0              _slPushMatrix
+                  0600e514              _slDecMatrixPtr
+         SLPROG   0600e528    3c    3c 2**2  coff-sh [../../lib/libsgl.a]sglF02.o(overhead 4056 bytes)
+                  0600e528              _slPrintHex
+         SLPROG   0600e564   42c   42c 2**2  coff-sh [../../lib/libsgl.a]sglA20.o(overhead 4056 bytes)
+                  0600e564              _slInitMatrix
+                  0600e582              _slUnitMatrix
+                  0600e56e              _slPushUnitMatrix
+         SLPROG   0600e990    30    30 2**2  coff-sh [../../lib/libsgl.a]sglC02.o(overhead 4056 bytes)
+                  0600e990              _slLight
+         SLPROG   0600e9c0    d0    d0 2**2  coff-sh [../../lib/libsgl.a]sglA16.o(overhead 4056 bytes)
+                  0600e9c0              _slLookAt
+         SLPROG   0600ea90   a40   a40 2**2  coff-sh [../../lib/libsgl.a]sglC08.o(overhead 4056 bytes)
+                  0600ea90              _slPutPolygon
+         SLPROG   0600f4d0    10    10 2**2  coff-sh [../../lib/libsgl.a]sglB042.o(overhead 4056 bytes)
+                  0600f4d0              _slCurRpara
+         SLPROG   0600f4e0    28    28 2**2  coff-sh [../../lib/libsgl.a]sglB045.o(overhead 4056 bytes)
+                  0600f4e0              _slScrMatConv
+         SLPROG   0600f508   4e4   4e4 2**2  coff-sh [../../lib/libsgl.a]sglB044.o(overhead 4056 bytes)
+                  0600f508              _slScrMatSet
+         SLPROG   0600f9ec    48    48 2**2  coff-sh [../../lib/libsgl.a]sglF12.o(overhead 4056 bytes)
+                  0600f9ec              _reset_vbar
+                  0600f9f0              _set_vbar
+         SLPROG   0600fa34   3a4   3a4 2**2  coff-sh [../../lib/libsgl.a]sglI01.o(overhead 4056 bytes)
+                  0600fc1e              RetPCMBuf
+                  0600fd58              _Sound_Buf
+                  0600fa34              _slInitSynch
+                  0600fb44              _slRandom
+                  0600fcb8              _PCM_Buf
+                  0600fa4e              _slSynch
+                  0600fb62              _PCM_EndCheck
+         SLPROG   0600fdd8   fc8   fc8 2**2  coff-sh [../../lib/libsgl.a]sglH00.o(overhead 4056 bytes)
+                  0600fe74              _slSetPortData1
+                  0600fe64              _slGetPortData1
+                  06010652              _slSetPortMode1
+                  0601088c              _Smpc_Status
+                  0600fe2a              _slSetPortDir2
+                  06010470              _slSmpcCashSend
+                  0600fe90              _slGetPortSelect1
+                  06010276              _slIntBackCancel
+                  0600ff28              _slSetPortExt1
+                  06010638              _slGetPortMode1
+                  0601052c              _slSmpcCashBlow
+                  0601081c              _slRequestCommand
+                  060108bc              _SmpcStatusBuf
+                  0600fe7e              _slSetPortData2
+                  060101de              _slSetResultBuffer
+                  0600ff14              _slGetPortExt1
+                  0600ff58              _slSetPortExt2
+                  0600fdf8              _slGetPortDir2
+                  0600ff1e              _slGetPortExt2
+                  0600fe00              _slSetPortDir1
+                  0600fed8              _slSetPortSelect2
+                  0600fea4              _slSetPortSelect1
+                  06010644              _slGetPortMode2
+                  0600fe9a              _slGetPortSelect2
+                  0600fdf0              _slGetPortDir1
+                  0600fe6c              _slGetPortData2
+                  06010612              _slSetOptimize
+                  06010608              _slGetOptimize
+                  060100cc              _slSmpcDirectAccess
+                  0601089a              _Per_Connect1
+                  0601014c              _slInitPeripheral
+                  0601026a              _slCheckIntBackSet
+                  0601089b              _Per_Connect2
+                  06010894              _Smpc_Peripheral
+                  06010690              _slSetPortMode2
+                  06010890              _Smpc_Result
+         SLPROG   06010da0  411e  411e 2**2  coff-sh [../../lib/libsgl.a]sglA01.o(overhead 4056 bytes)
+                  06010e7c              _sin_cos_index_tbl
+                  06010da0              _slSin
+                  06010ebc              _sin_tbl
+                  06010de8              GetSinCos
+                  06010dc4              _slCos
+         *fill*   06014ebe     2 0000
+         SLPROG   06014ec0    20    20 2**2  coff-sh [../../lib/libsgl.a]sglA00.o(overhead 4056 bytes)
+                  06014ed4              _get_imask
+                  06014ec0              _set_imask
+                  06014ec0              __builtin_set_imask
+                  06014ed4              __builtin_get_imask
+         SLPROG   06014ee0    74    74 2**2  coff-sh [../../lib/libsgl.a]sglJ00.o(overhead 4056 bytes)
+                  06014ee0              _InitSlaveSH
+                  06014f48              _SlaveCommand
+         SLPROG   06014f54   bd0   bd0 2**2  coff-sh [../../lib/libsgl.a]sglB000.o(overhead 4056 bytes)
+                  06014f54              _slInitScroll
+                  060151b4              TVSizeTbl
+                  060150a4              _setASC_4to8
+                  06015234              TVModeTbl
+                  06015074              _setASC_1to8
+                  0601540c              _SGL_ASCII_CG
+         SLPROG   06015b24   3a0   3a0 2**2  coff-sh [../../lib/libsgl.a]sglJ01.o(overhead 4056 bytes)
+                  06015b24              _SlaveControl
+                  06015eb0              ErasePolygonData
+         SLPROG   06015ec4   75c   75c 2**2  coff-sh [../../lib/libsgl.a]sglI00.o(overhead 4056 bytes)
+                  060161b4              _slInitInterrupt
+         SLPROG   06016620   12c   12c 2**2  coff-sh [../../lib/libsgl.a]sglC00.o(overhead 4056 bytes)
+                  06016620              _slInitSprite
+         SLPROG   0601674c    34    34 2**2  coff-sh [../../lib/libsgl.a]sglA10.o(overhead 4056 bytes)
+                  0601674c              slSquartDbl
+         SLPROG   06016780   aba   aba 2**2  coff-sh [../../lib/libsgl.a]sglJ02.o(overhead 4056 bytes)
+                  06017204              stvtc_1
+                  06016f6a              stvtc_4
+                  06016f38              SetPolygon
+                  06017020              stvtc_3
+                  0601722c              stvtc_0
+                  06016f40              SetPosition
+                  060167d0              _sbCalcPolygon
+                  06016f2c              SetTexture
+                  06016780              _sbMakePolygon
+                  06017218              stvtc_2
+         *fill*   0601723a     2 0000
+         SLPROG   0601723c   3c2   3c2 2**2  coff-sh [../../lib/libsgl.a]sglA24.o(overhead 4056 bytes)
+                  0601723c              _slInversMatrix
+         *fill*   060175fe     2 0000
+         SLPROG   06017600   470   470 2**2  coff-sh [../../lib/libsgl.a]sglH02.o(overhead 4056 bytes)
+                  060179f0              smpc_pfr_tbl
+                  06017a30              smpc_ptf_tbl
+         SLPROG   06017a70    60    60 2**2  coff-sh [../../lib/libsgl.a]sglH04.o(overhead 4056 bytes)
+                  06017a9a              _slComPrmSetTime
+                  06017a70              _slComPrmIntBack
+                  06017a84              _slComPrmSetMemory
+         SLPROG   06017ad0   140   140 2**2  coff-sh [../../lib/libsgl.a]sglJ03.o(overhead 4056 bytes)
+                  06017ad0              _sbMakeDMATable
+         SLPROG   06017c10   470   470 2**2  coff-sh [../../lib/libsgl.a]sglJ04.o(overhead 4056 bytes)
+                  06017cd4              _sbMakeRotSprite
+                  06017c6e              _sbMakeSprite
+         SLPROG   06018080    3c    3c 2**2  coff-sh [../../lib/libsgl.a]sglJ05.o(overhead 4056 bytes)
+                  06018080              _sbSortEntry
+         SLPROG   060180bc    f0    f0 2**2  coff-sh [../../lib/libsgl.a]sglH03.o(overhead 4056 bytes)
+                  06018120              _slSmpcIntBack
+                  060181ac 00010d0c __slprog_end =.
+
+.tors             060181b0     0     0 2**2 
+                  060181b0 00000000 ___ctors =.
+ from *(.ctors)
+                  060181b0 00000000 ___ctors_end =.
+                  060181b0 00000000 ___dtors =.
+ from *(.dtors)
+                  060181b0 00000000 ___dtors_end =.
+
+.data             060181b0  6e68     0 2**2 load alloc reloc contents 
+ from *(.data)
+         .data    060181b0   920   920 2**2  coff-sh main.o(overhead 8112 bytes)
+                  060189f0              _scl_model_7
+                  06018a84              _pos_model_11
+                  06018a04              _pos_model_7
+                  06018924              _pos_model_0
+                  060189c4              _pos_model_5
+                  060189b0              _scl_model_5
+                  0601890c              _opaStat
+                  060189fc              _ang_model_7
+                  0601891c              _ang_model_0
+                  0601897c              _ang_model_3
+                  06018a10              _scl_model_8
+                  06018a7c              _ang_model_11
+                  0601895c              _ang_model_2
+                  06018944              _pos_model_1
+                  06018ab0              _scl_model_13
+                  060189bc              _ang_model_5
+                  06018aa4              _pos_model_12
+                  06018ac4              _pos_model_13
+                  06018abc              _ang_model_13
+                  06018a3c              _ang_model_9
+                  060189a4              _pos_model_4
+                  06018950              _scl_model_2
+                  06018930              _scl_model_1
+                  06018a1c              _ang_model_8
+                  06018a30              _scl_model_9
+                  060189d0              _scl_model_6
+                  0601899c              _ang_model_4
+                  06018a70              _scl_model_11
+                  06018a44              _pos_model_9
+                  06018a24              _pos_model_8
+                  06018964              _pos_model_2
+                  060189e4              _pos_model_6
+                  06018990              _scl_model_4
+                  060189dc              _ang_model_6
+                  06018908              _clipflag
+                  06018a5c              _ang_model_10
+                  06018984              _pos_model_3
+                  06018970              _scl_model_3
+                  06018a50              _scl_model_10
+                  06018a9c              _ang_model_12
+                  06018a90              _scl_model_12
+                  06018a64              _pos_model_10
+                  06018910              _scl_model_0
+                  0601893c              _ang_model_1
+         .data    06018ad0  35ec  35ec 2**2  coff-sh polygon.o(overhead 8112 bytes)
+                  0601a2ec              _attribute_model_5
+                  0601ab38              _PD_MODEL_7
+                  06019228              _point_model_3
+                  0601b4f4              _polygon_model_11
+                  0601b060              _attribute_model_9
+                  0601a738              _polygon_model_7
+                  0601b1e0              _PD_MODEL_9
+                  0601a01c              _polygon_model_5
+                  0601c0a8              _PD_MODEL_13
+                  0601bf10              _attribute_model_13
+                  06019ae0              _attribute_model_3
+                  06019e0c              _point_model_5
+                  0601bc68              _polygon_model_13
+                  06019df8              _PD_MODEL_3
+                  060195b8              _polygon_model_3
+                  0601ab4c              _point_model_9
+                  0601a4b0              _point_model_7
+                  0601b1f4              _point_model_11
+                  0601b968              _point_model_13
+                  0601a49c              _PD_MODEL_5
+                  0601a9b8              _attribute_model_7
+                  0601ade0              _polygon_model_9
+                  0601b7b0              _attribute_model_11
+                  0601b954              _PD_MODEL_11
+         .data    0601c0bc     4     4 2**2  coff-sh pad.o(overhead 8112 bytes)
+         .data    0601c0c0   758   758 2**2  coff-sh texture.o(overhead 8112 bytes)
+         .data    0601c818  1d00  1d00 2**2  coff-sh scroll.o(overhead 8112 bytes)
+                  0601c818              _map_vf
+                  0601d018              _cel_vf
+                  0601e118              _pal_vf
+         .data    0601e518   760   760 2**2  coff-sh action.o(overhead 8112 bytes)
+         .data    0601ec78    80    80 2**2  coff-sh [../../lib/libsgl.a]sglIc0.o(overhead 4056 bytes)
+                  0601ec78              _IntPrioMask
+         .data    0601ecf8     4     4 2**2  coff-sh [C:\GCCSH\LIB\m2/libgcc.a]__main.o(overhead 4056 bytes)
+                  0601ecf8              __exit_dummy_ref
+         .data    0601ecfc     4     4 2**2  coff-sh [C:\GCCSH\LIB\m2/libgcc.a]_exit.o(overhead 4056 bytes)
+                  0601ecfc              __exit_dummy_decl
+         .data    0601ed00   318   318 2**2  coff-sh [C:\GCCSH\LIB\m2/libc.a]reent.o(overhead 4056 bytes)
+                  0601f014              __impure_ptr
+                  0601f018 00006e68 __edata =.
+
+.bss              0601f020    38     0 2**2 alloc 
+                  0601f020 00000000 __bstart =.
+ from *(.bss)
+         .bss     0601f020     8     8 2**2  coff-sh pad.o(overhead 8112 bytes)
+         .bss     0601f028     4     4 2**2  coff-sh [C:\GCCSH\LIB\m2/libgcc.a]__main.o(overhead 4056 bytes)
+         .bss     0601f02c    10    10 2**2  coff-sh [C:\GCCSH\LIB\m2/libgcc.a]fp-bit.o(overhead 4056 bytes)
+         .bss     0601f03c    14    14 2**2  coff-sh [C:\GCCSH\LIB\m2/libgcc.a]dp-bit.o(overhead 4056 bytes)
+         .bss     0601f050     4     4 2**2  coff-sh [C:\GCCSH\LIB\m2/libc.a]syscalls.o(overhead 4056 bytes)
+ from *(COMMON)
+         COMMON   0601f054     4     4 2**2  coff-sh [C:\GCCSH\LIB\m2/libc.a]sbrkr.o(overhead 4056 bytes)
+                  0601f054              _errno
+                  0601f058 00000038 __bend =.
+                  0601f058 00000038 _end =.
+LOAD ../common/cinit.o
+LOAD ../../lib/sglarea.o
+LOAD main.o
+LOAD polygon.o
+LOAD pad.o
+LOAD texture.o
+LOAD scroll.o
+LOAD action.o
+LOAD ../../lib/libsgl.a
+LOAD C:\GCCSH\LIB\m2/libgcc.a
+LOAD C:\GCCSH\LIB\m2/libc.a
+LOAD C:\GCCSH\LIB\m2/libgcc.a
+OUTPUT(sl.coff coff-sh)

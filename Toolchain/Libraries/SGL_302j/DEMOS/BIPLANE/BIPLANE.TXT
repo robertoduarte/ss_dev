@@ -1,0 +1,24 @@
+BIPLANE.TXT
+11/13/96
+
+BACKGROUND:
+DTS received a request to develop a sample that complied to the specifications listed below:
+
+Build a sample for a flying game in which all polygons are textured. The average size of the polygons we are displaying are 32 by 32 pixels. The polygons are not Gouraud shaded, and do not use transparency. The planes to consist of around 130 polygons each. Buildings consist of around 10 polygons each. We need to transform approximately 1200 polygons and display 900 polygons at 30 frames per second.
+
+SOLUTION & INSTRUCTIONS:
+The biplane sample included in the LIBRARY\SDK_10J\SGL302\DEMOS\BIPLANE directory does indeed match this requirement, and in fact exceeds it displaying in excess of 1000 textured polys at 30fps (and transforming in excess of 1300 polys at 30fps). Peaks are even higher. It shows a biplane flying over a landscape consisting of hills, clouds, ships and another plane.
+
+The source for the sample is enclosed, as is an executable you can play around with straight away - Called sl.cof.
+
+This material has been written for SGL 3.00, and assumes the use of GNU 2.7+.   It is suggested you copy the files from the BIPLANE directory into a new directory within the SGL\SAMPLE directory.
+
+To move the biplane forwards, press the 'B' key.
+To move the biplane backwards, press the 'Y' key.
+
+To lower the biplane press the top left button.
+To raise the biplane press the top right button.
+
+To move the plane left and right press 'D' pad left and right.
+
+As you fly over the landscape you will see the displayed / transformed poly count vary accordingly.

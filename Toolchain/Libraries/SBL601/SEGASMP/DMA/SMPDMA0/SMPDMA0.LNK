@@ -1,0 +1,10 @@
+OUTPUT	smpdma0.abs
+INPUT	..\..\lib\strt1_h.obj
+INPUT	..\..\lib\strt2_h.obj
+INPUT	smpdma0.obj
+library	..\..\..\segalib\lib\sega_sat.lib
+library	..\..\..\sh\lib\shcnpic.lib
+ENTRY	START
+START	P,SEGA_P,C,SEGA_C,D,SEGA_D,B,SEGA_B(06010000)
+PRINT	smpdma0.map
+EXIT

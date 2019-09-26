@@ -1,0 +1,94 @@
+;
+;	HITACHI SHC __sftra �̑���̊֐�
+;	r0 �� r1 �r�b�g�E�ɎZ�p�V�t�g����B
+;
+	.text
+	.align	4
+	.global	__sftra
+__sftra:
+	mov.l	r2,@-r15
+	mov		#32-1,r2
+	cmp/hi	r2,r1
+	bf		L00
+	mov		r2,r1
+L00:
+	mov.l	#__shar,r2
+	shll2	r1
+	add		r1,r2
+	mov.l	@r2,r1
+	jmp		@r1
+	mov.l	@r15+,r2
+
+__shar31:
+	shar	r0
+__shar30:
+	shar	r0
+__shar29:
+	shar	r0
+__shar28:
+	shar	r0
+__shar27:
+	shar	r0
+__shar26:
+	shar	r0
+__shar25:
+	shar	r0
+__shar24:
+	shar	r0
+__shar23:
+	shar	r0
+__shar22:
+	shar	r0
+__shar21:
+	shar	r0
+__shar20:
+	shar	r0
+__shar19:
+	shar	r0
+__shar18:
+	shar	r0
+__shar17:
+	shar	r0
+__shar16:
+	shar	r0
+__shar15:
+	shar	r0
+__shar14:
+	shar	r0
+__shar13:
+	shar	r0
+__shar12:
+	shar	r0
+__shar11:
+	shar	r0
+__shar10:
+	shar	r0
+__shar9:
+	shar	r0
+__shar8:
+	shar	r0
+__shar7:
+	shar	r0
+__shar6:
+	shar	r0
+__shar5:
+	shar	r0
+__shar4:
+	shar	r0
+__shar3:
+	shar	r0
+__shar2:
+	shar	r0
+__shar1:
+	shar	r0
+__shar0:
+	rts
+	nop
+
+__shar:
+	.data.l	__shar0, __shar1, __shar2, __shar3, __shar4, __shar5, __shar6, __shar7
+	.data.l	__shar8, __shar9, __shar10,__shar11,__shar12,__shar13,__shar14,__shar15
+	.data.l	__shar16,__shar17,__shar18,__shar19,__shar20,__shar21,__shar22,__shar23
+	.data.l	__shar24,__shar25,__shar26,__shar27,__shar28,__shar29,__shar30,__shar31
+
+	.end

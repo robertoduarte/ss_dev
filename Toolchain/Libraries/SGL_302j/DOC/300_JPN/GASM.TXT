@@ -1,0 +1,47 @@
+���r�f�k�̃A�Z���u���\�[�X�ɂ���
+�@SGL���܂߂�SEGASATURN�p�̒񋟃A�Z���u���v���O�����́A���ׂ�SH�A�Z���u����
+�A�Z���u���ł���悤�Ƀv���O�������L�q����Ă��܂��B����́A�\�[�X�t�@�C������
+���Ǘ����邽�߂ł��BGNU�̃A�Z���u���ŃA�Z���u������ꍇ�AAWK(�p�^�[���L�q����)
+���g�p���āAGNU�A�Z���u���Ŏg�p�ł���悤�ɕϊ����Ă��܂��B
+�@�ϊ��c�[�����́AGASM��UNIX�ł�C�V�F���X�N���v�g�ADOS���ł̓o�b�`�t�@�C����
+�쐬���Ă���ASH�A�Z���u���p�v���O��������GNU�A�Z���u���ŃA�Z���u���ł���悤��
+�R���o�[�g���āA�I�u�W�F�N�g�t�@�C���𐶐�����܂ł��s�Ȃ��܂��B
+�@GASM�ł͈ȉ��̓��e�����s���܂��B
+�@(1)�@�R�����g�̍폜(COMMENT.AWK)
+�@�@AWK���g�p���� ; �Ŏn�܂�R�����g�������폜���܂��B
+�@(2)�@�L�[���[�h�̕ϊ�(KEYWORD.AWK)
+�@�@AWK���g�p���đ啶���ŋL�q����Ă��閽�߁A���W�X�^���Ȃǂ��������ɕϊ����܂��B
+�@(3)�@�Z�N�V�����̏����ύX(SECTION.AWK)
+�@�@AWK���g�p���ăZ�N�V�����̋L�q���@�̕ύX���s�Ȃ��܂��B
+�@(4)�@GNU��GASP(GNU Assembler Preprocessor)�̎��s
+�@�@GASP���g�p����AS(GNU Assembler)�ŃA�Z���u���ł���`���ɕύX���܂��B
+�@(5)�@EQU��ASSIGN�̑O��̃R�[�h�폜
+�@�@AWK���g�p����EQU��ASSIGN�̑O��̋󔒁A�^�u���폜���܂��B
+�@(6)�@GNU��GASP(GNU Assembler Preprocessor)�̍Ď��s
+�@(7)�@���e�����v�[���̊m��(POOL.AWK)
+�@�@AWK���g�p����AS�ŃA�Z���u���ł���悤�ɕϊ����܂��B
+�@(8)�@GNU��AS(GNU Assembler)�̎��s
+�@�@�I�u�W�F�N�g�t�@�C���𐶐����܂��B
+
+��PC�p��AWK�ɂ���
+�@AWK(�p�^�[���L�q����)�́AUNIX�ŕW���I�ȃc�[���ł���܂����ADOS�ł͂��܂�g�p
+����Ă��Ȃ��c�[���ł��B
+�@����ASGL/AWK�f�B���N�g���Ƀt���[�E�F�A�ł���GAWK.EXE��GAWK_EMX.EXE�̓��ނ�
+AWK��񋟂��܂����B���ނ�AWK��񋟂������R�́A���ɂ����AWK�c�[���������
+��̃G���[����������ꍇ�����邽�߂ł��B���Ђ̊��ł͈ȉ��̂悤�Ȍ��ʂ��łĂ�
+�܂��B
+�@�@�EMS-DOS��----------------------�@GAWK_EMX.EXE������
+�@�@�EWindows3.1��MS-DOS�v�����v�g----�@GAWK_EMX.EXE������
+�@�@�EWindows95��MS-DOS�v�����v�g-----�@GAWK.EXE������
+�@�����ŁA�A�Z���u���\�[�X�t�@�C�����R���o�[�g����GASM�̃o�b�`�t�@�C���Ƃ��āA
+GAWK.EXE���g�p����GASM.BAT��GAWK_EMX.EXE���g�p����GASM_EMX.BAT��񋟂��Ďg�p��
+���ɂ���đI�����Ďg�p�ł���悤�ɂ��܂����B
+�@�T���v���v���O�����ł́ASAMPLE�f�B���N�g����SYS��(IP���쐬����T���v��)��
+���C�N�t�@�C�������(makefile��makefile.emx)�p�ӂ��Ă��܂��B
+
+��PC�ł�gasm�����s����ꍇ
+�@���ϐ�AWKENV��AWK�c�[������уX�N���v�g�t�@�C��������f�B���N�g����ݒ肵��
+���������BSGL/AWK�f�B���N�g���ɂ���AWKENV.BAT�ł́AC:\SATURN\SGL\AWK�����ϐ�
+AWKENV�ɐݒ肷��悤�ɂȂ��Ă��܂��B
+
+�ȁ@�

@@ -1,0 +1,153 @@
+;=======================================================================
+;	wrn.scr -- Warning message sample script
+;	Copyright(c) SEGA ENTERPRISES, LTD 1995
+;	Written by eMuKei on 1995-05-22 Ver.1.00
+;=======================================================================
+Define		PATHROOT	..\..\segasmp\disc\
+Define		PATHDAT		..\dat\
+Define		PATHBINCD	..\..\segabin\bincd\
+;
+Disc		"wrn.dsk"
+Session		CDROM
+LeadIn		MODE1
+EndLeadIn
+;
+SystemArea	[PATHROOT]ip.bin
+;
+Track		MODE1
+	Volume				ISO9660 "wrn.pvd"
+	PrimaryVolume			00:02:16
+	SystemIdentifier		"SEGA SEGASATURN"
+	VolumeIdentifier		"WARNING_MESSAGE_SAMPLE"
+	VolumeSetIdentifier		"WARNING_MESSAGE_SAMPLE"
+	PublisherIdentifier		"SEGA ENTERPRISES, LTD."
+	DataPreparerIdentifier		"SEGA ENTERPRISES, LTD."
+	CopyrightFileIdentifier		"WRN_CPY.TXT"
+	AbstractFileIdentifier		"WRN_ABS.TXT"
+	BibliographicFileIdentifier	"WRN_BIB.TXT"
+	VolumeCreationDate		22/05/1995 01:00:00:00:36
+	EndPrimaryVolume
+	EndVolume
+;
+	File		SEGA_WRN.ROM
+	Attributes	HIDDEN
+	FileSource	[PATHDAT]sega_wrn.rom
+	EndFileSource
+	EndFile
+;
+	File		WRN_CPY.TXT
+	FileSource	[PATHROOT]smp_cpy.txt
+	EndFileSource
+	EndFile
+	File		WRN_ABS.TXT
+	FileSource	[PATHROOT]smp_abs.txt
+	EndFileSource
+	EndFile
+	File		WRN_BIB.TXT
+	FileSource	[PATHROOT]smp_bib.txt
+	EndFileSource
+	EndFile
+;
+	File		950522.BIN
+	FileSource	[PATHROOT]smp_test.bin
+	EndFileSource
+	EndFile
+;environment
+    Directory SATURN
+     Directory SEGADAT
+      Directory DAT
+	File		SEGA_WRN.ROM
+	FileSource	[PATHDAT]sega_wrn.rom
+	EndFileSource
+	EndFile
+	File		SEGA_WRN.DA
+	FileSource	[PATHDAT]sega_wrn.da
+	EndFileSource
+	EndFile
+      EndDirectory
+      Directory WRN
+	File		WRN.SCR
+	FileSource	wrn.scr
+	EndFileSource
+	EndFile
+	File		MK.BAT
+	FileSource	mk.bat
+	EndFileSource
+	EndFile
+      EndDirectory
+      Directory MAN
+	File		MANWRN.TXT
+	FileSource	..\man\manwrn.doc
+	EndFileSource
+	EndFile
+      EndDirectory
+     EndDirectory
+     Directory SEGASMP
+      Directory DISC
+	File		IP.BIN
+	FileSource	[PATHROOT]ip.bin
+	EndFileSource
+	EndFile
+	File		SMP_CPY.TXT
+	FileSource	[PATHROOT]smp_cpy.txt
+	EndFileSource
+	EndFile
+	File		SMP_ABS.TXT
+	FileSource	[PATHROOT]smp_abs.txt
+	EndFileSource
+	EndFile
+	File		SMP_BIB.TXT
+	FileSource	[PATHROOT]smp_bib.txt
+	EndFileSource 
+	EndFile
+	File		SMP_TEST.BIN
+	FileSource	[PATHROOT]smp_test.bin
+	EndFileSource
+	EndFile
+      EndDirectory
+     EndDirectory
+     Directory SEGABIN
+      Directory BINCD
+	File		TIMESTMP.EXE
+	FileSource	[PATHBINCD]timestmp.exe
+	EndFileSource
+	EndFile
+	File		VCDPRE.EXE
+	FileSource	[PATHBINCD]vcdpre.exe
+	EndFileSource
+	EndFile
+	File		VCDEMU.EXE
+	FileSource	[PATHBINCD]vcdemu.exe
+	EndFileSource
+	EndFile
+	File		VCDMKTOC.EXE
+	FileSource	[PATHBINCD]vcdmktoc.exe
+	EndFileSource
+	EndFile
+	File		TOCCHK.EXE
+	FileSource	[PATHBINCD]tocchk.exe
+	EndFileSource
+	EndFile
+	File		SEGACDW.EXE
+	FileSource	[PATHBINCD]segacdw.exe
+	EndFileSource
+	EndFile
+      EndDirectory
+     EndDirectory
+    EndDirectory
+;
+        PostGap		150
+EndTrack
+;
+Track		CDDA
+	Pause		150
+	FileSource	[PATHDAT]sega_wrn.da
+	EndFileSource
+EndTrack
+;
+LeadOut		CDDA
+	Empty 600
+EndLeadOut
+EndSession
+EndDisc
+;====== End of file ====================================================

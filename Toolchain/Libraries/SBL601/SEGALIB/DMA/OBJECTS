@@ -1,0 +1,15 @@
+#
+#�����̃t�@�C���� makefile ���� include ����܂��B
+#  TARGET �ɂ̓��C�u�����̃t�@�C�������w�肵�Ă��������B
+#  OBJS �ɂ̓��C�u��������邽�߂� dependencies ���w�肵�Ă��������B
+#
+TARGET=	$(LIBDIR)/sega_dma.a
+
+OBJS=	$(OBJDIR)/DMA_CPU0.o\
+		$(OBJDIR)/DMA_CPU1.o\
+		$(OBJDIR)/DMA_CPU2.o\
+		$(OBJDIR)/DMA_CPU3.o\
+		$(OBJDIR)/DMA_CPU4.o\
+		$(OBJDIR)/DMA_CPU5.o\
+		$(OBJDIR)/DMA_SCU0.o\
+		$(OBJDIR)/DMA_SCU1.o

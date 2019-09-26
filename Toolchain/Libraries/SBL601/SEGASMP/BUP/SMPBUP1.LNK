@@ -1,0 +1,26 @@
+OUTPUT	smpbup1.abs
+INPUT	..\lib\strt1_h.obj
+INPUT	..\lib\strt2_h.obj
+INPUT	smpbup1.obj
+INPUT	..\v_blank\v_blank.obj
+INPUT	..\v_blank\set_vb.obj
+INPUT	..\per\smpclib\per_x1.obj
+INPUT	..\per\smpclib\per_x2.obj
+INPUT	..\per\smpclib\per_x3.obj
+INPUT	font\fnt_cod0.obj
+INPUT	font\fnt_cod1.obj
+INPUT	font\fnt_dat0.obj
+INPUT	font\fnt_dat1.obj
+INPUT	font\fnt_dat2.obj
+library	..\..\segalib\lib\sega_per.lib
+;library	..\..\segalib\lib\sega_sat.lib
+library	..\..\segalib\lib\sega_scl.lib
+library	..\..\segalib\lib\sega_spr.lib
+library	..\..\segalib\lib\sega_mth.lib
+library	..\..\segalib\lib\sega_int.lib
+library	..\..\sh\lib\shcnpic.lib
+ENTRY	START
+;START	I,P,SEGA_P,C,SEGA_C,D,SEGA_D,B,SEGA_B,S(06010000)
+START	P,SEGA_P,C,SEGA_C,D,SEGA_D,B,SEGA_B(06010000)
+PRINT	smpbup1.map
+EXIT

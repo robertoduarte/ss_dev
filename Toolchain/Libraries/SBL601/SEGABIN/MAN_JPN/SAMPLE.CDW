@@ -1,0 +1,42 @@
+; ADDCDW�p�T�u�R�}���h�t�@�C���̋L�q��
+
+; �V�X�e���̈���X�V����
+system = c:\newsys.bin
+
+; �t�@�C����ǉ�����(�f�t�H���g�̃��[�g�f�B���N�g���ɒǉ������)
+scttype = mode1
+add = filemd1.001, c:\filemd1.dat    ; mode1
+add = filemd1.002, c:\filemd1.dat    ; mode1
+scttype = form1
+add = filefm1.001, c:\filefm1.dat    ; mode2 form1
+add = filefm1.002, c:\filefm1.dat    ; mode2 form1
+scttype = form2
+add = filefm2.001, c:\filefm2.dat    ; mode2 form2
+add = filefm2.002, c:\filefm2.dat    ; mode2 form2
+scttype = CDDA2    ; 2�`�����l���A�v���G���t�@�V�X����
+add = fileda2.001, c:\fileda2.dat    ; CD-DA
+add = fileda2.002, c:\fileda2.dat    ; CD-DA
+
+; \DIR1�f�B���N�g���ɂ���t�@�C����u������
+chdir = \dir1
+scttype = mode1
+rep = filemd1.003, c:\filemd1.dat    ; mode1
+scttype = form1
+rep = filefm1.003, c:\filefm1.dat    ; mode2 form1
+scttype = form2
+rep = filefm2.003, c:\filefm2.dat    ; mode2 form2
+scttype = CDDA2    ; 2�`�����l���A�v���G���t�@�V�X����
+rep = fileda2.003, c:\fileda2.dat    ; CD-DA
+
+; \DIR2�f�B���N�g���ɂ���t�@�C�����폜����
+del = \dir2\filemd1.004              ; mode1
+del = \dir2\filefm1.004              ; mode2 form1
+del = \dir2\filefm2.004              ; mode2 form2
+del = \dir2\fileda2.004              ; CD-DA
+chdir = ..\dir2
+del = filemd1.005                    ; mode1
+del = filefm1.005                    ; mode2 form1
+del = filefm2.005                    ; mode2 form2
+del = fileda2.005                    ; CD-DA
+
+; �t�@�C���̍Ō�

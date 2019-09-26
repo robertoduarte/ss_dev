@@ -1,0 +1,7 @@
+create	sega_cmp.lib
+add	cmplrun.obj
+add	cmplrunb.obj
+add	cmplrunw.obj
+add	cmplrund.obj
+add	cmpltool.obj
+exit

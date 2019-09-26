@@ -1,0 +1,1251 @@
+******************************************************************
+* Document type: Library reference
+* Readme file name: mansys.txt
+* Library prefix: SYS
+* Library name: System Program
+* Version: 2.10
+* Creator: T.S, M.M
+* Created: 1/31/95
+* Comments: None
+******************************************************************
+
+******************************************************************
+* System Program Function Specifications
+* Target: Saturn Model S
+* Boot ROM Ver. 0.92 and higher
+* System Program Ver. 1.20 and higher
+******************************************************************
+
+There are restrictions in the use of each System Program function
+based on the version of the boot ROM.
+
+Boot ROM Ver. 0.92 and Higher
+
++---------------------------------------------------------------+
+| Function                                | Function Name       |
++-----------------------------------------+---------------------+
+| 1. Interrupt Processing Routine Access                        |
++-----------------------------------------+---------------------+
+| Set processing routine to interrupt     |                     |
+| vector                                  | SYS_SETSINT         |
+|                                         |                     |
+| Set function to SCU interrupt routine   | SYS_SETUINT         |
+|                                         |                     |
+| Get interrupt vector set content        | SYS_GETSINT         |
+|                                         |                     |
+| Get SCU interrupt routine set content   | SYS_GETUINT         |
++-----------------------------------------+---------------------+
+| 2. SCU Interrupt Mask Access                                  |
++-----------------------------------------+---------------------+
+| Set SCU interrupt mask                  | SYS_SETSCUIM        |
+|                                         |                     |
+| Change SCU interrupt mask               | SYS_CHGSCUIM        |
+|                                         |                     |
+| Get SCU interrupt mask                  | SYS_GETSCUIM        |
++-----------------------------------------+---------------------+
+| 3. Simple Semaphore                                           |
++-----------------------------------------+---------------------+
+| Get semaphore                           | SYS_TASSEM          |
+|                                         |                     |
+| Clear semaphore                         | SYS_CLRSEM          |
++-----------------------------------------+---------------------+
+| 4. System Clock Change                                        |
++-----------------------------------------+---------------------+
+| Change system clock                     | SYS_CHGSYSCK        |
+|                                         |                     |
+| Get system clock value                  | SYS_GETSYSCK        |
++-----------------------------------------+---------------------+
+
+Boot ROM Ver. 0.97 and Higher
+
++---------------------------------------------------------------+
+| 5. Change SCU Interrupt Routine Priority                      |
++-----------------------------------------+---------------------+
+| Change SCU interrupt routine priority   | SYS_CHGUIPR         |
++-----------------------------------------+---------------------+
+
+Boot ROM Ver. 0.96 and Higher
+
++---------------------------------------------------------------+
+| 6. Launch CD Multiplayer                                      |
++-----------------------------------------+---------------------+
+| Launch CD Multiplayer                   | SYS_EXECDMP         |
++-----------------------------------------+---------------------+
+
+Boot ROM Ver. 1.00 and Higher
+
++---------------------------------------------------------------+
+| 7. Power-On Memory Clear                                      |
++-----------------------------------------+---------------------+
+| Power-on memory clear                   | SYS_PCLRMEM         |
++-----------------------------------------+---------------------+
+| 8. MPEG Cartridge Check                                       |
++-----------------------------------------+---------------------+
+| Check MPEG (exit return type)           | SYS_CHKMPEG         |
++-----------------------------------------+---------------------+
+
+* The Model S Version and Usage Restrictions
+
+[Restriction 1]
+
+In the initial Model S (SCU version: 2.0 and higher) versions,
+SYS_SETUINT and SYS_GETUNIT must be used for accessing the SCU
+interrupt routine.
+
+The SH2 responds to these SCU interrupts in its internal vector
+mode.  Therefore, SYS_SETSINT and SYS_GETSINT cannot be used in
+the SCU interrupt vector range.
+
+Also, in the application, there are restrictions on the usable SH2
+SR interrupt mask values.
+
+<SR Value Restrictions>
+
+When interrupt is disabled: 15
+When interrupt is enabled: 0
+In-between 1-14: use is not allowed
+
+<SH2 On-Chip Module Interrupt Restrictions>
+
+Interrupt priority settings are restricted to 0 or 15.
+
+Note that in the SCU interrupt processing routine, execution is
+performed with SR value 15 regardless of the interrupt level.
+
+* Applicable Boot ROM Versions
+
+  V0.92 - V0.952 (Graphics Box, no CD)
+  V0.964 (Programming Box, with CD)
+
+* Applicable SCU Version: SCU Version Register Value
+
+                                 (25FE00C4H.L)
+          1.5                        1
+          2.0                        2
+
+[Restriction 2]
+
+In Model S (SCU version: 2.1 and higher), there are no
+restrictions using SYS_SETSINT and SYS_GETSINT. However, a
+interrupt map reset in the interrupt processing routine is
+required for SCU interrupts.
+
+(Please see the SCU manual for SCU2.1 and higher versions.)
+
+When using SYS_SETSINT and SYS_GETSINT for SCU interrupt access,
+the processing discussed above is not required. There are,
+however, the following restrictions:
+
+<SR Value Restrictions>
+
+When interrupt is disabled: 15
+When interrupt is enabled: 0
+In-between 1-14: use is not allowed
+
+<SCU Interrupt Mask Restriction>
+
+Changes are not allowed in the interrupt processing routine.
+
+<SH2 On-Chip Interrupt Restrictions>
+
+Interrupt priority settings are restricted to 0 or 15.
+
+<Addition of Auxiliary Service Routine>
+
+SYS_CHGUIPR that sets arbitrary priorities for each SCU interrupt
+source cannot be used.
+
+* Applicable Boot ROM Versions:
+
+  Ver. SCU2.1 and higher
+
+* Applicable SCU Versions: SCU Version Register Value
+                                (25FE00C4H)
+           2.1                        3
+           2.2                        4
+
+Boot ROM Versions Compatible with Model S (+ installed SCU):
+
++--------------------+--------------------+--------------------+
+| Model S type       | SCU 1.5 - 2.0      | SCU 2.1 -          |
++--------------------+--------------------+--------------------+
+| Graphic box        | V 0.952 and higher | V 0.953            |
++--------------------+--------------------+--------------------+
+| Programming box    | V 0.964            | V 0.974            |
++--------------------+--------------------+--------------------+
+
+[Restriction 3]
+
+When using SCU interrupt-related operations and the clock change
+function, restrict control to the master SH2.
+
+* New Functions Added for Model S
+
+[Addition 1]
+
+An entry was added for system reinitialization and interrupt of
+the Saturn logo sequence and the CD Multiplayer for code
+development use.
+
+Use as follows in the E7000 emulator:
+
+   During  program execution...
+
+     <ctrl-C>                 (Break)
+     G      400 <Enter>
+     <ctrl-C>                 (Break)
+
+After G 400 is input, initialization completes within 1 second.
+After the initialization, the screen remains black.  The program
+then enters into an infinite loop.
+
+If the PC = 6000XXXH at the break point, then the operation is
+complete.
+
+Loading and executing applications can then follow in a normal
+fashion.
+
+* Applicable Boot ROM Versions:
+
+  Ver. 0.92 - 0.952
+  Ver. 0.953 and higher
+
+Note that in ver. 0.92 - ver. 0.952, DRAM and SDRAM are cleared.
+
+In ver. 0.953 and higher, in SDRAM (work HI), memory content is
+retained. (Excluding the vector table.  The vector table is re-
+initialized.)
+
+[Addition 2]
+
+In Model S, the system clock can be changed for the following
+settings.
+
+CPU clock                  26 MHz     <--->     28 MHz
+Horizontal definition     320/640     <--->     352/704
+
+The clock change is not allowed through a single command issue to
+SMPC.  Use the system program provided.
+
+[Addition 3]
+
+An interrupt signal to the slave SH2 was added in the Model S.
+There are no restrictions placed on the slave such as the SR mask
+restriction placed on the master SH2 by the System Program.  On
+the slave SH2, use the SR mask to enable/disable this interrupt
+signal.
+
+Interrupt Signals to The Slave Sh:
+
+  H Blank-In ... IRL2 interrupt (vector 41H)
+  V Blank-In ... IRL6 interrupt (vector 43H)
+
+This interrupt signal uses level signal input.  For example, if
+the V Blank-In interrupt process is started and then completed,
+the interrupt process will re-start if it is still in the
+V Blank period (the same with the H Blank).
+
+The application must manage uniform interrupt handling.
+
+[Addition 4]
+
+The CD Multiplayer can be launched and executed from the
+application.  The call is similar to a normal function call.
+However, the call cannot return back to the call origin. This may
+be used in the Programming Box (with CD).(Ver. 0.964 and 0.974).
+
+Note: This feature cannot be used with the Graphic Box or the
+      Graphic Box boot ROM. This function may not be called.
+
+* Boot ROM Bug Information
+
+(1) Applicable boot ROM version:
+
+    Ver. 0.92 - 0.95
+
+* SH2 FRT Input Capture Interrupt Settings
+
+* The input capture interrupt is not enabled in the FRT's TIER
+  input at startup for both the master and slave. (The value set
+  in TIER is 01H.)
+
+* After a clock change or after a hot reset, the input capture
+  interrupt is enabled in the master SH2 FRT's TIER. (The value
+  set in TIER is 81H.)
+
+  In either case, the value that should be set for TIER is 81H.
+
+* At launch time, the input capture interrupt priority (the
+  SH2 interrupt IPRB) is set to 1.  With this value, the master is
+  restricted from using the SCU interrupt. (This is the result of
+  the SR value assuming the value of 1, given the limitations on
+  the intermediate SR values.
+
+  For both the master and slave, the value that should be set
+  for IPRB is 0FH.
+
+  [Fix]
+
+  Make sure to set TIER for the slave and TIER and IPRB for the
+  master.
+
+  * When performing interrupt capture via interrupt control:
+
+    TIER     81H     IPRB     0FH
+
+  * When polling:
+
+    TIER     01H
+
+(2) Applicable boot ROM version:
+
+    Ver. 0.92 - 0.951
+
+Launching an Application from the IPL
+
+* The license logo is not displayed. After the display is in the
+  in the TV OFF mode for approximately 2 seconds, the application
+  is executed. (Note that this time will be longer if the 1st read
+  file is long.)
+
+* The VDP2 register initialization is undefined. However, please
+  note that if the re-initialization of all the registers in VDP2
+  takes place, the application will execute correctly.
+
+* System Program Function Specification Changes/Restrictions
+
+[Change 1]
+
+In the interrupt vector access using SYS_SETSINT or SYS_GETSINT
+from the master SH2, the following vector number values can be
+used.  However, after the slave SH2 is started, make sure that
+there is no conflict between the master and the slave. (This is
+because the cache is not purged.)
+
+* 94H:
+
+After starting the slave SH2 through the SMPC command, the initial
+application executed by the slave SH2 can be accessed.  Note that
+the default is for the SH2 to go into an infinite loop while it
+waits for an interrupt.
+
+* 100H - 17FH:
+
+The slave SH2 interrupt vector access that corresponds to 0H - 7FH
+of the slave SH2 is enabled.
+
+These numbers may only be used from the master SH2.
+
+
+[Change 2]
+
+* SYS_SETSINT bug <restricted use from the slave SH2>
+
+  To clear the interrupt processing routine that has already been
+  set, the default interrupt processing routine is set by
+
+  SYS_SETSINT (Num,0);
+
+  When using this function from the slave SH2, the correct default
+  setting is not made to the vector that corresponds to the vector
+  number Num slave vector table.
+
+  Do not perform set the default setting using a 0 zero address
+  from the slave SH2.
+
+  However, master and slave vector tables can be controlled from
+  the master SH2.
+
+* System Program Function Specifications (Addendum)
+
+To use these functions in C, write the following:
+
+# include "sega_sys.h"
+
+4. System Clock Change
+
+[Overview]
+
+When changing the system clock, a partial reset of the hardware is
+required.  In addition to issuing the SMPC command, pre and post
+processing for the command is also necessary.
+
+Hardware Status After a System Clock Change:
+
+Reset      Device OFF or Not
+Devices    Guaranteed                       Not Affected
+---------  -------------------------------  --------------
+SCU        Slave SH2 (OFF)                  Master SH2 *note
+VDP1       DRAM (memory content destroyed)  SDRAM
+VDP2       SCSP (OFF)                       CD
+SCSI/SCC                                    SIMM
+
+* Note
+
+The master SH2 enters standby mode during the clock switch.
+Because of this the SH2's FRT and SCI on-chip modules require
+resetting. The WDT is used during this process. Also, after this
+process, an NMI state results. For example, DMAC control is
+interrupted by NMI. See the SH2 manual, and perform the processing
+required for restart.
+
+* Post-Reset Re-Initialization Process:
+
+- SCU
+
+  The bus, interrupt mask, and other settings are re-initialized.
+  However, SYS_GETSCUIM  is used as the interrupt mask value.
+
+- SCSI/SCC
+
+  Re-initialized (If it is not communicating with the host at
+  reset, returns back to usable state.)
+
+* Required Application Post Processing
+
+- VDP2
+
+  The TV mode must be set relatively fast. Since the device itself
+  enters the 320/640 mode after reset, when the system clock is
+  changed to the 352/704 mode, the video sync signal will off and
+  may cause screen glitches to appear.
+
+- VDP1, 2, and SCSP
+
+  All settings made to these devices are invalid. Please reset.
+
+  The clock change processing time is about 130 ms (~V0.96x).
+  This includes the device reset time.
+
+------------------------------------------------------------------
+Change system clock                                   SYS_CHGSYSCK
+------------------------------------------------------------------
+
+[C Interface]
+
+Format:         void SYS_CHGSYSCK (Uint32 CkMode);
+Input:  CkMode: 0: CPU 26MHz, 320/640 mode
+                1: CPU 28MHz, 352/704 mode
+Output:         None
+Function Value: None
+
+[Assembler Interface]
+
+Format:         Subroutine call to the address contents of L at
+                H'6000320.
+Input:      R4: 0: CPU 26 MHz, 320/640 mode
+                1: CPU 28 MHz, 352/704 mode
+Output:         None
+Destroys:       R0-R7
+Function:       The system clock is switched to a
+                CkMode/R4-specified value
+Comments:       See the overview and SMPC manual for information
+                on the reset device and processing time.
+
+------------------------------------------------------------------
+Get system clock value                                SYS_GETSYSCK
+------------------------------------------------------------------
+
+[C Interface]
+
+Format:         Uint32 SYS_GETSYSCK;
+Input:          None
+Output:         None
+Function Value: 0 or 1: Last SYS_GETSYSCK() parameter value
+
+[Assembler Interface]
+
+Format:         Reads the address contents of L at H'6000324.
+Input:          None
+Output:         None
+Destroys:       None
+
+Function:       Reads the system clock value. This value is the
+                parameter value for the last called SYS_GETSYSCK()
+
+------------------------------------------------------------------
+5. Change SCU Interrupt Routine Priority
+
+[Overview]
+
+Boot ROMs created after version 2.1 and later of the SCU have an
+interrupt priority control table for the SCU interrupt processing
+service.  This table may be rewritten.
+
+* Warning: This is a dangerous service. If there are priority
+           setting errors in the table content for
+           the system may crash!!!
+
+Using this feature, interrupt processing (those that use
+SYS_SETUNIT) can be optimized for the application.
+
+In order to access this feature, the application must have the
+same data structure as the table.  Call SYS_CHGUIPR to change the
+settings.
+
+The table consists of 32 longwords. Each longword has the
+following contents:
+
+  +------------------------+------------------------------------+
+  |SH2 SR lower word value |SCU interrupt mask lower word value |
+  +------------------------+------------------------------------+
+
+* SH2 Sr Lower Word Value:
+
+  Value set to SR at the start of interrupt processing.
+
+* SCU Interrupt Mask Lower Word Value:
+
+  Value ORed with the current mask set value and written to the
+  SCU interrupt mask register at the start of interrupt
+  processing.
+
+<Creating a Table>
+
+* Step1:
+
+Build the lower word of the table according to the targeted
+priority.
+
+* Step2:
+
+Avoid any illegal operations by checking the upper word of the
+against the unique SCU hardware interrupt priorities.
+
+The table can be created without any conflicts following the steps
+above.
+
+In the system library default mode, settings other than level 15
+(maximum) are not allowed when using interrupts from the SH2's on-
+chip modules.  However, if a table is built by considering the SCU
+unique interrupt priority, other level settings
+are also allowed. (Note 1)
+
+The following example shows the procedure to create a interrupt
+table that uses 6 interrupts.
+
+* Priority:
+
+DMA2>DMA1>DMA0>VOUT>SMPC>VIN
+
+Other SCU interrupts are not. (Initialization is made with the SCU
+interrupt mask setting to disable interrupts.)
+
+* Step 1: Determining the Lower Word
+
+  Given the highest priority interrupt source set at FFFFH, set
+  0 to any higher priority SCU interrupt mask register interrupt
+  source bit.
+
+(1) DMA2 has the highest priority.  Therefore, the lower word
+    (referred hereafter as value) of the data that corresponds to
+    the DMA2 in the table is set to FFFFH.  This will result in no
+    interrupts from SCU during DMA2 processing.
+
+(2) During the DMA1 interrupt processing, only the DMA2 interrupt
+    is allowed.  Therefore, the lower word (hereafter, referred to
+    as value) of the data that corresponds DMA1 in the table is
+    set to FDFFH.
+
+(3) The value is set to F9FFH to enable the 2 interrupts above
+    during DMA0 interrupt processing.
+
+(4) The value is set to F1FFH to enable the 3 interrupts above
+    during VOUT interrupt processing.
+
+(5) The value is set to F1FDH to enable the 4 interrupts above
+    during SMPC interrupt processing.
+
+(6) The value is set to F17DH to enable the 5 interrupts above
+    during VIN interrupt processing.
+
+  If an interrupt is not used, the value is not accessed.  Set
+  the value to 0.
+
+* Step 2. Determining the Upper Word
+
+    The upper word is set in simple order by the 2 methods
+    described below:
+
+(a) Set all upper words to 0. (Note 1)
+(b) Check the unique SCU interrupt hardware priority level and set
+    the value as upper word value.
+
+In the following, an example of method (b) is shown:
+
+(1) Since DMA2 has the highest priority, it is set to 6 because
+    of its unique hardware priority.
+
+(2) Although DMA1's priority level is also 6, with this value set
+    to 6, DMA2 enabled by the lower word setting will not occur.
+    As a result, this value is set to 5.
+
+(3) The highest priority for DMA0 is 5.  Since the 2 previous
+    factors have a unique priority of 6, setting this value to 5
+    will not cause any conflicts.  This value is therefore set to
+    5.
+
+(4) From VOUT to VIN shown below, the unique priority level is
+    greater than 8.  Given this, the minimum unique priority level
+    is 5 (DMA0).  The value is set to 4.
+
+    Here, if the SH2's on-chip interrupt level is other than
+    15, and under 4, then there are no effects. (Note 2)
+
+The table looks like this:
+
+  Uint32   iprt[32] =
+  {
+    0x0040F17D,     /* V Blank-IN */
+    0x0040F1FF,     /* V Blank-OUT */
+    0x00000000,     /* H Blank-IN */
+    0x00000000,     /* Timer 0 */
+    0x00000000,     /* Timer 1 */
+    0x00000000,     /* DSP end */
+    0x00000000,     /* Sound */
+    0x0040F1FD,     /* SMPC */
+    0x00000000,     /* PAD   */
+    0x0060FFFF,     /* DMA2 end */
+    0x0050FDFF,     /* DMA1 end */
+    0x0050F9FF,     /* DMA0 end */
+    0x00000000,     /* DMA illegal */
+    0x00000000,     /* Sprite draw end */
+    0x00000000,     /* Empty */
+    0x00000000,     /* Empty */
+    0x00000000,     /* External interrupt_00 */
+        :
+        :
+    0x00000000      /* External interrupt_15 */
+  };
+
+(Note 1)
+
+When only the SCU interrupts are used (SH2's on-chip module
+interrupt is not used), the priorities are decided on the lower
+word settings alone. In this case, it is safe to simply set all
+upper words to 0.
+
+But as in the example, by deciding the upper word, the SH2 on-chip
+module interrupt can be set arbitrarily from priority level 15 and
+1 to 4.
+
+(Note 2)
+
+Even when the SH2 on-chip module interrupt processing is running
+at level 4, VIN and other processes with a high unique priority
+level will interrupt.  In order to avoid confusion, do not use 4
+in your software.  Use 1 through 3 instead.
+
+------------------------------------------------------------------
+Change SCU interrupt routine priority                  SYS_CHGUIPR
+------------------------------------------------------------------
+
+[C Interface]
+
+Format:         void SYS_CHGUIPR (Uint32 *IprTab);
+Input:  IPRTab: 32 longword data array
+Output:         None
+Function Value: None
+
+[Assembler Interface]
+
+Format:         Subroutine call to address contents of L at
+                H'6000280.
+Input:      R4: 32 longword data start address
+Output:         None
+Destroys:       R0-R4
+Function:       Rewrites the boot ROM SCU interrupt routine
+                priority table with the table values specified in
+                IPRTab/R4.
+
+Once rewritten, the interrupt processing by the SCU interrupt
+routine is executed for each interrupt source by the associated
+table value priority.
+
+!!! Note !!!
+
+The table content is not checked. If there are inconsistencies in
+the priorities set by the table, the system may crash.
+
+Comments:
+
+The table settings are valid until they are rewritten. In the
+meantime, the table specified in parameters does not need to be
+kept by the application. However, note that the value returns to
+the initial boot ROM settings at reset.
+
+------------------------------------------------------------------
+
+6. Launch CD Multiplayer
+
+[Overview]
+
+This is a service routine to launch the CD Multiplayer when an
+application ends.
+
+By calling this service, the system will revert to a state that
+occurs after a power on sequence.  The system will execute the CD
+Multiplayer and will not return control back to the caller.
+
+------------------------------------------------------------------
+Launch CD Multiplayer                                  SYS_EXECDMP
+------------------------------------------------------------------
+
+[C Interface]
+
+Format:         void SYS_EXECDMP(void);
+Input:          None
+Output:         Does not return to the calling source
+Function Value:
+
+[Assembler Interface]
+
+Format:         Subroutine call to address contents of L at
+                H'600026C.
+Input:          None
+Output:         Does not return to the calling source
+Destroys:
+Function:       Launches CD Multiplayer
+
+Note:
+
+This function cannot be used with the Graphic Box as well as the
+Graphic Box boot ROM. This call is not supported.
+
+------------------------------------------------------------------
+7. Power-On Memory Clear
+
+[Overview]
+
+This is an 8-byte memory area managed by the boot ROM. This memory
+is only initialized to 0 at power-on startup. However, the content
+is preserved after Reset button (NMI) reset.
+
+------------------------------------------------------------------
+Power-on memory clear                                  SYS_PCLRMEM
+------------------------------------------------------------------
+
+[C Interface]
+
+Format:         Uint8 *SYS_PCLRMEM
+Input:          Perform normal memory access
+Output:         Perform normal memory access
+Function Value: None
+
+[Assembler Interface]
+
+Format:         Access 8 bytes of memory from address'6000210.
+Function:       8 bytes of memory managed by the boot ROM.
+
+Comments:
+
+Does not perform a range check. Make sure not to access beyond its
+area.
+
+------------------------------------------------------------------
+8. MPEG Cartridge Check
+
+[Overview]
+
+This service checks to see whether the MPEG cartridge is installed
+as well as its operational status.
+
+This service must be called when the application uses the MPEG
+cartridge. Also, this service must be used whenever the disc is
+switched (the CD door is opened).
+
+------------------------------------------------------------------
+Check MPEG (end return type)                          SYS_CHKMPEG
+------------------------------------------------------------------
+
+[C Interface]
+
+Format:         Sint32 SYS_CHKMPEG(Sint32 dummy);
+Input:          Dummy parameter (always select 0)
+Output:         None
+Function Value: If OK, then the function value is positive
+                (check is complete).  If negative, then error
+                (check failure or no MPEG cartridge)
+Function:       Please make sure to check MPEG as required when
+                using MPEG cartridge. This function will not
+                return back to the calling origin until the check
+                is completed.
+
+Note:
+
+(a) Before executing this service routine, a soft reset (set with
+    the CDC_CdInit function) must be executed.
+(b) To disable access to the A-bus during a SCU-DMA transfer, do
+    not call this function during a SCU-DMA.
+(c) If the check fails once, try to execute the function once more
+    time (see sample).
+
+Comments:
+
+(a) The function interrupts the following processes:
+    * CD block file system
+    * Data transfer process
+    * MPEG process
+(b) After the disc is swapped, MPEG check must always be
+    performed.
+(c) When using the MPEG Library, the application does not need to
+    call this function directly. The function is called
+    automatically within the MPEG library initialization function.
+
+* MPEG Check Sample Program
+
+/*****************************************************************
+*      Constant
+*****************************************************************/
+
+/*  Timeout value (only a sample value is given here)  */
+#define TMOUT_HIRQREQ   2900000  /* HIRQREQ default: 4s */
+
+/*****************************************************************
+*      Function definition
+*****************************************************************/
+
+/* MPEG check */
+Sint32 smplProg(void)
+{
+    Sint32 ret;
+    Sint32 timer;
+
+    /* Soft reset */
+    if (CDC_CdInit(1, 0, 0, 0) != CDC_ERR_OK) {
+        return NG;
+    }
+    if (waitHirq(CDC_HIRQ_ESEL) != OK) {
+        return NG;
+    }
+
+    /* MPEG check. If it fails, try two more times */
+    ret = SYS_CHKMPEG(0);
+    if (ret != OK) {
+        ret = SYS_CHKMPEG(0);
+        if (ret != OK) {
+            return NG;
+        }
+    }
+    return OK;
+}
+
+/* Wait until the interrupt source register bit is 1 */
+Sint32 waitHirq(Sint32 flag)
+{
+    Sint32 i;
+
+    for (i = 0; i < TMOUT_HIRQREQ; i++) {
+        if (isHirqOn(flag)) {
+            return OK;
+        }
+    }
+    return NG;
+}
+
+/* Is the interrupt source register bit 1? */
+Bool isHirqOn(Sint32 flag)
+{
+    return ((CDC_GetHirqReq() & flag) != 0);
+}
+
+
+******************************************************************
+Boot ROM IP Specifications
+Target: Saturn Model S
+Boot ROM Ver. 0.92 and higher
+System Program Ver. 1.10 and higher
+******************************************************************
+
+* IP Version Upgrade
+
+(1) The sample application initialization program smpsys.c is
+    written in C. The old smpsys.src is unnecessary.
+
+(2) sys_init.obj that initializes the system work area has been
+    added. This is an 80H byte object. Place it immediately after
+    the area code within the IP at link time.
+
+(3) The appended ip.bin system ID is written for CDs. To use as
+    a cartridge IP, sys_id.src must be modified and rebuilt. 1st
+    read is from 6010000H; it ultimately passes control to that
+    address.
+
+* How to Use the IP
+
+(1) System ID (sys_id.src)
+
+* Security Code
+
+  (sys_sec.obj)
+
+* Area Code
+
+  (sys_arej.obj, sys_aret.obj, sys_areu.obj, sys_areb.obj,
+  sys_arek.obj, sys_area.obj, sys_aree.obj, sys_arel.obj)
+
+* System Initialization Code
+
+  (sys_init.obj)
+
+The code listed above must be linked in the following sequence.
+This code, called boot code, is necessary to launch the
+application.
+
+Within the system ID, select the necessary area code according to
+the characters "JTUBKAEL", and link. (The 8th character in the
+area code filename corresponds to each character.)
+
+            +-- +----------------+  ---------  --+
+            |   | System ID      |   100H        |
+            |   +----------------+  ---------    |
+            |   | Security Code  |   D00H        |
+            |   +----------------+  ---------    |
+            IP  | Area Code      |   20 - 100H   | Boot Code
+            |   +----------------+  ---------    |
+            |   |System Init Code|   80H         |
+            |   +----------------+  ---------  --+
+            |   |Application Init|   80H-
+            |   |Program         |   71E0H
+            +-- +----------------+
+
+After the release of Model S (Programming Box with CD, V0.96), if
+the area code setting set through the DIP switches on the target
+does not match the corresponding area code contained in the boot
+code, then the application will not launch.
+
+(2) Application Initialization Program Sample smpsys.c
+
+Sample initialization routines for VDP memory and other devices
+are contained in [smpsys.c].  This addresses screen display bugs
+that occur at the startup of an application (e.g., the Multiplayer
+control panel or remaining graphics in the frame buffer are
+displayed momentarily prior to the execution of the application).
+
+The execution time for [smpsys.c] is approximately 0.1 second.  It
+is executed during the license display, and the display is
+extended by that amount of time.  For more optimized processing,
+customize the code by adding/deleting processes for the
+application as required. (Note)
+
+Branching ultimately occurs to the application loaded by the
+System ID's 1st read item setting. (The address of appended items
+is 6010000H)
+
+The IP size, including this, is 1800H. Writing to System ID,
+shouldn't be a problem as long as the size is equal to or larger
+than the actual IP file.
+
+                          (Section Name)
+      +---  ------------ +----------------+ ------- --+
+  IP  |      1800H       | SYSID          | F80H      | Boot Code
+      |                  +----------------+ ------- --+
+      |                  | P (smpsys.obj) | 880H
+      +---  ------------ +----------------+
+
+Note: smpsys.c customization
+
+For example, [smpsys.c] may be used for memory initialization
+preprocessing that occurs to the startup of the application.
+However, if a clock switch does not occur, it is more effective to
+write data for the application.
+
+In addition, when the system clock is switched from 26MHz to
+28MHz, VDP1, VDP2, and SCSP register settings as well data
+contained in memory areas other than work RAM (H) are destroyed.
+Since these areas need to be reset after the switch, other
+processes that can be delayed should be delayed.
+
+(3) Pre-Readable areas
+
+The pre-read start area in the sample program is 6010000H (this is
+not the lower limit). Address selection for the SDRAM start
+address lower limit is 6002000H+IP size (the actual IP address in
+this case).
+
+* Reference
+
+  H'6000000 +-----------------------+ ( V0.92 and higher)
+            | System work area      |
+  H'6002000 +-----------------------+
+            | IP load area          |
+            | Freed memory after IP |
+            | process               |
+  H'6002000 +-----------------------+
+  + IP size |                       |
+            ~                       ~
+
+Note!!!
+
+The 1st read range must be limited to work RAM (L or H).
+
+  200000H          -  2FFFFCH work RAM (L)
+  6002000H+IP size - 60FFFFCH work RAM (H)
+
+Also, follow a 4-byte boundary.
+
+(4) System Work Area
+
+The SDRAM start address below 6002000H is the system area.
+However, when the IP process is completed and the application is
+launched, free use of memory up to 6001000H and 6000E00H is
+possible if the stacks of the master and slave SH2 can be located
+elsewhere.
+
+* Reference
+
+  H'6000000 +-----------------------+ (V0.92 and higher)
+            | Vector, resident      |
+            | routine               |
+  H'6000E00 +-----------------------+
+            | Slave SH2 stack       |  200H B
+  H'6001000 +-----------------------+
+            | Master SH2 stack      | 1000H B
+  H'6002000 +-----------------------+
+            |                       |
+            ~                       ~
+
+(5) Sample IP.BIN Download and Execution
+
+* Emulating a Cartridge with SIMM Memory
+
+Turn on the DIP switch "SIMM CART" on the target box and restart.
+Memory will be allocated to the SIMM memory from H'2000000,
+identical to the cartridge (note). If the target box is restarted
+like this,
+
+  L 2000000 ; M : IP.BIN
+  L 2001800 ; M : APP.BIN
+
+  RS
+  G
+
+the application is executed after the startup screen display.
+After this, startup occurs each time the main reset button is
+pressed.
+
+Note:
+
+CD file emulation through SCSI cannot be used in this mode.
+
+H'4000000 +--------------------------+
+          | Resident SCSI routine    |
+H'4020000 +--------------------------+
+          | SIMM CD file emulation   |
+          +--------------------------+
+          |                          |
+          ~                          ~
+
+To use SCSI, the dip switch "SCSION" must be ON and "SIMMCART"
+must be OFF.  When using SIMM memory (explained below) to emulate
+the CD file system, SCSI cannot be used.
+
+* Emulating a CD File System with SIMM Memory
+
+Use MFCAT with the following DOS command:
+
+  MFCAT -oAPP.LOD IP.BIN IP.BIN APP.BIN
+
+This is equivalent to a file system composed of 3 files. Also, the
+first file is always IP.BIN, the second a dummy, and the third,
+regardless of the filename, is the 1st-read file.
+
+Create APP.LOD and then turn off the DIP switch "SIMM CART" on the
+target and restart. Memory will be allocated to SIMM memory from
+H'4000000.  Now, use a load command + offset value and download
+ip.mot and app.mot (note 10).
+
+  L 4020000 ; M : APP.LOD
+
+  RS
+  G
+
+Entering the above and then restarting the target will execute the
+application after the startup screen.  Next, application start
+occurs each time through the main reset button.
+
+******************************************************************
+sega_sys.lib Function Specifications
+Target: Saturn Model S
+Boot ROM Ver. 1.00 and higher
+System program Ver. 2.01 and higher
+******************************************************************
+
+1. Overview
+
+The following functions have been added from this version
+(ver.2.01).  These functions are supplied in the library file
+(sega_sys.lib):
+
+2. Function Specifications
+
+
+Table 2.1 Functions
++----------------------------------------------------------+
+| Function                      | Function Name   | Number |
++----------------------------------------------------------+
+| CD check                                        | 1.0    |
+| +--------------------------------------------------------+
+| | Check track position        | SYS_CheckTrack  | 1.1    |
++----------------------------------------------------------+
+| Exit process                                    | 2.0    |
+| +--------------------------------------------------------+
+| | Exit program (system)       | SYS_Exit        | 2.1    |
++----------------------------------------------------------+
+
+2.1. CD Check
+
++---------------------------------------------------------------+
+| Title         | Function               | Function Name  | No  |
+| Function Spec | Check track position   | SYS_CheckTrack | 1.1 |
++---------------------------------------------------------------+
+
+Format:         void SYS_CheckTrack(Sint32 tno)
+Input: tno :    Track number (tno = 1 has no meaning; set tno>=2)
+Output:         None
+Function Value: None
+Function:       Compares the specified track start position and
+                TOC data, and checks to see if both match.  When
+                track positions match, the function terminates
+                normally and returns.  When track positions don't
+                match, the discs are considered to not be
+                identical; as a result, control is transferred to
+                the Multiplayer.
+Comments:
+
+In the following cases, track positions are not considered
+identical:
+
+(a) The selected track number does not exist in the TOC
+    data.
+(b) The selected track start seek position and TOC information
+    are off by 10 seconds and more. (CD specs allow up to +/-1
+    second of tolerance.)
+(c) Errors that occur in the CDC function and CD drive; as a
+    result, normal values could not be acquired.
+
+2.2. Exit process
+
++---------------------------------------------------------------+
+| Title         | Function               | Function Name  | No  |
+| Function Spec | Exit program           | SYS_Exit       | 2.1 |
++---------------------------------------------------------------+
+
+Format:         void SYS_Exit(Sint32 code)
+Input:   code : Function code
+Output:         None
+Function Value: None
+Function:       The exit process is performed according to the
+                function code.
+
+(1) Function code
+
++---------------+--------------------------------------------+
+| Function Code | Description                                |
++---------------+--------------------------------------------+
+|               | Executes IP check and run during Demo-Demo |
+|       0       | use. (Starts up the Demo-Demo based menu)  |
+|               | For all other cases, activates the         |
+|               | Multiplayer.                               |
++---------------+--------------------------------------------+
+|       1       | Activates the Multiplayer unconditionally. |
++---------------+--------------------------------------------+
+|       2       | Executes IP check and run unconditionally. |
+|               | (Starts up the demo-demo menu)             |
++---------------+--------------------------------------------+
+|    Negative   | Infinite loop                              |
+|    Value      |                                            |
++---------------+--------------------------------------------+
+|     Other     | Same as Function code 0.                   |
++---------------+--------------------------------------------+
+
+Comments:
+
+The following initialization process takes place in this function
+when an IP check and run is executed:
+
+  a) Disable interrupts (CPU status register and SCU interrupt
+     mask register).
+  b) Change the system clock to 26 MHz (stops the slave CPU).
+  c) Soft reset of the CD block.
+  d) Set the stack pointer to the default value (6002000H).
+
+3. Sample program
+
+sega_cdc.lib must be linked to the demo program.
+
+3.1. CD check
+
+When executing SYS_CheckTrack, please note the following:
+
+(a) Make sure to specify the CD-DA track. (It is OK to specify the
+    last track.)
+(b) When dealing with software under the Demo-Demo system, make
+    sure to convert the track number through GFS_ConvTno. (Use GFS
+    Ver.2.00 and higher.)
+
+/*****************************************************************
+ *      Constant
+*****************************************************************/
+
+/* Last track number (check CD-DA track) */
+#define LAST_TNO    ???
+
+/*****************************************************************
+ *      Function Definition
+ ****************************************************************/
+
+/* Sample 1 */
+Sint32 smplProg1(void)
+{
+    /* Track position check */
+    SYS_CheckTrack(LAST_TNO);
+
+    return OK;
+}
+
+/* Sample 2 (when dealing with Demo-Demo system) */
+Sint32 smplProg2(void)
+{
+    /* Track position check */
+    /* Converts logical track number to */
+    /* physical track number for demo-demo */
+    /* Also include sega_gfs.h */
+    SYS_CheckTrack(GFS_ConvTno(LAST_TNO));
+
+    return OK;
+}
+
+3.2. End Process
+
+/*****************************************************************
+ *      Function Definition
+ ****************************************************************/
+
+/* Main Function */
+void main(void)
+{
+    /* Subfunction  */
+    subfunc();
+
+    /* Program (system) exit function */
+    SYS_Exit();
+
+return;
+}
+
+4. Revision History
+
+4.1. Changes from Ver. 2.04 to Ver. 2.10.
+
+During the upgrade of GFS, it was necessary to maintain
+compatibility with the SYS_Exit function used by the Demo-Demo
+system.  As a result, an updated sega_gfs.h was used for
+recompilation.
+
+Use the following versions for the associated libraries:
+
+  * SYS library : Ver. 2.10
+  * GFS library : Ver. 2.10 and higher
+
+****************************end of file***************************

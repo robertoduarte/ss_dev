@@ -1,0 +1,91 @@
+******************************************************************
+SBL6.01 Readme
+******************************************************************
+[Updates]
+
+(1) Replaced the LIBRARY\SBL6\SEGASMP\LIB\SATURN.LNK with updated 
+GCC link file.
+
+(2) The SBL 6.0 Scroll Library was partially updated to correct an 
+address error bug. An illegal access occurred at 0x00000000 when 
+the V-Blank IN interrupt service took place during initialization. 
+The bug fix consisted of a routine to check the pointer to see whether 
+it is in NULL condition or not.  The file used to update SBL6.0 was 
+SCL0403.zip (97 KB) which was previously on the DTS Website.
+
+(3) The SND Library (version 1.08) in SBL 6.0 was updated to change 
+a dummy read from 0 to 6000000.  The file used to update SBL 6.0 
+was SND0108.zip (37 KB) which was previously on the DTS Website.
+
+NEW FIX (11/22/96):
+(4)  The SBL 6.0 sample (\SBL6\SEGASMP\PER\SMPPER12) was corrected to fix 
+an address error bug.  In the function GetTriggergun( ), both SMPC_DDR 
+and SMPC_PDR are 7-bit registers. Writing a non-zero value to the MSB 
+will be flagged as an Address Checker error.  The updated MOVE.C file 
+was already replaced in this web zip file, but not on the latest DTS CD.  
+Therefore, that file is available by itself on the DTS Website for your 
+reference.
+
+[New Interrupt Sample Code]
+Look in the LIBRARY\SBL6\INTERUPT directory to find the interrupt 
+sample code and read the INTERUPT.TXT file for instructions.
+
+[Overview]
+
+The Sega Basic Library (SBL) is a low-level library which can be 
+applied to many uses.  This library enabled developers the 
+flexibility they needed to create their own customized 
+applications. However, past versions of SBL were not helpful for 
+the development of 3D graphics-based software.
+
+The Sega Game Library (SGL) is a high-level library which can be 
+used mainly for 3D graphics applications.  However, depending on 
+the application, the developers are forced to deal with many of 
+its restrictions.
+
+The objective of SBL6.0 is to integrate the positive aspects of 
+both libraries.  SBL6.0 provides developers the flexibility of 
+customizing their applications as with the old SBL, along with 
+taking advantage of the benefits provided by the expanded features 
+ported from SGL.
+
+[Features]
+
+It is possible to combine the features from SBL and SGL.*
+
+By skillfully utilizing SBL and SGL according to the needs of the 
+application, the developer can develop software quickly and 
+efficiently.  For example, although basic hardware-level control 
+functions were provided by previous versions of SBL, the user had 
+to bear the overhead of coming up with a efficient polygon 
+rendering engine.  In contrast, while SGL has a powerful polygon 
+3D engine, there are weaknesses in its support for the Saturn's 
+scroll functions due to the its original design implementation.
+
+SBL6.0 provides a development environment with high efficiency and 
+flexibility in order to compensate for the deficiencies found in 
+both SBL and SGL.
+
+* Keep in mind that limitations will inevitably appear when
+  SBL and SGL are combined.
+
+[Functions]
+
+SBL6.0 marries together the low-level control over hardware found 
+in previous versions of SBL and the expanded, user-friendly 
+features of SGL that almost eliminate the need to deal with the 
+complexity of the Saturn's hardware.
+
+The major functions ported from SGL are as follows:
+
+1. High speed high-level 3D graphics control functions.
+
+For example, by using these functions, programmers who are 
+relatively inexperienced in 3D graphics can start developing games 
+quickly using 3D polygons.
+
+2. Event control function
+
+Animation control over characters, etc., can be easily managed by 
+using SGL's event control functions,
+

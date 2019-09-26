@@ -1,0 +1,37 @@
+Program Name: 
+Sample
+
+
+Purpose:
+Demonstrate the use of lite implementation of printf() and scanf(). 
+Basic program to read and write on serial port.
+
+
+Target Board and setting:
+7729 Solution Engine board. 
+
+
+File List:
+sample.README  	- This file. Contains project description.
+hwinit.c	- Setup the hardware on board in hw_initialise.
+start.S		- startup file. Calls hw_initialise and then start in crt0.
+sample.ld	- Linker Script. Contains information about memory regions.
+print.c		- Implementation of print() and scan().
+print.h		- Macro definition of printf().
+sample.c	- Sample to demonstrate print() and scan().
+uart.c		- Code to handle serial port of writing and reading.
+syscalls.c	- Implementation of system calls _read() and _write().
+makefile	- Makefile for the project.
+
+
+Summary:
+Small program to display the usage of lite implementation of printf() and scanf().
+
+
+Special Notes/instructions:
+To run on simulator do make sim
+Program must be flashed into FLASH ROM. 
+After flashing the program, change the switch SH4-3 to OFF position so that
+after reset program executes from flash.
+Connect the serial port of PC to serial port (COM1) of the solution engine.
+

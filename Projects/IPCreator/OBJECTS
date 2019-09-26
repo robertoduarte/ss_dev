@@ -1,0 +1,24 @@
+# source_program
+SRCS = smpsys.c
+ASRCS = sys_id.s
+
+# area_code
+# Only Japan
+# OBJS_AREA = $(SGLLDR)/sys_arej.o
+# Only America
+#OBJS_AREA = $(SGLLDR)/sys_areu.o
+# Only Europe
+#OBJS_AREA = $(SGLLDR)/sys_aree.o
+# World Wide
+OBJS_AREA = $(SGLLDR)/sys_arej.o $(SGLLDR)/sys_aret.o \
+				$(SGLLDR)/sys_areu.o $(SGLLDR)/sys_aree.o
+
+# objects code
+OBJS_CODE = $(SGLLDR)/sys_sec.o $(OBJS_AREA) #$(SGLLDR)/sys_init.o
+
+# ip objects
+OBJS = $(ASRCS:.s=.o) $(OBJS_CODE) $(SRCS:.c=.o)
+
+CLEAR_OBJS = $(ASRCS:.s=.o) $(SRCS:.c=.o)
+
+LIBS = 

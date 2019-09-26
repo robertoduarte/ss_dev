@@ -1,0 +1,72 @@
+
+�r�b�g�}�b�v�O���t�B�b�N�X�֐��ɂ���
+
+�r�b�g�}�b�v�͂u�c�o�Q�̃X�N���[���ʂ̂ЂƂ��O���t�B�b�N��ʂƂ��Ďg�p����
+���̂ŁA���̃��C�u�����ł͂Q�T�U�F�p���b�g���[�h�̂݃T�|�[�g���܂��B
+�ʏ�̏������������s�Ȃ�����A slInitBitMap() �֐������s���邱�Ƃŏ������ł�
+�܂��B
+
+Bool slInitBitMap((Uint16)scrn , (Uint16)size , (void*)adr)
+  �@�\ : �r�b�g�}�b�v��ʂ��Q�T�U�F���[�h�Őݒ肵�܂��B
+	 �X�N���[���N���A�͍s�Ȃ��܂���B
+	 scrn : bmNBG0 , bmNBG1 , bmRBG0 �̂����ꂩ���w�肵�܂��B
+	 size : BM_512x256 , BM_512x512 , BM_1024x256 , BM_1024x512 �̂�����
+		�����w�肵�܂��B
+	 adr :  �r�b�g�}�b�v�Ƃ��Ďg�p����u�q�`�l�̐擪�A�h���X���w�肵�܂��B
+		����� �Q�O�O�O�O�g�o�E���_���łȂ���΂Ȃ�܂���B
+	 �{�֐��̒��� slBitMapNbg0(Nbg1 , Rbg0) �����s����܂��B
+	 ��ʂ̒��S�ʒu�����_�ɐݒ肳��܂��B
+
+void slBitMapBase((Sint16)xbase , (Sint16)ybase)
+  �@�\ : �r�b�g�}�b�v��ʂ̌��_�ʒu��ݒ肵�܂��B
+	 �X�N���[���̍����(�O�A�O)�Ƃ��Ďw�肵�܂��B
+
+Sint8  *slLocateBitMap((Sint16)xps , (Sint16)yps)
+  �@�\ : �w��ʒu�̂u�q�`�l��ł̃A�h���X��Ԃ��܂��B
+	 ��ʊO�ł������ꍇ�ɂ� �m�t�k�k ��Ԃ��܂��B
+
+void slClearBitMap((Sint8)color) ;
+  �@�\ : �r�b�g�}�b�v��ʂ��w�肳�ꂽ�J���[�ŃN���A���܂��B
+
+Bool slBMPset((Sint16)xps , (Sint16)yps , (Sint8)color)
+  �@�\ : �w�肳�ꂽ�ʒu�ɓ_��`�悵�܂��B
+	 ��ʊO�ł������ꍇ�ɂ� FALSE ��Ԃ��܂��B
+
+Sint8 slBMPoint((Sint16)xps , (Sint16)yps)
+  �@�\ : �w�肳�ꂽ�ʒu�̓_��ǂݏo���A�p���b�g�R�[�h��Ԃ��܂��B
+	 ��ʊO�ł������ꍇ�ɂ͂O���Ԃ�܂��B
+
+void slBMCircle((Sint16)xps , (Sint16)yps , (Sint16)radius , (Sint8)color)
+  �@�\ : �w�肳�ꂽ�ʒu�𒆐S�Ƃ����~��`�悵�܂��B
+
+Bool slBMLine((Sint16)xps0,(Sint16)yps0,(Sint16)xps1,(Sint16)yps1,(Sint8)color)
+  �@�\ : �w�肳�ꂽ�Q�_�Ԃ����Ԓ�����`�悵�܂��B
+	 ��ʊO�ł������ꍇ FALSE ��Ԃ��܂��B
+
+Bool slBMBox((Sint16)xps0,(Sint16)yps0,(Sint16)xps1,(Sint16)yps1,(Sint8)color)
+  �@�\ : �w�肳�ꂽ�_���Q���_�Ƃ��钷���`��`�悵�܂��B
+	 ��ʊO�ł������ꍇ FALSE ��Ԃ��܂��B
+
+Bool slBMBoxFill((Sint16)xps0,(Sint16)yps0,(Sint16)xps1,(Sint16)yps1,(Sint8)color)
+  �@�\ : �w�肳�ꂽ�_���Q���_�Ƃ��钷���`��`�悵�܂��B
+	 �����`�̓������`�悵�܂��B
+	 ��ʊO�ł������ꍇ FALSE ��Ԃ��܂��B
+
+Bool slBMGet((Sint16)xps0,(Sint16)yps0,(Sint16)xps1,(Sint16)yps1,(Sint8*)ptr)
+  �@�\ : �w�肳�ꂽ�_���Q���_�Ƃ��钷���`���̃r�b�g�}�b�v�f�[�^���o�b�t�@�ɃR�s
+	 �[���܂��B�����`�̈ꕔ����ʊO�ł������ꍇ�A���̕����̃f�[�^�̓R�s�[��
+	 ��܂���B
+	 �����`�S�̂���ʊO�ł������ꍇ FALSE ��Ԃ��܂��B
+
+Bool slBMPut((Sint16)xps0,(Sint16)yps0,(Sint16)xps1,(Sint16)yps1,(Sint8*)ptr)
+  �@�\ : �w�肳�ꂽ�_���Q���_�Ƃ��钷���`���Ƀo�b�t�@�̃r�b�g�}�b�v�f�[�^���R�s
+	 �[���܂��B�����`�̈ꕔ����ʊO�ł������ꍇ�A���̕����̃f�[�^�̓R�s�[��
+	 ��܂���B
+	 �����`�S�̂���ʊO�ł������ꍇ FALSE ��Ԃ��܂��B
+
+Bool slBMSprPut((Sint16)xps0,(Sint16)yps0,(Sint16)xps1,(Sint16)yps1,(Sint8*)ptr)
+  �@�\ : �w�肳�ꂽ�_���Q���_�Ƃ��钷���`���Ƀo�b�t�@�̃r�b�g�}�b�v�f�[�^���R�s
+	 �[���܂��B�������A�X�y�[�X����(�p���b�g�R�[�h�O)�̓R�s�[���܂���A
+	 �����`�̈ꕔ����ʊO�ł������ꍇ�A���̕����̃f�[�^�̓R�s�[����܂���B
+	 �����`�S�̂���ʊO�ł������ꍇ FALSE ��Ԃ��܂��B
+

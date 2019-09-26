@@ -1,0 +1,83 @@
+�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�P�X�X�T�N�S���Q�T��
+�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�b�q�h�@���
+
+                          SCRGEN.EXE VER 1.00
+
+�P�D�@�T�v
+
+�@�f�B���N�g�������w�肵�āA���̃f�B���N�g���ȉ��̃t�@�C����S�ăr���h����
+�X�N���v�g��W���o�͂ɏo�͂���B
+
+�Q�D�@�g�p�@
+
+�i�P�j�@�N��
+
+�@�@�@�@�@SCRGEN  [-b�ް���] [-iIP̧��] [-f]  �f�B���N�g����
+
+�i�Q�j�@�I�v�V����
+
+�@�@      -b �@�F�`.DSK�ȂǏo�̓t�@�C�����̃x�[�X�����w�肷��B
+�@�@�@�@�@�@�@�@ �i�ȗ����̓f�B���N�g�������g�p����j
+      �@�@-i�@ �F�C�j�V�����v���O���������w�肷��B�i�ȗ�����IP.BIN�j
+      �@�@-f   �F�t�@�C���ƃT�u�f�B���N�g��������ꍇ�A�t�@�C�����ɋL�q����B
+
+�R�D�@�g�p��
+
+   �ȉ��̃f�B���N�g���\����O��Ƃ���B
+
+   <�����ިڸ��>---+---
+�@�@�@             +---IP.BIN
+�@�@�@             +---SAMPLEIP.BIN
+�@�@�@             |
+ �@�@�@�@�@�@�@�@�@+---<SAMPLE>---+---<SUB1>--+--SUB11.DAT
+                                  |           +--SUB12.DAT
+                                  |  
+                                  +---<SUB2>--+--SUB21.DAT
+                                  |           +--SUB22.DAT
+                                  |  
+                                  +---SAMPLE1.DAT  
+                                  +---SAMPLE2.DAT  
+
+   (��P) �@�C�j�V�����v���O����IP.BIN�A�x�[�X��=SAMPLE ���g�p����B
+
+   �@�@�@�@   SCRGEN SAMPLE >SAMPLE.SCR
+
+�@�@�@�@���̏ꍇ�A�f�B���N�g������ɋL�q�����B
+                  Disc "SAMPLE.DSK"
+�@�@�@�@          �@ �F 
+�@�@�@�@          Track MODE1 
+�@�@�@�@          �@ �F 
+�@�@�@�@          �@�@Directory SUB1 
+�@�@�@�@          �@�@�@�@File  SUB11.DAT
+�@�@�@�@          �@�@�@�@File  SUB12.DAT
+�@�@�@�@          �@�@EndDirectory 
+�@�@�@�@          �@�@Directory SUB2 
+�@�@�@�@          �@�@�@�@File  SUB21.DAT
+�@�@�@�@          �@�@�@�@File  SUB22.DAT
+�@�@�@�@          �@�@EndDirectory 
+                      File SAMPLE1.DAT 
+                      File SAMPLE2.DAT 
+
+
+   (��Q) �@�C�j�V�����v���O����SAMPLEIP.BIN�A�x�[�X��=TEST ���g�p����B
+�@�@�@�@�@�@�t�@�C�����ɋL�q����B
+
+   �@�@�@�@   SCRGEN -bTEST -iSAMPLEIP.BIN -f SAMPLE >SAMPLE.SCR
+
+�@�@�@�@���̏ꍇ�A�t�@�C������ɋL�q�����B
+                  Disc "TEST.DSK"
+�@�@�@�@          �@ �F 
+�@�@�@�@          Track MODE1 
+�@�@�@�@          �@ �F 
+                      File SAMPLE1.DAT 
+                      File SAMPLE2.DAT 
+�@�@�@�@          �@�@Directory SUB1 
+�@�@�@�@          �@�@�@�@File  SUB11.DAT
+�@�@�@�@          �@�@�@�@File  SUB12.DAT
+�@�@�@�@          �@�@EndDirectory 
+�@�@�@�@          �@�@Directory SUB2 
+�@�@�@�@          �@�@�@�@File  SUB21.DAT
+�@�@�@�@          �@�@�@�@File  SUB22.DAT
+�@�@�@�@          �@�@EndDirectory 
+
+�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�@�ȏ�

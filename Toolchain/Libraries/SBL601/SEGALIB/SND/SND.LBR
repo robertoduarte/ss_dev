@@ -1,0 +1,3 @@
+create	sega_snd.lib
+add	snd_main.obj
+exit

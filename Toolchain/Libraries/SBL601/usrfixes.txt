@@ -1,0 +1,159 @@
+*******************************************************************************
+SBL 6.0 User Fixes
+5/7/96
+*******************************************************************************
+The following fixes to SBL 6.0 were submitted by various users.
+
+-------------------------------------------------------------------------------
+\SEGALIB\INCLUDE\SEGA_INT.H
+-------------------------------------------------------------------------------
+Line 156 is as follows
+
+#define INT_CPU_DIVU        0v6e        /* ﾄﾜﾃZｿ｡  */
+
+It should be
+
+#define INT_CPU_DIVU        0x6e        /* ﾄﾜﾃZｿ｡ */
+
+If you try to use this value in a statement like the following
+
+     INT_SetFunc(INT_CPU_DIVU,&some_suitable_routine);
+
+It miscompiles.
+
+-------------------------------------------------------------------------------
+Differences in tvsz enum between SGL2.0a and SBL6
+-------------------------------------------------------------------------------
+
+The march 96 DTS CDROM has two sl_def.h and two sgl.h
+headers.  These files are located sbl6\segalib\include and sgl2\inc.
+The enum tvsz under sl_def.h differs between sgl2 and sbl6.  For instance
+the value of TV_640x240 will be different if the include path for
+compiler places sgl2 before sbl6.
+
+-------------------------------------------------------------------------------
+JUNE96.DTS\LIBRARY\SBL6\SEGALIB\MEM\MEM_FREE.C Fix
+-------------------------------------------------------------------------------
+/******************************************************************************
+ *
+ * NAME:    MEM_Free()              - メモリブロック解放
+ *
+ * PARAMETERS :
+ *      (1) void *mem_ptr           - <i>  メモリブロックへのポインタ
+ *
+ * DESCRIPTION:
+ *      メモリブロックを解放します．
+ *
+ * PRECONDITIONS:
+ *      なし。
+ *
+ * POSTCONDITIONS:
+ *      なし
+ *
+ * CAVEATS:
+ *      なし。
+ *
+ ******************************************************************************
+ */
+
+void MEM_Free(void *mem_ptr){
+	MemHead	*list;					/* リスト検索用 */
+	MemHead	*free = (MemHead *)mem_ptr -1;		/* 開放したい領域 */
+	if( ( list = MEM_empty_top ) == NULL ){		/* リストの取得 */
+		MEM_empty_top = free;			/* 空きリストが無い場合 */
+		free->s.next = free;			/* 要素が1個の循環リスト */
+	}
+	else{
+	 /* KS 3/28/96 while ( free node isn't between empty list elements) */
+		while ( !( (free > list) && (free < list->s.next) )) {
+			/* KS 3/28/96 check for wrap around circular list */
+			if (list >= list->s.next) {
+				/* KS 3/28/96 if free is after last or before first */
+				if( (free > list)||(free < list->s.next) ) {
+					 break;
+				}
+			}
+			/* KS 3/28/96 advance in empty list */
+			list = list->s.next;
+		}
+		/* KS 3/28/96 check for join to next list element */
+		if( free+free->s.size == list->s.next ) {
+			/* KS 3/28/96 absorb "next" list element */
+			free->s.size += list->s.next->s.size;
+	// KS BUG!	free->s.size += list->s.size;
+			free->s.next = list->s.next->s.next;
+		} else {
+			/* KS 3/28/96 no join to next, link to next */
+			free->s.next = list->s.next;
+		}
+		/* KS 3/28/96 check for joining free block before */
+		if ( list+list->s.size == free ) {
+			list->s.size += free->s.size;
+			list->s.next = free->s.next;
+		} else {
+			/* KS 3/28/96 no join to previous, simple link */
+			list->s.next = free;
+		}
+		MEM_empty_top = list;
+	}
+}
+
+-------------------------------------------------------------------------------
+JUNE96.DTS\SBL6\SEGALIB\SPR\SPR_2C.C Fix
+-------------------------------------------------------------------------------
+/*****************************************************************************
+ *
+ * NAME:  SPR_2UserClip()  - Set User Cliping Area
+ *
+ * PARAMETERS :
+ *
+ *     (1) Sint32  drawPrty    - <i>  コマンド描画プライオリティ番号
+ *     (2) XyInt   xy[2]       - <i>  xy[0] = 左上座標
+ *                                    xy[1] = 右下座標
+ *
+ * DESCRIPTION:
+ *
+ *     ユーザークリッピングエリアのセット
+ *
+ * POSTCONDITIONS:
+ *
+ *     No exist.
+ *
+ * CAVEATS:
+ *
+ *****************************************************************************
+ */
+void
+SPR_2UserClip(Sint32 drawPrty, XyInt xy[2])
+{
+    SprSpCmd  *spCmd;
+#if	0
+	/*
+	**■1995-08-28	高橋智延
+	**	削除（理由は下記を参照）
+	*/
+    Uint16 *w;
+#endif
+
+    /** BEGIN ***************************************************************/
+    GetSpCmdArea(spCmd);
+    spCmd->control = JUMP_ASSIGN  | FUNC_UCLIP;
+#if	0
+	/*
+	**■1995-08-28	高橋智延
+	**	構造体にはメンバでアクセスしましょう。
+	*/
+    w = (Uint16*)xy;
+    spCmd->ax = *w++;
+    spCmd->ay = *w++;
+    spCmd->cx = *w++;
+    spCmd->cy = *w;
+#else
+    spCmd->ax = xy[0].x;		/* KS 4/3/96 */
+    spCmd->ay = xy[0].y;
+    spCmd->cx = xy[1].x;
+    spCmd->cy = xy[1].y;
+#endif
+}
+
+

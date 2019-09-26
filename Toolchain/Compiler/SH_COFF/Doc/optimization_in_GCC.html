@@ -1,0 +1,416 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Optimization Notes</title>
+</head>
+
+<body>
+
+<p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<b><font size="5">Optimization Notes</font></b></p>
+
+<p align="left">&nbsp;</p>
+
+<p align="left">&nbsp;</p>
+
+<p align="left"><b><i>Revision History<br>
+</i></b><font size="3"><i>version 1.1<br>
+</i></font>Added usage information related to new target specific option '-msort-data'&nbsp;</p>
+<p align="left"><font size="3"><i>verison 1.0<br>
+</i>Created.</font></p>
+<p align="left">&nbsp;</p>
+<p align="left">&nbsp;</p>
+<p align="left">This note illustrates the various Optimization related issues observed in KPIT GNU
+Tool chain.<br>
+<br>
+<b><font size="3">1. Un-necessary Loop unrolling:</font></b></p>
+<table border="0" width="91%" cellspacing="1">
+  <tr>
+    <td width="3%">&nbsp;</td>
+    <td width="96%" colspan="2"><b>Example Snippet&nbsp;</b></td>
+  </tr>
+  <tr>
+    <td width="3%"></td>
+    <td width="3%">&nbsp;</td>
+    <td width="93%">void theLoop( void )<br>
+      &nbsp;&nbsp;&nbsp; {<br>
+      &nbsp;&nbsp;&nbsp; unsigned long cnt = 0L;<br>
+      &nbsp;&nbsp;&nbsp; do<br>
+      &nbsp;&nbsp;&nbsp; cnt++;<br>
+      &nbsp;&nbsp;&nbsp; while (cnt &lt; 1000000L);<br>
+      &nbsp;&nbsp;&nbsp; }</td>
+  </tr>
+  <tr>
+    <td width="3%">&nbsp;</td>
+    <td width="96%" colspan="2"><b>Optimization options</b></td>
+  </tr>
+  <tr>
+    <td width="3%"></td>
+    <td width="3%">   &nbsp;</td>
+    <td width="93%">   -O2 and above</td>
+  </tr>
+  <tr>
+    <td width="3%">&nbsp;</td>
+    <td width="96%" colspan="2"><b>Targets observed on</b></td>
+  </tr>
+  <tr>
+    <td width="3%"></td>
+    <td width="3%">  &nbsp;</td>
+    <td width="93%">  H8300H, H8300HN, H8S, H8SN</td>
+  </tr>
+  <tr>
+    <td width="3%">&nbsp;</td>
+    <td width="96%" colspan="2"><b>Observation</b></td>
+  </tr>
+  <tr>
+    <td width="3%"></td>
+    <td width="3%">&nbsp;</td>
+    <td width="93%">In generated output, loop is incremented by 50 or 25 or any random number instead of incrementing by one.&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="3%">&nbsp;</td>
+    <td width="96%" colspan="2"><b>Solution 1</b></td>
+  </tr>
+  <tr>
+    <td width="3%"></td>
+    <td width="3%">&nbsp;</td>
+    <td width="93%">You need to pass either of an option -fno-strength-reduce or -fno-loop-optimize along with -O2 to solve above-mentioned problem.</td>
+  </tr>
+  <tr>
+    <td width="3%">&nbsp;</td>
+    <td width="96%" colspan="2"><b>Solution 2</b></td>
+  </tr>
+  <tr>
+    <td width="3%"></td>
+    <td width="3%">&nbsp;</td>
+    <td width="93%">Please include following statement inside empty while/for loop.<br>
+	asm("nop");</td>
+  </tr>
+</table>
+<p align="left"><b>2. Null pointer deletion check:<br>
+&nbsp;</b></p>
+<table border="0" width="91%" cellspacing="1" id="table1">
+  <tr>
+    <td width="3%">&nbsp;</td>
+    <td width="96%" colspan="2"><b>Example Snippet&nbsp;</b></td>
+  </tr>
+  <tr>
+    <td width="3%"></td>
+    <td width="3%">&nbsp;</td>
+    <td width="93%">unsigned long foo (void)<br>
+{<br>
+	volatile unsigned long i = 4;<br>
+while (i)<br>
+{<br>
+		i -= sizeof(unsigned long);<br>
+        		if (*(unsigned long *)i == 12)<br>
+        			return i;<br>
+    	}<br>
+}</td>
+  </tr>
+  <tr>
+    <td width="3%">&nbsp;</td>
+    <td width="96%" colspan="2"><b>Optimization options</b></td>
+  </tr>
+  <tr>
+    <td width="3%"></td>
+    <td width="3%">   &nbsp;</td>
+    <td width="93%">   -O2 and above</td>
+  </tr>
+  <tr>
+    <td width="3%">&nbsp;</td>
+    <td width="96%" colspan="2"><b>Targets observed on</b></td>
+  </tr>
+  <tr>
+    <td width="3%"></td>
+    <td width="3%">  &nbsp;</td>
+    <td width="93%">  All</td>
+  </tr>
+  <tr>
+    <td width="3%">&nbsp;</td>
+    <td width="96%" colspan="2"><b>Observation</b></td>
+  </tr>
+  <tr>
+    <td width="3%"></td>
+    <td width="3%">&nbsp;</td>
+    <td width="93%">The while loop is executed only once. Compiler doesn't check whether "i" is changed in while loop or not. All other essential code is optimized away by compiler.</td>
+  </tr>
+  <tr>
+    <td width="3%">&nbsp;</td>
+    <td width="96%" colspan="2"><b>Solution</b></td>
+  </tr>
+  <tr>
+    <td width="3%"></td>
+    <td width="3%">&nbsp;</td>
+    <td width="93%">You need to pass an option -fno-delete-null-pointer-checks along with -O2 to solve above-mentioned problem.</td>
+  </tr>
+  </table>
+<p align="left"><b>3.
+Const array optimization:</b><br>
+&nbsp;</p>
+<table border="0" width="91%" cellspacing="1" id="table2">
+  <tr>
+    <td width="3%">&nbsp;</td>
+    <td width="96%" colspan="2"><b>Example Snippet&nbsp;</b></td>
+  </tr>
+  <tr>
+    <td width="3%"></td>
+    <td width="3%">&nbsp;</td>
+    <td width="93%">#define STEPPER_1_DTC  1<br>
+#define STEPPER_2_DTC  2<br>
+#define STEPPER_3_DTC  3<br>
+#define NO_TBL 0<br>
+const unsigned short dtcVectors[]&nbsp;<br>
+__attribute__ (( section(".dtc_vec") )) =<br>
+{<br>
+STEPPER_1_DTC,&nbsp;<br>
+STEPPER_2_DTC,&nbsp;<br>
+STEPPER_3_DTC,&nbsp;<br>
+NO_TBL,&nbsp;<br>
+NO_TBL,&nbsp;<br>
+};<br>
+int main(void)<br>
+{<br>
+	return 0;<br>
+}</td>
+  </tr>
+  <tr>
+    <td width="3%">&nbsp;</td>
+    <td width="96%" colspan="2"><b>Optimization options</b></td>
+  </tr>
+  <tr>
+    <td width="3%"></td>
+    <td width="3%">   &nbsp;</td>
+    <td width="93%">   -O1 and above</td>
+  </tr>
+  <tr>
+    <td width="3%">&nbsp;</td>
+    <td width="96%" colspan="2"><b>Targets observed on</b></td>
+  </tr>
+  <tr>
+    <td width="3%"></td>
+    <td width="3%">  &nbsp;</td>
+    <td width="93%">  common</td>
+  </tr>
+  <tr>
+    <td width="3%">&nbsp;</td>
+    <td width="96%" colspan="2"><b>Observation</b></td>
+  </tr>
+  <tr>
+    <td width="3%"></td>
+    <td width="3%">&nbsp;</td>
+    <td width="93%">If above file is compiled with C++ compiler and with optimization enabled, the compiler optimizes away the const array. Though this array is not directly referenced (as may case of vector table), compiler removes it as unused variable.&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="3%">&nbsp;</td>
+    <td width="96%" colspan="2"><b>Solution</b></td>
+  </tr>
+  <tr>
+    <td width="3%"></td>
+    <td width="3%">&nbsp;</td>
+    <td width="93%">The C compiler behaves differently and doesn't optimize away the const array. Hence in the above-mentioned situation, the solution is to move const array in C file instead of C++ file.</td>
+  </tr>
+  </table>
+<p align="left"><b>4.
+Code size optimization:<br>
+&nbsp;</b></p>
+<table border="1" width="100%" id="table4" style="border-width: 0px">
+	<tr>
+		<td width="19" style="border-style: none; border-width: medium">&nbsp;</td>
+		<td style="border-style: none; border-width: medium">Code size optimization can be achieved by passing optimization option -Os. Further reduction in code size can be achieved by using following options. This scheme will work better only for Release version of source code and only for ELF tool chain.</td>
+	</tr>
+	<tr>
+		<td width="19" style="border-style: none; border-width: medium">&nbsp;</td>
+		<td style="border-style: none; border-width: medium">Compiler options -fdata-sections &amp; -ffunction-sections will force compiler to create separate sections for all functions and variables. Linker option -gc-sections will remove unused  &amp; unreferenced functions and variables thereby reducing overall code size.&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="19" style="border-style: none; border-width: medium">&nbsp;</td>
+		<td style="border-style: none; border-width: medium">Compiler option -fomit-frame-pointer will save 2/4 bytes required to save and restore frame pointer register in prologue and epilogue of function.</td>
+	</tr>
+	<tr>
+		<td width="19" style="border-style: none; border-width: medium">&nbsp;</td>
+		<td style="border-style: none; border-width: medium">Extra Compiler options to be passed:<br>
+	1.  -fomit-frame-pointer<br>
+	2.  -fdata-sections<br>
+	3.  -ffucntion-sections</td>
+	</tr>
+	<tr>
+		<td width="19" style="border-style: none; border-width: medium">&nbsp;</td>
+		<td style="border-style: none; border-width: medium">Above mentioned options are added in HEW at  options->compiler->other .</td>
+	</tr>
+	<tr>
+		<td width="19" style="border-style: none; border-width: medium">&nbsp;</td>
+		<td style="border-style: none; border-width: medium">Extra linker option to be passed:<br>
+	1.  --gc-sections</td>
+	</tr>
+	<tr>
+		<td width="19" style="border-style: none; border-width: medium">&nbsp;</td>
+		<td style="border-style: none; border-width: medium">Above mentioned option is added in HEW at  options->linker->other . In case of COFF tool chain, linker option "--gc-sections" is grayed out in not selected position.</td>
+	</tr>
+	<tr>
+		<td width="19" style="border-style: none; border-width: medium">&nbsp;</td>
+		<td style="border-style: none; border-width: medium"><b>Care to be taken in linker script:</b></td>
+	</tr>
+</table>
+<table border="1" width="100%" id="table3" style="border-width: 0px">
+	<tr>
+		<td width="18" align="center" valign="top" style="border-style: none; border-width: medium">&nbsp;</td>
+		<td style="border-style: none; border-width: medium" align="center" valign="top">
+		1</td>
+		<td style="border-style: none; border-width: medium" width="935">When 
+		link-time garbage collection is in use (--gc-sections), it is often useful to mark sections that should not be eliminated for example .vects section containing vector table. This is accomplished by surrounding an input section's wildcard entry with KEEP(), as in KEEP(*(.vects)) in linker script.<br>
+      Checkbox for KEEP is added in  options->linker->sections->&lt;section name><br>
+      ->Advanced  similar to checkbox for NOLOAD.&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="18" align="center" valign="top" style="border-style: none; border-width: medium">&nbsp;</td>
+		<td style="border-style: none; border-width: medium" align="center" valign="top">&nbsp;</td>
+		<td style="border-style: none; border-width: medium" width="935">Disable "NOLOAD" if "KEEP" is checked and vice versa. Checkbox "KEEP" is&nbsp;<br>
+      by default checked for .vects section and for any other section, both checkboxes<br>
+      are in not checked position.</td>
+	</tr>
+	<tr>
+		<td width="18" align="center" valign="top" style="border-style: none; border-width: medium">&nbsp;</td>
+		<td style="border-style: none; border-width: medium" align="center" valign="top">
+		2</td>
+		<td style="border-style: none; border-width: medium" width="935">You 
+		need to modify .text and .data section like following,<br>
+      .text section in linker script<br>
+		.text 0x0000XXXX :<br>
+		{<br>
+			*(.text)<br>
+			*(.text.*)<br>
+			etext = .;<br>
+		}<br>
+      .data section in linker script<br>
+		.data 0x0000XXXX :<br>
+		{<br>
+			_data = .;<br>
+			*(.data)<br>
+			*(.data.*)<br>
+			_edata = .;<br>
+		}<br>
+	In HEW, section modification in linker script is already been done.</td>
+	</tr>
+	<tr>
+		<td width="18" align="center" valign="top" style="border-style: none; border-width: medium">&nbsp;</td>
+		<td style="border-style: none; border-width: medium" align="center" valign="top" colspan="2">
+		<p align="left"><b>Care to be taken in startup assembly file:</b></td>
+	</tr>
+	<tr>
+		<td width="18" align="center" valign="top" style="border-style: none; border-width: medium">&nbsp;</td>
+		<td style="border-style: none; border-width: medium" align="center" valign="top">&nbsp;</td>
+		<td style="border-style: none; border-width: medium" width="935">Please remove call to library routine _exit from startup assembly file or make it conditional so as to call only in debug mode. In release mode, use branch instruction for implementing unending loop.&nbsp;</td>
+	</tr>
+	<tr>
+		<td width="18" align="center" valign="top" style="border-style: none; border-width: medium">&nbsp;</td>
+		<td style="border-style: none; border-width: medium" align="center" valign="top">&nbsp;</td>
+		<td style="border-style: none; border-width: medium" width="935">Macros DEBUG and Release are added in HEW debug and release modes. Call to _exit will be only in debug mode. This will save around 1K bytes in case of SH target.</td>
+	</tr>
+</table>
+<p><b>Code size optimization in GNUH8 (v0403 onwards) using &quot;function_vector&quot; 
+attribute:</b><br>
+&nbsp;</p>
+<table border="1" width="892" id="table6" style="border-width: 0px">
+	<tr>
+		<td style="border-style: none; border-width: medium" width="35">&nbsp; </td>
+		<td style="border-style: none; border-width: medium" width="847">Any function can use this attribute along with vector location address. GNUH8 
+compiler uses indirect memory addressing jump instruction &quot;jsr @aa:8&quot; for this 
+attribute. </td>
+	</tr>
+	<tr>
+		<td style="border-style: none; border-width: medium" width="35">&nbsp; </td>
+		<td style="border-style: none; border-width: medium" width="847">Programmer has to write address of function (function pointer) at vector address 
+location. </td>
+	</tr>
+	<tr>
+		<td style="border-style: none; border-width: medium" height="22" width="35"> </td>
+		<td style="border-style: none; border-width: medium" height="22" width="847">Whenever this function is called from another function, program will jump to 
+vector address location and pick up function pointer and then jump to that 
+function. </td>
+	</tr>
+	<tr>
+		<td style="border-style: none; border-width: medium" width="35">&nbsp;</td>
+		<td style="border-style: none; border-width: medium" width="847">This process will 
+		reduce the speed of execution but it certainly reduces the code size by 
+		2 for every function call.</td>
+	</tr>
+	<tr>
+		<td style="border-style: none; border-width: medium" width="35">&nbsp;</td>
+		<td style="border-style: none; border-width: medium" width="847">If certain function is called 100 times in application, then user saves 200 
+bytes in total.</td>
+	</tr>
+	<tr>
+		<td style="border-style: none; border-width: medium" width="35">&nbsp;</td>
+		<td style="border-style: none; border-width: medium" width="847">Programmer can use function vector attributes for frequently called functions 
+and unused IVT locations to reduce code size.</td>
+	</tr>
+	<tr>
+		<td style="border-style: none; border-width: medium" width="35">&nbsp;</td>
+		<td style="border-style: none; border-width: medium" width="847">Example :<br>
+void foo (void) __attribute__ ((function_vector(vector_address)));<br>
+void foo (void)<br>
+{<br>
+}<br>
+void bar (void)<br>
+{<br>
+foo();<br>
+}</td>
+	</tr>
+</table>
+<p align="left"><b><a name="msortdata"></a>Code size optimization in GNUSH/H8 tool chain (v0501 onwards) using "-msort-data" option:</b></p>
+
+<blockquote>
+<table border="1" id="table6" style="border-width: 0px">
+	<tr>
+		<td style="border-style: none; border-width: medium">When &quot;-msort-data&quot; option is passed to compiler while building application code, separate data<br>
+          sections are generated for different data types for global initialized variables.&nbsp; </td>
+	</tr>
+	<tr>
+		<td style="border-style: none; border-width: medium">All characters will go in d_char section, short integers in d_short section and&nbsp;<br>
+          long integers in d_long section. Arrays are also treated same way. </td>
+	</tr>
+	<tr>
+		<td style="border-style: none; border-width: medium" height="22">Due to this option, padding of bytes between variable allocation within section is not required. </td>
+	</tr>
+	<tr>
+		<td style="border-style: none; border-width: medium">This will reduce the size of RAM as well as ROM required to store global initialized variables.</td>
+	</tr>
+	<tr>
+		<td style="border-style: none; border-width: medium">In <b> GNUSH tool
+          chain</b>,&nbsp;<br>
+          All characters and character arrays will be 1 byte aligned in d_char section within .data section,<br>
+          similarly short variables will be 2 byte aligned in d_short section and long variables will be 4 byte<br>
+          aligned in d_long section.</td>
+	</tr>
+	<tr>
+		<td style="border-style: none; border-width: medium">In <b> GNUH8 tool
+          chain</b>,<br>
+          All characters and character arrays will be 1 byte aligned in d_char section within .data section,<br>
+          similarly short variables will be 2 byte aligned in d_short section. If "-mint32" option is passed along with<br>
+          &quot;-msort-data&quot; then all integers will be 4 byte aligned in d_long section otherwise will be 2 byte aligned in<br>
+          d_short section.</td>
+	</tr>
+	<tr>
+		<td style="border-style: none; border-width: medium">Linker script has to be modified like following,<br>
+          .data : AT (_mdata) {&nbsp;<br>
+   _data = .;<br>
+   *(.data)&nbsp;<br>
+          *(.d_char)<br>
+          *(.d_long)<br>
+          *(.d_short)<br>
+          _edata = .;&nbsp;<br>
+          } > ram</td>
+	</tr>
+	<tr>
+		<td style="border-style: none; border-width: medium">The default is not to sort variables as per data type.</td>
+	</tr>
+</table>
+</blockquote>
+
+</body>
+
+</html>

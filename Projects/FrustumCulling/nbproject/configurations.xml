@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="100">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="src" displayName="src" projectFiles="true">
+      <logicalFolder name="game" displayName="game" projectFiles="true">
+        <logicalFolder name="frustum" displayName="frustum" projectFiles="true">
+          <itemPath>src/game/frustum/aabox.c</itemPath>
+          <itemPath>src/game/frustum/aabox.h</itemPath>
+          <itemPath>src/game/frustum/frustum.c</itemPath>
+          <itemPath>src/game/frustum/frustum.h</itemPath>
+          <itemPath>src/game/frustum/fxMath.c</itemPath>
+          <itemPath>src/game/frustum/fxMath.h</itemPath>
+          <itemPath>src/game/frustum/plane.c</itemPath>
+          <itemPath>src/game/frustum/plane.h</itemPath>
+          <itemPath>src/game/frustum/vectorMath.c</itemPath>
+          <itemPath>src/game/frustum/vectorMath.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="input" displayName="input" projectFiles="true">
+          <itemPath>src/game/input/input.c</itemPath>
+          <itemPath>src/game/input/input.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="sgl" displayName="sgl" projectFiles="true">
+          <itemPath>src/game/sgl/workarea.c</itemPath>
+        </logicalFolder>
+        <itemPath>src/game/Cube.h</itemPath>
+        <itemPath>src/game/game.c</itemPath>
+        <itemPath>src/game/game.h</itemPath>
+      </logicalFolder>
+      <itemPath>src/main.c</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceFolderFilter>^(nbproject|build|test|tests)</sourceFolderFilter>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <compilerSet>MinGW|MinGW</compilerSet>
+        <dependencyChecking>false</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <codeAssistance>
+        <buildAnalyzer>false</buildAnalyzer>
+      </codeAssistance>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>.</buildCommandWorkingDir>
+          <buildCommand>build.bat</buildCommand>
+          <cleanCommand>clean.bat</cleanCommand>
+          <executablePath></executablePath>
+          <cTool>
+            <incDir>
+              <pElem>.</pElem>
+              <pElem>/../../Toolchain/Libraries/SGL_302j/INC</pElem>
+              <pElem>/../../Toolchain/Libraries/SBL601/SEGALIB/INCLUDE</pElem>
+            </incDir>
+          </cTool>
+          <ccTool>
+            <incDir>
+              <pElem>.</pElem>
+            </incDir>
+          </ccTool>
+        </makeTool>
+        <preBuild>
+          <preBuildCommandWorkingDir>.</preBuildCommandWorkingDir>
+          <preBuildCommand></preBuildCommand>
+        </preBuild>
+      </makefileType>
+      <item path="src/game/Cube.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/game/frustum/aabox.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/game/frustum/aabox.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/game/frustum/frustum.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/game/frustum/frustum.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/game/frustum/fxMath.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/game/frustum/fxMath.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/game/frustum/plane.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/game/frustum/plane.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/game/frustum/vectorMath.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/game/frustum/vectorMath.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/game/game.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/game/game.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/game/input/input.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/game/input/input.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/game/sgl/workarea.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/main.c" ex="false" tool="0" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

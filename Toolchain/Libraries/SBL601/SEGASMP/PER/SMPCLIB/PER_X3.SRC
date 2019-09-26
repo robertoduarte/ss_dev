@@ -1,0 +1,74 @@
+	
+	.SECTION	SEGA_P,CODE,ALIGN=4
+;/*@*/
+;/***********************************************************************
+;*																		*
+;*	�ysynopsis�z														*
+;*																		*
+;*		#include	"per_x.h"											*
+;*																		*
+;*		trigger = PER_DisguiseTrigger( assignment, trigger );			*
+;*																		*
+;*		�g���K���<trigger> ���A�T�C���e�[�u��<assignment> �ɏ]����		*
+;*		�ϊ����܂��B<assignment> �� NULL ���w�肷��ƁA�Ȃ�̕ϊ���		*
+;*		������ <trigger> �����̂܂ܕԂ��܂��B							*
+;*																		*
+;*		�A�T�C���e�[�u���Ƃ̓g���K���̔z��ŁA�z��̃C���f�b�N�X��	*
+;*		�g���K���̃r�b�g�ԍ��ɑΉ�����e�[�u���̂��Ƃł��B			*
+;*		�Ⴆ�� <trigger> �� 0 �r�b�g�ڂ� 4 �r�b�g�ڂ� TRUE ��������		*
+;*		���̖߂�l�� ( assignment[0] | assignment[4] ) �ɂȂ�܂��B		*
+;*																		*
+;*		���ʂ� assignment[] �̊e�����o�ɂ́A�����P�̃g���K��Ή���	*
+;*		���܂��B�P�̃����o�ɕ����̃g���K��Ή��������ꍇ�ɂ́A�P��	*
+;*		�̃g���K�������ꂽ�����ŁA�����̃g���K�������ꂽ���̂悤�ɐU	*
+;*		�镑���̂Œ��ӂ��K�v�ł��B										*
+;*																		*
+;*																		*
+;*	�yparameters�z														*
+;*																		*
+;*		const assignment_t	*assignment;								*
+;*		trigger_t		trigger;										*
+;*																		*
+;*		<assignment> �́A�g���K���̃A�T�C���e�[�u��					*
+;*		<trigger> �́A�g���K���										*
+;*																		*
+;*		<assignment> �� NULL ��n���Ɖ��̕ϊ��������� <trigger> ��		*
+;*		���̂܂ܕԂ��܂��B												*
+;*																		*
+;*																		*
+;*	�yreturn value�z													*
+;*																		*
+;*		trigger_t	trigger;											*
+;*																		*
+;*		�g���K����Ԃ��܂��B											*
+;*																		*
+;*																		*
+;*	�yinfluence/reference objects�z										*
+;*																		*
+;*		�Ȃ�															*
+;*																		*
+;*																		*
+;***********************************************************************/
+	.GLOBAL	_PER_DisguiseTrigger
+_PER_DisguiseTrigger:
+	tst		r4,r4
+	bt/s	L02
+	mov		r5,r0
+	
+	bra		L01
+	mov		#0,r0
+L00:
+	mov.w	@r4+,r2
+	bf/s	L01
+	extu.w	r2,r2
+	or		r2,r0
+L01:
+	tst		r5,r5
+	bf/s	L00
+	shlr	r5
+	
+L02:
+	rts
+	nop
+
+	.END

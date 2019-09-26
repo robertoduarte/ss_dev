@@ -1,0 +1,127 @@
+*******************************************************************************
+���h�L�������g���	�F�e�T���v�������t�@�C��
+���t�@�C���L������	�Fmanspr.txt
+���Ώۃ��C�u�����L�����́Fspr
+���Ώۃ��C�u��������	�F�X�v���C�g
+���o�[�W�����@�@	�F1.00
+���쐬��		�FH.E
+���쐬��		�F1994-7-25
+�����̑��̃��b�Z�[�W�@	�F�Ȃ�
+*******************************************************************************
+
+1.�T���v���̓�����e�Ǝg�p���@
+
+	��smpspr20.c
+		[�^�C�g��]	�X�v���C�g�\����{�����̃e�X�g
+		[������e]	�e��X�v���C�g�R�}���h�̎��s�����
+                                ���̂s�u���[�h�̃e�X�g
+                                (1) 320x240 ���[�h
+                                (2) 640x240 ���[�h
+                                (3) 640x480 ���[�h (�{���C���^�[���[�X)
+		[�g�p���@]	(1) �ȉ��̃R�}���h�Ńu�[�g�q�n�l���������B
+                                    RS [����]
+                                    GO [����]
+                                    [CTRL-C]
+                                    G 400
+                                    [CTRL-C]
+                                (2) smpscr2.abs �� 6002000H �Ԓn�Ƀ��[�h���A
+                                    GO 6002000 [����] �Ŏ��s�B
+                                (3) �L�[�߯�ޑ���
+       					A  : (1) ��  �ʁ��R�Q�O���Q�S�O
+                                                 �J���[���q�f�a���[�h
+                                           : (2) ��  �ʁ��R�Q�O���Q�S�O
+                                                 �J���[���W�r�b�g���[�h
+                                           : (3) ��  �ʁ��U�S�O���S�W�O
+                                                 �J���[���W�r�b�g���[�h
+                                                �i���W�l���w�C�x�Q�{�ɂ���j
+                                              A ��������(1),(2),(3)���؂�ւ��
+                                        B  : ��  �ʁ��U�S�O���Q�S�O
+                                             �J���[���W�r�b�g���[�h
+                                        C  : ��  �ʁ��U�S�O���S�W�O
+                                             �J���[���W�r�b�g���[�h
+		[�g�p�t�@���N�V����]
+                                SPR_Initial
+                                SPR_SetEraseData
+                                SPR_SetTvMode
+                                SCL_AllocColRam
+                                SCL_SetColRamMode
+                                SCL_SetColRam
+                                SCL_SetDisplayMode
+                                SCL_SetFrameInterval
+                                SCL_DisplayFrame
+	                        SCL_Vdp2Init
+	                        SCL_SetPriority
+	                        SCL_SetSpriteMode
+		[���l]		�Ȃ�
+
+	��smpspr70.c
+		[�^�C�g��]	�ǉ��@�\�ɂ��R�c�e�X�g�\��
+		[������e]	�I�u�W�F�N�g�Ԑڑ��|���S���I�u�W�F�N�g��
+                                �ǉ��N���X�^��`���ڂł�����W�ϊ��O���[�U
+                                �R�[���o�b�N���[�`������уR���e�L�X�g�G���A
+                                ��p�����������f���̓���V�~�����[�V�����B
+                                �p�b�h�ɂ��s�u���[�h�؂�ւ��ƃ��f����
+                                ��]�ړ��\��������B
+		[�g�p���@]	(1) �ȉ��̃R�}���h�Ńu�[�g�q�n�l���������B
+                                    RS [����]
+                                    GO [����]
+                                    [CTRL-C]
+                                    G 400
+                                    [CTRL-C]
+                                (2) smpscr7.abs �� 6002000H �Ԓn�Ƀ��[�h���A
+                                    GO 6002000 [����] �Ŏ��s�B
+                                (3) �L�[�߯�ޑ���
+                                        A     : ��ʁ��R�T�Q���Q�S�O
+                                                �O�[���[�V�F�[�f�B���O�\��
+                                        B     : ��ʁ��V�O�S���S�W�O
+                                                �W�r�b�g���[�h�ɂ��
+                                                �t���b�g�V�F�[�f�B���O�\��
+                                        C     : ��ʁ��R�T�Q���Q�S�O
+                                                �J���[���q�f�a   �e�N�X�`���{
+                                                �O�[���[�V�F�[�f�B���O�\��
+                                        X     : ���f���̂w����]
+                                        Y     : ���f���̂x����]
+                                        Z     : ���f���̂y����]
+                                        LEFT  : ���f���̂w���}�C�i�X�ړ�
+                                        RIGHT : ���f���̂w���v���X�ړ�
+                                        UP    : ���f���̂y���}�C�i�X�ړ�
+                                        DOWN  : ���f���̂y���v���X�ړ�
+		[�g�p�t�@���N�V����]
+                                SYS_CHGSYSCK
+	                        SPR_2Initial
+                                SPR_2FrameChgIntr 
+                                SPR_2SetTvMode
+                                SPR_2FrameEraseData
+	                        SPR_2OpenCommand
+	                        SPR_2SysClip
+	                        SPR_2LocalCoord
+	                        SPR_2CloseCommand
+	                        SPR_3Initial
+	                        SPR_3SetTexture
+	                        SPR_3SetLight
+	                        SPR_3SetView
+	                        SPR_3MoveCluster
+	                        SPR_3SetZSortMinMax
+	                        SPR_3SetClipLevel
+	                        SPR_3CallAllCluster
+	                        SPR_3DrawModel
+	                        SPR_3Flush
+                                SPR_3SetPixelCount
+                                SCL_Vdp2Init
+	                        SCL_SetPriority
+                                SCL_SetSpriteMode
+                                SCL_SetColRamMode
+                                SCL_DisplayFrame
+                                SCL_SetDisplayMode
+		[���l]
+                                �ȉ��̒�`�� 26 �ɂ���ƃV�X�e������N���b�N��
+                                �Q�U�l�w���c�ɂȂ�A��ʕ����V�O�S����U�S�O��
+                                �Ȃ�B
+                                #define		SYSTEM_CLOCK   28
+
+
+2.���ӎ���
+
+	�Ȃ�
+
+********************************** end of file ********************************

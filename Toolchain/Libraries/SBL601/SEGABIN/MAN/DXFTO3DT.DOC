@@ -1,0 +1,249 @@
+DXF -> 3D Table  File Converter (DXFto3DT) v0.91
+
+Overview
+
+(1) This program converts DXF formatted data to a sprite 3D
+display library 3D table format.
+(2) DXF output from formZ or the like contains only graphics
+information, so specify a separate auxiliary file for hierarchy
+information, color information, and texture information.
+
+
+Function
+
+(1) For models for which gouraud shading has been specified,
+calculates a shading normal.
+(2) The shading normal uses the average value of the normal
+vectors of each surface which shares the vertex.
+(3) The surface direction is determined by the alignment sequence
+of the vertex.  The user can specify clockwise or counterclockwise
+tables.
+(4) By giving a scaling variable to each coordinate value and
+specifying a value for each variable at the time of execution, the
+scaling factor can be controlled.
+
+Particularly because the overall scaling factor is declared by
+#define, modifications can be made easily without reprocessing by
+simply rewriting one place of a value.
+(5) By having a double final vertex, triangles are regarded as
+pseudo rectangles.
+
+
+Restrictions
+
+(1) Color is according to specification for each model.  Rewrite
+manually to specify by surface units.
+(2) Name length
+* Object name: Same as a file name, so up to 8 characters.
+* Other: Up to 16 characters.
+(3) The maximum value for each data is as follows.
+* Number of vertices per object: 5,000
+* Number of surfaces per object: 1,000
+* Number of object statements: 100
+* Number of clusters: 100
+* Number of child clusters per cluster: 100
+* Number of child objects per cluster: 100
+* Number of texture statements: 50
+
+Input Files
+
+(1) Input files are DXF.
+(2) Only the DXF ENTITIES section can be read.
+(3) The ENTITIES section is only graphic information (polygon
+vertex coordinate), and does not have hierarchy information, color
+information, or texture information.  This is read from an
+auxiliary file.
+(4) There is no hierarchy information, so file interior is
+regarded as flat.
+
+To allocate a hierarchy, make a separate file.
+(5) Match the file name with the object name.
+(6) The extender for data files is .dxf.
+
+
+Output Files
+
+(1) Output files are in sprite 3D display library C language 3D
+table format.
+(2) For detailed information on the 3D table format, see the
+sprite 3D display library manual.
+(3) The extender for data files is .dat.
+
+
+Executing Environment
+
+(1) All input files and auxiliary files must be in the same
+directory.
+(2) Output files are created in the input file directory.
+
+
+Execution Format
+
+dxfto3dt (input file directory path name) (output file name)
+
+
+Auxiliary Files
+
+(1) Describes data not in DXF.
+(2) Made from default, object, cluster, and texture statements.
+* default statement: Performs descriptions common to all data.
+* object statement: Performs descriptions related to objects.
+  Matching to DXF files is performed here.
+* cluster statement: Describes hierarchical structure.
+* texture statement: Performs description related to texture.  The
+  texture data itself must be prepared separately.
+(3) The file name is "output file name.cfg".
+(4) Create manually with a text editor.
+
+
+Auxiliary File Format
+
+(1) General rules
+* Regarded as one statement until the return button is pushed.
+* When the leading character is "#", regarded as a comment.
+* Blanks are skipped.
+* Statements end with a semicolon.
+* Parameters are judged by alignment, so sequence must not be
+  changed.
+
+(2) Description rules
+* Describe in the sequence of default, object, cluster, and
+  texture statements.
+  (In particular, multiple cluster statements must not be
+  separated.)
+* An end statement indicating the end of data must be used for
+  object, cluster, and texture statements.
+8 Cluster statements are described from upper to lower direction.
+* When not used, texture statements need not be described.
+
+(3) Explanation of statements
+------------------------------------------------------------
+default: a_scale (overall scale factor), z_axis (z axis
+direction), vertex alignment sequence,
+s_vert (presence or absence of surface central coordinate output);
+------------------------------------------------------------
+
+* Values specified by the overall scaling factor are embedded in
+  the output file as a scale using the #define statement.  A *scale
+  is added to each coordinate value, so multiplication is performed
+  during execution.
+* The z axis direction is either + or -.
+* +: When the foreground is positive
+* -: When the foreground is negative
+* The vertex alignment sequence is either cw or ccw.
+* cw: A clockwise surface is a table
+* ccw: A counterclockwise surface is a table
+* The presence or absence of a surface central coordinate output
+  is either yes or no.
+* yes: A table is output.
+* no: A table is not output.
+
+------------------------------------------------------------------
+object:
+object inherent name, object name, scale(x scale, y scale, z
+scale), shift(x shift, y shift, z shift), shading method, drawing
+mode, drawing parameters;
+end;
+------------------------------------------------------------------
+* Values specified by x scale, y scale, or z scale, multiplied.
+  Unlike with the overall scaling factor, the calculation results
+  are output to the file.
+* The shift volume is the value from the origin point of each
+  object.
+* Shift occurs after scale factor calculation.
+* The shading method is none, flat, or gouraud.
+* none: No shading
+* flat: Flat shading
+* gouraud: Gouraud shading
+  The drawing mode is color, auto, texture, or index.
+* color: Specifies a color code
+* auto: Automatic shading
+* texture: Texture mapping
+* index: Uses an index table
+* Drawing parameters are rgb (r value, g value, b value), texture
+  number, or no specification, according to the drawing mode.
+* rgb (r value, g value, b value): When the drawing mode is color
+  or auto (each rgb value is input as an integer)
+* Texture number: When the drawing mode is texture (corresponds to
+  the texture statement character number)
+* No specification: When the drawing mode is index
+* The texture specified is applied to all surfaces.  To change for
+  each surface, the user must rewrite manually.
+
+------------------------------------------------------------------
+cluster: cluster name, rotation sequence, angle (x rotation, y
+rotation, z rotation), point (x coordinate, y coordinate, z
+coordinate);
+  c_object: object inherent name;
+  c_child: child cluster name;
+end;
+------------------------------------------------------------------
+* The rotation sequence is zyx, zxy, yzx, yxz, xyz, or xzy.
+* When the rotation sequence is zyx, and rotation and coordinates
+  are all 0, the section after the rotation sequence can be omitted.
+
+------------------------------------------------------------------
+texture:
+Character number, character pointer, color mode, color, width
+(character width), height (character height), look up table
+pointer;
+end;
+------------------------------------------------------------------
+* The character number is a serial number from 0.
+* When there is no look up table, the look up table pointer is
+  null.
+
+
+(4) Description example
+--------------------
+# DXF to Sprite 3D Table Convert Configuration File
+
+default: a_scale(1),z_axis(+),ccw,s_vert(no);
+
+object:
+
+Obj1a,Object1,scale(1.0,1.0,1.0),shift(0,0,0),gouraud,color,rgb(10
+,10,10);
+
+Obj2a,Object2,scale(2.0,2.0,2.0),shift(0,0,0),flat,color,rgb(20,10
+,10);
+
+Obj2b,Object2,scale(1.0,1.0,1.0),shift(0,0,0),flat,auto,rgb(20,10,
+10);
+ Obj2c,Object2,scale(1.0,1.0,1.0),shift(0,0,0),gouraud,texture,1;
+ Obj3a,Object3,scale(1,1,1),shift(0,0,0),flat,index;
+end;
+
+cluster: Cluster1;
+ c_object: Obj1a;
+ c_child: Cluster2a;
+ c_child: Cluster2b;
+end;
+
+cluster: Cluster2a,zyx,angle(0.0,0.0,180.0),point(0.1,0.0,0.1);
+ c_object: Obj2a;
+ c_object: Obj2c;
+ c_child: Cluster3a;
+ c_child: Cluster3b;
+end;
+
+cluster: Cluster2b,zyx,angle(0.0,0.0,180.0),point(-0.1,0.0,-0.1);
+ c_object: Obj2b;
+ c_child: Cluster3a;
+ c_child: Cluster3b;
+end;
+
+cluster: Cluster3a,zyx,angle(0.0,0.0,0.0),point(0.1,0.2,0.1);
+ c_object: Obj3a;
+end;
+
+cluster: Cluster3b,zyx,angle(0.0,0.0,0.0),point(-0.1,0.2,-0.1);
+ c_object: Obj3a;
+end;
+
+texture:
+ 0,mesh,COLOR_1,5,width(96),height(96),Mesh_LookUp;
+ 1,moji,COLOR_5,0,width(96),height(96),NULL;
+end;
+--------------------
+

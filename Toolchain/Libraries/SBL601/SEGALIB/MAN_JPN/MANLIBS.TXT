@@ -1,0 +1,85 @@
+
+SEGA Basic Library ���C�u�����ˑ��֌W�ꗗ
+
+  SBL�̊e���C�u�������ǂ̃��C�u�����Ɉˑ����Ă��邩���m�F���邽�߂̈ꗗ
+  �ł��B
+
+  �ȉ��̋K���ŕ\�L���Ă��܂��B
+ 1)�����������啶��:
+   ���C�u�����t�@�C�����ł��BGCC�Ȃ�΁u.a�vSHC�Ȃ�΁u.lib�v�̊g���q��
+   �t���܂��B
+ 2)4�������������啶��:
+   ���̃��C�u�������ˑ����Ă��郉�C�u�����ł��B
+
+
+SEGA_BPL
+    SEGA_STM
+
+SEGA_CMP
+    ���ɂȂ�
+
+SEGA_DBG
+    SEGA_SCL
+
+SEGA_DMA
+    SEGA_INT
+    SEGA_CSH
+
+SEGA_GFS
+    SEGA_CDC
+    SEGA_CSH
+    SEGA_DMA
+
+SEGA_INT
+    ���ɂȂ�
+
+SEGA_MEM
+    ���ɂȂ�
+
+SEGA_MPG
+    SEGA_CDC
+    SEGA_STM
+    SEGA_DMA
+    SEGA_CSH
+
+SEGA_MTH
+    ���ɂȂ�
+
+SEGA_PCM
+    SEGA_GFS
+    SEGA_CSH
+    SEGA_DMA
+    SEGA_STM
+    SEGA_SND
+    SEGA_ADP
+
+SEGA_SCL
+    SEGA_MTH
+
+SEGA_SND
+    ���ɂȂ�
+
+SEGA_SPR
+    SEGA_DMA
+    SEGA_SCL
+    SEGA_MTH
+    SEGA_CSH
+    SEGA_DSP
+
+SEGA_STM
+    SEGA_CDC
+    SEGA_GFS
+
+SEGA_SYS
+    SEGA_CDC
+
+SEGA_SHC
+    ���ɂȂ�
+
+SEGA_PER
+    SEGA_INT
+
+SEGA_CDC
+    ���ɂȂ�
+
+�ȏ

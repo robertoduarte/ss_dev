@@ -1,0 +1,60 @@
+******************************************************************
+* Readme file name: mansbsg.doc
+* Library prefix: SGL,SCL
+* Library name  : SEGA_SGL,SEGA_SCL
+* Version: 1.00
+* Creator: H.O
+* Created: 1996-01-25
+* Comments: None
+******************************************************************
+
+[Building the Demo]
+
+Method 1:
+
+  Execute M.BAT in each subdirectory.
+  The corresponding samples are created.
+
+Method 2:
+
+  Execute mkall?.bat (Specify h or g for ?) in the segasmp\sblsgl
+  directory.
+  All samples are created.
+
+[Startup Instructions]
+
+  Start the debugger and the target to initialize the target.
+
+  Stop the target and load executable file from address
+  0x06010000.
+
+  Execute the program at the above address.
+
+[Description]
+
+  This demo shows the use of the sprite functions ported from SGL
+  with the SCL function of the SBL.
+
+[Contents]
+
+SBLSGL00:
+
+  Scroll plane mosaic and square polygon.
+
+SBLSGL01:
+
+  Scroll plane mosaic and animation using hierarchical structure.
+
+SBLSGL02:
+
+  Line scroll/zoom and animation of a human body model.
+
+SBLSGL03:
+
+  Rotation scroll plane controlled with SGL coordinates.
+
+SBLSGL04:
+
+  Rotation scroll plane controlled with SGL coordinates.
+
+***************************end of file***************************

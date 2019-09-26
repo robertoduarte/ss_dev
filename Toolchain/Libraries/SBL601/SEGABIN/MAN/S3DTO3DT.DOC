@@ -1,0 +1,357 @@
+******************************************************************
+* readme.doc type: SEGA3D -> 3D Table File converter reference
+* Readme file name: S3DTO3DT.DOC
+* Tool name: SEGA3D -> 3D Table file converter
+* Version: 1.00 Rel.09
+* Creator:
+* Created: 6/16/95
+* Comments: None
+******************************************************************
+
+* Revision history
+
+* Changes to Rel.08
+
+Fixed the bug where files cannot be converted when there are two
+or more models.
+
+* Changes to Rel.09
+
+- Changed to process null data to be registered on models that
+  have no vertex, surface, or object output with Shade 3.
+
+- The settings of default numbers of vertex, surface, object, slip
+  are changed as follows:
+
+#define VERT_MAX  5000 ---> 2500 /* Max # of vertexes */
+#define FACE_MAX            1000 /* Max # of surfaces */
+#define OBJ_MAX   100  --->  200 /* Max # of objects */
+#define CLS_MAX   100  --->  200 /* Max # of clusters */
+#define SLP_MAX   200  --->  800 /* Max # of surfaces in a slip */
+#define TEX_MAX              100 /* Max # of textures */
+#define MBU_MAX              100 /* The # of material buffer */
+
+1. Overview
+
+SEGA3D format data is converted into the Software library 3DT
+format.
+
+2. Function
+
+(1) If the a parameter is not specified in SEGA3D data, the pre-
+defined initial value will be used if it is defined.
+
+(2) If normal vector values are not specified in the models, the
+values will be calculated.
+
+(3) If the models have no objects, the last-read models becomes
+the target.
+
+(4) Materials gour_offset and gour_color are ignored.
+
+(5) If reverse video is specified, the signs of vertex coodinates
+and normal vector is reversed.  In this case, the texture is
+reversed.
+
+(6) Scales are inherited.
+
+(7) To make unique model names, add "_serial number" after each
+model names.
+
+
+3. Restrictions
+
+(1) Shading type is set for each object not for each surface.
+
+(2) Only the RGB format color mode is supported.
+
+(3) The rotation order is fixed as ZYX.
+
+(4) When specifying the texture, 3DT format data files need to be
+prepared separately.
+
+(5) W and H of the texture are fixed at 96.
+
+When using a texture with other size, the corresponding part in
+the output file need to be changed manually.
+
+(6) Length of each parameter name
+- Up to 16 characters
+
+(7) The maximum value for each data is as follows:
+  - Number of vertexes per one model            : 5000
+  - Number of surfaces per one model            : 1000
+  - Number of models                            : 100
+  - Number of child model per one model         : 100
+
+(8) Only alphabetic characters can be used for the name of the
+parameters.  Japanese characters cannot be used.
+
+
+4. Input-Output
+
+(1) The input data is in SEGA3D format.  The default extension is
+.3d
+
+(2) The output data is in 3DT format.  The default extension is
+.dat.
+
+5. Execution format
+
+  s3dto3dt  <Input-output file directory pathname>  <Input-output
+  file name>
+
+- Do not include the extension in input-output file names.
+
+6. Specifying option parameters
+
+(1) Changes can be made by reading files where option parameters
+are described.
+
+(2) Option file names consist of input-output file name and
+extension (.ctl), and should be placed in the same directory as
+the input-output data.
+
+(3) If option files are not specified, the default values are
+used.
+
+(4) Character strings starting with semi colons (;) are regarded
+as comments.
+
+(5) The following parameters can be specified:
+
+	Keyword		Parameter		      default value
+
+	scale		scale value		1
+	normal		yes/no			no
+	cluster		cluster name		no
+	surface_ctr	yes/no			no
+	shading		model name, type	See the manual
+	input		extension name		3d
+	output		extension name		dat
+	dgt_txc		texture file name	no
+
+scale specifies the whole scale value.  Values should be positive
+real numbers or integers.
+
+normal specifies whether always calculate normal vector or not.
+By default, the calculation of normal vector is done only when it
+is not given in the data.  By using normal, the calculation can be
+done without regard to whether the value is given or not.
+
+yes always calculates, and no calculates only when the value is
+not given.
+
+cluster specifies the name when adding the overall parent cluster.
+
+no adds no cluster.
+
+
+surface_ctr instructs the computation of surface vertex
+coodinates.
+yes calculates and no does not calculate.
+
+shading specifies the shading type for each model.  By default,
+material shading type that was entered last in slips is used, but
+shading type can be explicitly specified.
+
+Enter in model name-comma-shading type sequence (no/flat/gouraud).
+
+Models are specified on a one-line-one-model basis.  If there are
+two or more models, the same number of lines are necessary as the
+number of models.
+
+Use asterisk (*) as a model name to specify all.
+
+
+input specifies the extension name of input files.  Extension
+names are specified with up to three alphanumeric characters.
+
+output specifies the extension name of output files.  Extension
+names are specified with up to three alphanumeric characters.
+
+dgt_txc specifies the output file name when importing texture
+information from the dgt file using dgtto.  The file name should
+be enclosed in double quotation mark (").
+
+If texture information is not imported by dgtto3dt, specification
+is not necessary.
+
+<Example>
+
+; option parameter define file ( .ctl )
+
+scale		0.1
+normal		yes
+cluster		RootCluster
+surface_ctr	yes
+shading		CUBE,gouraud
+input		s3d
+output		ddt
+dgt_txc		"sample.txc"
+
+7. Error messages
+
+s3dto3dt : Error : Invalid object description : aaaa
+- The objects indicated by aaaa is called recursively.
+- Correct the object calling.
+
+
+s3dto3dt : Error : Table Limit over : MBU_MAX
+- Material information storage area is insufficient.
+- Program revision is required.
+
+s3dto3dt : Error : Input file not exist : Name = aaaa
+- The input file indicated by aaaa do not exist.
+- Confirm the file name.
+
+s3dto3dt : Error : Japanese characters included
+- Input data contains Japanese characters.
+- Replace the Japanese characters with alphanumeric characters.
+
+s3dto3dt : Error : Table Limit over : OBJ_MAX
+- Object information storage area is insufficient.
+- Program revision is required.
+
+s3dto3dt : Error : Table Limit over : slp_face
+- Slip information storage area is insufficient.
+- Program revision is required.
+
+s3dto3dt : Error : Table Limit over : TEX_MAX
+Texture information storage area is insufficient.
+- Program revision is required.
+
+8. Revision history
+(Rel.7 -> Rel.8)
+
+Fixed bugs that do not create cluster tables when there are two or
+more tables.
+Processing messages are now displayed at execution time.
+
+******************************************************************
+
+The following describes the procedure for using
+DGTTO3DT.EXEÅAS3DTO3DT.EXE.
+
+
+1. Processing flow
+
+	SEGA3D data					 Graphic data
+	 (.3d)						   (.dgt)
+
+	   +--------------------------------------------+
+
+	   			Control data
+	   			  (.ctl)
+      +----------+				      +----------+
+       s3dto3dt		<----------+  +---------->	dgtto3dt
+      +----------+				      +----------+
+
+
+
+	3DT data				    3DT texture data
+	 (.dat)				   (Name specified by "dgt_txc" with
+".ctl")
+
+
+
+
+2. Execution procedure (for 16-color palette mode data)
+
+For example, suppose that the SEGA3D data is "sample.3d," and the
+graphic data is "tex_1.dgt" and "tex_2.dgt."
+
+(1) Create a control data file.  The file name should be
+synchronous with the SEGA3D data.
+In this case, it is "sample.ctl."  The content is as follows:
+-----------------------------------------------------
+; option parameter define file ( .ctl )
+col_mode	1
+shading		*,no
+dgt_txc		"sample.txc"
+-----------------------------------------------------
+(Note) "col_mode" is 1 for 16-color palette mode data.
+      "shading" should never be changed.
+      "dgt_txc" can be changed to any name but synchronizing with
+      the ".3d" name is recommended to avoid name duplication may occur
+      in future.  Extensions should also be unified as ".txc."
+
+(2) Place "sample.3d," "tex_1.dgt," "tex_2.dgt," and "sample.ctl"
+in the same directory.
+
+(3) Execute the s3dto3dt and dgtto3dt.  The execution order can be
+switched.
+The following is the sample of execution in the directory where
+the data is stored:
+-----------------------------------------------------
+s3dto3dt . sample
+dgtto3dt . sample
+-----------------------------------------------------
+
+
+(4) The following two files are created in the same directory as
+the input data.
+".dat" and ".txc" are output files of s3dto3dt and dgtto3dt
+respectively. Since these two files makes a pair, moving should
+be made together.
+-----------------------------------------------------
+sample.dat
+sample.txc
+-----------------------------------------------------
+(Note) The "sample.txc" is specified to be included in
+"sample.dat."
+If "sample.dat" is specified to be included in the actual
+applications, both data is read.
+
+
+(5) Include "sample.dat" in the application to compile.
+
+
+3. Remarks
+
+- ".dat" and ".txc" files should not contain special characters
+except for under bar (_) because the C compiler does not accept
+them.  Remove special characters beforehand if there is any.
+
+- In ".ctl," "dgt_txc" should always be specified to indicate the
+texture file that the 3DT file references.  Specifying "dgt_txc"
+also prevents the s3dto3dt from outputting the texture
+information.
+
+- In ".ctl," no-shading should be specified by "shading  *,no"
+because the DGTTO3DT.exe and S3DT03DT.exe do not generate data
+such as shading index table.  In Software Library, when specifying
+shading with palette format data, the shading index tables for
+each color must be created beforehand.
+
+- ".ctl" contains other parameters than specified in the example.
+For details on those parameters, refer to ".doc" files in each
+program.
+
+If the color mode is 1, specification related to the color table
+is not necessary on the application side.
+
+However, be sure that the maximum number of look-up tables
+specified in SPR_2DefineWork is no less than the number of
+textures.
+
+- If the color mode is 0, 2, 3, or 4, match the color table name
+in the application with the color table name in ".txc" files (by
+default, colorData).Also be sure that the table size allocated in
+the application is not smaller than the actual table size.
+The processing procedure for color mode 0, 2, 3, and 4 is the
+same as for color mode 1, but the content of ".ctl" need to be
+changed as follows:
+-----------------------------------------------------
+; option parameter define file ( .ctl )
+
+col_mode	4
+palette_mode	comp
+shading		*,no
+dgt_txc		"sample.txc"
+-----------------------------------------------------
+(Note) For "col_mode", select from among 0, 2, 3, or 4 as
+       required. For "palette_mode," select "comp" or "sep"
+       according to how to create the application.
+
+******************************************************************

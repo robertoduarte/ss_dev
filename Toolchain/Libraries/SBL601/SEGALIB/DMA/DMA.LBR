@@ -1,0 +1,10 @@
+create  sega_dma.lib
+add	dma_cpu0.obj
+add	dma_cpu1.obj
+add	dma_cpu2.obj
+add	dma_cpu3.obj
+add	dma_cpu4.obj
+add	dma_cpu5.obj
+add	dma_scu0.obj
+add	dma_scu1.obj
+exit

@@ -1,0 +1,170 @@
+　　　　　　　　　　　　　　　　　　　　　　　　　　　　１９９５年８月３１日
+　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　ＣＲＩ　野沢
+                             TOCCHK VER 1.03
+
+１．　概要
+    TOCCHKはTOCファイル(VCDMKTOCの出力ファイル "～.TOC"）をチェックして
+    TOC情報として異常がないか診断メッセージを標準出力へ出力する。
+
+　　チェック項目
+    ~~~~~~~~~~~~
+    (1) トラックサイズチェック　　　　 （４秒以上であること）
+    (2) プレギャップサイズチェック　 　（２秒以上であること）
+    (3) ポストギャップサイズチェック　 （１秒以上であること）※注意
+    (4) オーディオトラックの先頭ポーズ （２秒以上であること）
+
+    ※注意
+       ここでいうポストギャップはCD-ROM XA規格に示されるものです。
+     　CD-ROM 規格(YELLOW BOOK)によれば、オーディオトラックに先行する
+     データトラックの最後には、２秒以上のポストギャップが必要ですが、
+     このポストギャップは、ＴＯＣファイルに情報が反映されないため
+     チェックされません。
+　　　 バーチャルＣＤのスクリプト上、データトラックの最後に以下の記述が
+　　 あることを確認してください。
+
+         CDDA直前のデータトラック
+           |            :
+           |          PostGap 150    ; <----- ２秒以上のポストギャップを確認
+           V      EndTrack
+          ---     Track CDDA
+           |          Pause 150
+           |          FileSource ～.DAT
+           |          EndFileSource
+           V            :
+         CDDAトラック
+
+２．　使用法
+
+    TOCCHK  TOCファイル名　　　（拡張子".TOC"は省略可）
+
+　［使用例］
+　　　VCDMKTOC.EXEによって作成されたTOCファイル「SAMPLE.TOC」をチェックし
+　　結果をチェックファイル「SAMPLE.TCK」に出力する場合は以下のようにします。
+
+　　　C:\>TOCCHK SAMPLE.TOC >SAMPLE.TCK
+
+　　（ドライブＣのルートディレクトリで作業をしているものとします。）
+
+３．　出力形式（サンプル）
+
+   TOCCHK.EXE Ver.1.02 1995-04-25
+   Copyright(c) SEGA ENTERPRISES, LTD. 1995
+   Copyright(c) CSK Research Institute Corp. 1995
+
+   OFFSET : CONTROL   TNO/X   FORM     TIME      DUMP(HEX)
+    0000H : DATA  --- LeadIn  MODE1    00:00:00  41 00 00 02 00 00 00 00
+    0008H : DATA  --- 01/00   MODE1    00:00:00  41 01 00 02 00 00 00 00
+    0010H : DATA  --- 01/01   MODE1    00:02:00  41 01 01 02 00 00 02 00
+    0018H : AUDIO -2- LeadOut MODE1    00:22:52  01 AA 01 02 00 00 22 52
+　　　　　　　　　|||　                           |  |  |  |  |  |  |  |
+　　　　　　　　　|||　                           |  |  |  |  | MM:SS:FF
+　　　　　　　　　||+-- e: Emphasis flag          |  |  |  |  +--ZERO
+　　　　　　　　　|+-- 2: 2ch / 4: 4ch            |  |  |  +--FORM
+　　　　　　　　　+-- c: digital Copy permitted   |  |  +--X
+　　　　　　　　　                                |  +--TNO
+  　　　　　　　　                                +--CONTROL/ADR
+   DIAGNOSIS
+   V01.TOC(0018H) : FORM is not consistent with CONTROL
+       |      |　　　　　　　　　|
+       |      |　　　　　　　　　+---メッセージ本体
+       |      +--- OFFSET
+       +---------- ファイル名
+
+
+メッセージ一覧
+~~~~~~~~~~~~~~
+( 1)    TNO=?? size XXX < 300 (4 sec)
+
+    意味：トラック??のサイズが４秒以下である。
+
+( 2)    POST-GAP missing
+
+    意味：ポストギャップが無い。
+          ここでいうポストギャップはCD-ROM XA規格に示されるもの。
+          TNO→TNO+1、X→0と変化してもFORMバイトが変化しない時点を
+          プレギャップ開始、FORMバイトが変化した時点をポストギャップ
+          の終了、と判断している。
+
+( 3)    POST-GAP smaller than 1 sec
+
+    意味：ポストギャップが１秒以下である。（CD-ROM XA規格）
+
+( 4)    PRE-GAP missing
+
+    意味：プレギャップが無いのにFormバイトが変化した。
+
+( 5)    PRE-GAP smaller than 2 sec
+
+    意味：プレギャップが２秒以下である。（CD-ROM XA規格）
+
+( 6)    PAUSE Missing
+
+    意味：オーディオトラックにポーズが無い。
+
+( 7)    PAUSE smaller than 2 sec
+
+    意味：プレギャップが２秒以下である。（CD-ROM XA規格）
+
+( 8)    LeadIn Control(??H) is not DATA
+
+    意味：LeadIn領域のControlがDATA形式でない。（Saturn形式）
+        （音楽ＣＤの時はAUDIO形式となる）
+
+( 9)    LeadIn FORM(??H) is not CD-ROM
+
+    意味：LeadIn領域のFORMがCD-ROM形式でない。（Saturn形式）
+
+(10)    LeadIn ATIME is not 00:00:00
+
+    意味：LeadIn領域のATIMEが 00:00:00 でない。
+
+(11)    Illegal Disc Type (??H)
+
+    意味：LeadIn領域のDisc Type がCD-ROM / CD-ROM XA / CD-I形式でない。
+
+(12)    Illegal TNO/X=(??/??) at PAUSE
+
+    意味：先頭のポーズのTNO/Xが01/00でない。（Saturn形式）
+
+(13)    Illegal Control(??H) at PAUSE
+
+    意味：先頭のポーズのControlがDATA形式でない。（Saturn形式）
+
+(14)    Illegal ATIME ??:??:?? at PAUSE
+
+    意味：先頭のポーズのATIMEが00:00:00でない。（Saturn形式）
+
+(15)    Illegal TNO/X=(??/??) at 1st TRACK
+
+    意味：先頭トラックのTNO/Xが01/01でない。（Saturn形式）
+
+(16)    Illegal CONTROL(??H) at 1st TRACK
+
+    意味：先頭トラックのCONTROLがDATA形式でない。（Saturn形式）
+
+(17)    Illegal ATIME ??:??:?? at 1st TRACK
+
+    意味：先頭トラックのATIMEが00:02:00でない。（Saturn形式）
+
+(18)    Illegal CONTROL(??H)
+
+    意味：CONTROLが許されない値である。（Saturn形式）
+
+(19)    TNO/X=(??/??) Sequence error
+
+    意味：トラック番号／インデックスが昇順でない。
+
+(20)    ATIME=(??:??:??) Sequence error
+
+    意味：ATIMEが昇順でない。
+
+(21)    FORM is not consistent with CONTROL
+
+    意味：FORMバイトとCONTROLに不整合がある。
+    （CDDAならばAUDIO、その他ならDATA）
+
+(22)    Illegal FORM (??H)
+
+　    意味：Formバイトの値が不正である。
+
+　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　以上

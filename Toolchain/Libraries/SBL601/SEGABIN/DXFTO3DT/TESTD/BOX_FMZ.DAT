@@ -1,0 +1,840 @@
+#define SCALE  0.02
+#define DRAWObj01 MATE_COLOR | COLOR_5 | ECDSPD_DISABLE | COMPO_REP
+#define COLORObj01 RGB16_COLOR(10,20,10)
+#define DRAWObj02 MATE_COLOR | COLOR_5 | ECDSPD_DISABLE | COMPO_REP
+#define COLORObj02 RGB16_COLOR(20,10,10)
+#define DRAWObj03 MATE_COLOR | COLOR_5 | ECDSPD_DISABLE | COMPO_REP
+#define COLORObj03 RGB16_COLOR(10,10,20)
+#define DRAWObj04 MATE_COLOR | COLOR_5 | ECDSPD_DISABLE | COMPO_REP
+#define COLORObj04 RGB16_COLOR(30,30,10)
+#define DRAWObj05 MATE_SHADING_TBL | COLOR_5 | ECDSPD_DISABLE | COMPO_REP
+#define COLORObj05 0
+#define DRAWObj06 MATE_COLOR | COLOR_5 | ECDSPD_DISABLE | COMPO_REP
+#define COLORObj06 RGB16_COLOR(30,10,30)
+#define DRAWObj07 MATE_COLOR | COLOR_5 | ECDSPD_DISABLE | COMPO_REP
+#define COLORObj07 RGB16_COLOR(10,30,30)
+
+#include "mesh.txc"
+#include "moji.txc"
+#include "mokume.txc"
+#include "shasin.txc"
+#include "uzumaki1.txc"
+#include "uzumaki2.txc"
+
+static SprTexture Texture[] = {
+    {
+/* character no.        */ 0,
+/* color mode           */ COLOR_5,
+/* character width      */ 96,
+/* character height     */ 96,
+/* character pointer    */ (Uint8 *)mesh,
+/* lookup table pointer */ NULL
+    },
+    {
+/* character no.        */ 1,
+/* color mode           */ COLOR_5,
+/* character width      */ 96,
+/* character height     */ 96,
+/* character pointer    */ (Uint8 *)moji,
+/* lookup table pointer */ NULL
+    },
+    {
+/* character no.        */ 2,
+/* color mode           */ COLOR_5,
+/* character width      */ 96,
+/* character height     */ 96,
+/* character pointer    */ (Uint8 *)mokume,
+/* lookup table pointer */ NULL
+    },
+    {
+/* character no.        */ 3,
+/* color mode           */ COLOR_5,
+/* character width      */ 96,
+/* character height     */ 96,
+/* character pointer    */ (Uint8 *)shasin,
+/* lookup table pointer */ NULL
+    },
+    {
+/* character no.        */ 4,
+/* color mode           */ COLOR_5,
+/* character width      */ 96,
+/* character height     */ 96,
+/* character pointer    */ (Uint8 *)uzumaki1,
+/* lookup table pointer */ NULL
+    },
+    {
+/* character no.        */ 5,
+/* color mode           */ COLOR_5,
+/* character width      */ 96,
+/* character height     */ 96,
+/* character pointer    */ (Uint8 *)uzumaki2,
+/* lookup table pointer */ NULL
+    },
+    {
+/*                      */ 0xffff,
+/* stop data            */ COLOR_5,
+/*                      */ 0,
+/*                      */ 0,
+/*                      */ NULL,
+/*                      */ NULL
+    }
+};
+
+static Uint16 grayCode[32] = {
+        RGB( 0, 0, 0), RGB( 1, 1, 1), RGB( 2, 2, 2), RGB( 3, 3, 3),
+        RGB( 4, 4, 4), RGB( 5, 5, 5), RGB( 6, 6, 6), RGB( 7, 7, 7),
+        RGB( 8, 8, 8), RGB( 9, 9, 9), RGB(10,10,10), RGB(11,11,11),
+        RGB(12,12,12), RGB(13,13,13), RGB(14,14,14), RGB(15,15,15),
+        RGB(16,16,16), RGB(17,17,17), RGB(18,18,18), RGB(19,19,19),
+        RGB(20,20,20), RGB(21,21,21), RGB(22,22,22), RGB(23,23,23),
+        RGB(24,24,24), RGB(25,25,25), RGB(26,26,26), RGB(27,27,27),
+        RGB(28,28,28), RGB(29,29,29), RGB(30,30,30), RGB(31,31,31)
+};
+
+static Uint16 *shdIdxTbl[] = {
+        grayCode,
+        grayCode,
+        grayCode,
+        grayCode,
+        grayCode,
+        grayCode,
+        grayCode
+};
+
+static MthXyz Obj06VertPoint[] = {
+/* 0    */ {MTH_FIXED(50.000000*SCALE),MTH_FIXED(50.000000*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 1    */ {MTH_FIXED(-70.710678*SCALE),MTH_FIXED(0.000000*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 2    */ {MTH_FIXED(50.000000*SCALE),MTH_FIXED(-50.000000*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 3    */ {MTH_FIXED(70.710678*SCALE),MTH_FIXED(0.000000*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 4    */ {MTH_FIXED(50.000000*SCALE),MTH_FIXED(50.000000*SCALE),MTH_FIXED(125.000000*SCALE)},
+/* 5    */ {MTH_FIXED(0.000000*SCALE),MTH_FIXED(-70.710678*SCALE),MTH_FIXED(125.000000*SCALE)},
+/* 6    */ {MTH_FIXED(-50.000000*SCALE),MTH_FIXED(50.000000*SCALE),MTH_FIXED(125.000000*SCALE)},
+/* 7    */ {MTH_FIXED(0.000000*SCALE),MTH_FIXED(70.710678*SCALE),MTH_FIXED(125.000000*SCALE)},
+/* 8    */ {MTH_FIXED(70.710678*SCALE),MTH_FIXED(0.000000*SCALE),MTH_FIXED(125.000000*SCALE)},
+/* 9    */ {MTH_FIXED(50.000000*SCALE),MTH_FIXED(-50.000000*SCALE),MTH_FIXED(125.000000*SCALE)},
+/* 10   */ {MTH_FIXED(0.000000*SCALE),MTH_FIXED(-70.710678*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 11   */ {MTH_FIXED(-50.000000*SCALE),MTH_FIXED(-50.000000*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 12   */ {MTH_FIXED(-50.000000*SCALE),MTH_FIXED(-50.000000*SCALE),MTH_FIXED(125.000000*SCALE)},
+/* 13   */ {MTH_FIXED(-70.710678*SCALE),MTH_FIXED(0.000000*SCALE),MTH_FIXED(125.000000*SCALE)},
+/* 14   */ {MTH_FIXED(-50.000000*SCALE),MTH_FIXED(50.000000*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 15   */ {MTH_FIXED(0.000000*SCALE),MTH_FIXED(70.710678*SCALE),MTH_FIXED(0.000000*SCALE)}
+};
+
+static MthXyz Obj06SurfaceNormal[] = {
+/* 0    */ {MTH_FIXED(0.000000),MTH_FIXED(0.000000),MTH_FIXED(-1.000000)},
+/* 1    */ {MTH_FIXED(-0.000000),MTH_FIXED(0.000000),MTH_FIXED(1.000000)},
+/* 2    */ {MTH_FIXED(0.923880),MTH_FIXED(0.382683),MTH_FIXED(0.000000)},
+/* 3    */ {MTH_FIXED(0.923880),MTH_FIXED(-0.382683),MTH_FIXED(0.000000)},
+/* 4    */ {MTH_FIXED(0.382683),MTH_FIXED(-0.923880),MTH_FIXED(0.000000)},
+/* 5    */ {MTH_FIXED(-0.382683),MTH_FIXED(-0.923880),MTH_FIXED(-0.000000)},
+/* 6    */ {MTH_FIXED(-0.923880),MTH_FIXED(-0.382683),MTH_FIXED(-0.000000)},
+/* 7    */ {MTH_FIXED(-0.923880),MTH_FIXED(0.382683),MTH_FIXED(0.000000)},
+/* 8    */ {MTH_FIXED(-0.382683),MTH_FIXED(0.923880),MTH_FIXED(0.000000)},
+/* 9    */ {MTH_FIXED(0.382683),MTH_FIXED(0.923880),MTH_FIXED(0.000000)},
+/* 10   */ {MTH_FIXED(0.000000),MTH_FIXED(-0.000000),MTH_FIXED(-1.000000)},
+/* 11   */ {MTH_FIXED(-0.000000),MTH_FIXED(0.000000),MTH_FIXED(-1.000000)},
+/* 12   */ {MTH_FIXED(0.000000),MTH_FIXED(0.000000),MTH_FIXED(1.000000)},
+/* 13   */ {MTH_FIXED(0.000000),MTH_FIXED(0.000000),MTH_FIXED(1.000000)}
+};
+
+static SprSurface Obj06Surface[] = {
+/* 0    */ {    0, 1, 2, 3,
+                DRAWObj06 | ZSORT_MIN,
+                COLORObj06
+           },
+/* 1    */ {    4, 5, 6, 7,
+                DRAWObj06 | ZSORT_MIN,
+                COLORObj06
+           },
+/* 2    */ {    0, 3, 8, 4,
+                DRAWObj06 | ZSORT_MIN,
+                COLORObj06
+           },
+/* 3    */ {    3, 2, 9, 8,
+                DRAWObj06 | ZSORT_MIN,
+                COLORObj06
+           },
+/* 4    */ {    2, 10, 5, 9,
+                DRAWObj06 | ZSORT_MIN,
+                COLORObj06
+           },
+/* 5    */ {    10, 11, 12, 5,
+                DRAWObj06 | ZSORT_MIN,
+                COLORObj06
+           },
+/* 6    */ {    11, 1, 13, 12,
+                DRAWObj06 | ZSORT_MIN,
+                COLORObj06
+           },
+/* 7    */ {    1, 14, 6, 13,
+                DRAWObj06 | ZSORT_MIN,
+                COLORObj06
+           },
+/* 8    */ {    14, 15, 7, 6,
+                DRAWObj06 | ZSORT_MIN,
+                COLORObj06
+           },
+/* 9    */ {    15, 0, 4, 7,
+                DRAWObj06 | ZSORT_MIN,
+                COLORObj06
+           },
+/* 10   */ {    10, 2, 1, 11,
+                DRAWObj06 | ZSORT_MIN,
+                COLORObj06
+           },
+/* 11   */ {    14, 1, 0, 15,
+                DRAWObj06 | ZSORT_MIN,
+                COLORObj06
+           },
+/* 12   */ {    8, 9, 5, 4,
+                DRAWObj06 | ZSORT_MIN,
+                COLORObj06
+           },
+/* 13   */ {    12, 13, 6, 5,
+                DRAWObj06 | ZSORT_MIN,
+                COLORObj06
+           }
+};
+
+static SprObject3D Obj06 = {
+/* object no.           */ 0,
+/* display flag         */ DISP_POLYGON |
+                           FLAT_SHADING,
+/* number of vertex     */ 16,
+/* number of surface    */ 14,
+/* vertex table         */ (MthXyz *)&Obj06VertPoint,
+/* vertex normal table  */ NULL,
+/* surface table        */ (SprSurface *)&Obj06Surface,
+/* surface normal table */ (MthXyz *)&Obj06SurfaceNormal,
+/* surface vertex table */ NULL,
+/* shading index table  */ NULL,
+/* next object          */ NULL
+};
+
+static MthXyz Obj05VertPoint[] = {
+/* 0    */ {MTH_FIXED(100.000000*SCALE),MTH_FIXED(100.000000*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 1    */ {MTH_FIXED(-141.421356*SCALE),MTH_FIXED(0.000000*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 2    */ {MTH_FIXED(100.000000*SCALE),MTH_FIXED(-100.000000*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 3    */ {MTH_FIXED(141.421356*SCALE),MTH_FIXED(0.000000*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 4    */ {MTH_FIXED(100.000000*SCALE),MTH_FIXED(100.000000*SCALE),MTH_FIXED(37.500000*SCALE)},
+/* 5    */ {MTH_FIXED(0.000000*SCALE),MTH_FIXED(-141.421356*SCALE),MTH_FIXED(37.500000*SCALE)},
+/* 6    */ {MTH_FIXED(-100.000000*SCALE),MTH_FIXED(100.000000*SCALE),MTH_FIXED(37.500000*SCALE)},
+/* 7    */ {MTH_FIXED(0.000000*SCALE),MTH_FIXED(141.421356*SCALE),MTH_FIXED(37.500000*SCALE)},
+/* 8    */ {MTH_FIXED(141.421356*SCALE),MTH_FIXED(0.000000*SCALE),MTH_FIXED(37.500000*SCALE)},
+/* 9    */ {MTH_FIXED(100.000000*SCALE),MTH_FIXED(-100.000000*SCALE),MTH_FIXED(37.500000*SCALE)},
+/* 10   */ {MTH_FIXED(0.000000*SCALE),MTH_FIXED(-141.421356*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 11   */ {MTH_FIXED(-100.000000*SCALE),MTH_FIXED(-100.000000*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 12   */ {MTH_FIXED(-100.000000*SCALE),MTH_FIXED(-100.000000*SCALE),MTH_FIXED(37.500000*SCALE)},
+/* 13   */ {MTH_FIXED(-141.421356*SCALE),MTH_FIXED(0.000000*SCALE),MTH_FIXED(37.500000*SCALE)},
+/* 14   */ {MTH_FIXED(-100.000000*SCALE),MTH_FIXED(100.000000*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 15   */ {MTH_FIXED(0.000000*SCALE),MTH_FIXED(141.421356*SCALE),MTH_FIXED(0.000000*SCALE)}
+};
+
+static MthXyz Obj05SurfaceNormal[] = {
+/* 0    */ {MTH_FIXED(0.000000),MTH_FIXED(0.000000),MTH_FIXED(-1.000000)},
+/* 1    */ {MTH_FIXED(-0.000000),MTH_FIXED(0.000000),MTH_FIXED(1.000000)},
+/* 2    */ {MTH_FIXED(0.923880),MTH_FIXED(0.382683),MTH_FIXED(0.000000)},
+/* 3    */ {MTH_FIXED(0.923880),MTH_FIXED(-0.382683),MTH_FIXED(0.000000)},
+/* 4    */ {MTH_FIXED(0.382683),MTH_FIXED(-0.923880),MTH_FIXED(0.000000)},
+/* 5    */ {MTH_FIXED(-0.382683),MTH_FIXED(-0.923880),MTH_FIXED(-0.000000)},
+/* 6    */ {MTH_FIXED(-0.923880),MTH_FIXED(-0.382683),MTH_FIXED(-0.000000)},
+/* 7    */ {MTH_FIXED(-0.923880),MTH_FIXED(0.382683),MTH_FIXED(0.000000)},
+/* 8    */ {MTH_FIXED(-0.382683),MTH_FIXED(0.923880),MTH_FIXED(0.000000)},
+/* 9    */ {MTH_FIXED(0.382683),MTH_FIXED(0.923880),MTH_FIXED(0.000000)},
+/* 10   */ {MTH_FIXED(0.000000),MTH_FIXED(-0.000000),MTH_FIXED(-1.000000)},
+/* 11   */ {MTH_FIXED(-0.000000),MTH_FIXED(0.000000),MTH_FIXED(-1.000000)},
+/* 12   */ {MTH_FIXED(0.000000),MTH_FIXED(0.000000),MTH_FIXED(1.000000)},
+/* 13   */ {MTH_FIXED(0.000000),MTH_FIXED(0.000000),MTH_FIXED(1.000000)}
+};
+
+static SprSurface Obj05Surface[] = {
+/* 0    */ {    0, 1, 2, 3,
+                DRAWObj05 | ZSORT_MIN,
+                COLORObj05
+           },
+/* 1    */ {    4, 5, 6, 7,
+                DRAWObj05 | ZSORT_MIN,
+                COLORObj05
+           },
+/* 2    */ {    0, 3, 8, 4,
+                DRAWObj05 | ZSORT_MIN,
+                COLORObj05
+           },
+/* 3    */ {    3, 2, 9, 8,
+                DRAWObj05 | ZSORT_MIN,
+                COLORObj05
+           },
+/* 4    */ {    2, 10, 5, 9,
+                DRAWObj05 | ZSORT_MIN,
+                COLORObj05
+           },
+/* 5    */ {    10, 11, 12, 5,
+                DRAWObj05 | ZSORT_MIN,
+                COLORObj05
+           },
+/* 6    */ {    11, 1, 13, 12,
+                DRAWObj05 | ZSORT_MIN,
+                COLORObj05
+           },
+/* 7    */ {    1, 14, 6, 13,
+                DRAWObj05 | ZSORT_MIN,
+                COLORObj05
+           },
+/* 8    */ {    14, 15, 7, 6,
+                DRAWObj05 | ZSORT_MIN,
+                COLORObj05
+           },
+/* 9    */ {    15, 0, 4, 7,
+                DRAWObj05 | ZSORT_MIN,
+                COLORObj05
+           },
+/* 10   */ {    10, 2, 1, 11,
+                DRAWObj05 | ZSORT_MIN,
+                COLORObj05
+           },
+/* 11   */ {    14, 1, 0, 15,
+                DRAWObj05 | ZSORT_MIN,
+                COLORObj05
+           },
+/* 12   */ {    8, 9, 5, 4,
+                DRAWObj05 | ZSORT_MIN,
+                COLORObj05
+           },
+/* 13   */ {    12, 13, 6, 5,
+                DRAWObj05 | ZSORT_MIN,
+                COLORObj05
+           }
+};
+
+static SprObject3D Obj05 = {
+/* object no.           */ 1,
+/* display flag         */ DISP_POLYGON |
+                           FLAT_SHADING,
+/* number of vertex     */ 16,
+/* number of surface    */ 14,
+/* vertex table         */ (MthXyz *)&Obj05VertPoint,
+/* vertex normal table  */ NULL,
+/* surface table        */ (SprSurface *)&Obj05Surface,
+/* surface normal table */ (MthXyz *)&Obj05SurfaceNormal,
+/* surface vertex table */ NULL,
+/* shading index table  */ shdIdxTbl,
+/* next object          */ NULL
+};
+
+static MthXyz Obj07VertPoint[] = {
+/* 0    */ {MTH_FIXED(-50.000000*SCALE),MTH_FIXED(100.000000*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 1    */ {MTH_FIXED(-50.000000*SCALE),MTH_FIXED(-100.000000*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 2    */ {MTH_FIXED(50.000000*SCALE),MTH_FIXED(-100.000000*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 3    */ {MTH_FIXED(50.000000*SCALE),MTH_FIXED(100.000000*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 4    */ {MTH_FIXED(-50.000000*SCALE),MTH_FIXED(100.000000*SCALE),MTH_FIXED(100.000000*SCALE)},
+/* 5    */ {MTH_FIXED(50.000000*SCALE),MTH_FIXED(100.000000*SCALE),MTH_FIXED(100.000000*SCALE)},
+/* 6    */ {MTH_FIXED(50.000000*SCALE),MTH_FIXED(-100.000000*SCALE),MTH_FIXED(100.000000*SCALE)},
+/* 7    */ {MTH_FIXED(-50.000000*SCALE),MTH_FIXED(-100.000000*SCALE),MTH_FIXED(100.000000*SCALE)}
+};
+
+static MthXyz Obj07SurfaceNormal[] = {
+/* 0    */ {MTH_FIXED(0.000000),MTH_FIXED(0.000000),MTH_FIXED(-1.000000)},
+/* 1    */ {MTH_FIXED(0.000000),MTH_FIXED(-0.000000),MTH_FIXED(1.000000)},
+/* 2    */ {MTH_FIXED(0.000000),MTH_FIXED(1.000000),MTH_FIXED(0.000000)},
+/* 3    */ {MTH_FIXED(1.000000),MTH_FIXED(-0.000000),MTH_FIXED(0.000000)},
+/* 4    */ {MTH_FIXED(0.000000),MTH_FIXED(-1.000000),MTH_FIXED(0.000000)},
+/* 5    */ {MTH_FIXED(-1.000000),MTH_FIXED(-0.000000),MTH_FIXED(-0.000000)}
+};
+
+static MthXyz Obj07VertNormal[] = {
+/* 0    */ {MTH_FIXED(-0.577350),MTH_FIXED(0.577350),MTH_FIXED(-0.577350)},
+/* 1    */ {MTH_FIXED(-0.577350),MTH_FIXED(-0.577350),MTH_FIXED(-0.577350)},
+/* 2    */ {MTH_FIXED(0.577350),MTH_FIXED(-0.577350),MTH_FIXED(-0.577350)},
+/* 3    */ {MTH_FIXED(0.577350),MTH_FIXED(0.577350),MTH_FIXED(-0.577350)},
+/* 4    */ {MTH_FIXED(-0.577350),MTH_FIXED(0.577350),MTH_FIXED(0.577350)},
+/* 5    */ {MTH_FIXED(0.577350),MTH_FIXED(0.577350),MTH_FIXED(0.577350)},
+/* 6    */ {MTH_FIXED(0.577350),MTH_FIXED(-0.577350),MTH_FIXED(0.577350)},
+/* 7    */ {MTH_FIXED(-0.577350),MTH_FIXED(-0.577350),MTH_FIXED(0.577350)}
+};
+
+static SprSurface Obj07Surface[] = {
+/* 0    */ {    0, 1, 2, 3,
+                DRAWObj07 | ZSORT_MIN,
+                COLORObj07
+           },
+/* 1    */ {    4, 5, 6, 7,
+                DRAWObj07 | ZSORT_MIN,
+                COLORObj07
+           },
+/* 2    */ {    0, 3, 5, 4,
+                DRAWObj07 | ZSORT_MIN,
+                COLORObj07
+           },
+/* 3    */ {    3, 2, 6, 5,
+                DRAWObj07 | ZSORT_MIN,
+                COLORObj07
+           },
+/* 4    */ {    2, 1, 7, 6,
+                DRAWObj07 | ZSORT_MIN,
+                COLORObj07
+           },
+/* 5    */ {    1, 0, 4, 7,
+                DRAWObj07 | ZSORT_MIN,
+                COLORObj07
+           }
+};
+
+static SprObject3D Obj07 = {
+/* object no.           */ 2,
+/* display flag         */ DISP_POLYGON |
+                           GOURAUD_SHADING,
+/* number of vertex     */ 8,
+/* number of surface    */ 6,
+/* vertex table         */ (MthXyz *)&Obj07VertPoint,
+/* vertex normal table  */ (MthXyz *)&Obj07VertNormal,
+/* surface table        */ (SprSurface *)&Obj07Surface,
+/* surface normal table */ (MthXyz *)&Obj07SurfaceNormal,
+/* surface vertex table */ NULL,
+/* shading index table  */ NULL,
+/* next object          */ NULL
+};
+
+static MthXyz Obj04VertPoint[] = {
+/* 0    */ {MTH_FIXED(-15.000001*SCALE),MTH_FIXED(15.000001*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 1    */ {MTH_FIXED(-15.000001*SCALE),MTH_FIXED(-15.000001*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 2    */ {MTH_FIXED(15.000001*SCALE),MTH_FIXED(-15.000001*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 3    */ {MTH_FIXED(15.000001*SCALE),MTH_FIXED(15.000001*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 4    */ {MTH_FIXED(-15.000001*SCALE),MTH_FIXED(15.000001*SCALE),MTH_FIXED(290.000000*SCALE)},
+/* 5    */ {MTH_FIXED(15.000001*SCALE),MTH_FIXED(15.000001*SCALE),MTH_FIXED(290.000000*SCALE)},
+/* 6    */ {MTH_FIXED(15.000001*SCALE),MTH_FIXED(-15.000001*SCALE),MTH_FIXED(290.000000*SCALE)},
+/* 7    */ {MTH_FIXED(-15.000001*SCALE),MTH_FIXED(-15.000001*SCALE),MTH_FIXED(290.000000*SCALE)}
+};
+
+static MthXyz Obj04SurfaceNormal[] = {
+/* 0    */ {MTH_FIXED(0.000000),MTH_FIXED(0.000000),MTH_FIXED(-1.000000)},
+/* 1    */ {MTH_FIXED(0.000000),MTH_FIXED(-0.000000),MTH_FIXED(1.000000)},
+/* 2    */ {MTH_FIXED(0.000000),MTH_FIXED(1.000000),MTH_FIXED(0.000000)},
+/* 3    */ {MTH_FIXED(1.000000),MTH_FIXED(-0.000000),MTH_FIXED(0.000000)},
+/* 4    */ {MTH_FIXED(0.000000),MTH_FIXED(-1.000000),MTH_FIXED(0.000000)},
+/* 5    */ {MTH_FIXED(-1.000000),MTH_FIXED(-0.000000),MTH_FIXED(-0.000000)}
+};
+
+static MthXyz Obj04VertNormal[] = {
+/* 0    */ {MTH_FIXED(-0.577350),MTH_FIXED(0.577350),MTH_FIXED(-0.577350)},
+/* 1    */ {MTH_FIXED(-0.577350),MTH_FIXED(-0.577350),MTH_FIXED(-0.577350)},
+/* 2    */ {MTH_FIXED(0.577350),MTH_FIXED(-0.577350),MTH_FIXED(-0.577350)},
+/* 3    */ {MTH_FIXED(0.577350),MTH_FIXED(0.577350),MTH_FIXED(-0.577350)},
+/* 4    */ {MTH_FIXED(-0.577350),MTH_FIXED(0.577350),MTH_FIXED(0.577350)},
+/* 5    */ {MTH_FIXED(0.577350),MTH_FIXED(0.577350),MTH_FIXED(0.577350)},
+/* 6    */ {MTH_FIXED(0.577350),MTH_FIXED(-0.577350),MTH_FIXED(0.577350)},
+/* 7    */ {MTH_FIXED(-0.577350),MTH_FIXED(-0.577350),MTH_FIXED(0.577350)}
+};
+
+static SprSurface Obj04Surface[] = {
+/* 0    */ {    0, 1, 2, 3,
+                DRAWObj04 | ZSORT_MIN,
+                COLORObj04
+           },
+/* 1    */ {    4, 5, 6, 7,
+                DRAWObj04 | ZSORT_MIN,
+                COLORObj04
+           },
+/* 2    */ {    0, 3, 5, 4,
+                DRAWObj04 | ZSORT_MIN,
+                COLORObj04
+           },
+/* 3    */ {    3, 2, 6, 5,
+                DRAWObj04 | ZSORT_MIN,
+                COLORObj04
+           },
+/* 4    */ {    2, 1, 7, 6,
+                DRAWObj04 | ZSORT_MIN,
+                COLORObj04
+           },
+/* 5    */ {    1, 0, 4, 7,
+                DRAWObj04 | ZSORT_MIN,
+                COLORObj04
+           }
+};
+
+static SprObject3D Obj04 = {
+/* object no.           */ 3,
+/* display flag         */ DISP_POLYGON |
+                           GOURAUD_SHADING,
+/* number of vertex     */ 8,
+/* number of surface    */ 6,
+/* vertex table         */ (MthXyz *)&Obj04VertPoint,
+/* vertex normal table  */ (MthXyz *)&Obj04VertNormal,
+/* surface table        */ (SprSurface *)&Obj04Surface,
+/* surface normal table */ (MthXyz *)&Obj04SurfaceNormal,
+/* surface vertex table */ NULL,
+/* shading index table  */ NULL,
+/* next object          */ NULL
+};
+
+static MthXyz Obj03VertPoint[] = {
+/* 0    */ {MTH_FIXED(-85.000000*SCALE),MTH_FIXED(85.000000*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 1    */ {MTH_FIXED(-85.000000*SCALE),MTH_FIXED(-85.000000*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 2    */ {MTH_FIXED(85.000000*SCALE),MTH_FIXED(-85.000000*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 3    */ {MTH_FIXED(85.000000*SCALE),MTH_FIXED(85.000000*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 4    */ {MTH_FIXED(-85.000000*SCALE),MTH_FIXED(85.000000*SCALE),MTH_FIXED(170.000000*SCALE)},
+/* 5    */ {MTH_FIXED(85.000000*SCALE),MTH_FIXED(85.000000*SCALE),MTH_FIXED(170.000000*SCALE)},
+/* 6    */ {MTH_FIXED(85.000000*SCALE),MTH_FIXED(-85.000000*SCALE),MTH_FIXED(170.000000*SCALE)},
+/* 7    */ {MTH_FIXED(-85.000000*SCALE),MTH_FIXED(-85.000000*SCALE),MTH_FIXED(170.000000*SCALE)}
+};
+
+static MthXyz Obj03SurfaceNormal[] = {
+/* 0    */ {MTH_FIXED(0.000000),MTH_FIXED(0.000000),MTH_FIXED(-1.000000)},
+/* 1    */ {MTH_FIXED(0.000000),MTH_FIXED(-0.000000),MTH_FIXED(1.000000)},
+/* 2    */ {MTH_FIXED(0.000000),MTH_FIXED(1.000000),MTH_FIXED(0.000000)},
+/* 3    */ {MTH_FIXED(1.000000),MTH_FIXED(-0.000000),MTH_FIXED(0.000000)},
+/* 4    */ {MTH_FIXED(0.000000),MTH_FIXED(-1.000000),MTH_FIXED(0.000000)},
+/* 5    */ {MTH_FIXED(-1.000000),MTH_FIXED(-0.000000),MTH_FIXED(-0.000000)}
+};
+
+static MthXyz Obj03VertNormal[] = {
+/* 0    */ {MTH_FIXED(-0.577350),MTH_FIXED(0.577350),MTH_FIXED(-0.577350)},
+/* 1    */ {MTH_FIXED(-0.577350),MTH_FIXED(-0.577350),MTH_FIXED(-0.577350)},
+/* 2    */ {MTH_FIXED(0.577350),MTH_FIXED(-0.577350),MTH_FIXED(-0.577350)},
+/* 3    */ {MTH_FIXED(0.577350),MTH_FIXED(0.577350),MTH_FIXED(-0.577350)},
+/* 4    */ {MTH_FIXED(-0.577350),MTH_FIXED(0.577350),MTH_FIXED(0.577350)},
+/* 5    */ {MTH_FIXED(0.577350),MTH_FIXED(0.577350),MTH_FIXED(0.577350)},
+/* 6    */ {MTH_FIXED(0.577350),MTH_FIXED(-0.577350),MTH_FIXED(0.577350)},
+/* 7    */ {MTH_FIXED(-0.577350),MTH_FIXED(-0.577350),MTH_FIXED(0.577350)}
+};
+
+static SprSurface Obj03Surface[] = {
+/* 0    */ {    0, 1, 2, 3,
+                DRAWObj03 | ZSORT_MIN,
+                COLORObj03
+           },
+/* 1    */ {    4, 5, 6, 7,
+                DRAWObj03 | ZSORT_MIN,
+                COLORObj03
+           },
+/* 2    */ {    0, 3, 5, 4,
+                DRAWObj03 | ZSORT_MIN,
+                COLORObj03
+           },
+/* 3    */ {    3, 2, 6, 5,
+                DRAWObj03 | ZSORT_MIN,
+                COLORObj03
+           },
+/* 4    */ {    2, 1, 7, 6,
+                DRAWObj03 | ZSORT_MIN,
+                COLORObj03
+           },
+/* 5    */ {    1, 0, 4, 7,
+                DRAWObj03 | ZSORT_MIN,
+                COLORObj03
+           }
+};
+
+static SprObject3D Obj03 = {
+/* object no.           */ 4,
+/* display flag         */ DISP_POLYGON |
+                           GOURAUD_SHADING,
+/* number of vertex     */ 8,
+/* number of surface    */ 6,
+/* vertex table         */ (MthXyz *)&Obj03VertPoint,
+/* vertex normal table  */ (MthXyz *)&Obj03VertNormal,
+/* surface table        */ (SprSurface *)&Obj03Surface,
+/* surface normal table */ (MthXyz *)&Obj03SurfaceNormal,
+/* surface vertex table */ NULL,
+/* shading index table  */ NULL,
+/* next object          */ NULL
+};
+
+static MthXyz Obj02VertPoint[] = {
+/* 0    */ {MTH_FIXED(-125.000000*SCALE),MTH_FIXED(125.000000*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 1    */ {MTH_FIXED(-125.000000*SCALE),MTH_FIXED(-125.000000*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 2    */ {MTH_FIXED(125.000000*SCALE),MTH_FIXED(-125.000000*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 3    */ {MTH_FIXED(125.000000*SCALE),MTH_FIXED(125.000000*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 4    */ {MTH_FIXED(-125.000000*SCALE),MTH_FIXED(125.000000*SCALE),MTH_FIXED(250.000000*SCALE)},
+/* 5    */ {MTH_FIXED(125.000000*SCALE),MTH_FIXED(125.000000*SCALE),MTH_FIXED(250.000000*SCALE)},
+/* 6    */ {MTH_FIXED(125.000000*SCALE),MTH_FIXED(-125.000000*SCALE),MTH_FIXED(250.000000*SCALE)},
+/* 7    */ {MTH_FIXED(-125.000000*SCALE),MTH_FIXED(-125.000000*SCALE),MTH_FIXED(250.000000*SCALE)}
+};
+
+static MthXyz Obj02SurfaceNormal[] = {
+/* 0    */ {MTH_FIXED(0.000000),MTH_FIXED(0.000000),MTH_FIXED(-1.000000)},
+/* 1    */ {MTH_FIXED(0.000000),MTH_FIXED(-0.000000),MTH_FIXED(1.000000)},
+/* 2    */ {MTH_FIXED(0.000000),MTH_FIXED(1.000000),MTH_FIXED(0.000000)},
+/* 3    */ {MTH_FIXED(1.000000),MTH_FIXED(-0.000000),MTH_FIXED(0.000000)},
+/* 4    */ {MTH_FIXED(0.000000),MTH_FIXED(-1.000000),MTH_FIXED(0.000000)},
+/* 5    */ {MTH_FIXED(-1.000000),MTH_FIXED(-0.000000),MTH_FIXED(-0.000000)}
+};
+
+static MthXyz Obj02VertNormal[] = {
+/* 0    */ {MTH_FIXED(-0.577350),MTH_FIXED(0.577350),MTH_FIXED(-0.577350)},
+/* 1    */ {MTH_FIXED(-0.577350),MTH_FIXED(-0.577350),MTH_FIXED(-0.577350)},
+/* 2    */ {MTH_FIXED(0.577350),MTH_FIXED(-0.577350),MTH_FIXED(-0.577350)},
+/* 3    */ {MTH_FIXED(0.577350),MTH_FIXED(0.577350),MTH_FIXED(-0.577350)},
+/* 4    */ {MTH_FIXED(-0.577350),MTH_FIXED(0.577350),MTH_FIXED(0.577350)},
+/* 5    */ {MTH_FIXED(0.577350),MTH_FIXED(0.577350),MTH_FIXED(0.577350)},
+/* 6    */ {MTH_FIXED(0.577350),MTH_FIXED(-0.577350),MTH_FIXED(0.577350)},
+/* 7    */ {MTH_FIXED(-0.577350),MTH_FIXED(-0.577350),MTH_FIXED(0.577350)}
+};
+
+static SprSurface Obj02Surface[] = {
+/* 0    */ {    0, 1, 2, 3,
+                DRAWObj02 | ZSORT_MIN,
+                COLORObj02
+           },
+/* 1    */ {    4, 5, 6, 7,
+                DRAWObj02 | ZSORT_MIN,
+                COLORObj02
+           },
+/* 2    */ {    0, 3, 5, 4,
+                DRAWObj02 | ZSORT_MIN,
+                COLORObj02
+           },
+/* 3    */ {    3, 2, 6, 5,
+                DRAWObj02 | ZSORT_MIN,
+                COLORObj02
+           },
+/* 4    */ {    2, 1, 7, 6,
+                DRAWObj02 | ZSORT_MIN,
+                COLORObj02
+           },
+/* 5    */ {    1, 0, 4, 7,
+                DRAWObj02 | ZSORT_MIN,
+                COLORObj02
+           }
+};
+
+static SprObject3D Obj02 = {
+/* object no.           */ 5,
+/* display flag         */ DISP_POLYGON |
+                           GOURAUD_SHADING,
+/* number of vertex     */ 8,
+/* number of surface    */ 6,
+/* vertex table         */ (MthXyz *)&Obj02VertPoint,
+/* vertex normal table  */ (MthXyz *)&Obj02VertNormal,
+/* surface table        */ (SprSurface *)&Obj02Surface,
+/* surface normal table */ (MthXyz *)&Obj02SurfaceNormal,
+/* surface vertex table */ NULL,
+/* shading index table  */ NULL,
+/* next object          */ NULL
+};
+
+static MthXyz Obj01VertPoint[] = {
+/* 0    */ {MTH_FIXED(-100.000000*SCALE),MTH_FIXED(100.000000*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 1    */ {MTH_FIXED(-100.000000*SCALE),MTH_FIXED(-100.000000*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 2    */ {MTH_FIXED(100.000000*SCALE),MTH_FIXED(-100.000000*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 3    */ {MTH_FIXED(100.000000*SCALE),MTH_FIXED(100.000000*SCALE),MTH_FIXED(0.000000*SCALE)},
+/* 4    */ {MTH_FIXED(-100.000000*SCALE),MTH_FIXED(100.000000*SCALE),MTH_FIXED(200.000000*SCALE)},
+/* 5    */ {MTH_FIXED(100.000000*SCALE),MTH_FIXED(100.000000*SCALE),MTH_FIXED(200.000000*SCALE)},
+/* 6    */ {MTH_FIXED(100.000000*SCALE),MTH_FIXED(-100.000000*SCALE),MTH_FIXED(200.000000*SCALE)},
+/* 7    */ {MTH_FIXED(-100.000000*SCALE),MTH_FIXED(-100.000000*SCALE),MTH_FIXED(200.000000*SCALE)}
+};
+
+static MthXyz Obj01SurfaceNormal[] = {
+/* 0    */ {MTH_FIXED(0.000000),MTH_FIXED(0.000000),MTH_FIXED(-1.000000)},
+/* 1    */ {MTH_FIXED(0.000000),MTH_FIXED(-0.000000),MTH_FIXED(1.000000)},
+/* 2    */ {MTH_FIXED(0.000000),MTH_FIXED(1.000000),MTH_FIXED(0.000000)},
+/* 3    */ {MTH_FIXED(1.000000),MTH_FIXED(-0.000000),MTH_FIXED(0.000000)},
+/* 4    */ {MTH_FIXED(0.000000),MTH_FIXED(-1.000000),MTH_FIXED(0.000000)},
+/* 5    */ {MTH_FIXED(-1.000000),MTH_FIXED(-0.000000),MTH_FIXED(-0.000000)}
+};
+
+static MthXyz Obj01VertNormal[] = {
+/* 0    */ {MTH_FIXED(-0.577350),MTH_FIXED(0.577350),MTH_FIXED(-0.577350)},
+/* 1    */ {MTH_FIXED(-0.577350),MTH_FIXED(-0.577350),MTH_FIXED(-0.577350)},
+/* 2    */ {MTH_FIXED(0.577350),MTH_FIXED(-0.577350),MTH_FIXED(-0.577350)},
+/* 3    */ {MTH_FIXED(0.577350),MTH_FIXED(0.577350),MTH_FIXED(-0.577350)},
+/* 4    */ {MTH_FIXED(-0.577350),MTH_FIXED(0.577350),MTH_FIXED(0.577350)},
+/* 5    */ {MTH_FIXED(0.577350),MTH_FIXED(0.577350),MTH_FIXED(0.577350)},
+/* 6    */ {MTH_FIXED(0.577350),MTH_FIXED(-0.577350),MTH_FIXED(0.577350)},
+/* 7    */ {MTH_FIXED(-0.577350),MTH_FIXED(-0.577350),MTH_FIXED(0.577350)}
+};
+
+static SprSurface Obj01Surface[] = {
+/* 0    */ {    0, 1, 2, 3,
+                DRAWObj01 | ZSORT_MIN,
+                COLORObj01
+           },
+/* 1    */ {    4, 5, 6, 7,
+                DRAWObj01 | ZSORT_MIN,
+                COLORObj01
+           },
+/* 2    */ {    0, 3, 5, 4,
+                DRAWObj01 | ZSORT_MIN,
+                COLORObj01
+           },
+/* 3    */ {    3, 2, 6, 5,
+                DRAWObj01 | ZSORT_MIN,
+                COLORObj01
+           },
+/* 4    */ {    2, 1, 7, 6,
+                DRAWObj01 | ZSORT_MIN,
+                COLORObj01
+           },
+/* 5    */ {    1, 0, 4, 7,
+                DRAWObj01 | ZSORT_MIN,
+                COLORObj01
+           }
+};
+
+static SprObject3D Obj01 = {
+/* object no.           */ 6,
+/* display flag         */ DISP_POLYGON |
+                           GOURAUD_SHADING,
+/* number of vertex     */ 8,
+/* number of surface    */ 6,
+/* vertex table         */ (MthXyz *)&Obj01VertPoint,
+/* vertex normal table  */ (MthXyz *)&Obj01VertNormal,
+/* surface table        */ (SprSurface *)&Obj01Surface,
+/* surface normal table */ (MthXyz *)&Obj01SurfaceNormal,
+/* surface vertex table */ NULL,
+/* shading index table  */ NULL,
+/* next object          */ NULL
+};
+
+static SprCluster Cluster3f = {
+/* cluster no.          */ 0,
+/* rotation sequence    */ ROT_SEQ_ZYX,
+/* rotation x           */ MTH_FIXED(0.000000),
+/* rotation y           */ MTH_FIXED(0.000000),
+/* rotation z           */ MTH_FIXED(0.000000),
+/* point x              */ MTH_FIXED(-250.000000*SCALE),
+/* point y              */ MTH_FIXED(0.000000*SCALE),
+/* point z              */ MTH_FIXED(0.000000*SCALE),
+/* object               */ &Obj07,
+/* next cluster         */ NULL,
+/* child cluster        */ NULL
+};
+
+static SprCluster Cluster3e = {
+/* cluster no.          */ 1,
+/* rotation sequence    */ ROT_SEQ_ZYX,
+/* rotation x           */ MTH_FIXED(90.000000),
+/* rotation y           */ MTH_FIXED(0.000000),
+/* rotation z           */ MTH_FIXED(0.000000),
+/* point x              */ MTH_FIXED(0.000000*SCALE),
+/* point y              */ MTH_FIXED(-300.000000*SCALE),
+/* point z              */ MTH_FIXED(0.000000*SCALE),
+/* object               */ &Obj06,
+/* next cluster         */ &Cluster3f,
+/* child cluster        */ NULL
+};
+
+static SprCluster Cluster3d = {
+/* cluster no.          */ 2,
+/* rotation sequence    */ ROT_SEQ_ZYX,
+/* rotation x           */ MTH_FIXED(45.000000),
+/* rotation y           */ MTH_FIXED(0.000000),
+/* rotation z           */ MTH_FIXED(0.000000),
+/* point x              */ MTH_FIXED(0.000000*SCALE),
+/* point y              */ MTH_FIXED(250.000000*SCALE),
+/* point z              */ MTH_FIXED(0.000000*SCALE),
+/* object               */ &Obj05,
+/* next cluster         */ &Cluster3e,
+/* child cluster        */ NULL
+};
+
+static SprCluster Cluster3c = {
+/* cluster no.          */ 3,
+/* rotation sequence    */ ROT_SEQ_ZYX,
+/* rotation x           */ MTH_FIXED(0.000000),
+/* rotation y           */ MTH_FIXED(0.000000),
+/* rotation z           */ MTH_FIXED(0.000000),
+/* point x              */ MTH_FIXED(250.000000*SCALE),
+/* point y              */ MTH_FIXED(0.000000*SCALE),
+/* point z              */ MTH_FIXED(0.000000*SCALE),
+/* object               */ &Obj07,
+/* next cluster         */ NULL,
+/* child cluster        */ NULL
+};
+
+static SprCluster Cluster3b = {
+/* cluster no.          */ 4,
+/* rotation sequence    */ ROT_SEQ_ZYX,
+/* rotation x           */ MTH_FIXED(90.000000),
+/* rotation y           */ MTH_FIXED(0.000000),
+/* rotation z           */ MTH_FIXED(0.000000),
+/* point x              */ MTH_FIXED(0.000000*SCALE),
+/* point y              */ MTH_FIXED(-300.000000*SCALE),
+/* point z              */ MTH_FIXED(0.000000*SCALE),
+/* object               */ &Obj06,
+/* next cluster         */ &Cluster3c,
+/* child cluster        */ NULL
+};
+
+static SprCluster Cluster3a = {
+/* cluster no.          */ 5,
+/* rotation sequence    */ ROT_SEQ_ZYX,
+/* rotation x           */ MTH_FIXED(45.000000),
+/* rotation y           */ MTH_FIXED(0.000000),
+/* rotation z           */ MTH_FIXED(0.000000),
+/* point x              */ MTH_FIXED(0.000000*SCALE),
+/* point y              */ MTH_FIXED(250.000000*SCALE),
+/* point z              */ MTH_FIXED(0.000000*SCALE),
+/* object               */ &Obj05,
+/* next cluster         */ &Cluster3b,
+/* child cluster        */ NULL
+};
+
+static SprCluster Cluster2c = {
+/* cluster no.          */ 6,
+/* rotation sequence    */ ROT_SEQ_ZYX,
+/* rotation x           */ MTH_FIXED(0.000000),
+/* rotation y           */ MTH_FIXED(0.000000),
+/* rotation z           */ MTH_FIXED(0.000000),
+/* point x              */ MTH_FIXED(0.000000*SCALE),
+/* point y              */ MTH_FIXED(0.000000*SCALE),
+/* point z              */ MTH_FIXED(350.000000*SCALE),
+/* object               */ &Obj04,
+/* next cluster         */ NULL,
+/* child cluster        */ NULL
+};
+
+static SprCluster Cluster2b = {
+/* cluster no.          */ 7,
+/* rotation sequence    */ ROT_SEQ_ZYX,
+/* rotation x           */ MTH_FIXED(0.000000),
+/* rotation y           */ MTH_FIXED(0.000000),
+/* rotation z           */ MTH_FIXED(0.000000),
+/* point x              */ MTH_FIXED(-300.000000*SCALE),
+/* point y              */ MTH_FIXED(0.000000*SCALE),
+/* point z              */ MTH_FIXED(0.000000*SCALE),
+/* object               */ &Obj03,
+/* next cluster         */ &Cluster2c,
+/* child cluster        */ &Cluster3d
+};
+
+static SprCluster Cluster2a = {
+/* cluster no.          */ 8,
+/* rotation sequence    */ ROT_SEQ_ZYX,
+/* rotation x           */ MTH_FIXED(0.000000),
+/* rotation y           */ MTH_FIXED(0.000000),
+/* rotation z           */ MTH_FIXED(0.000000),
+/* point x              */ MTH_FIXED(300.000000*SCALE),
+/* point y              */ MTH_FIXED(0.000000*SCALE),
+/* point z              */ MTH_FIXED(0.000000*SCALE),
+/* object               */ &Obj02,
+/* next cluster         */ &Cluster2b,
+/* child cluster        */ &Cluster3a
+};
+
+static SprCluster Cluster1 = {
+/* cluster no.          */ 9,
+/* rotation sequence    */ ROT_SEQ_ZYX,
+/* rotation x           */ MTH_FIXED(0.000000),
+/* rotation y           */ MTH_FIXED(0.000000),
+/* rotation z           */ MTH_FIXED(0.000000),
+/* point x              */ MTH_FIXED(0.000000*SCALE),
+/* point y              */ MTH_FIXED(0.000000*SCALE),
+/* point z              */ MTH_FIXED(0.000000*SCALE),
+/* object               */ &Obj01,
+/* next cluster         */ NULL,
+/* child cluster        */ &Cluster2a
+};
+
+/*      << Data Information >>
+       object_name    vertex     face   normal   normal(gouraud)
+        Obj01             8        6        6        8
+        Obj02             8        6        6        8
+        Obj03             8        6        6        8
+        Obj04             8        6        6        8
+        Obj05            16       14       14        -
+        Obj06            16       14       14        -
+        Obj07             8        6        6        8
+       ------------------------------------------------
+        Total            72       58       58       40
+*/

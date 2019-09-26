@@ -1,0 +1,17 @@
+OUTPUT	smpdbg10.abs
+INPUT	..\..\lib\strt1_h.obj
+INPUT	..\..\lib\strt2_h.obj
+INPUT	..\..\per\smpclib\per_x1.obj
+INPUT	..\..\per\smpclib\per_x2.obj
+INPUT	..\..\per\smpclib\per_x3.obj
+INPUT	..\..\v_blank\set_vb.obj
+INPUT	..\..\v_blank\v_blank.obj
+INPUT	smpdbg10.obj
+library	..\..\..\segalib\lib\sega_per.lib
+library	..\..\..\segalib\lib\sega_sat.lib
+library	..\..\..\sh\lib\shcnpic.lib
+ENTRY	START
+;START	I,P,SEGA_P,C,SEGA_C,D,SEGA_D,B,SEGA_B,S(06010000)
+START	P,SEGA_P,C,SEGA_C,D,SEGA_D,B,SEGA_B(06010000)
+PRINT	smpdbg10.map
+EXIT

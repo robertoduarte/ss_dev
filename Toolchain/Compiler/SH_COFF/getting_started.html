@@ -1,0 +1,300 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Quick start guide</title>
+<script language="javascript" src="./ssi/js/MM_functions.js"></script>
+<script language="javascript" src="./ssi/css/stylesheet.js"></script>
+</head>
+
+<body>
+<p class=MsoPlainText align=center style='text-align:center;mso-outline-level:
+1'><span style='font-size:20.0pt;mso-bidi-font-size:10.0pt;
+font-family:Impact;mso-fareast-font-family:"MS Mincho"'>Quick Start Guide</span></p>
+<p class=MsoPlainText align=center style='text-align:center;mso-outline-level:
+1'>&nbsp;</p>
+<p class=MsoPlainText align=center style='text-align:center;mso-outline-level:
+1'>&nbsp;</p>
+<p align="center"><span style="font-size: 11.0pt; mso-bidi-font-size: 10.0pt; font-family: Verdana; mso-fareast-font-family: MS Mincho"><a href="#Windows Users">For
+Windows Users</a></span>
+<p align="center"><span style="font-size: 11.0pt; mso-bidi-font-size: 10.0pt; font-family: Verdana; mso-fareast-font-family: MS Mincho"><a href="#GNU/Linux users">For
+GNU/Linux Users</a></span>
+	<br>
+</p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+<p class=MsoPlainText style='text-align:justify'><b
+style='mso-bidi-font-weight:normal'><span style='font-size:11.0pt;mso-bidi-font-size:
+10.0pt;font-family:Verdana;mso-fareast-font-family:"MS Mincho"'><a name="Windows Users">Windows Users</a></span></b></p>
+<p><span
+style='font-size:11.0pt;mso-bidi-font-size:10.0pt;font-family:Verdana;
+mso-fareast-font-family:"MS Mincho"'>
+The steps given below assume that you are using the h8300-elf tool chain. If you are using a different tool chain then use appropriate commands.</span></p>
+<p><span
+style='font-size:11.0pt;mso-bidi-font-size:10.0pt;font-family:Verdana;
+mso-fareast-font-family:"MS Mincho"'>
+    1. Run the tool chain short cut from Windows Start menu.</span></p>
+
+<p><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:Verdana'> 2. Create a folder "test" and go to that folder.
+  <br>
+  </span></p>
+<p><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:Verdana'>
+    3. Write a "Hello World!" program in file hello.c.<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;#include &lt;stdio.h&gt;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	int main(void)<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	{
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<br>
+       &nbsp;&nbsp;&nbsp;&nbsp;
+	   &nbsp;&nbsp;&nbsp;&nbsp;
+	   int ret;<br>
+	   &nbsp;&nbsp;&nbsp;&nbsp;
+	   &nbsp;&nbsp;&nbsp;&nbsp;
+	   ret = printf("Hello World!\r\n");<br>
+	   &nbsp;&nbsp;&nbsp;&nbsp;
+	   &nbsp;&nbsp;&nbsp;&nbsp;
+	   return ret;<br>
+	   &nbsp;&nbsp;&nbsp;&nbsp;
+	}
+	</span></p>
+<p><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:Verdana'>
+    4. Compile the program using the following command line:<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; &gt; h8300-elf-gcc hello.c -o hello.out -g</span></p>
+<p><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:Verdana'>
+    5. The above command will generate an executable file called hello.out.</span></p>
+<p><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:Verdana'> 6. Run the program using h8300-elf simulator as follows:<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; &gt; h8300-elf-run hello.out</span></p>
+  <p><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:Verdana'> 7. Execution of the program will print "Hello World!" string on the console.
+</span></p>
+<p><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:Verdana'>
+    8. To use Insight GDB, follow the steps given below:</span></p>
+<p><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:Verdana'>9. Type following command line (Loading will take couple of seconds)<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; &gt; h8300-elf-gdb hello.out</span></p>
+	<p><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:Verdana'>
+    10. After loading, the program cursor will be positioned at line printf. At this point, the GDB would <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;have opened file hello.c in its main window.</span></p>
+	<p><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:Verdana'>
+    11. From the file menu, select the option "target settings". A Target Selection dialog will appear.</span></p>
+	<p><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:Verdana'>
+    12. From the Target drop down list, select "simulator". Keep the checkbox, break point at main, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;checked.</span></p>
+	<p><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:Verdana'>
+    13. From the Run menu, select "Connect to Target". A dialog box saying, "Successfully Connected"  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;will appear.
+	</span></p>
+	<p><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:Verdana'>
+
+14. From the View menu select "Console". This will open the console window, which displays the<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;messages printed by the program.</span></p>
+	<p><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:Verdana'>
+    15. From the Run Menu, select "Run". The program will start running and will stop at main, since the <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;breakpoint is set at main.</span></p>
+	<p><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:Verdana'>
+    16. Now the flow of program is in your control. Press 'N' to go to next executable line.</span></p>
+	<p><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:Verdana'>
+    17. Position the cursor on the variable ret. This should display "ret=14" as a tool tip.
+</span></p>
+	<p><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:Verdana'>
+    18. You can then try various menu options such as "Watch Variables", "Set breakpoint", etc.</span></p>
+	<p><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:Verdana'>
+    19. This is how a simple program can be debugged using Insight GDB. Please refer to the GDB manual<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for details on various GDB commands and the Insight manual for operational commands.</span></p>
+
+   	<p><span
+style='font-size:11.0pt;mso-bidi-font-size:10.0pt;font-family:Verdana;
+mso-fareast-font-family:"MS Mincho"'><b>
+	GNUH8 tool chain is integrated with HEW (High-performance Embedded Workshop).
+    <br>
+    HEW is an integrated development Environment providing graphical windows front-end to variety
+    of compilers and other tools for Renesas. It comes with H8 simulators. It also has in-built
+    flashing ability for variety of Renesas targets.
+    <br>
+	HEW is available as a free download from <a href="http://www.kpitgnutools.com/downloadHew.php">http://www.kpitgnutools.com/downloadHew.php</a>
+</span></b></p>
+
+
+   	<p><span
+style='font-size:11.0pt;mso-bidi-font-size:10.0pt;font-family:Verdana;
+mso-fareast-font-family:"MS Mincho"'>
+   The steps below assume that the HEW with integrated GNUH8 ELF tool chain has been installed on the machine.
+   <br>
+   This can be confirmed by looking into 'Administration' option in 'Tools' menu for the
+   list of registered tool chains. The GNUH8 ELF tool chain name should appear under
+   'Tool chains'.
+ </span></p>
+
+
+	<p><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:Verdana'>
+    1. In HEW, click on the File->New Workspace to create a new workspace.
+</span></p>
+
+	<p><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:Verdana'>
+    2. Enter the 'Directory' under which the workspace is to be saved.
+</span></p>
+
+	<p><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:Verdana'>
+3. Select 'H8S, H8\300' family from the 'CPU Family' list.
+    (NOTE: GCC compiler supports only processor families and not the specific processor target therefore HEW gives processor family selection only.)
+</span></p>
+
+	<p><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:Verdana'>
+4. Select GNUH8 ELF Tool chain from the tool chain list.
+</span></p>
+
+	<p><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:Verdana'>
+5. Select 'C Application' or 'C++ Application' from the project type. Click Ok.
+</span></p>
+
+	<p><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:Verdana'>
+6. A dialog box with the list of CPU types is displayed. Select any  'CPU Type' and click Ok.
+</span></p>
+
+	<p><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:Verdana'>
+7. In the next dialog box which appears, select the 'Additional CPU options', if required. Click Ok.
+</span></p>
+
+	<p><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:Verdana'>
+8. A final dialog box will be displayed with all the files in the project listed.
+</span></p>
+
+	<p><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:Verdana'>
+9. Click on the 'Finish' button to create the project.
+</span></p>
+
+	<p><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:Verdana'>
+10. Select the 'Build All' option in 'Build' menu to build the project.
+</span></p>
+
+	<p><span style='font-size:11.0pt;mso-bidi-font-size:
+12.0pt;font-family:Verdana'>
+11. The compiler, linker and assembler options can be changed from 'Options' menu.
+</span></p>
+
+	<p>&nbsp;</p>
+
+	<p>&nbsp;</p>
+
+<div class=Section1>
+
+<p class=MsoPlainText style='text-align:justify'><b style='mso-bidi-font-weight:
+normal'><span style='font-size:11.0pt;mso-bidi-font-size:10.0pt;font-family:
+Verdana;mso-fareast-font-family:"MS Mincho"'><a name="GNU/Linux users">GNU/Linux users</a></span></b></p>
+
+<p><span style='font-size:11.0pt;mso-bidi-font-size:10.0pt;font-family:Verdana;
+mso-fareast-font-family:"MS Mincho"'>The steps given below assumes that you are
+using h8300-elf tool chain. If you are using different tool chain then use
+appropriate commands.</span></p>
+
+<p><span style='font-size:11.0pt;mso-bidi-font-size:10.0pt;font-family:Verdana;
+mso-fareast-font-family:"MS Mincho"'>1. Add the tool chain path into current
+path using following command: <br>
+&nbsp;&nbsp;&nbsp;&nbsp;$ export PATH=$PATH:/usr/share/gnuh8_v0301_elf-1/bin/</span></p>
+
+<p><span style='font-size:11.0pt;mso-bidi-font-size:12.0pt;font-family:Verdana'>2.
+Create a folder &quot;test&quot; and go to the folder. </span></p>
+
+<p><span style='font-size:11.0pt;mso-bidi-font-size:12.0pt;font-family:Verdana'>3.
+Write a &quot;Hello World!&quot; program in file hello.c.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;#include &lt;stdio.h&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp; int main(void)<br>
+&nbsp;&nbsp;&nbsp;&nbsp; { &nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; int ret;<br>
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; ret = printf(&quot;Hello
+World!\r\n&quot;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; return ret;<br>
+&nbsp;&nbsp;&nbsp;&nbsp; } </span></p>
+
+<p><span style='font-size:11.0pt;mso-bidi-font-size:12.0pt;font-family:Verdana'>4.
+Compile the program using the following command line:<br>
+&nbsp;&nbsp;&nbsp;&nbsp; $h8300-elf-gcc hello.c -o hello.out -g</span></p>
+
+<p><span style='font-size:11.0pt;mso-bidi-font-size:12.0pt;font-family:Verdana'>5.
+Above command will generate an executable file called hello.out.</span></p>
+
+<p><span style='font-size:11.0pt;mso-bidi-font-size:12.0pt;font-family:Verdana'>6.
+Run the program using h8300-elf simulator as follows:<br>
+&nbsp;&nbsp;&nbsp;&nbsp; $h8300-elf-run hello.out</span></p>
+
+<p><span style='font-size:11.0pt;mso-bidi-font-size:12.0pt;font-family:Verdana'>7.
+Execution of the program will print &quot;Hello World!&quot; string on the
+console.</span></p>
+
+<p><span style='font-size:11.0pt;mso-bidi-font-size:12.0pt;font-family:Verdana'>8.
+To use GDB, follow the steps given below.</span></p>
+
+<p><span style='font-size:11.0pt;mso-bidi-font-size:12.0pt;font-family:Verdana'>9.
+Type the following command line:<br>
+&nbsp;&nbsp;&nbsp;&nbsp; $h8300-elf-gdb hello.out<br>
+&nbsp;&nbsp;&nbsp;&nbsp; The GDB prompt (gdb) will appear on the console.</span></p>
+
+<p><span style='font-size:11.0pt;mso-bidi-font-size:12.0pt;font-family:Verdana'>10.
+Type the command &quot;target sim&quot; on the prompt. This will connect the
+gdb to target simulator and &quot;Connected to target simulator&quot; message
+will appear on the console window.</span></p>
+
+<p><span style='font-size:11.0pt;mso-bidi-font-size:12.0pt;font-family:Verdana'>11.
+Type &quot;load&quot; on the command prompt to load the program in the memory.
+A message indicating that the program is loaded will appear on the console.</span></p>
+
+<p><span style='font-size:11.0pt;mso-bidi-font-size:12.0pt;font-family:Verdana'>12.
+Type command &quot;b main&quot; on the command prompt to insert a breakpoint at
+function main. A message &quot;Breakpoint 1 at 0x10fc: file hello.c, line
+6.&quot; will appear on the console window.</span></p>
+
+<p><span style='font-size:11.0pt;mso-bidi-font-size:12.0pt;font-family:Verdana'>13.
+Type &quot;run&quot; to run the program. The program will stop at line 6 of the
+hello.c. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Following messages will appear on the
+console.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+---------------------------------------------------------- <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Starting program:
+/home/shrinivasa/test/hello.out<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Breakpoint 1, main () at hello.c:6<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6 ret = printf(&quot;Hello
+World!\r\n&quot;); <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+---------------------------------------------------------- </span></p>
+
+<p><span style='font-size:11.0pt;mso-bidi-font-size:12.0pt;font-family:Verdana'>14.
+Press 'N' to go to next line. Pressing 'N' will print &quot;Hello World!&quot;
+on console and program will stop <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;at line 7.</span></p>
+
+<p><span style='font-size:11.0pt;mso-bidi-font-size:12.0pt;font-family:Verdana'>15.
+Type &quot;disp ret&quot; to view the value of &quot;ret&quot;.</span></p>
+
+<p><span style='font-size:11.0pt;mso-bidi-font-size:12.0pt;font-family:Verdana'>16.
+This is how a simple program can be debugged using the GDB. Please refer to the
+GDB manual for details on various GDB commands.</span></p>
+
+</div>
+
+	</body>
+</html>

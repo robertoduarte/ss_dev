@@ -1,0 +1,136 @@
+*asm:
+%(subtarget_asm_endian_spec) %{mrelax:-relax %(subtarget_asm_relax_spec)}%(subtarget_asm_isa_spec)
+
+*asm_debug:
+
+
+*asm_final:
+
+
+*asm_options:
+%a %Y %{c:%W{o*}%{!o*:-o %w%b%O}}%{!c:-o %d%w%u%O}
+
+*invoke_as:
+%{!S:-o %|.s |
+ as %(asm_options) %m.s %A }
+
+*cpp:
+ %(subtarget_cpp_spec) 
+
+*cpp_options:
+%(cpp_unique_options) %1 %{m*} %{std*} %{ansi} %{W*&pedantic*} %{w} %{f*} %{g*:%{!g0:%{!fno-working-directory:-fworking-directory}}} %{O*} %{undef}
+
+*cpp_debug_options:
+%{d*}
+
+*cpp_unique_options:
+%{C|CC:%{!E:%eGCC does not support -C or -CC without -E}} %{!Q:-quiet} %{nostdinc*} %{C} %{CC} %{v} %{I*} %{P} %I %{MD:-MD %{!o:%b.d}%{o*:%.d%*}} %{MMD:-MMD %{!o:%b.d}%{o*:%.d%*}} %{M} %{MM} %{MF*} %{MG} %{MP} %{MQ*} %{MT*} %{!E:%{!M:%{!MM:%{MD|MMD:%{o*:-MQ %*}}}}} %{trigraphs} %{remap} %{g3:-dD} %{H} %C %{D*&U*&A*} %{i*} %Z %i %{E|M|MM:%W{o*}}
+
+*trad_capable_cpp:
+cc1 -E %{traditional|ftraditional|traditional-cpp:-traditional-cpp}
+
+*cc1:
+
+
+*cc1_options:
+%{pg:%{fomit-frame-pointer:%e-pg and -fomit-frame-pointer are incompatible}} %1 %{!Q:-quiet} -dumpbase %B %{d*} %{m*} %{a*} %{c|S:%{o*:-auxbase-strip %*}%{!o*:-auxbase %b}}%{!c:%{!S:-auxbase %b}} %{g*} %{O*} %{W*&pedantic*} %{w} %{std*} %{ansi} %{v:-version} %{pg:-p} %{p} %{f*} %{undef} %{Qn:-fno-ident} %{--help:--help} %{--target-help:--target-help} %{!fsyntax-only:%{S:%W{o*}%{!o*:-o %b.s}}} %{fsyntax-only:-o %j} %{-param*}
+
+*cc1plus:
+
+
+*link_gcc_c_sequence:
+%G %L %G
+
+*endfile:
+
+
+*link:
+-m %(link_emul_prefix)%{m5-compact*|m5-32media*:32}%{m5-64media*:64}%{!m1:%{!m2:%{!m3*:%{!m4*:%{!m5*:%(link_default_cpu_emul)}}}}}%(subtarget_link_emul_suffix) %{mrelax:-relax} %(subtarget_link_spec)
+
+*lib:
+%{!shared:%{g*:-lg} %{!p:%{!pg:-lc}}%{p:-lc_p}%{pg:-lc_p}}
+
+*libgcc:
+-lgcc
+
+*startfile:
+%{!shared:%{pg:gcrt0%O%s}%{!pg:%{p:mcrt0%O%s}%{!p:crt0%O%s}}}
+
+*switches_need_spaces:
+
+
+*cross_compile:
+1
+
+*version:
+3.4-GNUSH_v0501
+
+*multilib:
+. !mrenesas !ml !m2 !m2e !m4-single-only !m4-single !m4;mrenesas mrenesas !ml !m2 !m2e !m4-single-only !m4-single !m4;m2 !mrenesas !ml m2 !m2e !m4-single-only !m4-single !m4;m2e !mrenesas !ml !m2 m2e !m4-single-only !m4-single !m4;m4-single-only !mrenesas !ml !m2 !m2e m4-single-only !m4-single !m4;m4-single !mrenesas !ml !m2 !m2e !m4-single-only m4-single !m4;m4 !mrenesas !ml !m2 !m2e !m4-single-only !m4-single m4;ml/m2 !mrenesas ml m2 !m2e !m4-single-only !m4-single !m4;ml/m2e !mrenesas ml !m2 m2e !m4-single-only !m4-single !m4;ml/m4-single-only !mrenesas ml !m2 !m2e m4-single-only !m4-single !m4;ml/m4-single !mrenesas ml !m2 !m2e !m4-single-only m4-single !m4;ml/m4 !mrenesas ml !m2 !m2e !m4-single-only !m4-single m4;mrenesas/m2 mrenesas !ml m2 !m2e !m4-single-only !m4-single !m4;mrenesas/m2e mrenesas !ml !m2 m2e !m4-single-only !m4-single !m4;mrenesas/m4-single-only mrenesas !ml !m2 !m2e m4-single-only !m4-single !m4;mrenesas/m4-single mrenesas !ml !m2 !m2e !m4-single-only m4-single !m4;mrenesas/m4 mrenesas !ml !m2 !m2e !m4-single-only !m4-single m4;mrenesas/ml/m2 mrenesas ml m2 !m2e !m4-single-only !m4-single !m4;mrenesas/ml/m2e mrenesas ml !m2 m2e !m4-single-only !m4-single !m4;mrenesas/ml/m4-single-only mrenesas ml !m2 !m2e m4-single-only !m4-single !m4;mrenesas/ml/m4-single mrenesas ml !m2 !m2e !m4-single-only m4-single !m4;mrenesas/ml/m4 mrenesas ml !m2 !m2e !m4-single-only !m4-single m4;
+
+*multilib_defaults:
+
+
+*multilib_extra:
+
+
+*multilib_matches:
+m3 m2;m3e m2e;m4-nofpu m2;mrenesas mrenesas;ml ml;m2 m2;m2e m2e;m4-single-only m4-single-only;m4-single m4-single;m4 m4;
+
+*multilib_exclusions:
+
+
+*multilib_options:
+mrenesas ml m2/m2e/m4-single-only/m4-single/m4
+
+*linker:
+collect2
+
+*link_libgcc:
+%D
+
+*md_exec_prefix:
+
+
+*md_startfile_prefix:
+
+
+*md_startfile_prefix_1:
+
+
+*startfile_prefix_spec:
+
+
+*sysroot_suffix_spec:
+
+
+*sysroot_hdrs_suffix_spec:
+
+
+*subtarget_cpp_spec:
+
+
+*link_emul_prefix:
+sh%{ml:l}
+
+*link_default_cpu_emul:
+
+
+*subtarget_link_emul_suffix:
+
+
+*subtarget_link_spec:
+
+
+*subtarget_asm_endian_spec:
+%{ml:-little} %{!ml:-big}
+
+*subtarget_asm_relax_spec:
+%{m4*:-isa=sh4}
+
+*subtarget_asm_isa_spec:
+
+
+*link_command:
+%{!fsyntax-only:%{!c:%{!M:%{!MM:%{!E:%{!S:    %(linker) %l %{pie:-pie} %X %{o*} %{A} %{d} %{e*} %{m} %{N} %{n} %{r}    %{s} %{t} %{u*} %{x} %{z} %{Z} %{!A:%{!nostdlib:%{!nostartfiles:%S}}}    %{static:} %{L*} %(link_libgcc) %o %{fprofile-arcs|fprofile-generate:-lgcov}    %{!nostdlib:%{!nodefaultlibs:%(link_gcc_c_sequence)}}    %{!A:%{!nostdlib:%{!nostartfiles:%E}}} %{T*} }}}}}}
+

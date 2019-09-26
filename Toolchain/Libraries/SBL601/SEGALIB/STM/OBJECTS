@@ -1,0 +1,15 @@
+#
+#�����̃t�@�C���� makefile ���� include ����܂��B
+#  TARGET �ɂ̓��C�u�����̃t�@�C�������w�肵�Ă��������B
+#  OBJS �ɂ̓��C�u��������邽�߂� dependencies ���w�肵�Ă��������B
+#
+TARGET=	$(LIBDIR)/sega_stm.a
+
+OBJS=	$(OBJDIR)/stm_init.o\
+	$(OBJDIR)/stm_svr.o\
+	$(OBJDIR)/stm_trn.o\
+	$(OBJDIR)/stm_acc.o\
+	$(OBJDIR)/stm_loc.o\
+
+_CFLAGS=-I$(PROJ)/../gfs
+

@@ -1,0 +1,157 @@
+*******************************************************************************
+���t�@�C���L������	�Fmanscl.txt
+���Ώۃ��C�u�����L�����́Fscl
+���Ώۃ��C�u��������	�F�u�c�o�Q���C�u����
+���o�[�W�����@�@	�F1.00
+���쐬��		�FK.M
+���쐬��		�F1994-07-29
+�����̑��̃��b�Z�[�W�@	�F�Ȃ�
+*******************************************************************************
+
+1.�T���v���̓�����e�Ǝg�p���@
+	��smpsmp1.c
+		[�^�C�g��]	256�F�J���[�摜���m�[�}���X�N���[���O�ɕ\��
+		[������e]	320X224��256�F�J���[�摜���Z���`���ŕ\������B
+				�p�b�h�P�̕����L�[�ȊO�������ƃ��U�C�N��������
+				�܂��BSTART�{�^���ŏ�����Ԃɖ߂�܂��B
+		[�g�p���@]	(1)�ȉ��̃R�}���h�Ńu�[�g�q�n�l���������B
+                                    RS [����]
+                                    G  [����]
+                                    [CTRL-C]
+                                (2)smpscl1.abs �� 6002000H �Ԓn�Ƀ��[�h���܂��B
+                                    l ;r:smpscl1.abs [����]
+				(3)���s
+				    G 6002000 [����] �Ŏ��s�B
+				(4)�p�b�h����ɂ���
+				  [PAD1]	START:�������
+						R����:���U�C�N  2x2
+						L����:���U�C�N  4x4
+						X����:���U�C�N  6x6
+						Y����:���U�C�N  8x8
+						Z����:���U�C�N 10x10
+						A����:���U�C�N 12x12
+						B����:���U�C�N 14x14
+						C����:���U�C�N 16x16
+						�㷰 :̪��ޱ��(�װ��̾��)
+						���� :̪��޲�(�װ��̾��)
+		[�g�p�t�@���N�V����]
+				SCL_Vdp2Init
+				SCL_SetColRamMode
+				SCL_SetFrameInterval
+				SCL_DisplayFrame
+				SCL_SetBack
+				SCL_AllocColRam
+				SCL_SetColRam
+				SCL_InitConfigTb
+				SCL_SetConfig
+				SCL_SetCycleTable
+				SCL_SetPriority
+				SCL_Open
+				SCL_Close
+				SCL_MoveTo
+				SCL_Scale
+				SCL_SetMosaic
+		[���l]		�֐�"SetVblank"�ƕϐ�"PadData1","PadData2"�́A
+				���荞�ݏ����o�^�̃T���v���Ƃ��āA�f�B���g��
+				"V_BLANK"�̒��ɂ���܂��B
+
+	��smpsmp3.c
+		[�^�C�g��]	ɰ�ٽ�۰قQ�ʂ̕\����ײ����Ұ�ð��ق̎g�p
+		[������e]	�m�[�}���X�N���[���摜���Q�ʃZ���`���ŕ\������B
+				��������C���p�����[�^�ŕό`������B
+		[�g�p���@]	(1)�ȉ��̃R�}���h�Ńu�[�g�q�n�l���������B
+                                    RS [����]
+                                    G  [����]
+                                    [CTRL-C]
+                                (2)smpscl3.abs �� 6002000H �Ԓn�Ƀ��[�h���܂��B
+                                    l ;r:smpscl3.abs [����]
+				(3)���s
+				    G 6002000 [����] �Ŏ��s�B
+		[�g�p�t�@���N�V����]
+				SCL_Vdp2Init
+				SCL_SetFrameInterval
+				SCL_SetColRamMode
+				SCL_InitConfigTb
+				SCL_SetConfig
+				SCL_SetCycleTable
+				SCL_SetPriority
+				SCL_Open
+				SCL_Close
+				SCL_MoveTo
+				SCL_Move
+				SCL_Scale
+				SCL_DisplayFrame
+				SCL_InitLineParamTb
+				SCL_SetLineParam
+		[���l]		�֐�"SetVblank"�ƕϐ�"PadData1","PadData2"�́A
+				���荞�ݏ����o�^�̃T���v���Ƃ��āA�f�B���g��
+				"V_BLANK"�̒��ɂ���܂��B
+
+
+	��smpsmp5.c
+		[�^�C�g��]	��]�X�N���[���Q��(RBG0,RBG1)�\��
+		[������e]	������256�F�r�b�g�}�b�v�ŉ�]�X�N���[���O��
+				�\������B
+				���C���J���[��ʂ�}������256�F�J���[�摜��
+				�Z���`���ŉ�]�X�N���[���P�ɕ\������B
+				PAD1�������܂��B
+		[�g�p���@]	(1)�ȉ��̃R�}���h�Ńu�[�g�q�n�l���������B
+                                    RS [����]
+                                    G  [����]
+                                    [CTRL-C]
+                                (2)smpscl5.abs �� 6002000H �Ԓn�Ƀ��[�h���܂��B
+                                    l ;r:smpscl2.abs [����]
+				(3)���s
+				    G 6002000 [����] �Ŏ��s�B
+				(4)�p�b�h����ɂ���
+				  [PAD1]�@�X�N���[���ʂ̑���
+				  		START:��]�p�x�ƈʒu�̏�����
+						�㷰 :�x�����ړ�
+						���� :�@�@�V
+						���� :�w�����ړ�
+						�E�� :�@�@�V
+						R����:�y�����ړ�
+						L����:�@�@�V
+						X����:�w��]
+						Y����:��ʉ�]
+						Z����:�y��]
+						A����:RBG0��I��
+						B����:RBG1��I��
+						C����:RBG1����ײ��è��ύX
+						�@�@�@(RBG0���ォ����)
+		[�g�p�t�@���N�V����]
+				SCL_Vdp2Init
+				SCL_SetSpriteMode
+				SCL_SetColRamMode
+				SCL_SetBack
+				SCL_InitRotateTable
+				SCL_InitVramConfigTb
+				SCL_SetVramConfig
+				SCL_InitConfigTb
+				SCL_SetConfig
+				SCL_SetPriority
+				SCL_AllocColRam
+				SCL_SetColRam
+				SCL_SetShadowBit
+				SCL_SetLncl
+				SCL_EnableLineCol
+				SCL_SetColMixRate
+				SCL_SetFrameInterval
+				SCL_Open
+				SCL_Close
+				SCL_MoveTo
+				SCL_Move
+				SCL_RotateTo
+				SCL_Rotate
+				SCL_Scale
+				SCL_DisplayFrame
+		[���l]		�֐�"SetVblank"�ƕϐ�"PadData1","PadData2"�́A
+				���荞�ݏ����o�^�̃T���v���Ƃ��āA�f�B���g��
+				"V_BLANK"�̒��ɂ���܂��B
+
+
+2.���ӎ���
+
+	�Ȃ�
+
+********************************** end of file ********************************

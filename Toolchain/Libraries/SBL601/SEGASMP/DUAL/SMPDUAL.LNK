@@ -1,0 +1,16 @@
+OUTPUT	smpdual.abs
+INPUT	..\lib\strt1_h.obj
+INPUT	..\lib\strt2_h.obj
+INPUT	slvsamp.obj
+INPUT	slavesh.obj
+INPUT	slv_mtx3.obj
+INPUT	spr_mtx3.obj
+INPUT	spr_fmat.obj
+INPUT	spr_sinc.obj
+INPUT	spr_xpt.obj
+library	..\..\segalib\lib\sega_sat.lib
+library	..\..\sh\lib\shcnpic.lib
+ENTRY	START
+START	P,SEGA_P,C,SEGA_C,D,SEGA_D,B,SEGA_B(06010000)
+PRINT	smpdual.map
+EXIT

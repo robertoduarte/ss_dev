@@ -1,0 +1,14 @@
+create segadgfs.lib
+add gfsd.obj
+add gfsd_mmf.obj
+add gfsd_mmb.obj
+add gfsd_mmc.obj
+add gfsd_dir.obj
+add gfsd_buf.obj
+add gfsd_trn.obj
+add gfsd_cdf.obj
+add gfsd_cdb.obj
+add gfsd_cdc.obj
+add gfsd_sfb.obj
+add gfsd_sff.obj
+exit

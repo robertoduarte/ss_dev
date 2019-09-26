@@ -1,0 +1,10 @@
+All programs must be flashed into FLASH ROM.
+
+App1 - Simple LED blinking program. Just to know how to build an application.
+App2 - Program demonstrating use of bitwise operators.
+App3 - Program demonstrating use of vector table and Interrupt Service Routine. 
+       Uses IRQ0 and NMI.
+App4 - Sample Program Demonstrating use of Serial port. Uses SCI0.
+App5 - Sample Program Demonstrating use of Library functions.
+App6 - Prime number generation program. Data sent on serial port SCI0.
+App7 - Sample C++ program. Uses global constructor.

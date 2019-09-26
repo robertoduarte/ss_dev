@@ -1,0 +1,313 @@
+��SGL Ver3.0�ɂ���
+  SGL Ver3.0�́A��SGL Ver2.1x�Ɣ�ׂĈȉ��̋@�\�ǉ����Ȃ���܂����B
+   �E���A���^�C���O�[���[�V�F�[�f�B���O
+   �E�j�A�N���b�s���O
+   �E�f�v�X�L���[�C���O
+   �E�F�t������
+  �ȉ��� Ver3.0�Œǉ����ꂽ�f�[�^��֐��A�܂��폜���ꂽ���̂�SGL Ver2.1x�����
+�ڍs�ɍۂ��Ă̒��ӓ_���L�q���܂��B
+
+�P�D�f�[�^
+(1)���A���^�C���O�[���[�����p���f���f�[�^(�\����)
+    typedef struct {
+        POINT   *pntbl;     /* ���_�̈ʒu�f�[�^�e�[�u�� */
+        Uint32  nbPoint;    /* ���_�̐� */
+        POLYGON *pltbl;     /* �|���S����`�e�[�u�� */
+        Uint32  nbPolygon;  /* �|���S���̐� */
+        ATTR    *attbl;     /* �|���S���̃A�g���r���[�g�e�[�u�� */
+        VECTOR  *vntbl;     /* ���_�@���f�[�^ */
+    } XPDATA ;
+
+(2)�A�g���r���[�g�I�v�V����
+  ATTRIBUTE�\���̂�OPTION�Ŏw�肷��}�N����`�ɂ��Đ������܂��B
+
+  <�폜���ꂽ�}�N��>
+    UseClip
+      UseClip��UseNearClip�ɒu�������܂����B
+�@    sl_def.h�ł́AUseClip��UseNearClip�Ƃ��Ē�`���Ă��܂��B
+
+  <�ǉ����ꂽ����>
+    UseGouraud
+      ���A���^�C���O�[���[�ŕ\�����܂��B
+      �O�[���[�e�[�u���p�̃A�h���X���w�肵�܂��B
+      UseDepth,UseLight�I�v�V�����Ɠ����Ɏg�p�ł��܂���B
+
+    UseNearClip
+      �j�A�N���b�v�̏������s���܂��B
+      slSetNearClipFlag�֐��� 0(�␳���������Ȃ�)���w�肷��ƁA���̐ݒ�͖�����
+    �Ȃ�܂��B
+
+    UseDepth
+      �f�v�X�L���[�������s���B
+      UseGouraud�I�v�V�����Ɠ����Ɏg�p�ł��Ȃ��B
+      UseLight�I�v�V�������w��ł���̂́A�P�F�|���S���݂̂ł��B
+
+
+�Q�D�֐�
+
+(1) ���A���^�C���O�[���[�V�F�[�f�B���O�֘A
+
+void slInitGouraud( GOURAUDTBL *gtbl, Uint32 gmax, Uint32 gaddr, Uint8 *vaddr )
+  �@�\ : ���A���^�C���O�[���[�V�F�[�f�B���O�����̏��������s���܂��B
+         �O�[���[�f�[�^�i�[�G���A�́A�O�[���[�|���S���ő吔x8�o�C�g�K�v�ɂȂ��
+         ���B
+�@�@     ���_���Z���[�N�A�h���X�́A1���f���ő咸�_���o�C�g�K�v�ł��B
+         �O�[���[�e�[�u���A�h���X�́AVDP1�ɃO�[���[�e�[�u�����Z�b�g����A�h���X
+         �ɂȂ�܂��B
+         VDP1�I�t�Z�b�g�A�h���X/8���w�肵�܂��B�i���f���f�[�^�̃O�[���[�A�h���X
+         �Ɠ������@�ł��j
+    gtbl  : �O�[���[�f�[�^�i�[�G���A
+    gmax  : �O�[���[�|���S���ő吔
+    gaddr : �O�[���[�e�[�u���A�h���X
+    vaddr : ���_���Z���[�N�A�h���X
+  ���� : ���̊֐������s����O�ɕK��slInitGouraud�֐��ŏ��������Ă����K�v������
+         �܂��B
+  �� : ���|���S����500�A1���f���ő咸�_��100�̏ꍇ�B
+    #define    MAX_POLYGON     500
+    #define    MAX_MODEL_VERT  100
+    #define    GOURAUD_ADDR    0xE000
+    GOURAUDTBL GTBL[MAX_POLYGON];
+    Uint8      VTBL[MAX_MODEL_VERT];
+
+    slInitGouraud( GTBL, MAX_POLYGON, GOURAUD_ADDR, VTBL );
+
+
+void slPutPolygonX( XPDATA *xpdata, FIXED *light )
+  �@�\ : ���f���f�[�^�̏o�͂��s���܂��B
+         �I�v�V������UseGouraud���w�肵�Ă��Ȃ��|���S��������ɏo�͂����B
+    xpdata : ���f���f�[�^
+    light  : �����x�N�g��
+
+void slGouraudTblCopy( void )
+  �@�\ : �O�[���[�f�[�^��VRAM�ɓ]�����܂��B
+         slSynch�֐��̒��O���AslIntFunction�֐��ɓo�^���Ă��������B
+
+void slSetGouraudTbl( Uint16 *tbl )
+  �@�\ : ���[�U�Ǝ��̃O�[���[�e�[�u�����Z�b�g���܂��B
+         �����̔��Α��̈�ԈÂ��l����A�����̐��ʂ̈�Ԗ��邢�l�܂ł�32�i�K��
+         �w�肵�܂��B
+  �� : 
+    #define GRTBL(r,g,b)    (((b&0x1f)<<10) | ((g&0x1f)<<5) | (r&0x1f) )
+    static  Uint16  GourTbl[32] = {
+        GRTBL(  0, 16, 16 ),GRTBL(  1, 16, 16 ),GRTBL(  2, 16, 16 ),
+        GRTBL(  3, 16, 16 ),GRTBL(  4, 16, 16 ),GRTBL(  5, 16, 16 ),
+        GRTBL(  6, 16, 16 ),GRTBL(  7, 16, 16 ),GRTBL(  8, 16, 16 ),
+        GRTBL(  9, 16, 16 ),GRTBL( 10, 16, 16 ),GRTBL( 11, 16, 16 ),
+        GRTBL( 12, 16, 16 ),GRTBL( 13, 16, 16 ),GRTBL( 14, 16, 16 ),
+        GRTBL( 15, 16, 16 ),GRTBL( 16, 16, 16 ),GRTBL( 17, 16, 16 ),
+        GRTBL( 18, 16, 16 ),GRTBL( 19, 16, 16 ),GRTBL( 20, 16, 16 ),
+        GRTBL( 21, 16, 16 ),GRTBL( 22, 16, 16 ),GRTBL( 23, 16, 16 ),
+        GRTBL( 24, 16, 16 ),GRTBL( 25, 16, 16 ),GRTBL( 26, 16, 16 ),
+        GRTBL( 27, 16, 16 ),GRTBL( 28, 16, 16 ),GRTBL( 29, 16, 16 ),
+        GRTBL( 30, 16, 16 ),GRTBL( 31, 16, 16 ),
+    };
+    
+    slSetGouraudTbl( GourTbl );
+
+
+
+(2) �����F�֘A
+void slSetGouraudColor( Uint16 col )
+  �@�\ : ���A���^�C���O�[���[�p�̌����F��ݒ肵�܂��B
+         slSetGouraudTbl�֐��̐ݒ�͖�������܂��B
+    col : �����F
+  �� :
+    Uint16  gr_data;
+    gr_data =((gr_b)<<10)+((gr_b>>2)<<5)+(gr_g>>2);
+    slSetGouraudColor(gr_data);
+
+
+void slSetFlatColor( Uint16 col )
+  �@�\ : �ʏ�����̌����F��ݒ肵�܂��B(UseLight�̌���)
+    col : �����F
+
+
+void slSetAmbient( Uint16 col )
+  �@�\ : �����Ƃ��āA�����v�Z�̍Œ჉�C����ݒ肵�܂��B
+         ���̐ݒ�́AslSetGouraudColor�֐�, slSetFlatColor�֐��ɉe�����܂��B
+         ���̐ݒ�̌�A�K�������F�̐ݒ���s���Ă��������B
+    col : ���F
+          �W���ł�RGB���ꂼ�� 15�`-16�܂ŕω����܂����A�Ⴆ�΂��̊֐���
+            R = -10, G = -5, B = 0
+          �̂悤�ɐݒ肷��΁AR�� 15�`-10�܂ŕω����A�{���Ȃ�-16�܂łɂȂ�͂���
+          �e�[�u���ɂ�-10���ݒ肳��܂��B
+     �@�@   �܂�A32�i�K�́A��6�i�K�͍Œ�l�������p����܂��B
+          ���̐ݒ�ɂ���Ďw�肵���l���Â��Ȃ肷����̂�h�����Ƃ��ł��A����
+          �Ƃ��Đݒ肷�邱�ƂɂȂ�܂��B
+  ���� :slSetGouraudTbl�֐��Œ��ڐݒ肵���e�[�u���ɑ΂��ẮA�����ɂȂ�܂��B
+  �� :  
+    slSetAmbient(C_RGB(1,1,1));
+
+
+(3) �j�A�N���b�s���O�֘A
+void slSetNearClipFlag( Uint32 flag )
+  �@�\ : �j�A�N���b�v�ׂ̈̒��_�␳���s�����ǂ�����ݒ肵�܂��B�����l�͒��_�␳
+         ����ɂȂ��Ă��܂��B
+    flag : �j�A�N���b�s���O�t���O
+           0 : �␳���Ȃ�
+           1 : �␳����(�����l)
+ 
+void slWindowClipLevel( Sint32 level )
+  �@�\ : �j�A�N���b�v��ݒ肵�Ă���|���S���́A�S�_�Ƃ���ʊO�̂Ƃ��\�����s����
+         ����B���̂Ƃ��A�S�_�Ƃ���ʊO�ł���ʂ̊p�ɂ�����|���S����\�����邽
+         �߁A���ۂ̉�ʂ�菭���傫�߂ŁA�N���b�s���O�̃`�F�b�N�����邽�߂̐ݒ�
+         �ł��Blevel�Őݒ肵����������ʂ��傫�߂Ƀ`�F�b�N���܂��B
+         �ݒ肷��K�v������ꍇ�A�l��20�`50���œK�Ǝv���܂��B
+    level : ��ʊO�̐��l�w��(�����l��0)�B
+            0���\����ʓ��B�����̐ݒ���\�B
+
+
+(4) �f�v�X�L���[�֘A�֐�
+void slSetDepthLimit( Uint32 near, Uint16 depth, Uint16 step )
+  �@�\ : �f�v�X�L���[�̂��߂͈̔͂�ݒ肵�܂��B
+         near�ʒu����iFIXED�ł͂Ȃ��jdepth�܂ł͈̔͂��Astep�i�K�Őݒ肵�܂��B
+         depth��step�̒l�͏搔��ݒ肵�Ă��������B
+         �Ⴆ�΁A5��ݒ肷��Ύ��ۂɂ�32�Ƃ��Ĉ����܂��B
+    near  : ��O�ʒu
+    depth : �[���i�Q�̏搔�j
+    step  : �i�K�i�Q�̏搔�j
+
+
+void slSetDepthTbl( Uint16 *dtbl, Uint16 gaddr, Uint16 size )
+  �@�\ : �f�v�X�L���[�̂��߂̃e�[�u����ݒ肵�܂��B
+         �O�[���[�e�[�u���͒i�K�����p�ӂ��A��O���牜�Ɍ������ăf�[�^���Z�b�g��
+         �܂��B
+         �O�[���[�A�h���Xgaddr��VDP1�ɃZ�b�g����A�h���X�ł��B
+         2��step�悪size�Ɠ����ɂȂ�悤�ɂ��Ă��������B
+         VRAM��̃O�[���[�G���A�̓O�[���[�e�[�u����4�{�̃G���A���K�v�ł��B
+    dtbl  : �f�v�X�L���[�p�O�[���[�e�[�u��
+    gaddr : �O�[���[�e�[�u���A�h���X
+    size  : �e�[�u���T�C�Y
+ 
+  �� : ����100����1124�܂ł�32�i�K�ɕ�����
+       �O�[���[�e�[�u���� 0xE000�ɃZ�b�g����B
+
+    Uint16    depthtbl[32] = {
+        ...
+    };
+    slSetDepthLimit( 100, 10, 5 );
+    slSetDepthTbl( depthtbl, 0xe000, 32 );
+
+(5) ���̑�
+void slDispPlaneLevel( Sint32 level )
+  �@�\ : �|���S���̕\������̃��x����ݒ肵�܂��B
+         �v���X�ɐݒ肷��ƁA��藠���܂ŕ`�悵�܂��B
+         �}�C�i�X�ɃZ�b�g����ƁA��萳�ʂ̕��̂ݕ`�悵�܂��B
+    level : �|���S���\������̃��x��(�����l0)
+
+Uint32 slSlaveCheck( void )
+  �@�\ : �X���[�u�̓���󋵂��`�F�b�N���܂��B
+  
+
+�R�D���A���^�C���O�[���[�g�p�菇
+�@���A���^�C���O�[���[����������ɂ͈ȉ��̂S�̏������K�v�ł��B
+(1)�A�g���r���[�g�e�[�u���Ɉȉ���3�������܂��B
+�@(a) MODE�ɁuCL_Gouraud�v���w��B
+�@(b) GOURAUD�ɃO���[�e�[�u���̊i�[�ʒu�̎w��B
+�@(c) OPTION�ɁuUseGouraud�v���w��B
+
+  <��>
+    ATTRIBUTE(Single_Plane, SORT_CEN, 0, 0xffa0, 0xe000,
+           CL16Look|MESHoff|CL_Gouraud, sprNoflip, UseGouraud )
+           
+(2)�@���x�N�g���̎w��
+�@�e���_�̖@���x�N�g���ƁuXPDATA�v�Ƃ����|���S�����f���f�[�^�e�[�u�����w��
+  <��>
+	VECTOR	gr_point[]	={					/*	���_�@���x�N�g���f�[�^*/
+		toFIXED(-0.873),toFIXED( 0.436),toFIXED( 0.217),
+		toFIXED(-0.873),toFIXED(-0.436),toFIXED( 0.217),
+				:
+				:
+	};
+	XPDATA PD_BOX = {						/*���f���e�[�u���w��*/
+		point_BOX,							/* ���_�̈ʒu�f�[�^�e�[�u�� */
+		sizeof(point_BOX)/sizeof(POINT),	/* ���_�̐� */
+		polygon_BOX,						/* �|���S����`�e�[�u�� */
+		sizeof(polygon_BOX)/sizeof(POLYGON),/* �|���S���̐� */
+		attribute_BOX2,				/* �|���S���̃A�g���r���[�g�e�[�u�� */
+		gr_point							/*	���_�@���x�N�g���f�[�^*/
+	};
+	
+(3)���A���^�C���O�[���[�v���O�����̏�����
+  (a) �g�p����O�[���[�e�[�u���̈ʒu�傫�����w��
+    <��>
+      slInitGouraud((GOURAUDTBL *)gr_tab,(Uint32)300,0xe000,vaddr);
+  (b) �O�[���[�v���O������V�u�����N�ɓo�^
+    <��>
+      slIntFunction(slGouraudTblCopy);
+
+(4)�����x�N�g���̎w��
+    <��>
+        FIXED    light[XYZ];
+        light[X] = toFIXED(1.0);
+        light[Y] = toFIXED(0.0);
+        light[Z] = toFIXED(0.0);
+	slPutPolygonX(&PD_BOXx,(FIXED *)light);
+
+(5)���ۂ̃v���O�����g�p��
+   <��>
+	static	GOURAUDTBL	gr_tab[300];
+	void	ss_main(void)
+	{
+		FIXED	light[XYZ];
+			:
+	/* ���A���^�C���O���[�v���O�����̏����� */
+		slInitGouraud((GOURAUDTBL *)gr_tab,(Uint32)300,0xe000);
+		slIntFunction(slGouraudTblCopy);
+			:
+		light[X]	=toFIXED(1.0);
+		light[X]	=toFIXED(0.0);
+		light[X]	=toFIXED(0.0);
+		while(1)
+		{
+				:
+			slPushMatrix();
+			{
+					:
+				/**/
+				slPutPolygonX(&PD_BOXx,(FIXED *)light);
+			}
+			slPopMatrix();
+			slSynch();
+		}
+	}
+
+�S�D�j�A�N���b�s���O
+  �A�g���r���[�g�e�[�u����OPTION�ɁuUseNearClip�v���w�肷��ƃj�A�N���b�s���O
+���������܂��B�uUseClip�v��Ver3.0���瓯�@�\�ǉ��ɂ��uUseNearClip�v�ɒu������
+��܂����B
+  <��>
+    ATTRIBUTE(Single_Plane,SORT_CEN, 1,No_Palet,No_Gouraud,CL32KRGB|MESHoff,
+    sprNoflip,UseNearClip),
+
+�T�DSGL Ver2.1x��SGL Ver3.00�̑���_
+(1)�t���b�g�V�F�[�f�B���O�̌����v�Z���@�̕ύX
+  �t���b�g�V�F�[�f�B���O�̌����v�Z���@���ȉ��̂悤�ɕύX�ɂȂ��Ă��܂��B
+    <Ver2.1x�܂ł̌����v�Z���@>
+      �����Ɩʂ̊p�x
+              0------45------90-----135-----180
+              31-----16-------0-------0-------0
+      �O�[���[�e�[�u��
+
+�@�@�@�@�@�@�@�@��
+
+�@  <Ver3.0 ����̌����v�Z���@>
+      �����Ɩʂ̊p�x
+              0------45------90-----135-----180
+              31-----24------16-------8-------0
+      �O�[���[�e�[�u��
+
+(2)�����̉e���ɂ�锭�F�f�[�^�e�[�u���̃T�C�Y�ύX
+ �@���������ɋ@�\�ǉ��������Ƃɂ��A���F�f�[�^�e�[�u��(CLOfsfBuf)�̈���m�ۂ�
+��T�C�Y���A32*32(0x400)����32*32*3(0xC00)�ɕύX�ɂȂ�܂����B
+����āA�����l���ݒ肳��Ă���SGL/LIB�f�B���N�g����SGLAREA.O�̕ύX�ƁA���[�U�J
+�X�^���p��sgl/sample/workarea�f�B���N�g���ɂ���workarea.c�Ȃǂ̃t�@�C�����v�Z
+�����ɕύX���������Ă��܂��BSGL Ver2.1x����̈ڍs���ɂ͕K���ύX����悤�ɂ�
+�Ă��������B
+ 
+(3)UseClip�I�v�V�����̍폜
+  �A�g���r���[�g�I�v�V����UseClip���ASGL Ver3.0�̋@�\�ǉ��ɂ��UseNearClip�ɒu
+�������܂����B
+
+
+�ȁ@��

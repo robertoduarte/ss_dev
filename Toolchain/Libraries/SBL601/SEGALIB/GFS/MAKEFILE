@@ -1,0 +1,63 @@
+CC = gcc
+AS = gasm
+AR = ar
+
+GCC     = ../../gccsh
+
+LIBDIR  = .
+INCDIR  = ../include
+OBJDIR  = .
+SRCDIR  = .
+CFLAGS  = -Wall -m2 -O2 -D_SH -DMODEL_S -I$(GCC)/include -I$(INCDIR)
+ASFLAGS =
+ARFLAGS = rv
+
+include	$(SRCDIR)/objects
+
+all: $(TARGET) $(TARGET1)
+
+$(TARGET): $(OBJS)
+	$(AR) $(ARFLAGS) $(_ARFLAGS) $@ $?
+$(TARGET1): $(OBJS1)
+	$(AR) $(ARFLAGS) $(_ARFLAGS) $@ $?
+
+.SUFFIXES:
+.SUFFIXES: .a .o .src .c
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	$(CC) -c $(CFLAGS) $(_CFLAGS) -o $@ $<
+
+$(OBJDIR)/gfsd.o: $(SRCDIR)/gfs.c
+	$(CC) -c $(CFLAGS) $(_CFLAGS) -DDEBUG_LIB -o $@ $<
+$(OBJDIR)/gfsdbuf.o: $(SRCDIR)/gfs_buf.c
+	$(CC) -c $(CFLAGS) $(_CFLAGS) -DDEBUG_LIB -o $@ $<
+$(OBJDIR)/gfsdcdb.o: $(SRCDIR)/gfs_cdb.c
+	$(CC) -c $(CFLAGS) $(_CFLAGS) -DDEBUG_LIB -o $@ $<
+$(OBJDIR)/gfsdcdc.o: $(SRCDIR)/gfs_cdc.c
+	$(CC) -c $(CFLAGS) $(_CFLAGS) -DDEBUG_LIB -o $@ $<
+$(OBJDIR)/gfsdcdf.o: $(SRCDIR)/gfs_cdf.c
+	$(CC) -c $(CFLAGS) $(_CFLAGS) -DDEBUG_LIB -o $@ $<
+$(OBJDIR)/gfsddir.o: $(SRCDIR)/gfs_dir.c
+	$(CC) -c $(CFLAGS) $(_CFLAGS) -DDEBUG_LIB -o $@ $<
+$(OBJDIR)/gfsdmmb.o: $(SRCDIR)/gfs_mmb.c
+	$(CC) -c $(CFLAGS) $(_CFLAGS) -DDEBUG_LIB -o $@ $<
+$(OBJDIR)/gfsdmmc.o: $(SRCDIR)/gfs_mmc.c
+	$(CC) -c $(CFLAGS) $(_CFLAGS) -DDEBUG_LIB -o $@ $<
+$(OBJDIR)/gfsdmmf.o: $(SRCDIR)/gfs_mmf.c
+	$(CC) -c $(CFLAGS) $(_CFLAGS) -DDEBUG_LIB -o $@ $<
+$(OBJDIR)/gfsdsfb.o: $(SRCDIR)/gfs_sfb.c
+	$(CC) -c $(CFLAGS) $(_CFLAGS) -DDEBUG_LIB -o $@ $<
+$(OBJDIR)/gfsdsff.o: $(SRCDIR)/gfs_sff.c
+	$(CC) -c $(CFLAGS) $(_CFLAGS) -DDEBUG_LIB -o $@ $<
+$(OBJDIR)/gfsdtrn.o: $(SRCDIR)/gfs_trn.c
+	$(CC) -c $(CFLAGS) $(_CFLAGS) -DDEBUG_LIB -o $@ $<
+
+
+
+
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.src
+	$(AS) $< $(ASFLAGS) $(_ASFLAGS) -o $@
+
+clean:
+	del *.o

@@ -1,0 +1,11 @@
+OUTPUT	smpsnd1.abs
+INPUT	..\..\lib\strt1_h.obj
+INPUT	..\..\lib\strt2_h.obj
+INPUT	smpsnd1.obj
+library	..\..\..\segalib\lib\sega_sat.lib
+library	..\..\..\sh\lib\shcnpic.lib
+ENTRY	START
+;START	I,P,SEGA_P,C,SEGA_C,D,SEGA_D,B,SEGA_B,S(06010000)
+START	P,SEGA_P,C,SEGA_C,D,SEGA_D,B,SEGA_B(06004000)
+PRINT	smpsnd1.map
+EXIT

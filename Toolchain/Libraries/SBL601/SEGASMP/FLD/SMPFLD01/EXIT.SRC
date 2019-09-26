@@ -1,0 +1,240 @@
+          .IMPORT     _CDC_CdInit
+          .IMPORT     _CDC_ChgDir
+          .IMPORT     _CDC_AbortFile
+          .IMPORT     _CDC_GetHirqReq
+          .EXPORT     _exit
+          .SECTION    P,CODE,ALIGN=4
+_exit:                           ; function: exit
+                                 ; frame size=0
+          MOV         R4,R0
+          CMP/EQ      #1,R0
+          BT          L394
+          BRA         L395
+          NOP
+L394:                            ; case label 
+          MOV.L       L424+2,R2
+          MOV.L       @R2,R3
+          JMP         @R3
+          NOP
+L395:                            ; default label 
+          CMP/PZ      R4
+          BT          L398
+L399:                             
+          BRA         L399
+          NOP
+L398:                             
+          BRA         L343
+          NOP
+L343:                            ; function: restart
+                                 ; frame size=4
+          STC         SR,R0
+          MOV.W       L424,R3
+          STS.L       PR,@-R15
+          AND         R3,R0
+          OR          #240,R0
+          LDC         R0,SR
+          BSR         L344
+          NOP
+          MOV.L       L424+2,R2
+          MOV.L       @R2,R1
+          JMP         @R1
+          LDS.L       @R15+,PR
+L344:                            ; function: execRestart
+                                 ; frame size=4
+          STS.L       PR,@-R15
+          MOV.L       L424+6,R3
+          MOV.B       @R3,R0
+          EXTU.B      R0,R0
+          CMP/EQ      #1,R0
+          BF          L402
+          BSR         L345
+          NOP
+          BSR         L346
+          NOP
+          TST         R0,R0
+          BF          L402
+          MOV.L       L424+10,R2
+          MOV.L       @R2,R3
+          JSR         @R3
+          MOV         #0,R4
+          MOV         R0,R4
+          TST         R4,R4
+          BF          L402
+          BRA         L349
+          LDS.L       @R15+,PR
+L402:                             
+          LDS.L       @R15+,PR
+          RTS
+          NOP
+L345:                            ; function: initSaturn
+                                 ; frame size=0
+          MOV         #1,R4
+          MOV.L       L424+14,R5
+L405:                             
+          MOV.B       @R5,R2
+          EXTU.B      R2,R2
+          AND         R4,R2
+          CMP/EQ      R4,R2
+          BT          L405
+          MOV.B       R4,@R5
+          MOV         #3,R2
+          MOV.L       L424+18,R3
+          MOV.B       R2,@R3
+L407:                             
+          MOV.B       @R5,R0
+          EXTU.B      R0,R0
+          TST         R4,R0
+          BF          L407
+          MOV.L       L424+22,R2
+          MOV.L       @R2,R3
+          JMP         @R3
+          MOV         #0,R4
+L346:                            ; function: resetCd
+                                 ; frame size=4
+          STS.L       PR,@-R15
+          MOV         #0,R7
+          MOV.L       L424+26,R3
+          MOV         R7,R6
+          MOV         R7,R5
+          JSR         @R3
+          MOV         #1,R4
+          TST         R0,R0
+          BT          L409
+          LDS.L       @R15+,PR
+          RTS
+          MOV         #-1,R0
+L409:                             
+          BSR         L347
+          MOV         #64,R4
+          TST         R0,R0
+          BT          L411
+          LDS.L       @R15+,PR
+          RTS
+          MOV         #-1,R0
+L411:                             
+          BSR         L348
+          NOP
+          MOV         #0,R0
+L410:                             
+          LDS.L       @R15+,PR
+          RTS
+          NOP
+L347:                            ; function: waitHirq
+                                 ; frame size=20
+          MOV.L       R14,@-R15
+          MOV.L       R13,@-R15
+          MOV         #0,R14
+          MOV.L       R12,@-R15
+          STS.L       PR,@-R15
+          MOV.L       L424+30,R12
+          ADD         #-4,R15
+          MOV.L       L424+34,R13
+          MOV.L       R4,@R15
+L413:                             
+          JSR         @R12
+          NOP
+          MOV.L       @R15,R3
+          TST         R3,R0
+          BT          L414
+          BRA         L415
+          MOV         #0,R0
+L424:                             
+          .DATA.W     H'FF0F
+          .DATA.L     H'0600026C
+          .DATA.L     H'060020CC
+          .DATA.L     H'0600029C
+          .DATA.L     H'20100063
+          .DATA.L     H'2010001F
+          .DATA.L     H'06000320
+          .DATA.L     _CDC_CdInit
+          .DATA.L     _CDC_GetHirqReq
+          .DATA.L     H'002C4020
+L414:                             
+          ADD         #1,R14
+          CMP/GE      R13,R14
+          BF          L413
+          MOV         #-1,R0
+L415:                             
+          ADD         #4,R15
+          LDS.L       @R15+,PR
+          MOV.L       @R15+,R12
+          MOV.L       @R15+,R13
+          RTS
+          MOV.L       @R15+,R14
+L348:                            ; function: chgDirRootDummy
+                                 ; frame size=4
+          STS.L       PR,@-R15
+          MOV         #-1,R5
+          MOV.L       L425+2,R3
+          JSR         @R3
+          MOV         #23,R4
+          MOV.L       L425+6,R2
+          JMP         @R2
+          LDS.L       @R15+,PR
+L349:                            ; function: execIpChkRun
+                                 ; frame size=16
+          MOV.L       R14,@-R15
+          MOV.L       R13,@-R15
+          MOV.L       R12,@-R15
+          STS.L       PR,@-R15
+          MOV.L       L425+10,R4
+          BRA         L422
+          NOP
+L425:                             
+          .RES.W      1
+          .DATA.L     _CDC_ChgDir
+          .DATA.L     _CDC_AbortFile
+          .DATA.L     H'06002000
+L422:                             
+          MOV.L       R15, R0
+          MOV.L       R4, R15
+          .ALIGN      4
+          MOV.L       L426,R2
+          MOV         #0,R12
+          MOV.L       L426+4,R13
+          MOV.L       R0,@R2
+          MOV.L       L426+8,R14
+L418:                             
+          MOV.L       @R14,R2
+          JSR         @R2
+          MOV         #0,R4
+          MOV         R0,R4
+          CMP/PZ      R4
+          BF          L420
+          CMP/GT      R13,R12
+          BF/S        L418
+          ADD         #1,R12
+L420:                             
+          MOV.L       L426,R3
+          MOV.L       @R3,R4
+          BRA         L423
+          NOP
+L426:                             
+          .DATA.L     L378
+          .DATA.L     H'00E4E1C0
+          .DATA.L     H'06000288
+L423:                             
+          MOV.L       R15, R0
+          MOV.L       R4, R15
+          .ALIGN      4
+          MOV.L       L427+2,R2
+          MOV.L       @R2,R1
+          LDS.L       @R15+,PR
+          MOV.L       @R15+,R12
+          MOV.L       @R15+,R13
+          JMP         @R1
+          MOV.L       @R15+,R14
+L427:                             
+          .RES.W      1
+          .DATA.L     H'0600026C
+L350:                            ; function: setStackptr
+                                 ; frame size=0
+          MOV.L       R15, R0
+          MOV.L       R4, R15
+          .ALIGN      4
+          RTS
+          NOP
+          .SECTION    B,DATA,ALIGN=4
+L378:                            ; static: savesp
+          .RES.L      1
+          .END

@@ -1,0 +1,34 @@
+Program Name: 
+Blink
+
+
+Purpose:
+Demonstrate the use of GNU tool chain to build an application. 
+Basic program to blink LED's at specified intervals.
+
+
+Target Board and setting:
+7729 Solution Engine board. 
+8 bit LED
+
+
+File List:
+README  	- This file. Contains project description.
+blink.c		- Main program. Change variable "threshhold" to change the blink rate.
+hwinit.c	- Setup the hardware on board in hw_initialise.
+start.s		- startup file. Calls hw_initialise and then start in crt0.
+blink.lnk	- Linker Script. Contains information about memory regions.
+blink.ram.lnk	- Linker Script for RAM target. Contains information about memory regions.
+makefile	- Makefile for the project.
+
+
+Summary:
+Small program to display the usage of tool chain and hardware.
+
+
+Special Notes/instructions:
+Program must be flashed into FLASH ROM. Alternatively if you have HDI monitor 
+or GDB stub, you can build RAM image and download it.
+After flashing the program, change the switch SH4-3 to OFF position so that
+after reset program executes from flash.
+

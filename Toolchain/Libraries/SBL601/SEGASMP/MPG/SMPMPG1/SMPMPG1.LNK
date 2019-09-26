@@ -1,0 +1,21 @@
+OUTPUT	smpmpg1.abs
+INPUT	..\..\lib\strt1_h.obj
+INPUT	..\..\lib\strt2_h.obj
+INPUT	smpmpg1.obj
+library	..\..\..\segalib\lib\sega_mpg.lib
+library	..\..\..\segalib\lib\sega_gfs.lib
+library	..\..\..\segalib\lib\sega_stm.lib
+library	..\..\..\segalib\lib\sega_cdc.lib
+library	..\..\..\segalib\lib\sega_adp.lib
+library	..\..\..\segalib\lib\sega_scl.lib
+library	..\..\..\segalib\lib\sega_spr.lib
+library	..\..\..\segalib\lib\sega_mth.lib
+library	..\..\..\segalib\lib\sega_per.lib
+library	..\..\..\segalib\lib\sega_dma.lib
+library	..\..\..\segalib\lib\sega_csh.lib
+library	..\..\..\segalib\lib\sega_int.lib
+library	..\..\..\sh\lib\shcnpic.lib
+ENTRY	START
+START	I,P,SEGA_P,C,SEGA_C,D,SEGA_D,B,SEGA_B,S(06010000)
+PRINT	smpmpg1.map
+EXIT

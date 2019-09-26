@@ -1,0 +1,60 @@
+Saturn Basic Library
+Data Compression Tool Manual
+
+
+1. Preface
+
+   This disk contains the following three tools for run length
+   compression.
+	IBM-PC version : SEBABIN/BIN/CMPRUN.EXE
+	HP(WS) version : SEBABIN/BINHP/cmprun
+	SUN version    : SEGABIN/BINSUN/cmprun
+   These three files are different only in their execution
+   environment.  Their functions and the usage are the same.  The
+   following explains how to use the files.
+
+2.  Activation
+
+    To activate, type as follows at the command prompt.
+
+	> CPMRUN [-U(1|2|4)] [-S(0|1)] filename [outfile] [RET]
+
+3.  Activation option
+
+-U : Processing unit.  The number of bytes of a character
+     (symbol).
+	When optimizing, this option is ignored.
+
+	-U1 : Processes 1 byte as a unit (default).
+
+	-U2 : Processes 2 bytes as a unit.
+
+	-U4 : Processes 4 bytes as a unit
+
+
+-S : Optimization
+
+	-S1 : No optimization (default).
+
+	-S2 : With optimization.  It tries to compress in each
+           processing unit and outputs the best compression ratio.
+
+
+4. Input
+
+	filename : Name of the file to be processed
+
+
+5.  Output
+
+	outfile  : Compression file name
+If this option is omitted, default extension .cmp will be added to
+the output file name.  The original file name with its extension
+changed to .cmp is used as the output file name.
+
+6.  Note
+
+Since this program is a little different from the general run
+length compression program, the special expansion library
+SEGA_CMP.LIB is necessary when expanding files.
+

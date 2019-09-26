@@ -1,0 +1,80 @@
+INCLUDE		=
+
+XLIBS		=
+
+#CC		= gcc
+CC		= cc
+
+#CFLAGS		= ${INCLUDE} -g -DOW_I18N 
+CFLAGS		= ${INCLUDE} -O -DOW_I18N
+#CFLAGS		= ${INCLUDE} -g -DOW_I18N -DDEBUG
+
+DEST		= .
+
+ROOT		=
+
+EXTHDRS		=
+
+HDRS		= s3dto3dt.h
+
+INSTALL		= install
+
+#LD		= gcc
+LD		= cc
+
+LDFLAGS		=
+#LDFLAGS	= -g
+
+LIBS		= -lm
+#LIBS		= -lm -lmle
+
+MAKEFILE	= Makefile
+
+OBJS		= main.o hi_anlze.o drw_wrt.o t3d_wrt.o cls_wrt.o \
+		mdl_read.o mat_read.o mt_read2.o slp_read.o obj_read.o \
+		mdl_proc.o val_init.o tex_wrt.o ctl_read.o ct_read2.o
+
+PRINT		= pr
+
+PROGRAM		= s3dto3dt
+
+SHELL		= /bin/sh
+
+SRCS		= main.c hi_anlze.c drw_wrt.c t3d_wrt.c cls_wrt.c \
+		mdl_read.c mat_read.c mt_read2.c slp_read.c obj_read.c \
+		mdl_proc.c val_init.c tex_wrt.c ctl_read.c ct_read2.c
+
+
+all:		$(PROGRAM)
+
+$(PROGRAM):     $(OBJS)
+		@echo "Linking $(PROGRAM) ..."
+		@$(LD) $(LDFLAGS) $(OBJS) $(LIBS) -o $(PROGRAM)
+		@echo "done"
+
+clean:;		@rm -f $(OBJS) core
+
+clobber:;	@rm -f $(OBJS) $(PROGRAM) core tags
+
+depend:;	@mkmf -f $(MAKEFILE) PROGRAM=$(PROGRAM) DEST=$(DEST)
+#depend:;	@mkmf -f $(MAKEFILE) ROOT=$(ROOT)
+
+echo:;		@echo $(HDRS) $(SRCS)
+
+index:;		@ctags -wx $(HDRS) $(SRCS)
+
+install:	$(PROGRAM)
+		@echo Installing $(PROGRAM) in $(DEST)
+		@-strip $(PROGRAM)
+		@if [ $(DEST) != . ]; then \
+		(rm -f $(DEST)/$(PROGRAM); $(INSTALL) -f $(DEST) $(PROGRAM)); fi
+
+print:;		@$(PRINT) $(HDRS) $(SRCS)
+
+tags:           $(HDRS) $(SRCS); @ctags $(HDRS) $(SRCS)
+
+update:		$(DEST)/$(PROGRAM)
+
+#$(DEST)/$(PROGRAM): $(SRCS) $(XLIBS) $(HDRS) $(EXTHDRS)
+#		@$(MAKE) -f $(MAKEFILE) ROOT=$(ROOT) DEST=$(DEST) install
+###

@@ -1,0 +1,12 @@
+#
+#�����̃t�@�C���� makefile ���� include ����܂��B
+#  TARGET �ɂ̓��C�u�����̃t�@�C�������w�肵�Ă��������B
+#  OBJS �ɂ̓��C�u��������邽�߂� dependencies ���w�肵�Ă��������B
+#
+TARGET=	$(LIBDIR)/sega_mem.a
+
+OBJS=	$(OBJDIR)/mem_call.o\
+		$(OBJDIR)/mem_free.o\
+		$(OBJDIR)/mem_init.o\
+		$(OBJDIR)/mem_mall.o\
+		$(OBJDIR)/mem_real.o
