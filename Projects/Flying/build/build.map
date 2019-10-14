@@ -84,148 +84,148 @@ Archive member included because of file (symbol)
                               ../../Toolchain/Libraries/SGL_302j/lib/LIBSGL.A(sglJ01.o) (sbSortEntry)
 ../../Toolchain/Libraries/SGL_302j/lib/LIBSGL.A(sglH03.o)
                               ../../Toolchain/Libraries/SGL_302j/lib/LIBSGL.A(sglI00.o) (slSmpcIntBack)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_sqrt.o)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_sqrt.o)
                               src/ailand.o (sqrt)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_numtest.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_sqrt.o) (numtest)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_frexp.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_sqrt.o) (frexp)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_ldexp.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_sqrt.o) (ldexp)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_mathcnst.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_sqrt.o) (z_notanum)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_ispos.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_sqrt.o) (ispos)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_mul_df.o)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_numtest.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_sqrt.o) (numtest)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_frexp.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_sqrt.o) (frexp)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_ldexp.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_sqrt.o) (ldexp)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_mathcnst.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_sqrt.o) (z_notanum)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_ispos.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_sqrt.o) (ispos)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_mul_df.o)
                               src/ailand.o (__muldf3)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_si_to_df.o)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_si_to_df.o)
                               src/ailand.o (__floatsidf)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_df_to_si.o)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_df_to_si.o)
                               src/ailand.o (__fixdfsi)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_addsub_df.o)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_addsub_df.o)
                               src/ailand.o (__adddf3)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_ashiftrt.o)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_ashiftrt.o)
                               src/aisaucer.o (__ashiftrt_r4_8)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(__main.o)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(__main.o)
                               src/cinit.o (__main)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_sdivsi3.o)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_sdivsi3.o)
                               src/mem_mgr.o (__sdivsi3)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_ashiftrt_n.o)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_ashiftrt_n.o)
                               src/texture.o (__ashrsi3)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_eq_df.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_sqrt.o) (__eqdf2)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_lt_df.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_sqrt.o) (__ltdf2)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_div_df.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_sqrt.o) (__divdf3)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_unpack_df.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_mul_df.o) (__unpack_d)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_pack_df.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_mul_df.o) (__pack_d)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_thenan_df.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_mul_df.o) (__thenan_df)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_muldi3.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_mul_df.o) (__muldi3)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_lshrdi3.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_df_to_si.o) (__lshrdi3)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_fpcmp_parts_df.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_eq_df.o) (__fpcmp_parts_d)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_ashldi3.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_pack_df.o) (__ashldi3)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_mulsi3.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_muldi3.o) (__mulsi3)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_ashiftlt.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_lshrdi3.o) (__ashlsi3)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_lshiftrt.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_lshrdi3.o) (__lshrsi3)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(assert.o)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_eq_df.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_sqrt.o) (__eqdf2)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_lt_df.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_sqrt.o) (__ltdf2)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_div_df.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_sqrt.o) (__divdf3)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_unpack_df.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_mul_df.o) (__unpack_d)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_pack_df.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_mul_df.o) (__pack_d)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_thenan_df.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_mul_df.o) (__thenan_df)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_muldi3.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_mul_df.o) (__muldi3)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_lshrdi3.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_df_to_si.o) (__lshrdi3)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_fpcmp_parts_df.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_eq_df.o) (__fpcmp_parts_d)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_ashldi3.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_pack_df.o) (__ashldi3)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_mulsi3.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_muldi3.o) (__mulsi3)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_ashiftlt.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_lshrdi3.o) (__ashlsi3)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_lshiftrt.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_lshrdi3.o) (__lshrsi3)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(assert.o)
                               src/actor.o (__assert)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(memcpy.o)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(memcpy.o)
                               src/ai.o (memcpy)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(errno.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_sqrt.o) (__errno)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(atexit.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(__main.o) (atexit)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(impure.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(assert.o) (_impure_ptr)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fiprintf.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(assert.o) (fiprintf)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(abort.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(assert.o) (abort)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(malloc.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(atexit.o) (malloc)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(vfiprintf.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fiprintf.o) (vfiprintf)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(signal.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(abort.o) (raise)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(syscalls.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(abort.o) (_exit)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(mallocr.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(malloc.o) (_malloc_r)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(freer.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(malloc.o) (_free_r)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fvwrite.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(vfiprintf.o) (__sfvwrite)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(wsetup.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(vfiprintf.o) (__swsetup)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fflush.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(vfiprintf.o) (fflush)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(findfp.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(vfiprintf.o) (__sinit)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(strlen.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(vfiprintf.o) (strlen)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(memset.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(vfiprintf.o) (memset)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(wcrtomb.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(vfiprintf.o) (_wcrtomb_r)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(wcsrtombs.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(vfiprintf.o) (_wcsrtombs_r)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(memchr.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(vfiprintf.o) (memchr)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(signalr.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(signal.o) (_kill_r)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(trap.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(syscalls.o) (__trap34)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(mlock.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(mallocr.o) (__malloc_lock)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(sbrkr.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(mallocr.o) (_sbrk_r)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(memmove.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fvwrite.o) (memmove)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(reallocr.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fvwrite.o) (_realloc_r)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(makebuf.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(wsetup.o) (__smakebuf)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fwalk.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fflush.o) (_fwalk)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(stdio.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(findfp.o) (__sread)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fclose.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(findfp.o) (fclose)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(wctomb_r.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(wcrtomb.o) (_wctomb_r)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fstatr.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(makebuf.o) (_fstat_r)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(readr.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(stdio.o) (_read_r)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(writer.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(stdio.o) (_write_r)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(lseekr.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(stdio.o) (_lseek_r)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(closer.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(stdio.o) (_close_r)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(locale.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(wctomb_r.o) (__lc_ctype)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(strcmp.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(wctomb_r.o) (strcmp)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_udivdi3.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(vfiprintf.o) (__udivdi3)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_umoddi3.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(vfiprintf.o) (__umoddi3)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_udivsi3.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(freer.o) (__udivsi3)
-c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_clz.o)
-                              c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_udivdi3.o) (__clz_tab)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(errno.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_sqrt.o) (__errno)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(atexit.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(__main.o) (atexit)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(impure.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(assert.o) (_impure_ptr)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fiprintf.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(assert.o) (fiprintf)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(abort.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(assert.o) (abort)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(malloc.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(atexit.o) (malloc)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(vfiprintf.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fiprintf.o) (vfiprintf)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(signal.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(abort.o) (raise)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(syscalls.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(abort.o) (_exit)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(mallocr.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(malloc.o) (_malloc_r)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(freer.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(malloc.o) (_free_r)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fvwrite.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(vfiprintf.o) (__sfvwrite)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(wsetup.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(vfiprintf.o) (__swsetup)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fflush.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(vfiprintf.o) (fflush)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(findfp.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(vfiprintf.o) (__sinit)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(strlen.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(vfiprintf.o) (strlen)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(memset.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(vfiprintf.o) (memset)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(wcrtomb.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(vfiprintf.o) (_wcrtomb_r)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(wcsrtombs.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(vfiprintf.o) (_wcsrtombs_r)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(memchr.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(vfiprintf.o) (memchr)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(signalr.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(signal.o) (_kill_r)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(trap.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(syscalls.o) (__trap34)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(mlock.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(mallocr.o) (__malloc_lock)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(sbrkr.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(mallocr.o) (_sbrk_r)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(memmove.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fvwrite.o) (memmove)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(reallocr.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fvwrite.o) (_realloc_r)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(makebuf.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(wsetup.o) (__smakebuf)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fwalk.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fflush.o) (_fwalk)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(stdio.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(findfp.o) (__sread)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fclose.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(findfp.o) (fclose)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(wctomb_r.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(wcrtomb.o) (_wctomb_r)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fstatr.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(makebuf.o) (_fstat_r)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(readr.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(stdio.o) (_read_r)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(writer.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(stdio.o) (_write_r)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(lseekr.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(stdio.o) (_lseek_r)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(closer.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(stdio.o) (_close_r)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(locale.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(wctomb_r.o) (__lc_ctype)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(strcmp.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(wctomb_r.o) (strcmp)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_udivdi3.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(vfiprintf.o) (__udivdi3)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_umoddi3.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(vfiprintf.o) (__umoddi3)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_udivsi3.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(freer.o) (__udivsi3)
+C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_clz.o)
+                              C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_udivdi3.o) (__clz_tab)
 
 Allocating common symbols
 Common symbol       size              file
@@ -268,7 +268,7 @@ memLastHandle       0x4               src/mem_mgr.o
 memHeapTail         0x4               src/mem_mgr.o
 WorkBuf             0x280             src/sgl/workarea.o
 memIDPointer        0x4               src/mem_mgr.o
-errno               0x4               c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(syscalls.o)
+errno               0x4               C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(syscalls.o)
 collide_defend_object
                     0x4               src/collide.o
 graphic_tree        0x4               src/render.o
@@ -303,10 +303,10 @@ LOAD src/vector.o
 LOAD ../../Toolchain/Libraries/SGL_302j/lib/SEGA_SYS.A
 LOAD ../../Toolchain/Libraries/SGL_302j/lib/LIBCD.A
 LOAD ../../Toolchain/Libraries/SGL_302j/lib/LIBSGL.A
-LOAD c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a
-LOAD c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a
-LOAD c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a
-LOAD c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a
+LOAD C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a
+LOAD C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a
+LOAD C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a
+LOAD C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a
 
 SLSTART         0x06004000       0x30
                 0x06004000                ___Start = .
@@ -551,33 +551,33 @@ SLSTART         0x06004000       0x30
  .text          0x0600ba90      0x128 ../../Toolchain/Libraries/SGL_302j/lib/LIBSGL.A(sglIc0.o)
                 0x0600ba90                slInitSystem
  *fill*         0x0600bbb8        0x8 00
- .text          0x0600bbc0      0x1d0 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_sqrt.o)
+ .text          0x0600bbc0      0x1d0 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_sqrt.o)
                 0x0600bbc0                sqrt
- .text          0x0600bd90       0x60 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_numtest.o)
+ .text          0x0600bd90       0x60 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_numtest.o)
                 0x0600bd90                numtest
- .text          0x0600bdf0       0x90 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_frexp.o)
+ .text          0x0600bdf0       0x90 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_frexp.o)
                 0x0600bdf0                frexp
- .text          0x0600be80      0x120 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_ldexp.o)
+ .text          0x0600be80      0x120 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_ldexp.o)
                 0x0600be88                ldexp
- .text          0x0600bfa0       0x30 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_mathcnst.o)
+ .text          0x0600bfa0       0x30 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_mathcnst.o)
                 0x0600bfa0                z_notanum
                 0x0600bfb8                z_notanum_f
                 0x0600bfc0                z_hugeval_f
                 0x0600bfa8                z_infinity
                 0x0600bfb0                z_hugeval
                 0x0600bfbc                z_infinity_f
- .text          0x0600bfd0       0x10 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_ispos.o)
+ .text          0x0600bfd0       0x10 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_ispos.o)
                 0x0600bfd0                ispos
- .text          0x0600bfe0      0x2e0 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_mul_df.o)
+ .text          0x0600bfe0      0x2e0 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_mul_df.o)
                 0x0600bff0                __muldf3
- .text          0x0600c2c0       0xb0 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_si_to_df.o)
+ .text          0x0600c2c0       0xb0 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_si_to_df.o)
                 0x0600c2c0                __floatsidf
- .text          0x0600c370       0x80 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_df_to_si.o)
+ .text          0x0600c370       0x80 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_df_to_si.o)
                 0x0600c370                __fixdfsi
- .text          0x0600c3f0      0x2f0 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_addsub_df.o)
+ .text          0x0600c3f0      0x2f0 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_addsub_df.o)
                 0x0600c678                __subdf3
                 0x0600c618                __adddf3
- .text          0x0600c6e0       0x60 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_ashiftrt.o)
+ .text          0x0600c6e0       0x60 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_ashiftrt.o)
                 0x0600c6ec                __ashiftrt_r4_27
                 0x0600c720                __ashiftrt_r4_6
                 0x0600c710                __ashiftrt_r4_14
@@ -611,61 +611,61 @@ SLSTART         0x06004000       0x30
                 0x0600c704                __ashiftrt_r4_18
                 0x0600c6fe                __ashiftrt_r4_21
                 0x0600c726                __ashiftrt_r4_3
- .text          0x0600c740       0xa0 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(__main.o)
+ .text          0x0600c740       0xa0 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(__main.o)
                 0x0600c7b4                __main
                 0x0600c740                __do_global_dtors
                 0x0600c774                __do_global_ctors
- .text          0x0600c7e0       0xa0 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_sdivsi3.o)
+ .text          0x0600c7e0       0xa0 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_sdivsi3.o)
                 0x0600c7e0                __sdivsi3
- .text          0x0600c880       0x90 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_ashiftrt_n.o)
+ .text          0x0600c880       0x90 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_ashiftrt_n.o)
                 0x0600c880                __ashrsi3
- .text          0x0600c910       0x70 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_eq_df.o)
+ .text          0x0600c910       0x70 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_eq_df.o)
                 0x0600c910                __eqdf2
- .text          0x0600c980       0x70 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_lt_df.o)
+ .text          0x0600c980       0x70 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_lt_df.o)
                 0x0600c980                __ltdf2
- .text          0x0600c9f0      0x180 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_div_df.o)
+ .text          0x0600c9f0      0x180 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_div_df.o)
                 0x0600c9f8                __divdf3
- .text          0x0600cb70      0x120 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_unpack_df.o)
+ .text          0x0600cb70      0x120 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_unpack_df.o)
                 0x0600cb80                __unpack_d
- .text          0x0600cc90      0x220 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_pack_df.o)
+ .text          0x0600cc90      0x220 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_pack_df.o)
                 0x0600cca0                __pack_d
- .text          0x0600ceb0       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_thenan_df.o)
+ .text          0x0600ceb0       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_thenan_df.o)
                 0x0600ceb0                __thenan_df
- .text          0x0600ced0       0xd0 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_muldi3.o)
+ .text          0x0600ced0       0xd0 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_muldi3.o)
                 0x0600ced0                __muldi3
- .text          0x0600cfa0       0x80 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_lshrdi3.o)
+ .text          0x0600cfa0       0x80 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_lshrdi3.o)
                 0x0600cfa0                __lshrdi3
- .text          0x0600d020       0xf0 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_fpcmp_parts_df.o)
+ .text          0x0600d020       0xf0 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_fpcmp_parts_df.o)
                 0x0600d020                __fpcmp_parts_d
- .text          0x0600d110       0x80 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_ashldi3.o)
+ .text          0x0600d110       0x80 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_ashldi3.o)
                 0x0600d110                __ashldi3
- .text          0x0600d190       0x30 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_mulsi3.o)
+ .text          0x0600d190       0x30 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_mulsi3.o)
                 0x0600d190                __mulsi3
- .text          0x0600d1c0       0x90 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_ashiftlt.o)
+ .text          0x0600d1c0       0x90 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_ashiftlt.o)
                 0x0600d1c0                __ashlsi3
- .text          0x0600d250       0x90 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_lshiftrt.o)
+ .text          0x0600d250       0x90 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_lshiftrt.o)
                 0x0600d250                __lshrsi3
- .text          0x0600d2e0       0x60 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(assert.o)
+ .text          0x0600d2e0       0x60 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(assert.o)
                 0x0600d30c                __assert
- .text          0x0600d340       0xa0 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(memcpy.o)
+ .text          0x0600d340       0xa0 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(memcpy.o)
                 0x0600d340                memcpy
- .text          0x0600d3e0       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(errno.o)
+ .text          0x0600d3e0       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(errno.o)
                 0x0600d3e0                __errno
- .text          0x0600d400       0x90 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(atexit.o)
+ .text          0x0600d400       0x90 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(atexit.o)
                 0x0600d400                atexit
- .text          0x0600d490       0x10 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(impure.o)
+ .text          0x0600d490       0x10 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(impure.o)
                 0x0600d490                _global_impure_ptr
- .text          0x0600d4a0       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fiprintf.o)
+ .text          0x0600d4a0       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fiprintf.o)
                 0x0600d4a0                fiprintf
- .text          0x0600d4c0       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(abort.o)
+ .text          0x0600d4c0       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(abort.o)
                 0x0600d4c0                abort
- .text          0x0600d4e0       0x40 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(malloc.o)
+ .text          0x0600d4e0       0x40 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(malloc.o)
                 0x0600d4fc                free
                 0x0600d4e0                malloc
- .text          0x0600d520     0x1050 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(vfiprintf.o)
+ .text          0x0600d520     0x1050 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(vfiprintf.o)
                 0x0600e548                vfiprintf
                 0x0600d5c8                _vfiprintf_r
- .text          0x0600e570      0x270 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(signal.o)
+ .text          0x0600e570      0x270 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(signal.o)
                 0x0600e630                _raise_r
                 0x0600e7b8                __sigtramp
                 0x0600e764                raise
@@ -674,7 +674,7 @@ SLSTART         0x06004000       0x30
                 0x0600e780                signal
                 0x0600e5bc                _signal_r
                 0x0600e570                _init_signal_r
- .text          0x0600e7e0      0x380 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(syscalls.o)
+ .text          0x0600e7e0      0x380 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(syscalls.o)
                 0x0600e94c                _exit
                 0x0600e980                _getpid
                 0x0600e9e8                _utime
@@ -702,18 +702,18 @@ SLSTART         0x06004000       0x30
                 0x0600e8e8                _fstat
                 0x0600ea04                _fork
                 0x0600e874                _sbrk
- .text          0x0600eb60      0x5b0 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(mallocr.o)
+ .text          0x0600eb60      0x5b0 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(mallocr.o)
                 0x0600eb60                _malloc_r
- .text          0x0600f110      0x340 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(freer.o)
+ .text          0x0600f110      0x340 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(freer.o)
                 0x0600f110                _malloc_trim_r
                 0x0600f204                _free_r
- .text          0x0600f450      0x2e0 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fvwrite.o)
+ .text          0x0600f450      0x2e0 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fvwrite.o)
                 0x0600f450                __sfvwrite
- .text          0x0600f730      0x100 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(wsetup.o)
+ .text          0x0600f730      0x100 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(wsetup.o)
                 0x0600f730                __swsetup
- .text          0x0600f830       0xd0 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fflush.o)
+ .text          0x0600f830       0xd0 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fflush.o)
                 0x0600f830                fflush
- .text          0x0600f900      0x250 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(findfp.o)
+ .text          0x0600f900      0x250 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(findfp.o)
                 0x0600fa14                __sfp
                 0x0600f99c                __sfp_lock_acquire
                 0x0600fb30                __fp_unlock_all
@@ -723,72 +723,72 @@ SLSTART         0x06004000       0x30
                 0x0600fb10                __fp_lock_all
                 0x0600fac8                _cleanup_r
                 0x0600f944                __sfmoreglue
- .text          0x0600fb50       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(strlen.o)
+ .text          0x0600fb50       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(strlen.o)
                 0x0600fb50                strlen
- .text          0x0600fb70       0x40 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(memset.o)
+ .text          0x0600fb70       0x40 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(memset.o)
                 0x0600fb70                memset
- .text          0x0600fbb0       0x80 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(wcrtomb.o)
+ .text          0x0600fbb0       0x80 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(wcrtomb.o)
                 0x0600fbb0                _wcrtomb_r
                 0x0600fc08                wcrtomb
- .text          0x0600fc30      0x130 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(wcsrtombs.o)
+ .text          0x0600fc30      0x130 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(wcsrtombs.o)
                 0x0600fc30                _wcsrtombs_r
                 0x0600fd24                wcsrtombs
- .text          0x0600fd60       0xb0 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(memchr.o)
+ .text          0x0600fd60       0xb0 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(memchr.o)
                 0x0600fd60                memchr
- .text          0x0600fe10       0x60 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(signalr.o)
+ .text          0x0600fe10       0x60 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(signalr.o)
                 0x0600fe58                _getpid_r
                 0x0600fe10                _kill_r
- .text          0x0600fe70       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(trap.o)
+ .text          0x0600fe70       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(trap.o)
                 0x0600fe70                __trap34
- .text          0x0600fe90       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(mlock.o)
+ .text          0x0600fe90       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(mlock.o)
                 0x0600fe90                __malloc_lock
                 0x0600fe9c                __malloc_unlock
- .text          0x0600feb0       0x50 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(sbrkr.o)
+ .text          0x0600feb0       0x50 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(sbrkr.o)
                 0x0600feb0                _sbrk_r
- .text          0x0600ff00       0xa0 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(memmove.o)
+ .text          0x0600ff00       0xa0 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(memmove.o)
                 0x0600ff00                memmove
- .text          0x0600ffa0      0x3e0 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(reallocr.o)
+ .text          0x0600ffa0      0x3e0 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(reallocr.o)
                 0x0600ffa0                _realloc_r
- .text          0x06010380      0x130 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(makebuf.o)
+ .text          0x06010380      0x130 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(makebuf.o)
                 0x06010380                __smakebuf
- .text          0x060104b0      0x190 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fwalk.o)
+ .text          0x060104b0      0x190 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fwalk.o)
                 0x060105e4                _fwalk_reent
                 0x06010588                _fwalk
- .text          0x06010640      0x170 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(stdio.o)
+ .text          0x06010640      0x170 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(stdio.o)
                 0x06010698                __swrite
                 0x06010784                __sclose
                 0x06010640                __sread
                 0x06010724                __sseek
- .text          0x060107b0      0x130 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fclose.o)
+ .text          0x060107b0      0x130 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fclose.o)
                 0x060107b0                _fclose_r
                 0x060108c4                fclose
- .text          0x060108e0      0x2a0 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(wctomb_r.o)
+ .text          0x060108e0      0x2a0 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(wctomb_r.o)
                 0x06010900                _wctomb_r
- .text          0x06010b80       0x50 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fstatr.o)
+ .text          0x06010b80       0x50 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fstatr.o)
                 0x06010b80                _fstat_r
- .text          0x06010bd0       0x50 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(readr.o)
+ .text          0x06010bd0       0x50 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(readr.o)
                 0x06010bd0                _read_r
- .text          0x06010c20       0x50 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(writer.o)
+ .text          0x06010c20       0x50 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(writer.o)
                 0x06010c20                _write_r
- .text          0x06010c70       0x50 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(lseekr.o)
+ .text          0x06010c70       0x50 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(lseekr.o)
                 0x06010c70                _lseek_r
- .text          0x06010cc0       0x50 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(closer.o)
+ .text          0x06010cc0       0x50 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(closer.o)
                 0x06010cc0                _close_r
- .text          0x06010d10      0x100 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(locale.o)
+ .text          0x06010d10      0x100 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(locale.o)
                 0x06010dd8                setlocale
                 0x06010d58                _setlocale_r
                 0x06010db4                __locale_charset
                 0x06010df8                localeconv
                 0x06010dc8                _localeconv_r
- .text          0x06010e10       0x30 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(strcmp.o)
+ .text          0x06010e10       0x30 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(strcmp.o)
                 0x06010e10                strcmp
- .text          0x06010e40      0x540 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_udivdi3.o)
+ .text          0x06010e40      0x540 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_udivdi3.o)
                 0x06010e40                __udivdi3
- .text          0x06011380      0x570 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_umoddi3.o)
+ .text          0x06011380      0x570 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_umoddi3.o)
                 0x06011380                __umoddi3
- .text          0x060118f0       0x70 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_udivsi3.o)
+ .text          0x060118f0       0x70 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_udivsi3.o)
                 0x06011912                __udivsi3
- .text          0x06011960      0x100 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_clz.o)
+ .text          0x06011960      0x100 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_clz.o)
                 0x06011960                __clz_tab
  *(.strings)
                 0x06011a60                __etext = .
@@ -1069,18 +1069,18 @@ SLPROG          0x06011a60     0xcb30
                 0x0601fbd0                vpyu
  .data          0x0601fbf0       0x80 ../../Toolchain/Libraries/SGL_302j/lib/LIBSGL.A(sglIc0.o)
                 0x0601fbf0                IntPrioMask
- .data          0x0601fc70       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_mathcnst.o)
+ .data          0x0601fc70       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_mathcnst.o)
                 0x0601fc74                z_rooteps
                 0x0601fc70                z_rooteps_f
                 0x0601fc7c                SMALLX
                 0x0601fc84                BIGX
- .data          0x0601fc90      0x380 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(impure.o)
+ .data          0x0601fc90      0x380 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(impure.o)
                 0x0602000c                _impure_ptr
- .data          0x06020010      0x410 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(mallocr.o)
+ .data          0x06020010      0x410 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(mallocr.o)
                 0x06020018                __malloc_av_
                 0x06020014                __malloc_trim_threshold
                 0x06020010                __malloc_sbrk_base
- .data          0x06020420       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(locale.o)
+ .data          0x06020420       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(locale.o)
                 0x0602042c                __mb_cur_max
                 0x06020420                __lc_ctype
                 0x06020440                __edata = .
@@ -1104,15 +1104,15 @@ SLPROG          0x06011a60     0xcb30
                 0x06020518                rendCamera
  .bss           0x06020520       0x10 src/saturn.o
  .bss           0x06020530       0x20 src/tree.o
- .bss           0x06020550       0x10 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(__main.o)
- .bss           0x06020560       0x10 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(atexit.o)
- .bss           0x06020570       0x10 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(syscalls.o)
- .bss           0x06020580       0x40 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(mallocr.o)
+ .bss           0x06020550       0x10 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(__main.o)
+ .bss           0x06020560       0x10 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(atexit.o)
+ .bss           0x06020570       0x10 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(syscalls.o)
+ .bss           0x06020580       0x40 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(mallocr.o)
                 0x060205b0                __malloc_top_pad
                 0x06020580                __malloc_current_mallinfo
                 0x060205ac                __malloc_max_sbrked_mem
                 0x060205a8                __malloc_max_total_mem
- .bss           0x060205c0       0x10 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(locale.o)
+ .bss           0x060205c0       0x10 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(locale.o)
                 0x060205c4                __mlocale_changed
                 0x060205c0                _PathLocale
                 0x060205c8                __nlocale_changed
@@ -1174,7 +1174,7 @@ SLPROG          0x06011a60     0xcb30
                 0x060206e0                RemainWork
                 0x06020710                WorkBuf
                 0x06020990                EventBuf
- COMMON         0x06020e90        0x4 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(syscalls.o)
+ COMMON         0x06020e90        0x4 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(syscalls.o)
                                   0x0 (size before relaxing)
                 0x06020e90                errno
                 0x06020e94                __bend = .
@@ -1200,62 +1200,62 @@ OUTPUT(build/build.coff coff-sh)
  .comment       0x06021080       0x20 src/texture.o
  .comment       0x060210a0       0x20 src/tree.o
  .comment       0x060210c0       0x20 src/vector.o
- .comment       0x060210e0       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_sqrt.o)
- .comment       0x06021100       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_numtest.o)
- .comment       0x06021120       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_frexp.o)
- .comment       0x06021140       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_ldexp.o)
- .comment       0x06021160       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_mathcnst.o)
- .comment       0x06021180       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_ispos.o)
- .comment       0x060211a0       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_mul_df.o)
- .comment       0x060211c0       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_si_to_df.o)
- .comment       0x060211e0       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_df_to_si.o)
- .comment       0x06021200       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_addsub_df.o)
- .comment       0x06021220       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(__main.o)
- .comment       0x06021240       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_eq_df.o)
- .comment       0x06021260       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_lt_df.o)
- .comment       0x06021280       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_div_df.o)
- .comment       0x060212a0       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_unpack_df.o)
- .comment       0x060212c0       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_pack_df.o)
- .comment       0x060212e0       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_thenan_df.o)
- .comment       0x06021300       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_muldi3.o)
- .comment       0x06021320       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_lshrdi3.o)
- .comment       0x06021340       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_fpcmp_parts_df.o)
- .comment       0x06021360       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_ashldi3.o)
- .comment       0x06021380       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(assert.o)
- .comment       0x060213a0       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(errno.o)
- .comment       0x060213c0       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(atexit.o)
- .comment       0x060213e0       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(impure.o)
- .comment       0x06021400       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fiprintf.o)
- .comment       0x06021420       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(abort.o)
- .comment       0x06021440       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(malloc.o)
- .comment       0x06021460       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(vfiprintf.o)
- .comment       0x06021480       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(signal.o)
- .comment       0x060214a0       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(syscalls.o)
- .comment       0x060214c0       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(mallocr.o)
- .comment       0x060214e0       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(freer.o)
- .comment       0x06021500       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fvwrite.o)
- .comment       0x06021520       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(wsetup.o)
- .comment       0x06021540       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fflush.o)
- .comment       0x06021560       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(findfp.o)
- .comment       0x06021580       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(wcrtomb.o)
- .comment       0x060215a0       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(wcsrtombs.o)
- .comment       0x060215c0       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(memchr.o)
- .comment       0x060215e0       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(signalr.o)
- .comment       0x06021600       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(mlock.o)
- .comment       0x06021620       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(sbrkr.o)
- .comment       0x06021640       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(memmove.o)
- .comment       0x06021660       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(reallocr.o)
- .comment       0x06021680       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(makebuf.o)
- .comment       0x060216a0       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fwalk.o)
- .comment       0x060216c0       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(stdio.o)
- .comment       0x060216e0       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fclose.o)
- .comment       0x06021700       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(wctomb_r.o)
- .comment       0x06021720       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fstatr.o)
- .comment       0x06021740       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(readr.o)
- .comment       0x06021760       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(writer.o)
- .comment       0x06021780       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(lseekr.o)
- .comment       0x060217a0       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(closer.o)
- .comment       0x060217c0       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(locale.o)
- .comment       0x060217e0       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_udivdi3.o)
- .comment       0x06021800       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_umoddi3.o)
- .comment       0x06021820       0x20 c:/Users/rdduarte/Saturn/SaturnDevelopment/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_clz.o)
+ .comment       0x060210e0       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_sqrt.o)
+ .comment       0x06021100       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_numtest.o)
+ .comment       0x06021120       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_frexp.o)
+ .comment       0x06021140       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_ldexp.o)
+ .comment       0x06021160       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_mathcnst.o)
+ .comment       0x06021180       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libm.a(s_ispos.o)
+ .comment       0x060211a0       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_mul_df.o)
+ .comment       0x060211c0       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_si_to_df.o)
+ .comment       0x060211e0       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_df_to_si.o)
+ .comment       0x06021200       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_addsub_df.o)
+ .comment       0x06021220       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(__main.o)
+ .comment       0x06021240       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_eq_df.o)
+ .comment       0x06021260       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_lt_df.o)
+ .comment       0x06021280       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_div_df.o)
+ .comment       0x060212a0       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_unpack_df.o)
+ .comment       0x060212c0       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_pack_df.o)
+ .comment       0x060212e0       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_thenan_df.o)
+ .comment       0x06021300       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_muldi3.o)
+ .comment       0x06021320       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_lshrdi3.o)
+ .comment       0x06021340       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_fpcmp_parts_df.o)
+ .comment       0x06021360       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_ashldi3.o)
+ .comment       0x06021380       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(assert.o)
+ .comment       0x060213a0       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(errno.o)
+ .comment       0x060213c0       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(atexit.o)
+ .comment       0x060213e0       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(impure.o)
+ .comment       0x06021400       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fiprintf.o)
+ .comment       0x06021420       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(abort.o)
+ .comment       0x06021440       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(malloc.o)
+ .comment       0x06021460       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(vfiprintf.o)
+ .comment       0x06021480       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(signal.o)
+ .comment       0x060214a0       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(syscalls.o)
+ .comment       0x060214c0       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(mallocr.o)
+ .comment       0x060214e0       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(freer.o)
+ .comment       0x06021500       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fvwrite.o)
+ .comment       0x06021520       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(wsetup.o)
+ .comment       0x06021540       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fflush.o)
+ .comment       0x06021560       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(findfp.o)
+ .comment       0x06021580       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(wcrtomb.o)
+ .comment       0x060215a0       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(wcsrtombs.o)
+ .comment       0x060215c0       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(memchr.o)
+ .comment       0x060215e0       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(signalr.o)
+ .comment       0x06021600       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(mlock.o)
+ .comment       0x06021620       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(sbrkr.o)
+ .comment       0x06021640       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(memmove.o)
+ .comment       0x06021660       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(reallocr.o)
+ .comment       0x06021680       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(makebuf.o)
+ .comment       0x060216a0       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fwalk.o)
+ .comment       0x060216c0       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(stdio.o)
+ .comment       0x060216e0       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fclose.o)
+ .comment       0x06021700       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(wctomb_r.o)
+ .comment       0x06021720       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(fstatr.o)
+ .comment       0x06021740       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(readr.o)
+ .comment       0x06021760       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(writer.o)
+ .comment       0x06021780       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(lseekr.o)
+ .comment       0x060217a0       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(closer.o)
+ .comment       0x060217c0       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501/../../../../sh-coff/lib\libc.a(locale.o)
+ .comment       0x060217e0       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_udivdi3.o)
+ .comment       0x06021800       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_umoddi3.o)
+ .comment       0x06021820       0x20 C:/Users/rdduarte/Saturn/ss_dev/Toolchain/Compiler/SH_COFF/sh-coff/bin/../lib/gcc/sh-coff/3.4-GNUSH_v0501\libgcc.a(_clz.o)
