@@ -1,6 +1,6 @@
 #include "frustum.h"
 
-void Frustum_init(Frustum* frustum, Sint16 fov, ASPECT_RATIO ratio, FIXED nearDistance, FIXED farDistance)
+void Frustum_init(Frustum *frustum, Sint16 fov, ASPECT_RATIO ratio, FIXED nearDistance, FIXED farDistance)
 {
     FIXED tangent = slTan(DEGtoANG(fov / 2));
 
@@ -12,15 +12,15 @@ void Frustum_init(Frustum* frustum, Sint16 fov, ASPECT_RATIO ratio, FIXED nearDi
     frustum->farWidth = fxMult(frustum->farHeight, ratio);
 }
 
-void Frustum_updateCam(Frustum* frustum)
+void Frustum_updateCam(Frustum *frustum)
 {
     FIXED matrix[4][3];
     slGetMatrix(matrix);
 
-    FIXED* xAxis = matrix[0];
-    FIXED* yAxis = matrix[1];
-    FIXED* zAxis = matrix[2];
-    FIXED* position = matrix[3];
+    FIXED *xAxis = matrix[0];
+    FIXED *yAxis = matrix[1];
+    FIXED *zAxis = matrix[2];
+    FIXED *position = matrix[3];
 
     VECTOR nearTopLeft;
     VECTOR nearTopRight;
@@ -83,9 +83,10 @@ void Frustum_updateCam(Frustum* frustum)
     Plane_set3Points(&frustum->plane[FAR_PLANE], farTopRight, farTopLeft, farBottomLeft);
 }
 
-FRUSTUM_INTERSECTION Frustum_pointInFrustum(Frustum* frustum, POINT p)
+FRUSTUM_INTERSECTION Frustum_pointInFrustum(Frustum *frustum, POINT p)
 {
-    for (int i = 0; i < 6; i++)
+    int i;
+    for (i = 0; i < 6; i++)
     {
         if (Plane_distance(&frustum->plane[i], p) < 0)
             return OUTSIDE_FRUSTUM;
@@ -93,12 +94,13 @@ FRUSTUM_INTERSECTION Frustum_pointInFrustum(Frustum* frustum, POINT p)
     return INSIDE_FRUSTUM;
 }
 
-FRUSTUM_INTERSECTION Frustum_sphereInFrustum(Frustum* frustum, POINT p, FIXED radius)
+FRUSTUM_INTERSECTION Frustum_sphereInFrustum(Frustum *frustum, POINT p, FIXED radius)
 {
     int result = INSIDE_FRUSTUM;
     FIXED distance;
 
-    for (int i = 0; i < 6; i++)
+    int i;
+    for (i = 0; i < 6; i++)
     {
         distance = Plane_distance(&frustum->plane[i], p);
         if (distance < -radius)
@@ -109,10 +111,11 @@ FRUSTUM_INTERSECTION Frustum_sphereInFrustum(Frustum* frustum, POINT p, FIXED ra
     return (result);
 }
 
-FRUSTUM_INTERSECTION Frustum_boxInFrustum(Frustum* frustum, AABox* b)
+FRUSTUM_INTERSECTION Frustum_boxInFrustum(Frustum *frustum, AABox *b)
 {
     VECTOR vertex;
-    for (int i = 0; i < 6; i++)
+    int i;
+    for (i = 0; i < 6; i++)
     {
         AABox_getVertexP(b, frustum->plane[i].normal, vertex);
         if (Plane_distance(&frustum->plane[i], vertex) < 0)

@@ -1,5 +1,5 @@
-IPFILE = ip.bin
-LDFILE = ip.linker
+IPFILE = ../Common/ip.bin
+LDFILE = ../Common/ip.linker
 
 BUILD_TARGET = build
 BUILD_FOLDER = $(BUILD_TARGET)/cd
@@ -19,9 +19,9 @@ SBLDIR = $(TOOLCHAIN_DIR)/Libraries/sbl601/segalib
 SBLLDIR = $(SBLDIR)/lib
 SBLIDIR = $(SBLDIR)/include
 
-LIBS = $(SGLLDIR)/SEGA_SYS.A $(SGLLDIR)/LIBCD.A $(SGLLDIR)/LIBSGL.A
+LIBS = $(SGLLDIR)/SEGA_SYS.A $(SGLLDIR)/LIBCD.A $(SGLLDIR)/LIBSGL.A -lm
 
-CCFLAGS = -W -m2 -std=gnu99 -c -O0 -I$(SGLIDIR)
+CCFLAGS = -W -m2 -c -O2 -I$(SGLIDIR) -I$(SBLIDIR)
 
 LDFLAGS = -T$(LDFILE) -Wl,-Map,$(BUILD_MAP),-e,___Start -nostartfiles
 

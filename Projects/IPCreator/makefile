@@ -56,5 +56,4 @@ $(TARGET1) : $(OBJS) $(MAKEFILE) $(LDFILE)
 
 clean:
 	$(shell find . -type f -name '*.o' -delete)
-	$(shell find . -type f -name 'ip.*' -delete)
 	

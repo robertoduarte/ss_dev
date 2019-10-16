@@ -1,5 +1,5 @@
-IPFILE = ip.bin
-LDFILE = ip.linker
+IPFILE = ../Common/ip.bin
+LDFILE = ../Common/ip.linker
 
 BUILD_TARGET = build
 BUILD_FOLDER = $(BUILD_TARGET)/cd
