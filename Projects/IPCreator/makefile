@@ -49,12 +49,10 @@ $(TARGET1) : $(OBJS) $(MAKEFILE) $(LDFILE)
 .SUFFIXES: .asm
 
 %.o: %.src
-#.src.o :
 	$(AS) $< $(ASFLAGS) $(_ASFLAGS) -o $@
 
-#%.o: %.c
-#.c.o :
-#	$(CC) $< $(DFLAGS) $(CCFLAGS) -o $@
+%.o: %.c
+	$(CC) $< $(DFLAGS) $(CCFLAGS) -o $@
 
 clean:
 	$(shell find . -type f -name '*.o' -delete)
