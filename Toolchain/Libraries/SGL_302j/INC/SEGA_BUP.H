@@ -25,11 +25,11 @@
 #define	BUP_LIB_ADDRESS		(*(volatile Uint32 *)(0x6000350+8))
 #define	BUP_VECTOR_ADDRESS	(*(volatile Uint32 *)(0x6000350+4))
 
-/* ãƒ¦ãƒ‹ãƒƒãƒˆï¼©ï¼¤ */
+/* ƒ†ƒjƒbƒg‚h‚c */
 #define	BUP_MAIN_UNIT	(1)
 #define	BUP_CURTRIDGE	(2)
 
-/* è¨€èªç¨®é¡ */
+/* Œ¾Œêí—Ş */
 #define	BUP_JAPANESE	(0)
 #define	BUP_ENGLISH	(1)
 #define	BUP_FRANCAIS	(2)
@@ -37,7 +37,7 @@
 #define	BUP_ESPANOL	(4)
 #define	BUP_ITALIANO	(5)
 
-/* è£…ç½®çŠ¶æ…‹ */
+/* ‘•’uó‘Ô */
 #define	BUP_NON			(1)
 #define	BUP_UNFORMAT		(2)
 #define	BUP_WRITE_PROTECT	(3)
@@ -48,44 +48,44 @@
 #define	BUP_BROKEN		(8)
 
 /******************************************
- * è¨˜æ†¶è£…ç½®æ¥ç¶šæƒ…å ±ãƒ†ãƒ¼ãƒ–ãƒ«               *
+ * ‹L‰¯‘•’uÚ‘±î•ñƒe[ƒuƒ‹               *
  ******************************************/
 typedef struct BupConfig{
-	Uint16	unit_id;	/* ãƒ¦ãƒ‹ãƒƒãƒˆï¼©ï¼¤ */
-	Uint16	partition;	/* ãƒ‘ãƒ¼ãƒ†ã‚£ã‚·ãƒ§ãƒ³æ•° */
+	Uint16	unit_id;	/* ƒ†ƒjƒbƒg‚h‚c */
+	Uint16	partition;	/* ƒp[ƒeƒBƒVƒ‡ƒ“” */
 } BupConfig;
 
 /******************************************
- * ã‚¹ãƒ†ã‚¤ã‚¿ã‚¹æƒ…å ±ãƒ†ãƒ¼ãƒ–ãƒ«                 *
+ * ƒXƒeƒCƒ^ƒXî•ñƒe[ƒuƒ‹                 *
  ******************************************/
 typedef	struct BupStat{
-	Uint32	totalsize;	/* å…¨å®¹é‡(Byte) */
-	Uint32	totalblock;	/* å…¨ãƒ–ãƒ­ãƒƒã‚¯æ•° */
-	Uint32	blocksize;	/* 1ãƒ–ãƒ­ãƒƒã‚¯ã®ã‚µã‚¤ã‚º(Byte) */
-	Uint32	freesize;	/* ç©ºãå®¹é‡ */
-	Uint32	freeblock;	/* ç©ºãƒ–ãƒ­ãƒƒã‚¯æ•° */
+	Uint32	totalsize;	/* ‘S—e—Ê(Byte) */
+	Uint32	totalblock;	/* ‘SƒuƒƒbƒN” */
+	Uint32	blocksize;	/* 1ƒuƒƒbƒN‚ÌƒTƒCƒY(Byte) */
+	Uint32	freesize;	/* ‹ó‚«—e—Ê */
+	Uint32	freeblock;	/* ‹óƒuƒƒbƒN” */
 	Uint32	datanum;
 } BupStat;
 
 /******************************************
- * ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªæƒ…å ±ãƒ†ãƒ¼ãƒ–ãƒ«               *
+ * ƒfƒBƒŒƒNƒgƒŠî•ñƒe[ƒuƒ‹               *
  ******************************************/
 typedef struct BupDir{
-	Uint8	filename[12];	/* ãƒ•ã‚¡ã‚¤ãƒ«å */
-	Uint8	comment[11];	/* ã‚³ãƒ¡ãƒ³ãƒˆ */
-	Uint8	language;	/* ã‚³ãƒ¡ãƒ³ãƒˆã®è¨€èªç¨®é¡ */
-	Uint32	date;		/* ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ— */
-	Uint32	datasize;	/* ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºï¼ˆByteï¼‰ */
-	Uint16	blocksize;	/* ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºï¼ˆãƒ–ãƒ­ãƒƒã‚¯æ•°ï¼‰ */
+	Uint8	filename[12];	/* ƒtƒ@ƒCƒ‹–¼ */
+	Uint8	comment[11];	/* ƒRƒƒ“ƒg */
+	Uint8	language;	/* ƒRƒƒ“ƒg‚ÌŒ¾Œêí—Ş */
+	Uint32	date;		/* ƒ^ƒCƒ€ƒXƒ^ƒ“ƒv */
+	Uint32	datasize;	/* ƒf[ƒ^ƒTƒCƒYiBytej */
+	Uint16	blocksize;	/* ƒf[ƒ^ƒTƒCƒYiƒuƒƒbƒN”j */
 } BupDir;
 
 typedef struct BupDate {
-	Uint8	year;		/* ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ï¼ˆå¹´ -1980ï¼‰ */
-	Uint8	month;		/* ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ï¼ˆæœˆ 1ï½12ï¼‰ */
-	Uint8	day;		/* ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ï¼ˆæ—¥ 1ï½31ï¼‰ */
-	Uint8	time;		/* ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ï¼ˆæ™‚ 0ï½23ï¼‰ */
-	Uint8	min;		/* ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ—ï¼ˆåˆ† 0ï½59ï¼‰ */
-	Uint8	week;		/* ã‚¿ã‚¤ãƒ ã‚¹ã‚¿ãƒ³ãƒ— (æ›œæ—¥ æ—¥0ï½åœŸ6)*/
+	Uint8	year;		/* ƒ^ƒCƒ€ƒXƒ^ƒ“ƒvi”N -1980j */
+	Uint8	month;		/* ƒ^ƒCƒ€ƒXƒ^ƒ“ƒviŒ 1`12j */
+	Uint8	day;		/* ƒ^ƒCƒ€ƒXƒ^ƒ“ƒvi“ú 1`31j */
+	Uint8	time;		/* ƒ^ƒCƒ€ƒXƒ^ƒ“ƒvi 0`23j */
+	Uint8	min;		/* ƒ^ƒCƒ€ƒXƒ^ƒ“ƒvi•ª 0`59j */
+	Uint8	week;		/* ƒ^ƒCƒ€ƒXƒ^ƒ“ƒv (—j“ú “ú0`“y6)*/
 } BupDate;
 
 #endif /* ifndef SEGA_BUP_H */

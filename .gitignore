@@ -1,4 +1,5 @@
-*.log
 *.o
-/IDE/*
+*.iso
+*.map
+*.bin
 

@@ -5,11 +5,11 @@
  *
  *  PURPOSE:
  *
- *      ã‚µã‚¦ãƒ³ãƒ‰I/Fãƒ©ã‚¤ãƒ–ãƒ©ãƒªãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã€‚
+ *      ƒTƒEƒ“ƒhI/Fƒ‰ƒCƒuƒ‰ƒŠƒwƒbƒ_ƒtƒ@ƒCƒ‹B
  *
  *  DESCRIPTION:
  *
- *      ã‚µã‚¦ãƒ³ãƒ‰ãƒ‰ãƒ©ã‚¤ãƒã¨ã®ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã‚’å®Ÿç¾ã™ã‚‹ã€‚
+ *      ƒTƒEƒ“ƒhƒhƒ‰ƒCƒo‚Æ‚ÌƒCƒ“ƒ^ƒtƒF[ƒX‚ğÀŒ»‚·‚éB
  *
  *  AUTHOR(S)
  *
@@ -40,133 +40,133 @@
 /*
  * GLOBAL DEFINES/MACROS DEFINES
  */
-/**** å®šæ•° *******************************************************************/
-/******** ï½ºï¾ï¾ï¾„ï¾å®Ÿè¡ŒçŠ¶æ…‹ ******************************************************/
-#define SND_RET_SET     0                       /* æ­£å¸¸çµ‚äº†                     */
-#define SND_RET_NSET    1                       /* ç•°å¸¸çµ‚äº†                     */
-/******** ï½»ï½³ï¾ï¾„ï¾ï½ºï¾ï¾„ï¾›ï½°ï¾™è¨­å®š ****************************************************/
+/**** ’è” *******************************************************************/
+/******** ºÏİÄŞÀsó‘Ô ******************************************************/
+#define SND_RET_SET     0                       /* ³íI—¹                     */
+#define SND_RET_NSET    1                       /* ˆÙíI—¹                     */
+/******** »³İÄŞºİÄÛ°Ùİ’è ****************************************************/
 #define SND_CTRL_OUTPUT_STEREO  (0 << 7)        /* Sound output mode : STEREO*/
 #define SND_CTRL_OUTPUT_MONO    (1 << 7)        /* Sound output mode : MONO  */
 
-/******** Sequence PAN ï½ºï¾ï¾„ï¾›ï½°ï¾™ï½½ï½²ï½¯ï¾ ********************************************/
+/******** Sequence PAN ºİÄÛ°Ù½²¯Á ********************************************/
 #define SND_SEQ_PAN_OFF (0 << 7)                /* Control OFF               */
 #define SND_SEQ_PAN_ON  (1 << 7)                /* Control ON                */
 
-/******** ï¾Šï½°ï¾„ï¾ï½³ï½ªï½±ï¾ï½ªï½¯ï½¸ï¾Šï¾Ÿï¾—ï¾’ï½°ï¾€ **************************************************/
+/******** Ê°ÄŞ³ª±Áª¯¸Êß×Ò°À **************************************************/
 #define SND_DRAM4           0                   /* DRAM 4Mbit r/w            */
 #define SND_DRAM8           1                   /* DRAM 8Mbit r/w            */
 #define SND_SCSP_MIDI       2                   /* SCSP MIDI                 */
-#define SND_SOUND_SRC_LR    3                   /* éŸ³æºå‡ºåŠ›(L/R)            */
-#define SND_SOUND_SRC_L     4                   /* éŸ³æºå‡ºåŠ›(L)              */
-#define SND_SOUND_SRC_R     5                   /* éŸ³æºå‡ºåŠ›(R)              */
-/******** ï¾Šï½°ï¾„ï¾ï½³ï½ªï½±ï¾ï½ªï½¯ï½¸ï½½ï¾ƒï½°ï¾€ï½½ ***************************************************/
-#define SND_HARD_OK     0x8000                  /* æ­£å¸¸çµ‚äº†                  */
-#define SND_HARD_ERR    0x7fff                  /* ç•°å¸¸çµ‚äº†                  */
-/******** å‰²ã‚Šè¾¼ã¿è¨±å¯ãƒ“ãƒƒãƒˆ *************************************************/
-#define SND_INT_PCM_ADR     (1 <<  7)           /* PCM play address æ›´æ–°   */
-/******** å¯¾Hostå‰²ã‚Šè¾¼ã¿ç¨®åˆ¥ *************************************************/
-#define SND_FCT_PCM_ADR     0x01                /* PCM play address æ›´æ–°   */
-/******** PCMï½±ï¾„ï¾ï¾šï½½æ›´æ–°å‰²ã‚Šè¾¼ã¿ï½½ï¾ƒï½°ï¾€ï½½ ******************************************/
-#define SND_PCM_PLAY0   (1 <<  0)               /* PCMå†ç”Ÿç•ªå·0              */
-#define SND_PCM_PLAY1   (1 <<  1)               /* PCMå†ç”Ÿç•ªå·1              */
-#define SND_PCM_PLAY2   (1 <<  2)               /* PCMå†ç”Ÿç•ªå·2              */
-#define SND_PCM_PLAY3   (1 <<  3)               /* PCMå†ç”Ÿç•ªå·3              */
-#define SND_PCM_PLAY4   (1 <<  4)               /* PCMå†ç”Ÿç•ªå·4              */
-#define SND_PCM_PLAY5   (1 <<  5)               /* PCMå†ç”Ÿç•ªå·5              */
-#define SND_PCM_PLAY6   (1 <<  6)               /* PCMå†ç”Ÿç•ªå·6              */
-#define SND_PCM_PLAY7   (1 <<  7)               /* PCMå†ç”Ÿç•ªå·7              */
+#define SND_SOUND_SRC_LR    3                   /* ‰¹Œ¹o—Í(L/R)            */
+#define SND_SOUND_SRC_L     4                   /* ‰¹Œ¹o—Í(L)              */
+#define SND_SOUND_SRC_R     5                   /* ‰¹Œ¹o—Í(R)              */
+/******** Ê°ÄŞ³ª±Áª¯¸½Ã°À½ ***************************************************/
+#define SND_HARD_OK     0x8000                  /* ³íI—¹                  */
+#define SND_HARD_ERR    0x7fff                  /* ˆÙíI—¹                  */
+/******** Š„‚è‚İ‹–‰Âƒrƒbƒg *************************************************/
+#define SND_INT_PCM_ADR     (1 <<  7)           /* PCM play address XV   */
+/******** ‘ÎHostŠ„‚è‚İí•Ê *************************************************/
+#define SND_FCT_PCM_ADR     0x01                /* PCM play address XV   */
+/******** PCM±ÄŞÚ½XVŠ„‚è‚İ½Ã°À½ ******************************************/
+#define SND_PCM_PLAY0   (1 <<  0)               /* PCMÄ¶”Ô†0              */
+#define SND_PCM_PLAY1   (1 <<  1)               /* PCMÄ¶”Ô†1              */
+#define SND_PCM_PLAY2   (1 <<  2)               /* PCMÄ¶”Ô†2              */
+#define SND_PCM_PLAY3   (1 <<  3)               /* PCMÄ¶”Ô†3              */
+#define SND_PCM_PLAY4   (1 <<  4)               /* PCMÄ¶”Ô†4              */
+#define SND_PCM_PLAY5   (1 <<  5)               /* PCMÄ¶”Ô†5              */
+#define SND_PCM_PLAY6   (1 <<  6)               /* PCMÄ¶”Ô†6              */
+#define SND_PCM_PLAY7   (1 <<  7)               /* PCMÄ¶”Ô†7              */
 
-/******** SndSeqStat(ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹) ***********************************/
+/******** SndSeqStat(ƒV[ƒPƒ“ƒXƒXƒe[ƒ^ƒX) ***********************************/
 /************* SND_SEQ_STAT_MODE(song mode) **********************************/
 #define SND_MD_STOP     0x000                           /* stop              */
 #define SND_MD_PLAY     0x100                           /* play              */
 #define SND_MD_FADE     0x200                           /* fade              */
 #define SND_MD_PLAY_PS  0x300                           /* play pause        */
 #define SND_MD_FADE_PS  0x400                           /* fade pause        */
-/******** SndPcmStartPrm(PCMé–‹å§‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿) **********************************/
-/************* SND_PRM_MODE(ï½½ï¾ƒï¾šï½µï½¥ï¾“ï¾‰ï½¸ï¾›+ï½»ï¾ï¾Œï¾Ÿï¾˜ï¾ï½¸ï¾ï¾šï½°ï¾„) ***************************/
-#define SND_MD_MONO     (0 <<  7)                   /* ï¾“ï¾‰ï½¸ï¾›                  */
-#define SND_MD_STEREO   (1 <<  7)                   /* ï½½ï¾ƒï¾šï½µ                  */
+/******** SndPcmStartPrm(PCMŠJnƒpƒ‰ƒ[ƒ^) **********************************/
+/************* SND_PRM_MODE(½ÃÚµ¥ÓÉ¸Û+»İÌßØİ¸ŞÚ°Ä) ***************************/
+#define SND_MD_MONO     (0 <<  7)                   /* ÓÉ¸Û                  */
+#define SND_MD_STEREO   (1 <<  7)                   /* ½ÃÚµ                  */
 #define SND_MD_16       (0 <<  4)                   /* 16bitPCM              */
 #define SND_MD_8        (1 <<  4)                   /* 8bitPCM               */
-/******** SND_MoveData(ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿è»¢é€) ***********************************/
-#define SND_KD_TONE         0x0                         /* éŸ³è‰²              */
-#define SND_KD_SEQ          0x1                         /* ã‚·ãƒ¼ã‚±ãƒ³ã‚¹        */
-#define SND_KD_DSP_PRG      0x2                         /* DSPãƒ—ãƒ­ã‚°ãƒ©ãƒ      */
-#define SND_KD_DSP_RAM      0x3                         /* DSPï¾œï½°ï½¸RAM         */
-/**** ã‚¢ã‚¯ã‚»ã‚¹ãƒã‚¯ãƒ­ *********************************************************/
-/******** SndIniDt(ã‚·ã‚¹ãƒ†ãƒ èµ·å‹•) *********************************************/
-#define SND_INI_PRG_ADR(sys_ini)    ((sys_ini).prg_adr) /* 68Kï¾Œï¾Ÿï¾›ï½¸ï¾ï¾—ï¾‘æ ¼ç´... */
-#define SND_INI_PRG_SZ(sys_ini)     ((sys_ini).prg_sz)  /* 68Kï¾Œï¾Ÿï¾›ï½¸ï¾ï¾—ï¾‘ï½»ï½²ï½½ï¾... */
-#define SND_INI_ARA_ADR(sys_ini)    ((sys_ini).ara_adr) /* ï½»ï½³ï¾ï¾„ï¾ï½´ï¾˜ï½±ï¾ï½¯ï¾Œï¾Ÿæ ¼ç´. */
-#define SND_INI_ARA_SZ(sys_ini)     ((sys_ini).ara_sz)  /* ï½»ï½³ï¾ï¾„ï¾ï½´ï¾˜ï½±ï¾ï½¯ï¾Œï¾Ÿï½»ï½²ï½½ï¾. */
-/******** SndSeqStat(ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹) ***********************************/
+/******** SND_MoveData(ƒTƒEƒ“ƒhƒf[ƒ^“]‘—) ***********************************/
+#define SND_KD_TONE         0x0                         /* ‰¹F              */
+#define SND_KD_SEQ          0x1                         /* ƒV[ƒPƒ“ƒX        */
+#define SND_KD_DSP_PRG      0x2                         /* DSPƒvƒƒOƒ‰ƒ€     */
+#define SND_KD_DSP_RAM      0x3                         /* DSPÜ°¸RAM         */
+/**** ƒAƒNƒZƒXƒ}ƒNƒ *********************************************************/
+/******** SndIniDt(ƒVƒXƒeƒ€‹N“®) *********************************************/
+#define SND_INI_PRG_ADR(sys_ini)    ((sys_ini).prg_adr) /* 68KÌßÛ¸Ş×ÑŠi”[... */
+#define SND_INI_PRG_SZ(sys_ini)     ((sys_ini).prg_sz)  /* 68KÌßÛ¸Ş×Ñ»²½Ş... */
+#define SND_INI_ARA_ADR(sys_ini)    ((sys_ini).ara_adr) /* »³İÄŞ´Ø±Ï¯ÌßŠi”[. */
+#define SND_INI_ARA_SZ(sys_ini)     ((sys_ini).ara_sz)  /* »³İÄŞ´Ø±Ï¯Ìß»²½Ş. */
+/******** SndSeqStat(ƒV[ƒPƒ“ƒXƒXƒe[ƒ^ƒX) ***********************************/
 #define SND_SEQ_STAT_MODE(status)   ((status).mode)     /* song mode         */
 #define SND_SEQ_STAT_STAT(status)   ((status).stat)     /* song status       */
-/******** SndPcmStartPrm(PCMé–‹å§‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿) **********************************/
-#define SND_PRM_MODE(prm)       ((prm).mode)        /* ï½½ï¾ƒï¾šï½µï½¥ï¾“ï¾‰ï½¸ï¾›+ï½»ï¾ï¾Œï¾Ÿï¾˜ï¾ï½¸ï¾ï¾šï½°ï¾„ */
-#define SND_PRM_SADR(prm)       ((prm).sadr)        /* PCMï½½ï¾„ï¾˜ï½°ï¾‘ï¾Šï¾ï½¯ï¾Œï½§ï½½ï¾€ï½°ï¾„ï½±ï¾„ï¾ï¾šï½½*/
-#define SND_PRM_SIZE(prm)       ((prm).size)        /* PCMï½½ï¾„ï¾˜ï½°ï¾‘ï¾Šï¾ï½¯ï¾Œï½§ï½»ï½²ï½½ï¾   */
-#define SND_PRM_OFSET(prm)      ((prm).ofset)       /* PCMï½½ï¾„ï¾˜ï½°ï¾‘å†ç”Ÿé–‹å§‹ï½µï¾Œï½¾ï½¯ï¾„ */
-/******** SndPcmChgPrm(PCMå¤‰æ›´ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿) ************************************/
-#define SND_PRM_NUM(prm)        ((prm).num)         /* PCMï½½ï¾„ï¾˜ï½°ï¾‘å†ç”Ÿç•ªå·       */
-#define SND_PRM_LEV(prm)        ((prm).lev)         /* ï¾€ï¾ï½²ï¾šï½¸ï¾„éŸ³Level         */
-#define SND_PRM_PAN(prm)        ((prm).pan)         /* ï¾€ï¾ï½²ï¾šï½¸ï¾„éŸ³pan           */
-#define SND_PRM_PICH(prm)       ((prm).pich)        /* PICHï¾œï½°ï¾„ï¾              */
-#define SND_R_EFCT_IN(prm)      ((prm).r_efct_in)   /* Efect in select(å³)   */
-#define SND_R_EFCT_LEV(prm)     ((prm).r_efct_lev)  /* Efect send Level(å³)  */
-#define SND_L_EFCT_IN(prm)      ((prm).l_efct_in)   /* Efect in select(å·¦)   */
-#define SND_L_EFCT_LEV(prm)     ((prm).l_efct_lev)  /* Efect send Level(å·¦)  */
+/******** SndPcmStartPrm(PCMŠJnƒpƒ‰ƒ[ƒ^) **********************************/
+#define SND_PRM_MODE(prm)       ((prm).mode)        /* ½ÃÚµ¥ÓÉ¸Û+»İÌßØİ¸ŞÚ°Ä */
+#define SND_PRM_SADR(prm)       ((prm).sadr)        /* PCM½ÄØ°ÑÊŞ¯Ì§½À°Ä±ÄŞÚ½*/
+#define SND_PRM_SIZE(prm)       ((prm).size)        /* PCM½ÄØ°ÑÊŞ¯Ì§»²½Ş   */
+#define SND_PRM_OFSET(prm)      ((prm).ofset)       /* PCM½ÄØ°ÑÄ¶ŠJnµÌ¾¯Ä */
+/******** SndPcmChgPrm(PCM•ÏXƒpƒ‰ƒ[ƒ^) ************************************/
+#define SND_PRM_NUM(prm)        ((prm).num)         /* PCM½ÄØ°ÑÄ¶”Ô†       */
+#define SND_PRM_LEV(prm)        ((prm).lev)         /* ÀŞ²Ú¸Ä‰¹Level         */
+#define SND_PRM_PAN(prm)        ((prm).pan)         /* ÀŞ²Ú¸Ä‰¹pan           */
+#define SND_PRM_PICH(prm)       ((prm).pich)        /* PICHÜ°ÄŞ              */
+#define SND_R_EFCT_IN(prm)      ((prm).r_efct_in)   /* Efect in select(‰E)   */
+#define SND_R_EFCT_LEV(prm)     ((prm).r_efct_lev)  /* Efect send Level(‰E)  */
+#define SND_L_EFCT_IN(prm)      ((prm).l_efct_in)   /* Efect in select(¶)   */
+#define SND_L_EFCT_LEV(prm)     ((prm).l_efct_lev)  /* Efect send Level(¶)  */
 #define SND_PRM_TL(prm)     	((prm).lev)  		/* Master Level			 */
-/******** SndPcmPlayAdr(PCMå†ç”Ÿï½±ï¾„ï¾ï¾šï½½) ****************************************/
-#define SND_PCM_RADR(prm)       ((prm).radr)        /* å³å‡ºåŠ›(ï¾“ï¾‰ï½¸ï¾›)          */
-#define SND_PCM_LADR(prm)       ((prm).ladr)        /* å·¦å‡ºåŠ›                 */
-/******** SndCdHzSrVl(å‘¨æ³¢æ•°å¸¯åŸŸåˆ¥ï½½ï¾ƒï¾šï½µè§£æéŸ³é‡) ******************************/
-#define SND_CD_LHIGH(hz_vl)     ((hz_vl).high.left) /* å·¦å‡ºåŠ› é«˜éŸ³åŸŸ         */
-#define SND_CD_LMID(hz_vl)      ((hz_vl).mid.left)  /* å·¦å‡ºåŠ› ä¸­éŸ³åŸŸ         */
-#define SND_CD_LLOW(hz_vl)      ((hz_vl).low.left)  /* å·¦å‡ºåŠ› ä½éŸ³åŸŸ         */
-#define SND_CD_RHIGH(hz_vl)     ((hz_vl).high.right)/* å³å‡ºåŠ› é«˜éŸ³åŸŸ         */
-#define SND_CD_RMID(hz_vl)      ((hz_vl).mid.right) /* å³å‡ºåŠ› ä¸­éŸ³åŸŸ         */
-#define SND_CD_RLOW(hz_vl)      ((hz_vl).low.right) /* å³å‡ºåŠ› ä½éŸ³åŸŸ         */
+/******** SndPcmPlayAdr(PCMÄ¶±ÄŞÚ½) ****************************************/
+#define SND_PCM_RADR(prm)       ((prm).radr)        /* ‰Eo—Í(ÓÉ¸Û)          */
+#define SND_PCM_LADR(prm)       ((prm).ladr)        /* ¶o—Í                 */
+/******** SndCdHzSrVl(ü”g”‘Ñˆæ•Ê½ÃÚµ‰ğÍ‰¹—Ê) ******************************/
+#define SND_CD_LHIGH(hz_vl)     ((hz_vl).high.left) /* ¶o—Í ‚‰¹ˆæ         */
+#define SND_CD_LMID(hz_vl)      ((hz_vl).mid.left)  /* ¶o—Í ’†‰¹ˆæ         */
+#define SND_CD_LLOW(hz_vl)      ((hz_vl).low.left)  /* ¶o—Í ’á‰¹ˆæ         */
+#define SND_CD_RHIGH(hz_vl)     ((hz_vl).high.right)/* ‰Eo—Í ‚‰¹ˆæ         */
+#define SND_CD_RMID(hz_vl)      ((hz_vl).mid.right) /* ‰Eo—Í ’†‰¹ˆæ         */
+#define SND_CD_RLOW(hz_vl)      ((hz_vl).low.right) /* ‰Eo—Í ’á‰¹ˆæ         */
 
-#define SND_POKE_B(adr, data)   (*((volatile Uint8 *)(adr)) = ((Uint8)(data))) /* ï¾Šï¾ï½²ï¾„*/
+#define SND_POKE_B(adr, data)   (*((volatile Uint8 *)(adr)) = ((Uint8)(data))) /* ÊŞ²Ä*/
 #define SND_POKE_W(adr, data)   (*((volatile Uint16 *)(adr)) = ((Uint16)(data)))
-#define SND_PEEK_B(adr)         (*((volatile Uint8 *)(adr)))                   /* ï¾Šï¾ï½²ï¾„*/
+#define SND_PEEK_B(adr)         (*((volatile Uint8 *)(adr)))                   /* ÊŞ²Ä*/
 
-/**** ã‚·ã‚¹ãƒ†ãƒ ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ãƒ¯ãƒ¼ã‚¯ã‚ªãƒ•ã‚»ãƒƒãƒˆ *********************************/
+/**** ƒVƒXƒeƒ€ƒCƒ“ƒ^ƒtƒF[ƒXƒ[ƒNƒIƒtƒZƒbƒg *********************************/
 #define SND_ADR_INTR_CTRL_WORD  (0x00)          /* Interrupt control word    */
 #define SND_ADR_INTR_MODE       (0x01)          /* Interrupt mode            */
 #define SND_ADR_PCM_PLAY_NUM    (0x02)          /* PCM play num              */
 #define SND_ADR_SND_CTRL        (0x03)          /* Sound control             */
-/**** ã‚¢ãƒ‰ãƒ¬ã‚¹ ***************************************************************/
-#define SND_ADR_INTR_RESET  ((volatile Uint16 *)0x25b0042e)  /* SCSPå‰²ã‚Šè¾¼ã¿ï¾˜ï½¾ï½¯ï¾„ï¾šï½¼ï¾ï½½ï¾€ */
+/**** ƒAƒhƒŒƒX ***************************************************************/
+#define SND_ADR_INTR_RESET  ((volatile Uint16 *)0x25b0042e)  /* SCSPŠ„‚è‚İØ¾¯ÄÚ¼Ş½À */
 
-/*å‰²ã‚Šè¾¼ã¿ *******************************************************************/
+/*Š„‚è‚İ *******************************************************************/
 /******************************************************************************
  *
- * NAME:    SND_SET_ENA_INT()       - å‰²ã‚Šè¾¼ã¿è¨±å¯è¨­å®š
+ * NAME:    SND_SET_ENA_INT()       - Š„‚è‚İ‹–‰Âİ’è
  *
  * PARAMETERS :
- *      (1) Uint8 ena_bit   - <i>   å‰²ã‚Šè¾¼ã¿è¨±å¯ãƒ“ãƒƒãƒˆ
+ *      (1) Uint8 ena_bit   - <i>   Š„‚è‚İ‹–‰Âƒrƒbƒg
  *
  * DESCRIPTION:
- *      å‰²ã‚Šè¾¼ã¿è¨±å¯ã‚’è¨­å®šã—ã¾ã™ã€‚
+ *      Š„‚è‚İ‹–‰Â‚ğİ’è‚µ‚Ü‚·B
  *
  * PRECONDITIONS:
- *      ãªã—ã€‚
+ *      ‚È‚µB
  *
  * POSTCONDITIONS:
- *      ãªã—
+ *      ‚È‚µ
  *
  * CAVEATS:
- *      ãªã—ã€‚
+ *      ‚È‚µB
  *
  ******************************************************************************
  */
 
 #define SND_SET_ENA_INT(ena_bit)\
     do{\
-        snd_msk_work_work = get_imask();           /* ï½»ï½³ï¾ï¾„ï¾å‰²ã‚Šè¾¼ã¿ã‚’Disable*/\
+        snd_msk_work_work = get_imask();           /* »³İÄŞŠ„‚è‚İ‚ğDisable*/\
         set_imask(15);\
         SND_POKE_B(snd_adr_sys_int_work + SND_ADR_INTR_CTRL_WORD, (ena_bit));\
         set_imask(snd_msk_work_work);\
@@ -174,22 +174,22 @@
 
 /******************************************************************************
  *
- * NAME:    SND_GET_ENA_INT()       - å‰²ã‚Šè¾¼ã¿è¨±å¯å–å¾—
+ * NAME:    SND_GET_ENA_INT()       - Š„‚è‚İ‹–‰Âæ“¾
  *
  * PARAMETERS :
- *      ãªã—ã€‚
+ *      ‚È‚µB
  *
  * DESCRIPTION:
- *      å‰²ã‚Šè¾¼ã¿è¨±å¯ã‚’å–å¾—ã—ã¾ã™ã€‚
+ *      Š„‚è‚İ‹–‰Â‚ğæ“¾‚µ‚Ü‚·B
  *
  * PRECONDITIONS:
- *      ãªã—ã€‚
+ *      ‚È‚µB
  *
  * POSTCONDITIONS:
- *      (1) Uint8           - <o>   å‰²ã‚Šè¾¼ã¿è¨±å¯ãƒ“ãƒƒãƒˆ
+ *      (1) Uint8           - <o>   Š„‚è‚İ‹–‰Âƒrƒbƒg
  *
  * CAVEATS:
- *      ãªã—ã€‚
+ *      ‚È‚µB
  *
  ******************************************************************************
  */
@@ -199,22 +199,22 @@
 
 /******************************************************************************
  *
- * NAME:    SND_GET_FCT_INT()       - å‰²ã‚Šè¾¼ã¿è¦å› å–å¾—
+ * NAME:    SND_GET_FCT_INT()       - Š„‚è‚İ—vˆöæ“¾
  *
  * PARAMETERS :
- *      ãªã—ã€‚
+ *      ‚È‚µB
  *
  * DESCRIPTION:
- *      å‰²ã‚Šè¾¼ã¿è¦å› ã‚’å–å¾—ã—ã¾ã™ã€‚
+ *      Š„‚è‚İ—vˆö‚ğæ“¾‚µ‚Ü‚·B
  *
  * PRECONDITIONS:
- *      ãªã—ã€‚
+ *      ‚È‚µB
  *
  * POSTCONDITIONS:
- *      (1) Uint8       - <o>   å‰²ã‚Šè¾¼ã¿è¦å› 
+ *      (1) Uint8       - <o>   Š„‚è‚İ—vˆö
  *
  * CAVEATS:
- *      ãªã—ã€‚
+ *      ‚È‚µB
  *
  ******************************************************************************
  */
@@ -224,22 +224,22 @@
 
 /******************************************************************************
  *
- * NAME:    SND_RESET_INT()     - å‰²ã‚Šè¾¼ã¿ï¾˜ï½¾ï½¯ï¾„
+ * NAME:    SND_RESET_INT()     - Š„‚è‚İØ¾¯Ä
  *
  * PARAMETERS :
- *      ãªã—ã€‚
+ *      ‚È‚µB
  *
  * DESCRIPTION:
- *      å‰²ã‚Šè¾¼ã¿ã‚’ï¾˜ï½¾ï½¯ï¾„ã—ã¾ã™ã€‚
+ *      Š„‚è‚İ‚ğØ¾¯Ä‚µ‚Ü‚·B
  *
  * PRECONDITIONS:
- *      ãªã—ã€‚
+ *      ‚È‚µB
  *
  * POSTCONDITIONS:
- *      ãªã—
+ *      ‚È‚µ
  *
  * CAVEATS:
- *      ãªã—ã€‚
+ *      ‚È‚µB
  *
  ******************************************************************************
  */
@@ -249,22 +249,22 @@
 
 /******************************************************************************
  *
- * NAME:    SND_GET_INT_STAT()  - PCMå®Ÿè¡Œã‚¢ãƒ‰ãƒ¬ã‚¹æ›´æ–°å‰²ã‚Šè¾¼ã¿ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹å–å¾—
+ * NAME:    SND_GET_INT_STAT()  - PCMÀsƒAƒhƒŒƒXXVŠ„‚è‚İƒXƒe[ƒ^ƒXæ“¾
  *
  * PARAMETERS :
- *      ãªã—ã€‚
+ *      ‚È‚µB
  *
  * DESCRIPTION:
- *      PCMå®Ÿè¡Œã‚¢ãƒ‰ãƒ¬ã‚¹æ›´æ–°å‰²ã‚Šè¾¼ã¿ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’å–å¾—ã—ã¾ã™ã€‚
+ *      PCMÀsƒAƒhƒŒƒXXVŠ„‚è‚İƒXƒe[ƒ^ƒX‚ğæ“¾‚µ‚Ü‚·B
  *
  * PRECONDITIONS:
- *      ãªã—ã€‚
+ *      ‚È‚µB
  *
  * POSTCONDITIONS:
- *      (1) SndPcmIntStat *     - <o>   PCMå®Ÿè¡Œã‚¢ãƒ‰ãƒ¬ã‚¹æ›´æ–°å‰²ã‚Šè¾¼ã¿ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+ *      (1) SndPcmIntStat *     - <o>   PCMÀsƒAƒhƒŒƒXXVŠ„‚è‚İƒXƒe[ƒ^ƒX
  *
  * CAVEATS:
- *      ãªã—ã€‚
+ *      ‚È‚µB
  *
  ******************************************************************************
  */
@@ -272,25 +272,25 @@
 #define SND_GET_INT_STAT()\
     (SND_PEEK_B(snd_adr_sys_int_work + SND_ADR_PCM_PLAY_NUM))
 
-/*ãã®ä»– *********************************************************************/
+/*‚»‚Ì‘¼ *********************************************************************/
 /******************************************************************************
  *
- * NAME:    SND_SET_SND_CTRL        - ã‚µã‚¦ãƒ³ãƒ‰ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«æƒ…å ±è¨­å®š
+ * NAME:    SND_SET_SND_CTRL        - ƒTƒEƒ“ƒhƒRƒ“ƒgƒ[ƒ‹î•ñİ’è
  *
  * PARAMETERS :
- *      (1) Uint8   ctrl_bit   - <i>   å‰²ã‚Šè¾¼ã¿è¨±å¯ãƒ“ãƒƒãƒˆ
+ *      (1) Uint8   ctrl_bit   - <i>   Š„‚è‚İ‹–‰Âƒrƒbƒg
  *
  * DESCRIPTION:
- *      ã‚µã‚¦ãƒ³ãƒ‰ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«æƒ…å ±ã‚’è¨­å®šã—ã¾ã™ã€‚
+ *      ƒTƒEƒ“ƒhƒRƒ“ƒgƒ[ƒ‹î•ñ‚ğİ’è‚µ‚Ü‚·B
  *
  * PRECONDITIONS:
- *      ãªã—ã€‚
+ *      ‚È‚µB
  *
  * POSTCONDITIONS:
- *      ãªã—
+ *      ‚È‚µ
  *
  * CAVEATS:
- *      ãªã—ã€‚
+ *      ‚È‚µB
  *
  ******************************************************************************
  */
@@ -302,22 +302,22 @@
 
 /******************************************************************************
  *
- * NAME:    SND_GET_SND_CTRL        - ã‚µã‚¦ãƒ³ãƒ‰ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«æƒ…å ±å–å¾—
+ * NAME:    SND_GET_SND_CTRL        - ƒTƒEƒ“ƒhƒRƒ“ƒgƒ[ƒ‹î•ñæ“¾
  *
  * PARAMETERS :
- *      ãªã—ã€‚
+ *      ‚È‚µB
  *
  * DESCRIPTION:
- *      ã‚µã‚¦ãƒ³ãƒ‰ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«æƒ…å ±ã‚’å–å¾—ã—ã¾ã™ã€‚
+ *      ƒTƒEƒ“ƒhƒRƒ“ƒgƒ[ƒ‹î•ñ‚ğæ“¾‚µ‚Ü‚·B
  *
  * PRECONDITIONS:
- *      ãªã—ã€‚
+ *      ‚È‚µB
  *
  * POSTCONDITIONS:
- *      ãªã—
+ *      ‚È‚µ
  *
  * CAVEATS:
- *      ãªã—ã€‚
+ *      ‚È‚µB
  *
  ******************************************************************************
  */
@@ -333,28 +333,28 @@
  * TYPEDEFS
  */
 
-/**** å…±é€š *******************************************************************/
+/**** ‹¤’Ê *******************************************************************/
 typedef struct{
-    Uint16 *prg_adr;                        /* 68Kï¾Œï¾Ÿï¾›ï½¸ï¾ï¾—ï¾‘æ ¼ç´å…ˆé ­ï½±ï¾„ï¾ï¾šï½½       */
-    Uint16 prg_sz;                          /* 68Kï¾Œï¾Ÿï¾›ï½¸ï¾ï¾—ï¾‘ï½»ï½²ï½½ï¾ï½»ï½²ï½½ï¾           */
-    Uint16 *ara_adr;                        /* ï½»ï½³ï¾ï¾„ï¾ï½´ï¾˜ï½±ï¾ï½¯ï¾Œï¾Ÿæ ¼ç´å…ˆé ­ï½±ï¾„ï¾ï¾šï½½     */
-    Uint16 ara_sz;                          /* ï½»ï½³ï¾ï¾„ï¾ï½´ï¾˜ï½±ï¾ï½¯ï¾Œï¾Ÿï½»ï½²ï½½ï¾(ï¾œï½°ï¾„ï¾å˜ä½)    */
-}SndIniDt;                                  /* ã‚·ã‚¹ãƒ†ãƒ èµ·å‹•ãƒ‡ãƒ¼ã‚¿å‹          */
+    Uint16 *prg_adr;                        /* 68KÌßÛ¸Ş×ÑŠi”[æ“ª±ÄŞÚ½       */
+    Uint16 prg_sz;                          /* 68KÌßÛ¸Ş×Ñ»²½Ş»²½Ş           */
+    Uint16 *ara_adr;                        /* »³İÄŞ´Ø±Ï¯ÌßŠi”[æ“ª±ÄŞÚ½     */
+    Uint16 ara_sz;                          /* »³İÄŞ´Ø±Ï¯Ìß»²½Ş(Ü°ÄŞ’PˆÊ)    */
+}SndIniDt;                                  /* ƒVƒXƒeƒ€‹N“®ƒf[ƒ^Œ^          */
 
-typedef Uint8 SndAreaMap;                   /* ï½»ï½³ï¾ï¾„ï¾ï½´ï¾˜ï½±ï¾ï½¯ï¾Œï¾Ÿãƒ‡ãƒ¼ã‚¿å‹          */
-typedef Uint8 SndTlVl;                      /* å…¨ä½“éŸ³é‡ãƒ‡ãƒ¼ã‚¿å‹              */
-typedef Uint8 SndEfctBnkNum;                /* Effct bank numberãƒ‡ãƒ¼ã‚¿å‹     */
-typedef Uint8 SndToneBnkNum;                /* éŸ³è‰² bank numberãƒ‡ãƒ¼ã‚¿å‹      */
-typedef Uint8 SndMixBnkNum;                 /* Mixer numberãƒ‡ãƒ¼ã‚¿å‹          */
-typedef Uint8 SndEfctOut;                   /* Effect out selectãƒ‡ãƒ¼ã‚¿å‹     */
-typedef Uint8 SndLev;                       /* Levelãƒ‡ãƒ¼ã‚¿å‹                 */
-typedef Sint8 SndPan;                       /* PANãƒ‡ãƒ¼ã‚¿å‹                   */
-typedef Uint8 SndRet;                       /* ï½ºï¾ï¾ï¾„ï¾å®Ÿè¡ŒçŠ¶æ…‹ãƒ‡ãƒ¼ã‚¿å‹         */
-typedef Uint8 SndHardPrm;                   /* ï¾Šï½°ï¾„ï¾ï½³ï½ªï½±ï¾ï½ªï½¯ï½¸ï¾Šï¾Ÿï¾—ï¾’ï½°ï¾€ãƒ‡ãƒ¼ã‚¿å‹     */
-typedef Uint16 SndHardStat;                 /* ï¾Šï½°ï¾„ï¾ï½³ï½ªï½±ï¾ï½ªï½¯ï½¸ï½½ï¾ƒï½°ï¾€ï½½ãƒ‡ãƒ¼ã‚¿å‹      */
+typedef Uint8 SndAreaMap;                   /* »³İÄŞ´Ø±Ï¯Ìßƒf[ƒ^Œ^          */
+typedef Uint8 SndTlVl;                      /* ‘S‘Ì‰¹—Êƒf[ƒ^Œ^              */
+typedef Uint8 SndEfctBnkNum;                /* Effct bank numberƒf[ƒ^Œ^     */
+typedef Uint8 SndToneBnkNum;                /* ‰¹F bank numberƒf[ƒ^Œ^      */
+typedef Uint8 SndMixBnkNum;                 /* Mixer numberƒf[ƒ^Œ^          */
+typedef Uint8 SndEfctOut;                   /* Effect out selectƒf[ƒ^Œ^     */
+typedef Uint8 SndLev;                       /* Levelƒf[ƒ^Œ^                 */
+typedef Sint8 SndPan;                       /* PANƒf[ƒ^Œ^                   */
+typedef Uint8 SndRet;                       /* ºÏİÄŞÀsó‘Ôƒf[ƒ^Œ^         */
+typedef Uint8 SndHardPrm;                   /* Ê°ÄŞ³ª±Áª¯¸Êß×Ò°Àƒf[ƒ^Œ^     */
+typedef Uint16 SndHardStat;                 /* Ê°ÄŞ³ª±Áª¯¸½Ã°À½ƒf[ƒ^Œ^      */
 
-/**** ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ *************************************************************/
-typedef Uint8 SndSeqNum;                    /* ç™ºéŸ³ç®¡ç†ç•ªå·                  */
+/**** ƒV[ƒPƒ“ƒX *************************************************************/
+typedef Uint8 SndSeqNum;                    /* ”­‰¹ŠÇ—”Ô†                  */
 typedef Uint8 SndSeqBnkNum;                 /* Sequence bank number          */
 typedef Uint8 SndSeqSongNum;                /* Sequence song number          */
 typedef Uint8 SndSeqPri;                    /* Priorty level                 */
@@ -364,54 +364,54 @@ typedef Sint16 SndTempo;                    /* Tempo                         */
 typedef struct{
     Uint16 mode;                            /* song mode                     */
     Uint8 stat;                             /* song status                   */
-}SndSeqStat;                                /* ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹          */
-typedef Uint16 SndSeqPlayPos;               /* ç™ºéŸ³ç®¡ç†ç•ªå·å†ç”Ÿä½ç½®          */
+}SndSeqStat;                                /* ƒV[ƒPƒ“ƒXƒXƒe[ƒ^ƒX          */
+typedef Uint16 SndSeqPlayPos;               /* ”­‰¹ŠÇ—”Ô†Ä¶ˆÊ’u          */
 
 /**** PCM ********************************************************************/
 typedef struct{
-    Uint8 mode;                             /* ï½½ï¾ƒï¾šï½µï½¥ï¾“ï¾‰ï½¸ï¾›+ï½»ï¾ï¾Œï¾Ÿï¾˜ï¾ï½¸ï¾ï¾šï½°ï¾„         */
-    Uint16 sadr;                            /* PCMï½½ï¾„ï¾˜ï½°ï¾‘ï¾Šï¾ï½¯ï¾Œï½§ï½½ï¾€ï½°ï¾„ï½±ï¾„ï¾ï¾šï½½        */
-    Uint16 size;                            /* PCMï½½ï¾„ï¾˜ï½°ï¾‘ï¾Šï¾ï½¯ï¾Œï½§ï½»ï½²ï½½ï¾             */
-}SndPcmStartPrm;                            /* PCMé–‹å§‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿          */
+    Uint8 mode;                             /* ½ÃÚµ¥ÓÉ¸Û+»İÌßØİ¸ŞÚ°Ä         */
+    Uint16 sadr;                            /* PCM½ÄØ°ÑÊŞ¯Ì§½À°Ä±ÄŞÚ½        */
+    Uint16 size;                            /* PCM½ÄØ°ÑÊŞ¯Ì§»²½Ş             */
+}SndPcmStartPrm;                            /* PCMŠJnƒpƒ‰ƒ[ƒ^          */
 
-typedef Uint8 SndPcmNum;                    /* PCMï½½ï¾„ï¾˜ï½°ï¾‘å†ç”Ÿç•ªå·               */
+typedef Uint8 SndPcmNum;                    /* PCM½ÄØ°ÑÄ¶”Ô†               */
 typedef Uint8 SndEfctIn;                    /* Efect in select               */
 typedef struct{
-    SndPcmNum num;                          /* PCMï½½ï¾„ï¾˜ï½°ï¾‘å†ç”Ÿç•ªå·               */
-    SndLev lev;                             /* ï¾€ï¾ï½²ï¾šï½¸ï¾„éŸ³Level                 */
-    SndPan pan;                             /* ï¾€ï¾ï½²ï¾šï½¸ï¾„éŸ³pan                   */
-    Uint16 pich;                            /* PICHï¾œï½°ï¾„ï¾                      */
-    SndEfctIn r_efct_in;                    /* Efect in select(å³å‡ºåŠ›)       */
-    SndLev r_efct_lev;                      /* Efect send Level(å³å‡ºåŠ›)      */
-    SndEfctIn l_efct_in;                    /* Efect in select(å·¦å‡ºåŠ›)       */
-    SndLev l_efct_lev;                      /* Efect send Level(å·¦å‡ºåŠ›)      */
-}SndPcmChgPrm;                              /* PCMå¤‰æ›´ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿           */
+    SndPcmNum num;                          /* PCM½ÄØ°ÑÄ¶”Ô†               */
+    SndLev lev;                             /* ÀŞ²Ú¸Ä‰¹Level                 */
+    SndPan pan;                             /* ÀŞ²Ú¸Ä‰¹pan                   */
+    Uint16 pich;                            /* PICHÜ°ÄŞ                      */
+    SndEfctIn r_efct_in;                    /* Efect in select(‰Eo—Í)       */
+    SndLev r_efct_lev;                      /* Efect send Level(‰Eo—Í)      */
+    SndEfctIn l_efct_in;                    /* Efect in select(¶o—Í)       */
+    SndLev l_efct_lev;                      /* Efect send Level(¶o—Í)      */
+}SndPcmChgPrm;                              /* PCM•ÏXƒpƒ‰ƒ[ƒ^           */
 
 typedef struct{
-    Uint8 radr;                             /* å³å‡ºåŠ›(ï¾“ï¾‰ï½¸ï¾›)                  */
-    Uint8 ladr;                             /* å·¦å‡ºåŠ›                         */
-}SndPcmPlayAdr;                             /* PCMå†ç”Ÿï½±ï¾„ï¾ï¾šï½½               */
+    Uint8 radr;                             /* ‰Eo—Í(ÓÉ¸Û)                  */
+    Uint8 ladr;                             /* ¶o—Í                         */
+}SndPcmPlayAdr;                             /* PCMÄ¶±ÄŞÚ½               */
 
-typedef Uint8 SndPcmIntStat;                /* PCMï½±ï¾„ï¾ï¾šï½½æ›´æ–°å‰²ã‚Šè¾¼ã¿ï½½ï¾ƒï½°ï¾€ï½½     */
+typedef Uint8 SndPcmIntStat;                /* PCM±ÄŞÚ½XVŠ„‚è‚İ½Ã°À½     */
 
 /**** CD *********************************************************************/
-typedef Uint16 SndCdVlAnl;                  /* è§£æéŸ³é‡                      */
+typedef Uint16 SndCdVlAnl;                  /* ‰ğÍ‰¹—Ê                      */
 
 typedef struct{
-    SndCdVlAnl left;                        /* å·¦å‡ºåŠ›                        */
-    SndCdVlAnl right;                       /* å³å‡ºåŠ›                        */
-}SndCdHzVl;                                 /* å‘¨æ³¢æ•°å¸¯åŸŸåˆ¥ï½½ï¾ƒï¾šï½µè§£æéŸ³é‡      */
+    SndCdVlAnl left;                        /* ¶o—Í                        */
+    SndCdVlAnl right;                       /* ‰Eo—Í                        */
+}SndCdHzVl;                                 /* ü”g”‘Ñˆæ•Ê½ÃÚµ‰ğÍ‰¹—Ê      */
 
 typedef struct{
-    SndCdHzVl high;                         /* é«˜éŸ³åŸŸ                        */
-    SndCdHzVl mid;                          /* ä¸­éŸ³åŸŸ                        */
-    SndCdHzVl low;                          /* ä½éŸ³åŸŸ                        */
-}SndCdHzSrVl;                               /* å‘¨æ³¢æ•°å¸¯åŸŸåˆ¥è§£æéŸ³é‡          */
+    SndCdHzVl high;                         /* ‚‰¹ˆæ                        */
+    SndCdHzVl mid;                          /* ’†‰¹ˆæ                        */
+    SndCdHzVl low;                          /* ’á‰¹ˆæ                        */
+}SndCdHzSrVl;                               /* ü”g”‘Ñˆæ•Ê‰ğÍ‰¹—Ê          */
 
 /*
  * EXTERNAL VARIABLE DECLARATIONS
  */
-extern Uint8 *snd_adr_sys_int_work;             /*ï½¼ï½½ï¾ƒï¾‘ï½²ï¾ï¾€ï¾Œï½ªï½°ï½½ï¾œï½°ï½¸å…ˆé ­ï½±ï¾„ï¾ï¾šï½½æ ¼ç´*/
+extern Uint8 *snd_adr_sys_int_work;             /*¼½ÃÑ²İÀÌª°½Ü°¸æ“ª±ÄŞÚ½Ši”[*/
 extern Uint32 snd_msk_work_work;                /* sound priority msk        */
 
 /*

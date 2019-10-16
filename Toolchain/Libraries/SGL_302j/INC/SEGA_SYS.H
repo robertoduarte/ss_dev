@@ -1,27 +1,27 @@
 /*
- * åç§°:        ã‚·ã‚¹ãƒ†ãƒ  ãƒ—ãƒ­ã‚°ãƒ©ãƒ 
+ * –¼Ì:        ƒVƒXƒeƒ€ ƒvƒƒOƒ‰ƒ€
  *
- * ãƒ•ã‚¡ã‚¤ãƒ«å:  sega_sys.h
+ * ƒtƒ@ƒCƒ‹–¼:  sega_sys.h
  *
- * ç›®çš„:        BOOT ROM ã®ã‚µãƒ¼ãƒ“ã‚¹ãƒ«ãƒ¼ãƒãƒ³ã‚’å®šç¾©ã—ã¾ã™ã€‚
+ * –Ú“I:        BOOT ROM ‚ÌƒT[ƒrƒXƒ‹[ƒ`ƒ“‚ð’è‹`‚µ‚Ü‚·B
  *
- *              (1) SCU å‰²ã‚Šè¾¼ã¿ã‚µãƒ¼ãƒ“ã‚¹ãƒ«ãƒ¼ãƒãƒ³ã®ç™»éŒ²å‚ç…§
- *              (2) SH2 å‰²ã‚Šè¾¼ã¿ãƒ™ã‚¯ã‚¿ã®ç™»éŒ²å‚ç…§
- *              (3) ã‚·ã‚¹ãƒ†ãƒ ã‚»ãƒžãƒ•ã‚©ã®æ“ä½œ  (BOOT ROM V0.90ä»¥é™)
- *              (4) SCU å‰²ã‚Šè¾¼ã¿ãƒžã‚¹ã‚¯ã®æ“ä½œ(BOOT ROM V0.90ä»¥é™)
- *              (5) ã‚·ã‚¹ãƒ†ãƒ ã‚¯ãƒ­ãƒƒã‚¯ã®åˆ‡æ›¿ãˆ(BOOT ROM V0.92ä»¥é™)
- *              (6) SCU å‰²ã‚Šè¾¼ã¿ãƒ«ãƒ¼ãƒãƒ³å„ªå…ˆåº¦ã®å¤‰æ›´(SCU2.1ä»¥é™)
- *              (7) CD  ãƒžãƒ«ãƒãƒ—ãƒ¬ãƒ¼ãƒ¤ã®èµ·å‹•å®Ÿè¡Œ(CDä»˜ããƒ¢ãƒ‡ãƒ«ç”¨)
- *              (8) ãƒ‘ãƒ¯ãƒ¼ã‚ªãƒ³ã‚¯ãƒªã‚¢ãƒ¡ãƒ¢ãƒªã®æ“ä½œ (ROM V1.00ä»¥é™)
- *              (9) MPEG ãƒã‚§ãƒƒã‚¯(å®Œäº†å¾©å¸°åž‹)    (ROM V1.00ä»¥é™)
+ *              (1) SCU Š„‚èž‚ÝƒT[ƒrƒXƒ‹[ƒ`ƒ“‚Ì“o˜^ŽQÆ
+ *              (2) SH2 Š„‚èž‚ÝƒxƒNƒ^‚Ì“o˜^ŽQÆ
+ *              (3) ƒVƒXƒeƒ€ƒZƒ}ƒtƒH‚Ì‘€ì  (BOOT ROM V0.90ˆÈ~)
+ *              (4) SCU Š„‚èž‚Ýƒ}ƒXƒN‚Ì‘€ì(BOOT ROM V0.90ˆÈ~)
+ *              (5) ƒVƒXƒeƒ€ƒNƒƒbƒN‚ÌØ‘Ö‚¦(BOOT ROM V0.92ˆÈ~)
+ *              (6) SCU Š„‚èž‚Ýƒ‹[ƒ`ƒ“—Dæ“x‚Ì•ÏX(SCU2.1ˆÈ~)
+ *              (7) CD  ƒ}ƒ‹ƒ`ƒvƒŒ[ƒ„‚Ì‹N“®ŽÀs(CD•t‚«ƒ‚ƒfƒ‹—p)
+ *              (8) ƒpƒ[ƒIƒ“ƒNƒŠƒAƒƒ‚ƒŠ‚Ì‘€ì (ROM V1.00ˆÈ~)
+ *              (9) MPEG ƒ`ƒFƒbƒN(Š®—¹•œ‹AŒ^)    (ROM V1.00ˆÈ~)
  *
- *              sega_sys.libã§é–¢æ•°ã‚’å®šç¾©ã—ã¾ã™ã€‚ï¼ˆVer.2.01ä»¥é™ï¼‰
+ *              sega_sys.lib‚ÅŠÖ”‚ð’è‹`‚µ‚Ü‚·BiVer.2.01ˆÈ~j
  *
- * ä½¿ç”¨æ–¹æ³•:
+ * Žg—p•û–@:
  *
  *      void  Vfunc(void)
  *      {
- *           // ... å®Ÿè¡Œæ–‡ ... //
+ *           // ... ŽÀs•¶ ... //
  *      }
  *
  *      extern void  Hihdr(void);
@@ -43,47 +43,47 @@
  *              0x0070fe00, 0x0070fe00, 0x0070fe00, 0x0070fe00,
  *           };
  *
- *           SYS_SETUINT(0x40, Vfunc);  // Vfunc() ã‚’ VB-In å‰²è¾¼ã¿ç”¨ã«ç™»éŒ²   //
- *           tmp = SYS_GETUINT(0x41);   // ç¾åœ¨ã® VB-Out ãƒ«ãƒ¼ãƒãƒ³ç™»éŒ²ã‚’å‚ç…§  //
- *           SYS_SETUINT(0x41, 0);      // VB-Out ãƒ«ãƒ¼ãƒãƒ³ã®ç™»éŒ²ã‚’æ¶ˆåŽ»       //
+ *           SYS_SETUINT(0x40, Vfunc);  // Vfunc() ‚ð VB-In Š„ž‚Ý—p‚É“o˜^   //
+ *           tmp = SYS_GETUINT(0x41);   // Œ»Ý‚Ì VB-Out ƒ‹[ƒ`ƒ““o˜^‚ðŽQÆ  //
+ *           SYS_SETUINT(0x41, 0);      // VB-Out ƒ‹[ƒ`ƒ“‚Ì“o˜^‚ðÁ‹Ž       //
  *
- *           SYS_SETSINT(0x42, Hihdr);  // Hihdr() ã‚’ HB-In ãƒ™ã‚¯ã‚¿ã«ç™»éŒ²     //
- *           tmp = SYS_GETSINT(0x6e);   // ç¾åœ¨ã® DIVU ãƒ™ã‚¯ã‚¿ç™»éŒ²ã‚’å‚ç…§      //
- *           SYS_SETSINT(0x6e, 0);      // DIVU ãƒ™ã‚¯ã‚¿ã‚’å†åˆæœŸåŒ–             //
+ *           SYS_SETSINT(0x42, Hihdr);  // Hihdr() ‚ð HB-In ƒxƒNƒ^‚É“o˜^     //
+ *           tmp = SYS_GETSINT(0x6e);   // Œ»Ý‚Ì DIVU ƒxƒNƒ^“o˜^‚ðŽQÆ      //
+ *           SYS_SETSINT(0x6e, 0);      // DIVU ƒxƒNƒ^‚ðÄ‰Šú‰»             //
  *
- *           rep = SYS_TASSEM(0x5);     // ã‚»ãƒžãƒ•ã‚© 5 ã‚’ãƒ†ã‚¹ãƒˆï½¥ã‚¢ãƒ³ãƒ‰ï½¥ã‚»ãƒƒãƒˆ //
- *           SYS_CLRSEM(0x5);           // ã‚»ãƒžãƒ•ã‚© 5 ã‚’ã‚¯ãƒªã‚¢               //
+ *           rep = SYS_TASSEM(0x5);     // ƒZƒ}ƒtƒH 5 ‚ðƒeƒXƒg¥ƒAƒ“ƒh¥ƒZƒbƒg //
+ *           SYS_CLRSEM(0x5);           // ƒZƒ}ƒtƒH 5 ‚ðƒNƒŠƒA               //
  *
- *           SYS_SETSCUIM(0xfffffffe);  // VB-In å‰²è¾¼ã¿ã®ã¿ã‚’è¨±å¯ã«è¨­å®š      //
- *           SYS_CHGSCUIM(0xfffffffc, 0); // VB-In, VB-Out ã‚’è¨±å¯ã«å¤‰æ›´      //
- *           SYS_CHGSCUIM(0xffffffff, 2); // VB-Out  ã‚’ä¸è¨±å¯ã«å¤‰æ›´          //
- *           msk = SYS_GETSCUIM;        // ç¾åœ¨ã® SCU å‰²è¾¼ã¿ãƒžã‚¹ã‚¯å€¤ã‚’å‚ç…§   //
+ *           SYS_SETSCUIM(0xfffffffe);  // VB-In Š„ž‚Ý‚Ì‚Ý‚ð‹–‰Â‚ÉÝ’è      //
+ *           SYS_CHGSCUIM(0xfffffffc, 0); // VB-In, VB-Out ‚ð‹–‰Â‚É•ÏX      //
+ *           SYS_CHGSCUIM(0xffffffff, 2); // VB-Out  ‚ð•s‹–‰Â‚É•ÏX          //
+ *           msk = SYS_GETSCUIM;        // Œ»Ý‚Ì SCU Š„ž‚Ýƒ}ƒXƒN’l‚ðŽQÆ   //
  *
- *           SYS_CHGSYSCK(1);           // ã‚·ã‚¹ãƒ†ãƒ ã‚¯ãƒ­ãƒƒã‚¯ã‚’ï¼’ï¼˜ï¼­ã«åˆ‡æ›¿ãˆ  //
- *           clk = SYS_GETSYSCK;        // ç¾åœ¨ã® ã‚·ã‚¹ãƒ†ãƒ ã‚¯ãƒ­ãƒƒã‚¯å€¤ã‚’å‚ç…§   //
+ *           SYS_CHGSYSCK(1);           // ƒVƒXƒeƒ€ƒNƒƒbƒN‚ð‚Q‚W‚l‚ÉØ‘Ö‚¦  //
+ *           clk = SYS_GETSYSCK;        // Œ»Ý‚Ì ƒVƒXƒeƒ€ƒNƒƒbƒN’l‚ðŽQÆ   //
  *                                      //   0: 26 MHz       1: 28 MHz       //
  *                                      //     320/640 pix/H   352/704 pix/H //
  *
- *           SYS_CHGUIPR(PriTab);       // ï¼³ï¼£ï¼µå‰²ã‚Šè¾¼ã¿ãƒ«ãƒ¼ãƒãƒ³å„ªå…ˆåº¦å¤‰æ›´  //
+ *           SYS_CHGUIPR(PriTab);       // ‚r‚b‚tŠ„‚èž‚Ýƒ‹[ƒ`ƒ“—Dæ“x•ÏX  //
  *
- *           SYS_EXECDMP();             // ï¼£ï¼¤ãƒžãƒ«ãƒãƒ—ãƒ¬ãƒ¼ãƒ¤èµ·å‹•å®Ÿè¡Œ        //
+ *           SYS_EXECDMP();             // ‚b‚cƒ}ƒ‹ƒ`ƒvƒŒ[ƒ„‹N“®ŽÀs        //
  *
- *           p0 = SYS_PCLRMEM;          // ãƒ‘ãƒ¯ãƒ¼ã‚ªãƒ³ã‚¯ãƒªã‚¢ãƒ¡ãƒ¢ãƒªå…ˆé ­ãƒã‚¤ãƒˆ  //
- *           lval1 = *((Uint32*)&SYS_PCLRMEM+1); // ã¨å¾ŒåŠãƒ­ãƒ³ã‚°ãƒ¯ãƒ¼ãƒ‰ã‚’å‚ç…§ //
+ *           p0 = SYS_PCLRMEM;          // ƒpƒ[ƒIƒ“ƒNƒŠƒAƒƒ‚ƒŠæ“ªƒoƒCƒg  //
+ *           lval1 = *((Uint32*)&SYS_PCLRMEM+1); // ‚ÆŒã”¼ƒƒ“ƒOƒ[ƒh‚ðŽQÆ //
  *
- *           rep = SYS_CHKMPEG(0);      // å¼•æ•°ã¯å¿…ãš 0. MANSYS.DOC ã®ä½¿ç”¨ä¾‹ //
- *                                      // ã«å¾“ã£ã¦ãã ã•ã„                  //
+ *           rep = SYS_CHKMPEG(0);      // ˆø”‚Í•K‚¸ 0. MANSYS.DOC ‚ÌŽg—p—á //
+ *                                      // ‚É]‚Á‚Ä‚­‚¾‚³‚¢                  //
  *      }
  *
- *      // ... åˆ¥ã®ãƒ•ã‚¡ã‚¤ãƒ« ... //
+ *      // ... •Ê‚Ìƒtƒ@ƒCƒ‹ ... //
  *      #pragma interrupt(Hihdr)
  *      void  Hihdr(void)
  *      {
- *           // ... å®Ÿè¡Œæ–‡ ... //
+ *           // ... ŽÀs•¶ ... //
  *      }
  *
  *
- * æ—¥ä»˜:        1994/05/06  for BOOT 0.90,0.901,0.91  by T. S.
+ * “ú•t:        1994/05/06  for BOOT 0.90,0.901,0.91  by T. S.
  *              1994/07/16  for BOOT 0.92x,0.95       by T. S.
  *              1994/07/29  for BOOT 0.96x,1.00       by T. S.
  *              1994/08/31  how to exec CD multi-player
@@ -91,7 +91,7 @@
  *              1995/03/31  MPEG check service
  *              1995/09/26  sega_sys.lib (Ver.2.01)   by M. M.
  *
- * ãƒãƒ¼ã‚¸ãƒ§ãƒ³:  Ver.2.01
+ * ƒo[ƒWƒ‡ƒ“:  Ver.2.01
  *
  */
 
@@ -99,12 +99,12 @@
 #define SEGA_SYS_H
 
 /***********************************************************************
- *      ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«
+ *      ƒCƒ“ƒNƒ‹[ƒhƒtƒ@ƒCƒ‹
  ***********************************************************************/
 #include "sega_xpt.h"
 
 /***********************************************************************
- *      å‡¦ç†ãƒžã‚¯ãƒ­
+ *      ˆ—ƒ}ƒNƒ
  ***********************************************************************/
 #define SYS_SETUINT(_Num_, _Hdr_) \
         ((**(volatile void(**)(Uint32, void*))0x6000300)((_Num_), (_Hdr_)))
@@ -146,7 +146,7 @@
         ((**(volatile Sint32(**)(Sint32))0x6000274)(_dummy_))
 
 /***********************************************************************
- *      é–¢æ•°ã®å®£è¨€
+ *      ŠÖ”‚ÌéŒ¾
  ***********************************************************************/
 void SYS_CheckTrack(Sint32 tno);
 void SYS_Exit(Sint32 code);
