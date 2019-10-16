@@ -4,11 +4,23 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "Run with Yabause",
+            "command": ".vscode/scripts/run_with_yabause.bat",
+            "problemMatcher": [],
+            "presentation": {
+                "showReuseMessage": false
+            }
+        },
+        {
             "label": "Build",
             "command": ".vscode/scripts/build.bat",
             "problemMatcher": [],
             "presentation": {
                 "showReuseMessage": false
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
             }
         },
         {
@@ -19,6 +31,5 @@
                 "showReuseMessage": false
             }
         }
-
     ]
 }
