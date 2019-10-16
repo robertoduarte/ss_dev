@@ -5,16 +5,28 @@
     "tasks": [
         {
             "label": "Run with Yabause",
-            "command": "${workspaceFolder}/../../Emulators/yabause/yabause.exe",
-            "args": [
-                "-a",
-                "-i",
-                "${workspaceFolder}/build/build.iso"
-            ],
+            "command": ".vscode/scripts/run_with_yabause.bat",
+            "problemMatcher": [],
+            "presentation": {
+                "showReuseMessage": false
+            }
+        },
+        {
+            "label": "Build",
+            "command": ".vscode/scripts/build.bat",
+            "problemMatcher": [],
+            "presentation": {
+                "showReuseMessage": false
+            }
+        },
+        {
+            "label": "Clean",
+            "command": ".vscode/scripts/clean.bat",
             "problemMatcher": [],
             "presentation": {
                 "showReuseMessage": false
             }
         }
+
     ]
 }

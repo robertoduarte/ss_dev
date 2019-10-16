@@ -3,7 +3,6 @@
         {
             "name": "Saturn",
             "includePath": [
-                "${workspaceFolder}/../../Toolchain/Libraries/SBL601/SEGALIB/INCLUDE/",
                 "${workspaceFolder}/../../Toolchain/Libraries/SGL_302j/INC/"
             ],
             "compilerPath": "${workspaceFolder}/../../Toolchain/Compiler/SH_COFF/sh-coff/bin/sh-coff-gcc.exe",
