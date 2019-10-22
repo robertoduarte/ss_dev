@@ -1,0 +1,15 @@
+{
+    "files.associations": {
+        "mem_mgr.h": "c",
+        "game.h": "c",
+        "sgl.h": "c",
+        "assert.h": "c",
+        "eventmanager.h": "c",
+        "list.h": "c",
+        "sl_def.h": "c",
+        "enemy.h": "c",
+        "item.h": "c"
+    },
+    "cmake.configureOnOpen": false
+    
+}
