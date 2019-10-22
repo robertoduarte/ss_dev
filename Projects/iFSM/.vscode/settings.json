@@ -8,7 +8,9 @@
         "list.h": "c",
         "sl_def.h": "c",
         "enemy.h": "c",
-        "item.h": "c"
+        "item.h": "c",
+        "fsm.h": "c",
+        "enemystate.h": "c"
     },
     "cmake.configureOnOpen": false
     

@@ -5,7 +5,7 @@
 #include "mem_mgr.h"
 #include "Player.h"
 #include "Object.h"
-
+#include "FSM/States/EnemyState.h"
 
 #define ENEMY_TYPE_ID 2
 
@@ -19,8 +19,10 @@ typedef struct
 
 Enemy * new_Enemy();
 void enemy_initialize(Enemy* enemy);
-
 void enemy_draw(Enemy* enemy);
+void enemy_update();
+
+
 void enemy_interaction(Enemy* enemy, Player* player_ptr);
 
 #endif /* ENEMY_H */

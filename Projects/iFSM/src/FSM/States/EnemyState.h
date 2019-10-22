@@ -1,0 +1,8 @@
+typedef enum State
+{
+    STATE_STANDING,
+    STATE_PATROL,
+    STATE_SLEEP,
+    STATE_AGRESSIVE,
+    STATE_DEAD
+};

@@ -1,10 +1,8 @@
 #include "Enemy.h"
-#include <sgl.h>
-#include "mem_mgr.h"
 
 static ObjectHeader enemy_header = {
     ENEMY_TYPE_ID,
-    (draw_interface) & enemy_draw,
+    (draw_interface) & enemy_draw, //Is it a subscribe?¿
     (interaction_interface) & enemy_interaction
 };
 
@@ -34,4 +32,11 @@ void enemy_draw(Enemy * enemy)
     slPrint("Draw enemy", slLocate(10,4));
 }
 
+void enemy_update()
+{
+    State _state;
+    switch(_state){
+
+    }
+}
 

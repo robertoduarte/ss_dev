@@ -4,7 +4,7 @@
 
 static ObjectHeader player_header = {
     PLAYER_TYPE_ID,
-    (draw_interface) & player_draw,
+    (draw_interface) & player_draw, //Subscribe?
     UNUSED_INTERFACE
 };
 
