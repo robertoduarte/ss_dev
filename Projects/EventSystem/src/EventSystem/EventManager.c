@@ -2,12 +2,12 @@
 #include "../Utils/list.h"
 
 #define EVENT_QUEUE_COUNT 2
-static List* eventQueue[EVENT_QUEUE_COUNT];
-static List* eventTypeListenerList[EVENT_TYPE_COUNT];
+static List *eventQueue[EVENT_QUEUE_COUNT];
+static List *eventTypeListenerList[EVENT_TYPE_COUNT];
 
-Event* EventManager_GetNextEvent()
+Event *EventManager_GetNextEvent()
 {
-    Event* dummyEvent;
+    Event *dummyEvent;
     int eventsLeft = 0;
 
     if (eventsLeft)
@@ -20,9 +20,9 @@ Event* EventManager_GetNextEvent()
     }
 }
 
-EventListener* EventManager_GetNextEventListener(EventType eventType)
+EventListener *EventManager_GetNextEventListener(EventType eventType)
 {
-    EventListener* dummyEventListener;
+    EventListener *dummyEventListener;
     int eventListenersLeft = 0;
 
     if (eventListenersLeft)
@@ -33,6 +33,7 @@ EventListener* EventManager_GetNextEventListener(EventType eventType)
     {
         return 0;
     }
+    LstIterateValue
 }
 
 void EventManager_Init()
@@ -50,10 +51,11 @@ void EventManager_Init()
 
 void EventManager_Update()
 {
-    Event* nextEvent;
+    Event *nextEvent;
     while ((nextEvent = EventManager_GetNextEvent()) != 0)
     {
-        EventListener* nextEventListener;
+
+        EventListener *nextEventListener;
         while ((nextEventListener = EventManager_GetNextEventListener(nextEvent->type)) != 0)
         {
             nextEventListener->eventListenerCallback(nextEvent);
@@ -81,4 +83,3 @@ void EventManager_AddListener(EventType eventType, EventListenerCallback eventLi
 void EventManager_RemoveListener(EventListenerCallback eventListenerCallback)
 {
 }
-
