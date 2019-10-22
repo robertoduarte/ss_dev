@@ -37,12 +37,7 @@ int main(void)
 
     EventManager_Init();
     EventManager_AddListener(E_NEWGAMEEASY, &exampleEventListener);
-
-    Event testEvent = {
-        E_NEWGAMEEASY,
-        (void *)&testInt};
-
-    EventManager_TriggerEvent(testEvent);
+    EventManager_TriggerEvent(E_NEWGAMEEASY, &testInt);
 
     while (1)
     {

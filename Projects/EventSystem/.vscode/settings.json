@@ -6,7 +6,9 @@
         "assert.h": "c",
         "eventmanager.h": "c",
         "list.h": "c",
-        "sl_def.h": "c"
+        "sl_def.h": "c",
+        "eventlistener.h": "c",
+        "event.h": "c"
     }
     
 }
