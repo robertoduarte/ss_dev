@@ -4,40 +4,43 @@
 
 #define EVENT_QUEUE_COUNT 2
 static int currentQueue = 0;
-static List *eventQueue[EVENT_QUEUE_COUNT];
-static List *eventTypeListenerList[EVENT_TYPE_COUNT];
+static List eventQueue[EVENT_QUEUE_COUNT];
+static List eventTypeListenerList[EVENT_TYPE_COUNT];
 
 void EventManager_Init()
 {
     int i;
     for (i = 0; i < EVENT_QUEUE_COUNT; i++)
     {
-        LstInitList(eventQueue[i]);
+        LstInitList(&eventQueue[i]);
     }
     for (i = 0; i < EVENT_TYPE_COUNT; i++)
     {
-        LstInitList(eventTypeListenerList[i]);
+        LstInitList(&eventTypeListenerList[i]);
     }
 }
 
 void EventManager_Update()
 {
+    List *eventQueuePtr = &eventQueue[currentQueue];
     Node *nextEventNode;
-    while (nextEventNode = LstFirstNode(eventQueue[currentQueue]))
+    while (nextEventNode = LstFirstNode(eventQueuePtr))
     {
         Event *nextEvent = (Event *)nextEventNode->key;
 
-        Node *nextListenerNode = LstFirstNode(eventTypeListenerList[nextEvent->type]);
-        while ((nextListenerNode = LstNextNode(eventTypeListenerList[nextEvent->type], nextListenerNode)) != 0)
+        List *eventTypeListenerListPtr = &eventTypeListenerList[nextEvent->type];
+        Node *nextListenerNode = LstFirstNode(eventTypeListenerListPtr);
+        while (nextListenerNode != 0)
         {
             EventListenerCallback nextEventListener = (EventListenerCallback)nextListenerNode->key;
             nextEventListener(nextEvent);
+            nextListenerNode = LstNextNode(eventTypeListenerListPtr, nextListenerNode);
         }
 
         //Removing event node from list freeing its memory
-        LstUnlinkNode(eventQueue[currentQueue], nextEventNode);
-        Memfree(nextEventNode->key);
-        Memfree(nextEventNode);
+        LstUnlinkNode(&eventQueue[currentQueue], nextEventNode);
+        Memfree((void *)nextEventNode->key);
+        Memfree((void *)nextEventNode);
     }
 
     //Switching queue for next frame
@@ -51,8 +54,8 @@ void EventManager_QueueEvent(EventType eventType, void *args)
     event->type = eventType;
     event->arg = args;
     Node *node = Memmalloc(sizeof(Node));
-    node->key = event;
-    LstAddNodeToTail(eventQueue[currentQueue], node);
+    node->key = (long)event;
+    LstAddNodeToTail(&eventQueue[currentQueue], node);
 }
 
 void EventManager_AbortEvent(EventType eventType, void *args)
@@ -61,27 +64,29 @@ void EventManager_AbortEvent(EventType eventType, void *args)
 
 void EventManager_TriggerEvent(EventType eventType, void *args)
 {
+
     Event event = {eventType, args};
 
-    Node *nextListenerNode = LstFirstNode(eventTypeListenerList[eventType]);
-    while ((nextListenerNode = LstNextNode(eventTypeListenerList[eventType], nextListenerNode)) != 0)
+    List *eventTypeListenerListPtr = &eventTypeListenerList[eventType];
+    Node *nextListenerNode = LstFirstNode(eventTypeListenerListPtr);
+    while (nextListenerNode != 0)
     {
         EventListenerCallback nextEventListener = (EventListenerCallback)nextListenerNode->key;
         nextEventListener(&event);
+        nextListenerNode = LstNextNode(eventTypeListenerListPtr, nextListenerNode);
     }
 }
 
 void EventManager_AddListener(EventType eventType, EventListenerCallback eventListenerCallback)
 {
     Node *node = Memmalloc(sizeof(Node));
-    node->key = eventListenerCallback;
-
-    LstAddNodeToTail(eventTypeListenerList[eventType], node);
+    node->key = (long)eventListenerCallback;
+    LstAddNodeToTail(&eventTypeListenerList[eventType], node);
 }
 
 void EventManager_RemoveListener(EventType eventType, EventListenerCallback eventListenerCallback)
 {
-    Node *node = LstFindNodeByKey(eventTypeListenerList[eventType], eventListenerCallback);
-    LstUnlinkNode(eventTypeListenerList[eventType], node);
+    Node *node = LstFindNodeByKey(&eventTypeListenerList[eventType], (long)eventListenerCallback);
+    LstUnlinkNode(&eventTypeListenerList[eventType], node);
     Memfree(node);
 }
