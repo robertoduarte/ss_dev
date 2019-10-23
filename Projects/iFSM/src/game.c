@@ -1,14 +1,12 @@
 #include <sgl.h>
 #include "game.h"
 #include "Player.h"
-#include "Enemy.h"
-#include "Item.h"
+// #include "Enemy.h"
+// #include "Item.h"
 #include "mem_mgr.h"
+#include "Controller/control.h"
 
-Object g_object_array[3];
-
-unsigned int SMMA_MainMode;               /* Game Mode Variable      */
-unsigned int SMMA_Mainlevel;              /* Level in the Game Mode  */
+Object g_object_array[4];
 
 void Game_init()
 {
@@ -22,23 +20,36 @@ void Game_init()
     g_object_array[0] = new_Player();
     g_object_array[1] = new_Enemy();
     g_object_array[2] = new_Item();
+    g_object_array[3] = new_Input();
+}
+
+int GetInput(Input i)
+{
+    // if(i.gamepadInput == 1){
+        // slPrint(i.gamepadInput,slLocate(0,15));
+    // }
+    return i.gamepadInput;
 }
 
 int Game_run()
 {
-    int gamepadInput = Smpc_Peripheral[0].data;
+    // int gamepadInput = Smpc_Peripheral[0].data;
 
-    if(!(gamepadInput & PER_DGT_ST))
-        slPrint("STUFF!!!!",slLocate(0,10));
-    else if(gamepadInput | PER_DGT_ST)
-        slPrint("NO STUFF!!!!",slLocate(0,10));
+    // if(!(gamepadInput & PER_DGT_ST))
+    //     slPrint("STUFF!!!!",slLocate(0,10));
+    // else if(gamepadInput | PER_DGT_ST)
+    //     slPrint("NO STUFF!!!!",slLocate(0,10));
 
+    
+        
 
     int i;
-    for (i = 0; i < 3; i++)
+    for (i = 0; i < 4; i++)
     {
 //      i_interaction(g_object_array[i], g_object_array[0]);
-        i_draw(g_object_array[i]);        
+        i_draw(g_object_array[i]);
+
+        slPrint(GetInput(*new_Input()), slLocate(0,15));
     }
 
     slSynch();

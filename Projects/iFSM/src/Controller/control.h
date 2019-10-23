@@ -1,43 +1,25 @@
-//------------------------------------------------------------------------
-//
-//	CONTROL.H
-//	Interface to controller pads
-//
-//	CONFIDENTIAL
-//	Copyright (c) 1996, Sega Technical Institute
-//
-//	AUTHOR
-//  Russell Bornsch++, 4/96
-//
-//	TARGET
-//	GCC for SH2
-//
-//	REVISION
-//	  8/7/96 - RAB - Cleanup for demo release
-//
-//------------------------------------------------------------------------
-
 #ifndef _CONTROL_H_
 #define _CONTROL_H_
 
-//------------------- PRE-INCLUDE ENVIRONMENT SETTINGS -------------------
 
-//------------------------------- INCLUDES -------------------------------
+#define INPUT_TYPE_ID 3
+#include <sgl.h>
+#include "../mem_mgr.h"
+#include "../Object.h"
 
-//-------------------------- MACROS & TYPEDEFS ---------------------------
 
+typedef struct
+{
+    /*------Object Header------*/
+    ObjectHeader* header;
+    /*-----Object Variables----*/
+    FIXED test_val;
+    int gamepadInput; // = Smpc_Peripheral[0].data;
 
-//--------------------------- GLOBAL VARIABLES ---------------------------
+} Input;
 
-extern int ctrlPadStatusCurrent;
-extern int ctrlPadStatusOld;
-extern int ctrlPadStatusNew;
-extern int ctrlPadStatusDelta;
-
-//--------------------------- GLOBAL FUNCTIONS ---------------------------
-
-extern void CtrlUpdate(void);
-extern void CtrlInit(void);
-extern void CtrlShutdown(void);
+Input * new_Input();
+void input_initialize(Input* input);
+int input_update();
 
 #endif
