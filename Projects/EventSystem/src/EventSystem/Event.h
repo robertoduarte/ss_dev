@@ -3,16 +3,9 @@
 
 typedef enum
 {
-    // Start new games
-    E_NEWGAMEEASY,
-    E_NEWGAMENORMAL,
-    E_NEWGAMEHARD,
-
-    // Game play related
-    E_INCREMENTSCORE,
-    E_PAUSEGAME,
-    E_CONTINUEGAME,
-    E_GAMEOVER,
+    EVENT_TEST,
+    EVENT_TEST2,
+    EVENT_TEST3,
 
     // Number of event types
     EVENT_TYPE_COUNT

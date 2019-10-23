@@ -13,19 +13,12 @@ void init()
     MemInit((pointer)0x06040000, (pointer)0x060BFFFF, 16, 16, 0x800);
 }
 
-int doSum(int a, int b)
-{
-    return a + b;
-}
-
 void exampleEventListener(Event *event)
 {
-
-    int result;
     switch (event->type)
     {
-    case E_NEWGAMEEASY:
-        result = doSum(*(int *)event->arg, 2);
+    case EVENT_TEST:
+        slPrintFX(toFIXED((int)event->arg), slLocate(0, (int)event->arg));
     }
 }
 
@@ -33,15 +26,18 @@ int main(void)
 {
     init();
 
-    int testInt = 1;
-
     EventManager_Init();
-    EventManager_AddListener(E_NEWGAMEEASY, &exampleEventListener);
-    EventManager_TriggerEvent(E_NEWGAMEEASY, &testInt);
+    EventManager_AddListener(EVENT_TEST, &exampleEventListener);
 
     while (1)
     {
-        slPrint("Just WORKS!", slLocate(0, 0));
+        EventManager_QueueEvent(EVENT_TEST, (void *)3);
+        EventManager_QueueEvent(EVENT_TEST, (void *)4);
+
+        EventManager_TriggerEvent(EVENT_TEST, (void *)1);
+        EventManager_TriggerEvent(EVENT_TEST, (void *)2);
+
+        EventManager_Update();
         slSynch();
     }
     return 1;
