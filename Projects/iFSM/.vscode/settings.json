@@ -10,7 +10,10 @@
         "enemy.h": "c",
         "item.h": "c",
         "fsm.h": "c",
-        "enemystate.h": "c"
+        "enemystate.h": "c",
+        "sega_int.h": "c",
+        "machine.h": "c",
+        "sega_tim.h": "c"
     },
     "cmake.configureOnOpen": false
     

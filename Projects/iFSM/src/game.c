@@ -26,6 +26,14 @@ void Game_init()
 
 int Game_run()
 {
+    int gamepadInput = Smpc_Peripheral[0].data;
+
+    if(!(gamepadInput & PER_DGT_ST))
+        slPrint("STUFF!!!!",slLocate(0,10));
+    else if(gamepadInput | PER_DGT_ST)
+        slPrint("NO STUFF!!!!",slLocate(0,10));
+
+
     int i;
     for (i = 0; i < 3; i++)
     {

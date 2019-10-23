@@ -5,7 +5,6 @@
 #include "mem_mgr.h"
 #include "Player.h"
 #include "Object.h"
-#include "FSM/States/EnemyState.h"
 
 #define ENEMY_TYPE_ID 2
 

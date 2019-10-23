@@ -1,8 +1,17 @@
 #include "Enemy.h"
 
+typedef enum{
+    STATE_STANDING,
+    STATE_PATROL,
+    STATE_SLEEP,
+    STATE_AGRESSIVE,
+    STATE_DEAD
+}EnemyFSM;
+
+
 static ObjectHeader enemy_header = {
     ENEMY_TYPE_ID,
-    (draw_interface) & enemy_draw, //Is it a subscribe?¿
+    (draw_interface) & enemy_draw, 
     (interaction_interface) & enemy_interaction
 };
 
@@ -32,11 +41,31 @@ void enemy_draw(Enemy * enemy)
     slPrint("Draw enemy", slLocate(10,4));
 }
 
+int i = 0;
 void enemy_update()
 {
-    State _state;
-    switch(_state){
-
+    EnemyFSM _state;
+    
+    switch (_state)
+    {
+    case STATE_PATROL:
+        /* code */
+        break;
+    case STATE_SLEEP:
+        /* code */
+        break;
+    case STATE_STANDING:
+        /* code S */
+        break;
+    case STATE_AGRESSIVE:
+        /* code */
+        break;
+    case STATE_DEAD:
+        /* code */
+        break;
+            
+    default: 
+        break;
     }
 }
 
