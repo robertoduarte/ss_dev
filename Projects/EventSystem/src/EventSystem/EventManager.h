@@ -2,7 +2,7 @@
 #define EVENTMANAGER_H
 
 #include "Event.h"
-/*-----------------EventListener Interface-------------------*/
+// Event Callback Definition
 typedef void (*EventListenerCallback)(Event *);
 
 void EventManager_Init();
@@ -11,7 +11,7 @@ void EventManager_Update();
 
 void EventManager_QueueEvent(EventType eventType, void *args);
 
-void EventManager_AbortEvent(EventType eventType, void *args);
+void EventManager_AbortEvent(EventType eventType, int allOfType);
 
 void EventManager_TriggerEvent(EventType eventType, void *args);
 

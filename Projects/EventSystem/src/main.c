@@ -34,6 +34,8 @@ int main(void)
         EventManager_QueueEvent(EVENT_TEST, (void *)3);
         EventManager_QueueEvent(EVENT_TEST, (void *)4);
 
+        EventManager_AbortEvent(EVENT_TEST, 0);
+        
         EventManager_TriggerEvent(EVENT_TEST, (void *)1);
         EventManager_TriggerEvent(EVENT_TEST, (void *)2);
 

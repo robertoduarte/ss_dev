@@ -50,16 +50,27 @@ void EventManager_Update()
 
 void EventManager_QueueEvent(EventType eventType, void *args)
 {
-    Event *event = Memmalloc(sizeof(Event));
+    Event *event = (Event *)Memmalloc(sizeof(Event));
     event->type = eventType;
     event->arg = args;
-    Node *node = Memmalloc(sizeof(Node));
+    Node *node = (Node *)Memmalloc(sizeof(Node));
     node->key = (long)event;
     LstAddNodeToTail(&eventQueue[currentQueue], node);
 }
 
-void EventManager_AbortEvent(EventType eventType, void *args)
+void EventManager_AbortEvent(EventType eventType, int allOfType)
 {
+    List *eventQueuePtr = &eventQueue[currentQueue];
+    Node *nextEventNode = LstFirstNode(eventQueuePtr);
+    while (nextEventNode != 0)
+    {
+        LstUnlinkNode(eventQueuePtr, nextEventNode);
+        Event *eventToFree = (Event *)nextEventNode;
+        if (!allOfType)
+            break;
+        nextEventNode = LstNextNode(eventQueuePtr, nextEventNode);
+        Memfree(eventToFree);
+    }
 }
 
 void EventManager_TriggerEvent(EventType eventType, void *args)
