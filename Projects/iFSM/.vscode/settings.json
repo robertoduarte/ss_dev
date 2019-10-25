@@ -13,7 +13,8 @@
         "enemystate.h": "c",
         "sega_int.h": "c",
         "machine.h": "c",
-        "sega_tim.h": "c"
+        "sega_tim.h": "c",
+        "player.h": "c"
     },
     "cmake.configureOnOpen": false
     
