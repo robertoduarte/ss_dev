@@ -5,7 +5,7 @@
 #define EVENT_QUEUE_COUNT 2
 static int currentQueue = 0;
 static List eventQueue[EVENT_QUEUE_COUNT];
-static List eventTypeListenerList[EVENT_TYPE_COUNT];
+static List eventTypeListenerList[EventTypeCount];
 
 void EventManager_Init()
 {
@@ -14,7 +14,7 @@ void EventManager_Init()
     {
         LstInitList(&eventQueue[i]);
     }
-    for (i = 0; i < EVENT_TYPE_COUNT; i++)
+    for (i = 0; i < EventTypeCount; i++)
     {
         LstInitList(&eventTypeListenerList[i]);
     }
@@ -61,14 +61,14 @@ void EventManager_QueueEvent(EventType eventType, void *args)
 void EventManager_AbortEvent(EventType eventType, int allOfType)
 {
     List *eventQueuePtr = &eventQueue[currentQueue];
-    Node *nextEventNode = LstFirstNode(eventQueuePtr);
-    while (nextEventNode != 0)
+    Node *previousEventNode = LstLastNode(eventQueuePtr);
+    while (previousEventNode != 0)
     {
-        LstUnlinkNode(eventQueuePtr, nextEventNode);
-        Event *eventToFree = (Event *)nextEventNode;
+        LstUnlinkNode(eventQueuePtr, previousEventNode);
+        Event *eventToFree = (Event *)previousEventNode;
         if (!allOfType)
             break;
-        nextEventNode = LstNextNode(eventQueuePtr, nextEventNode);
+        previousEventNode = LstPrevNode(eventQueuePtr, previousEventNode);
         Memfree(eventToFree);
     }
 }
