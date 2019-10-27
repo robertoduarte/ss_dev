@@ -6,7 +6,7 @@
 #include <sgl.h>
 #include"Object.h"
 #include "Item.h"
-#include "mem_mgr.h"
+#include "Utils/mem_mgr.h"
 
 typedef struct
 {

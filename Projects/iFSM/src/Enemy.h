@@ -2,7 +2,7 @@
 #define ENEMY_H
 
 #include <sgl.h>
-#include "mem_mgr.h"
+#include "Utils/mem_mgr.h"
 #include "Player.h"
 #include "Object.h"
 

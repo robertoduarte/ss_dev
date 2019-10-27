@@ -1,9 +1,11 @@
 #include <sgl.h>
+
 #include "game.h"
 #include "Player.h"
 // #include "Enemy.h"
 // #include "Item.h"
-#include "mem_mgr.h"
+#include "Utils/mem_mgr.h"
+#include "Utils/list.h"
 // #include "Controller/control.h"
 
 Object g_object_array[4];
@@ -22,7 +24,6 @@ typedef struct
     Sint16 actionkeyMap[INPUT_TYPES_COUNT];
     void *actionCallbackMap[INPUT_TYPES_COUNT];
 } InputMap;
-
 
 void InputMap_mapAction(InputMap *inputMap, ActionType actionType, Sint16 keyMap, void *actionHandlerCallback)
 {
@@ -65,8 +66,10 @@ void Game_init()
     g_object_array[0] = new_Player();
     g_object_array[1] = new_Enemy();
     g_object_array[2] = new_Item();
-    // g_object_array[3] = new_Input();
+    g_object_array[3] = new_Input();
 }
+
+
 
 // int GetInput(Input i)
 // {
@@ -78,22 +81,26 @@ void Game_init()
 //     // return i.gamepadInput;
 // }
 
+///*/********************DEBUG LOG
+ 
 int Game_run()
 {
-    // int gamepadInput = Smpc_Peripheral[0].data;
+    int gamepadInput = Smpc_Peripheral[0].data;
 
-    // if(!(gamepadInput & PER_DGT_ST))
-    //     slPrint("STUFF!!!!",slLocate(0,10));
-    // else if(gamepadInput | PER_DGT_ST)
-    //     slPrint("NO STUFF!!!!",slLocate(0,10));
+    if(!(gamepadInput & PER_DGT_ST))
+        slPrint("STUFF!!!!",slLocate(0,10));
+    else //if(gamepadInput | PER_DGT_ST)
+        slPrint("NO STUFF!!!!",slLocate(0,10));
 
+    // String s1 = newString();
+    // s1->set(s1, "hello");
     int i;
     for (i = 0; i < 4; i++)
     {
         //      i_interaction(g_object_array[i], g_object_array[0]);
         i_draw(g_object_array[i]);
 
-        slPrint(GetInput(*new_Input()), slLocate(0, 15));
+        // slPrint(s1, slLocate(0, 15));
     }
 
     slSynch();
