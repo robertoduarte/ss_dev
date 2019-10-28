@@ -25,10 +25,9 @@
 
 //------------------- PRE-INCLUDE ENVIRONMENT SETTINGS -------------------
 
-
 //------------------------------- INCLUDES -------------------------------
 
-#include "generic.h"
+#include "SL_DEF.H"
 
 //-------------------------- MACROS & TYPEDEFS ---------------------------
 
@@ -36,36 +35,36 @@
 
 typedef struct _tag_node_
 {
-    struct _tag_node_* next; // next node
-    struct _tag_node_* prev; // previous node
-    long key; // sort key
+    struct _tag_node_ *next; // next node
+    struct _tag_node_ *prev; // previous node
+    long key;                // sort key
 } Node;
 
-// a list uses dummy nodes to avoid special-casing the head and 
-// tail of the list. It wastes two nodes and two pointers worth 
+// a list uses dummy nodes to avoid special-casing the head and
+// tail of the list. It wastes two nodes and two pointers worth
 // of memory per list (in this case 32 bytes), but makes the code
 // much cleaner.
 
 typedef struct _tag_list_
 {
-    Node* head; // pointer to dummy head node
-    Node* tail; // pointer to dummy tail node
+    Node *head;      // pointer to dummy head node
+    Node *tail;      // pointer to dummy tail node
     Node dummy_head; // dummy nodes
     Node dummy_tail; // dummy nodes
 } List;
 
-// macros to access previous and next nodes from a current node. 
+// macros to access previous and next nodes from a current node.
 // these return NULL if you reach the dummy nodes at head and tail.
 
-#define LstNextNode( list, node ) ((node->next == list->tail)?(NULL):(node->next))
-#define LstPrevNode( list, node ) ((node->prev == list->head)?(NULL):(node->prev))
+#define LstNextNode(list, node) ((node->next == list->tail) ? (NULL) : (node->next))
+#define LstPrevNode(list, node) ((node->prev == list->head) ? (NULL) : (node->prev))
 
-#define LstFirstNode( list ) (((list->head->next)==list->tail)?(NULL):(list->head->next))
-#define LstLastNode( list )  (((list->tail->prev)==list->head)?(NULL):(list->tail->prev))
+#define LstFirstNode(list) (((list->head->next) == list->tail) ? (NULL) : (list->head->next))
+#define LstLastNode(list) (((list->tail->prev) == list->head) ? (NULL) : (list->tail->prev))
 
 #ifndef CONTINUE
 #define CONTINUE 1
-#define HALT  0
+#define HALT 0
 #endif
 
 #define LIST_KEY_MAX 0x7FFFFFFF
@@ -77,16 +76,16 @@ typedef struct _tag_list_
 
 // these all live in LIST.C
 
-void LstInitList(List* list);
-void LstAddNodeToHead(List* list, Node* n);
-void LstAddNodeToTail(List* list, Node* n);
-void LstAddNodeBefore(List* list, Node* n, Node* cur);
-void LstAddNodeAfter(List* list, Node* n, Node* cur);
-void LstAddNodeByKey(List* list, Node* n);
-void LstUnlinkNode(List* list, Node* n);
-Node* LstFindNodeByKey(List* list, long key);
-void LstIterate(List* list, int (*callback)(Node* n));
-void LstIterateValue(List* list, int (*callback)(Node* n, dword v1, dword* v2), dword val1, dword* val2);
-void LstChangeKey(List* list, Node* n, long key);
+void LstInitList(List *list);
+void LstAddNodeToHead(List *list, Node *n);
+void LstAddNodeToTail(List *list, Node *n);
+void LstAddNodeBefore(List *list, Node *n, Node *cur);
+void LstAddNodeAfter(List *list, Node *n, Node *cur);
+void LstAddNodeByKey(List *list, Node *n);
+void LstUnlinkNode(List *list, Node *n);
+Node *LstFindNodeByKey(List *list, long key);
+void LstIterate(List *list, int (*callback)(Node *n));
+void LstIterateValue(List *list, int (*callback)(Node *n, Sint32 v1, Sint32 *v2), Sint32 val1, Sint32 *val2);
+void LstChangeKey(List *list, Node *n, long key);
 
 #endif

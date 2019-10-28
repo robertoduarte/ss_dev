@@ -21,7 +21,7 @@
 //
 //	This code is fully documented in MEM_MGR.DOC, available wherever
 //	fine code is written.
-// 
+//
 //------------------------------------------------------------------------
 
 #include "mem_mgr.h"
@@ -31,30 +31,30 @@
 
 pointer memHeapHead;
 pointer memHeapTail;
-dword memInitialHandles;
-dword memStepHandles;
-dword memFreeHandles;
-_memHandle* memRootHandle;
-_memHandle* memLastHandle;
-_memHandle* memFirstGap;
+Sint32 memInitialHandles;
+Sint32 memStepHandles;
+Sint32 memFreeHandles;
+_memHandle *memRootHandle;
+_memHandle *memLastHandle;
+_memHandle *memFirstGap;
 
-#if  MEM_ENABLE_OWNER_ID
-dword memIDs;
+#if MEM_ENABLE_OWNER_ID
+Sint32 memIDs;
 handle memIDHandle;
-char** memIDPointer;
+char **memIDPointer;
 #endif
 
-#if  MEM_ENABLE_TRASH
+#if MEM_ENABLE_TRASH
 pointer memTrashStart;
 pointer memTrashEnd;
 pointer memTrashCurrent;
-_memHandle* memTrashHandle;
+_memHandle *memTrashHandle;
 #endif
 
-static dword memGainable = 0;
+static Sint32 memGainable = 0;
 
-#if  MEM_ENABLE_RELEASE
-static ReleaseFunc memReleaseList[ MEM_MAX_NUM_RELEASES ];
+#if MEM_ENABLE_RELEASE
+static ReleaseFunc memReleaseList[MEM_MAX_NUM_RELEASES];
 long MemCompactRelease(long, long);
 #endif
 
@@ -63,30 +63,30 @@ long MemCompactRelease(long, long);
 //--------------------------------------------------------------------------------------------------------------------- MemInit
 //..............................................................................................................................
 
-void MemInit(pointer heapStart, pointer heapFinish, dword initHandles, dword stepHandles, dword trashSize)
+void MemInit(pointer heapStart, pointer heapFinish, Sint32 initHandles, Sint32 stepHandles, Sint32 trashSize)
 {
 #if NDEBUG
     volatile char *stomp;
     volatile char sdata;
-    int memok = TRUE;
+    int memok = YES;
 #endif
 
-#if  MEM_ENABLE_OWNER_ID          // -- VARIABLE SETUP --
+#if MEM_ENABLE_OWNER_ID                              // -- VARIABLE SETUP --
     static char sysname[] = "MEMORY MANAGER SYSTEM"; //		owner id flags/pointers
     static char genname[] = "GENERIC";
     memIDs = 0; //		initialize the ownerID list
 #else
-    char sysname; //		variation for no ownerID function
+    char sysname; //		variation for NO ownerID function
     char genericname;
 #endif
 
     assert(heapStart); // -- VALIDATE INPUT --
     assert(heapFinish >= heapStart);
-    assert(((dword) heapFinish - (dword) heapStart) > 1024); //		check for 'reasonable' limits
+    assert(((Sint32)heapFinish - (Sint32)heapStart) > 1024); //		check for 'reasonable' limits
     assert(initHandles < 1024);
     assert(stepHandles < 1024);
     assert(stepHandles > 3);
-    assert(trashSize < ((dword) heapFinish - (dword) heapStart));
+    assert(trashSize < ((Sint32)heapFinish - (Sint32)heapStart));
 
 #if NDEBUG
 
@@ -100,11 +100,11 @@ void MemInit(pointer heapStart, pointer heapFinish, dword initHandles, dword ste
         sdata = *stomp;
         *stomp ^= 0xFF;
 
-        if ((sdata^0xFF) != *stomp)
-            memok = FALSE;
+        if ((sdata ^ 0xFF) != *stomp)
+            memok = NO;
     }
 
-    assert(memok == TRUE);
+    assert(memok == YES);
 #endif
 
     // -- INIT GLOBAL VARS  --
@@ -116,30 +116,30 @@ void MemInit(pointer heapStart, pointer heapFinish, dword initHandles, dword ste
 
     // -- CREATE INITIAL HANDLE BLOCK AND ALLOCATE ROOT HANDLE --
     _Memcreate_handleBlock(heapStart, initHandles, 0); //		initialize handle block at start of memory
-    memRootHandle = _Memget_new_memHandle(); //		grab the first handle
-    memLastHandle = memRootHandle; //			and initialize the other pointers
+    memRootHandle = _Memget_new_memHandle();           //		grab the first handle
+    memLastHandle = memRootHandle;                     //			and initialize the other pointers
     memFirstGap = memRootHandle;
     memRootHandle->memory = heapStart; //		root handle allocates the initial block
     memRootHandle->size = _Memsize_handleBlock(initHandles);
-    memRootHandle->freeAfter = ((dword) heapFinish - (dword) heapStart + 1) - (memRootHandle->size);
+    memRootHandle->freeAfter = ((Sint32)heapFinish - (Sint32)heapStart + 1) - (memRootHandle->size);
     memRootHandle->attributes = MEM_ATTR_locked + MEM_ATTR_fixed + MEM_ATTR_system;
     memRootHandle->nextMemHandle = 0;
     memRootHandle->prevMemHandle = 0;
-    memRootHandle->ownerID = (short) MemUniqueID(sysname); //		grab owner ID 0 and allocate starting id table
-    MemUniqueID(genname); //		grab owner ID 1 (for generic use)
+    memRootHandle->ownerID = (short)MemUniqueID(sysname); //		grab owner ID 0 and allocate starting id table
+    MemUniqueID(genname);                                 //		grab owner ID 1 (for generic use)
 
-#if  MEM_ENABLE_TRASH          // -- ALLOCATE STARTING TRASH BUFFER --
-    memTrashHandle = (_memHandle*) MemNewHandle(trashSize, _MEM_ID_SYSTEM, MEM_ATTR_fixed + MEM_ATTR_system);
+#if MEM_ENABLE_TRASH // -- ALLOCATE STARTING TRASH BUFFER --
+    memTrashHandle = (_memHandle *)MemNewHandle(trashSize, _MEM_ID_SYSTEM, MEM_ATTR_fixed + MEM_ATTR_system);
     memTrashStart = memTrashHandle->memory;
     memTrashCurrent = memTrashStart;
-    memTrashEnd = (pointer) ((dword) memTrashStart + trashSize - 1);
+    memTrashEnd = (pointer)((Sint32)memTrashStart + trashSize - 1);
 #endif
 
-#if  MEM_ENABLE_RELEASE
-    // compaction should be last resort, since previous releases might 
+#if MEM_ENABLE_RELEASE
+    // compaction should be last resort, since previous releases might
     // improve compaction
 
-    memReleaseList[ MEM_MAX_NUM_RELEASES - 1 ] = MemCompactRelease;
+    memReleaseList[MEM_MAX_NUM_RELEASES - 1] = MemCompactRelease;
 
 #endif
 }
@@ -200,23 +200,23 @@ void MemRelease(long size)
 
 //..............................................................................................................................
 
-handle MemNewHandle(dword size, dword ownerID, dword attributes)
+handle MemNewHandle(Sint32 size, Sint32 ownerID, Sint32 attributes)
 {
-    _memHandle* m = _Memget_new_memHandle(); // -- VARIABLE SETUP --
+    _memHandle *m = _Memget_new_memHandle(); // -- VARIABLE SETUP --
     handle result;
 
     assert(MemCheckID(ownerID)); // -- VALIDATE INPUT --
     assert(MemCheckATTR(attributes));
 
     // -- CONFIGURE HANDLE --
-    m->size = size; //		setup known values
-    m->ownerID = (short) ownerID; //		just a tag value if ownerID disabled
+    m->size = size;              //		setup known values
+    m->ownerID = (short)ownerID; //		just a tag value if ownerID disabled
     m->attributes = attributes;
     //		find memory block
     if ((attributes & MEM_ATTR_perm) || (size >= MEM_VAL_LARGE_BLOCK))
-        result = _Meminsert_new_memHandle_permanent(m) ? (handle) m : 0;
+        result = _Meminsert_new_memHandle_permanent(m) ? (handle)m : 0;
     else
-        result = _Meminsert_new_memHandle_transient(m) ? (handle) m : 0;
+        result = _Meminsert_new_memHandle_transient(m) ? (handle)m : 0;
 
 #if MEM_ENABLE_RELEASE
     // if these failed, release and try again
@@ -225,9 +225,9 @@ handle MemNewHandle(dword size, dword ownerID, dword attributes)
         MemRelease(size);
 
         if ((attributes & MEM_ATTR_perm) || (size >= MEM_VAL_LARGE_BLOCK))
-            result = _Meminsert_new_memHandle_permanent(m) ? (handle) m : 0;
+            result = _Meminsert_new_memHandle_permanent(m) ? (handle)m : 0;
         else
-            result = _Meminsert_new_memHandle_transient(m) ? (handle) m : 0;
+            result = _Meminsert_new_memHandle_transient(m) ? (handle)m : 0;
     }
 #endif
 
@@ -237,12 +237,12 @@ handle MemNewHandle(dword size, dword ownerID, dword attributes)
 //------------------------------------------------------------------------------------------------------------ MemReAllocHandle
 //..............................................................................................................................
 
-handle MemReAllocHandle(dword size, dword ownerID, dword attributes, handle h)
+handle MemReAllocHandle(Sint32 size, Sint32 ownerID, Sint32 attributes, handle h)
 {
     // -- VARIABLE SETUP --
-#define  hh ((_memHandle*)h)       //		convenience
-    _memHandle* p = hh->prevMemHandle; //		get linked handles
-    _memHandle* n = hh->nextMemHandle;
+#define hh ((_memHandle *)h)           //		convenience
+    _memHandle *p = hh->prevMemHandle; //		get linked handles
+    _memHandle *n = hh->nextMemHandle;
     handle result;
     pointer s;
 
@@ -254,16 +254,19 @@ handle MemReAllocHandle(dword size, dword ownerID, dword attributes, handle h)
     s = hh->memory;
     // -- FREE THE HANDLE'S RESOURCES --
     p->freeAfter += hh->size + hh->freeAfter; //		move space to previous handle
-    p->nextMemHandle = n; //		move links around this handle -- cut this handle out
-    if (n) n->prevMemHandle = p;
+    p->nextMemHandle = n;                     //		move links around this handle -- cut this handle out
+    if (n)
+        n->prevMemHandle = p;
 
     // -- ADJUST INFO POINTERS --
-    if (hh == memFirstGap) memFirstGap = p;
-    if (hh == memLastHandle) memLastHandle = p;
+    if (hh == memFirstGap)
+        memFirstGap = p;
+    if (hh == memLastHandle)
+        memLastHandle = p;
 
     // -- REALLOCATE THE SPACE FOR THE HANDLE --
     hh->size = size; //		setup known values
-    hh->ownerID = (short) ownerID;
+    hh->ownerID = (short)ownerID;
     hh->attributes = attributes;
     //		find memory block
     if ((attributes & MEM_ATTR_perm) || (size >= MEM_VAL_LARGE_BLOCK))
@@ -291,9 +294,9 @@ handle MemReAllocHandle(dword size, dword ownerID, dword attributes, handle h)
     if (result)
         MemBlockMove(s, hh->memory, hh->size);
 
-    return ( result);
+    return (result);
 
-#undef  hh
+#undef hh
 }
 
 //------------------------------------------------------------------------------------------------------------ MemDisposeHandle
@@ -302,9 +305,9 @@ handle MemReAllocHandle(dword size, dword ownerID, dword attributes, handle h)
 void MemDisposeHandle(handle h)
 {
     // -- VARIABLE SETUP --
-#define  hh ((_memHandle*)h)       //		convenience
-    _memHandle* p = hh->prevMemHandle; //		get linked handles
-    _memHandle* n = hh->nextMemHandle;
+#define hh ((_memHandle *)h)           //		convenience
+    _memHandle *p = hh->prevMemHandle; //		get linked handles
+    _memHandle *n = hh->nextMemHandle;
 
     assert(MemCheckHandle(h)); // -- VALIDATE INPUT --
 
@@ -312,32 +315,34 @@ void MemDisposeHandle(handle h)
     memGainable += hh->size + hh->freeAfter;
     // -- FREE THE HANDLE'S RESOURCES --
     p->freeAfter += hh->size + hh->freeAfter; //		move space to previous handle
-    p->nextMemHandle = n; //		move links around this handle -- cut this handle out
-    if (n) n->prevMemHandle = p;
+    p->nextMemHandle = n;                     //		move links around this handle -- cut this handle out
+    if (n)
+        n->prevMemHandle = p;
 
     // -- ADJUST INFO POINTERS --
-    if (hh == memFirstGap) memFirstGap = p;
-    if (hh == memLastHandle) memLastHandle = p;
+    if (hh == memFirstGap)
+        memFirstGap = p;
+    if (hh == memLastHandle)
+        memLastHandle = p;
 
-    _Memfree_memHandle((_memHandle*) h); // -- FREE THE HANDLE ITSELF --
+    _Memfree_memHandle((_memHandle *)h); // -- FREE THE HANDLE ITSELF --
 
-#undef  hh
-
+#undef hh
 }
 
 //-------------------------------------------------------------------------------------------------------------- MemCheckHandle
 //..............................................................................................................................
 
-bool MemCheckHandle(handle h)
+Bool MemCheckHandle(handle h)
 {
-    _memHandle* m = memRootHandle; // -- VARIABLE SETUP --
+    _memHandle *m = memRootHandle; // -- VARIABLE SETUP --
 
     do
     {
-        if (m == (_memHandle*) h) return YES; // handle found
+        if (m == (_memHandle *)h)
+            return YES; // handle found
         m = m->nextMemHandle;
-    }
-    while (m);
+    } while (m);
 
     return NO; // handle not found -- return error
 }
@@ -345,21 +350,21 @@ bool MemCheckHandle(handle h)
 //------------------------------------------------------------------------------------------------------------ MemGetHandleSize
 //..............................................................................................................................
 
-dword MemGetHandleSize(handle h)
+Sint32 MemGetHandleSize(handle h)
 {
     assert(MemCheckHandle(h)); // -- VALIDATE INPUT --
 
-    return ( ((_memHandle*) h)->size);
+    return (((_memHandle *)h)->size);
 }
 
 //------------------------------------------------------------------------------------------------------------ MemSetHandleSize
 //..............................................................................................................................
 
-handle MemSetHandleSize(handle h, dword size)
+handle MemSetHandleSize(handle h, Sint32 size)
 {
     // -- VARIABLE SETUP --
-#define  hh ((_memHandle*)h)       //		convenience
-    dword total = hh->size + hh->freeAfter; //		total space available to this handle
+#define hh ((_memHandle *)h)                 //		convenience
+    Sint32 total = hh->size + hh->freeAfter; //		total space available to this handle
 
     assert(MemCheckHandle(h)); // -- VALIDATE INPUT --
 
@@ -368,7 +373,7 @@ handle MemSetHandleSize(handle h, dword size)
     {
         hh->size = size; //		space already exists, adjust values
         hh->freeAfter = total - size;
-#if  MEM_FLAG_ALLOC_HOLES       //		swallow small hole if left here
+#if MEM_FLAG_ALLOC_HOLES //		swallow small hole if left here
         if (hh->freeAfter <= MEM_VAL_HOLE_SIZE)
         {
             hh->size += hh->freeAfter;
@@ -381,7 +386,7 @@ handle MemSetHandleSize(handle h, dword size)
 
     return h;
 
-#undef  hh
+#undef hh
 }
 
 //--------------------------------------------------------------------------------------------------------------------- MemLock
@@ -391,7 +396,7 @@ handle MemLock(handle h)
 {
     assert(MemCheckHandle(h)); // -- VALIDATE INPUT --
 
-    ((_memHandle *) h)->attributes |= MEM_ATTR_locked;
+    ((_memHandle *)h)->attributes |= MEM_ATTR_locked;
 
     return h;
 }
@@ -403,7 +408,7 @@ handle MemUnlock(handle h)
 {
     assert(MemCheckHandle(h)); // -- VALIDATE INPUT --
 
-    ((_memHandle *) h)->attributes &= ~MEM_ATTR_locked;
+    ((_memHandle *)h)->attributes &= ~MEM_ATTR_locked;
 
     return h;
 }
@@ -413,16 +418,16 @@ handle MemUnlock(handle h)
 
 handle MemFindHandle(pointer p)
 {
-    _memHandle* m = memRootHandle; // -- VARIABLE SETUP --
+    _memHandle *m = memRootHandle; // -- VARIABLE SETUP --
 
     do
     {
-        if (((dword) p >= (dword) m->memory) && ((dword) p < ((dword) m->memory + m->size))) break;
+        if (((Sint32)p >= (Sint32)m->memory) && ((Sint32)p < ((Sint32)m->memory + m->size)))
+            break;
         m = m->nextMemHandle;
-    }
-    while (m);
+    } while (m);
 
-    return (handle) m;
+    return (handle)m;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -432,72 +437,68 @@ handle MemFindHandle(pointer p)
 //--------------------------------------------------------------------------------------------------------------- MemDisposeAll
 //..............................................................................................................................
 
-void MemDisposeAll(dword ownerID)
+void MemDisposeAll(Sint32 ownerID)
 {
-    _memHandle* m = memRootHandle; // -- VARIABLE SETUP --
+    _memHandle *m = memRootHandle; // -- VARIABLE SETUP --
 
     assert(MemCheckID(ownerID)); // -- VALIDATE INPUT --
 
     do // -- SCAN THE HANDLES FOR ONES TO DISPOSE --
     {
-        if (m->ownerID == (short) ownerID)
-            MemDisposeHandle((handle) m);
+        if (m->ownerID == (short)ownerID)
+            MemDisposeHandle((handle)m);
         m = m->nextMemHandle;
-    }
-    while (m);
+    } while (m);
 
     *(memIDPointer + ownerID) = 0; // -- FREE OWNER ID --
-
 }
 
 //------------------------------------------------------------------------------------------------------------------ MemLockAll
 //..............................................................................................................................
 
-void MemLockAll(dword ownerID)
+void MemLockAll(Sint32 ownerID)
 {
-    _memHandle* m = memRootHandle; // -- VARIABLE SETUP --
+    _memHandle *m = memRootHandle; // -- VARIABLE SETUP --
 
     assert(MemCheckID(ownerID)); // -- VALIDATE INPUT --
 
     do
     {
-        if (m->ownerID == (short) ownerID)
+        if (m->ownerID == (short)ownerID)
             m->attributes |= MEM_ATTR_locked;
-        m = m-> nextMemHandle;
-    }
-    while (m);
+        m = m->nextMemHandle;
+    } while (m);
 }
 
 //---------------------------------------------------------------------------------------------------------------- MemUnlockAll
 //..............................................................................................................................
 
-void MemUnlockAll(dword ownerID)
+void MemUnlockAll(Sint32 ownerID)
 {
-    _memHandle* m = memRootHandle; // -- VARIABLE SETUP --
+    _memHandle *m = memRootHandle; // -- VARIABLE SETUP --
 
     assert(MemCheckID(ownerID)); // -- VALIDATE INPUT --
 
     do
     {
-        if (m->ownerID == (short) ownerID)
+        if (m->ownerID == (short)ownerID)
             m->attributes &= ~MEM_ATTR_locked;
-        m = m-> nextMemHandle;
-    }
-    while (m);
+        m = m->nextMemHandle;
+    } while (m);
 }
 
 //----------------------------------------------------------------------------------------------------------------- MemUniqueID
 //..............................................................................................................................
 
-dword MemUniqueID(char *name)
+Sint32 MemUniqueID(char *name)
 {
     // -- VARIABLE SETUP --
-    dword clear; //		counter for clearing
-    dword use; //		counter for use ID
+    Sint32 clear; //		counter for clearing
+    Sint32 use;   //		counter for use ID
 
     if (!memIDs) // -- ALLOCATE INITIAL BLOCK --
-    { //		don't have any space yet
-        memIDHandle = MemNewHandle(sizeof (char*)*MEM_VAL_ID_CHUNK, _MEM_ID_SYSTEM, MEM_ATTR_system + MEM_ATTR_fixed + MEM_ATTR_align4);
+    {            //		don't have any space yet
+        memIDHandle = MemNewHandle(sizeof(char *) * MEM_VAL_ID_CHUNK, _MEM_ID_SYSTEM, MEM_ATTR_system + MEM_ATTR_fixed + MEM_ATTR_align4);
         memIDPointer = *memIDHandle;
         memIDs = MEM_VAL_ID_CHUNK;
         for (clear = 0; clear < MEM_VAL_ID_CHUNK; clear++) //		clear table to null
@@ -505,12 +506,13 @@ dword MemUniqueID(char *name)
     }
 
     for (use = 0; use < memIDs; use++) // -- FIND FREE BLOCK --
-        if (!(*(memIDPointer + use))) break;
+        if (!(*(memIDPointer + use)))
+            break;
 
     if (use == memIDs) // -- NEED TO ENLARGE OWNER ID TABLE --
     {
         memIDs += MEM_VAL_ID_CHUNK; //		bump id count
-        memIDHandle = MemSetHandleSize((handle) memIDHandle, sizeof (char*) * memIDs);
+        memIDHandle = MemSetHandleSize((handle)memIDHandle, sizeof(char *) * memIDs);
         memIDPointer = *memIDHandle;
         for (clear = 0; clear < MEM_VAL_ID_CHUNK; clear++) //		clear new portion of table to null
             *(memIDPointer + memIDs - clear - 1) = 0;
@@ -524,10 +526,12 @@ dword MemUniqueID(char *name)
 //------------------------------------------------------------------------------------------------------------------ MemCheckID
 //..............................................................................................................................
 
-bool MemCheckID(dword ownerID)
+Bool MemCheckID(Sint32 ownerID)
 {
-    if (!ownerID) return YES; //		0 (system id) is always valid
-    if (ownerID >= memIDs) return NO; //		id value too high
+    if (!ownerID)
+        return YES; //		0 (system id) is always valid
+    if (ownerID >= memIDs)
+        return NO;                               //		id value too high
     return *(memIDPointer + ownerID) ? YES : NO; //		return status of id
 }
 
@@ -539,24 +543,24 @@ bool MemCheckID(dword ownerID)
 //==============================================================================================================================
 //============================================================================================================ FUNCTIONS: STDLIB
 
-#if  MEM_ENABLE_STDLIB
+#if MEM_ENABLE_STDLIB
 
 //------------------------------------------------------------------------------------------------------------------- Memmalloc
 //..............................................................................................................................
 
-pointer Memmalloc(dword size)
+pointer Memmalloc(Sint32 size)
 {
     handle h = Memmalloc_h(size);
-    return h ? *h : (pointer) 0; // error propagation
+    return h ? *h : (pointer)0; // error propagation
 }
 
 //------------------------------------------------------------------------------------------------------------------- Memcalloc
 //..............................................................................................................................
 
-pointer Memcalloc(dword count, dword size)
+pointer Memcalloc(Sint32 count, Sint32 size)
 {
     handle h = Memcalloc_h(count, size);
-    return h ? *h : (pointer) 0; // error propagation
+    return h ? *h : (pointer)0; // error propagation
 }
 
 //--------------------------------------------------------------------------------------------------------------------- Memfree
@@ -570,7 +574,7 @@ void Memfree(pointer p)
 //----------------------------------------------------------------------------------------------------------------- Memmalloc_h
 //..............................................................................................................................
 
-handle Memmalloc_h(dword size)
+handle Memmalloc_h(Sint32 size)
 {
     return MemNewHandle(size, _MEM_ID_GENERIC, MEM_VAL_STD_ATTR);
 }
@@ -578,10 +582,10 @@ handle Memmalloc_h(dword size)
 //----------------------------------------------------------------------------------------------------------------- Memcalloc_h
 //..............................................................................................................................
 
-handle Memcalloc_h(dword count, dword size)
+handle Memcalloc_h(Sint32 count, Sint32 size)
 {
-    handle h = MemNewHandle(count*size, _MEM_ID_GENERIC, MEM_VAL_STD_ATTR);
-    char* p = (char*) *h;
+    handle h = MemNewHandle(count * size, _MEM_ID_GENERIC, MEM_VAL_STD_ATTR);
+    char *p = (char *)*h;
 
     if (h)
         while (count)
@@ -611,20 +615,20 @@ void Memfree_h(handle h)
 //==============================================================================================================================
 //============================================================================================================= FUNCTIONS: PURGE
 
-#if  MEM_ENABLE_PURGE
+#if MEM_ENABLE_PURGE
 
 //-------------------------------------------------------------------------------------------------------------- MemPurgeHandle
 //..............................................................................................................................
 
 handle MemPurgeHandle(handle h)
 {
-#define  hh ((_memHandle*)h)       //		convenience
+#define hh ((_memHandle *)h) //		convenience
 
     assert(MemCheckHandle(h)); // -- VALIDATE INPUT --
 
     // -- ATTEMPT PURGE --
     if (hh->attributes & (MEM_ATTR_locked + MEM_ATTR_system)) //		check for locked / system flags
-        return h; //			cannot purge
+        return h;                                             //			cannot purge
 
     if (hh->attributes & MEM_ATTR_purgeMask) //		handle must have a nonzero purge level
     {
@@ -634,71 +638,67 @@ handle MemPurgeHandle(handle h)
 
     return h;
 
-#undef  hh
+#undef hh
 }
 
 //----------------------------------------------------------------------------------------------------------------- MemGetPurge
 //..............................................................................................................................
 
-dword MemGetPurge(handle h)
+Sint32 MemGetPurge(handle h)
 {
     assert(MemCheckHandle(h)); // -- VALIDATE INPUT --
 
-    return ( ((_memHandle*) h)->attributes & MEM_ATTR_purgeMask) >> MEM_ATTR_purgeShift;
+    return (((_memHandle *)h)->attributes & MEM_ATTR_purgeMask) >> MEM_ATTR_purgeShift;
 }
 
 //----------------------------------------------------------------------------------------------------------------- MemSetPurge
 //..............................................................................................................................
 
-dword MemSetPurge(dword purgeLevel, handle h)
+Sint32 MemSetPurge(Sint32 purgeLevel, handle h)
 {
     assert(MemCheckHandle(h)); // -- VALIDATE INPUT --
 
-    ((_memHandle *) h)->attributes = (((_memHandle *) h)->attributes & ~MEM_ATTR_purgeMask)
-            | (purgeLevel << MEM_ATTR_purgeShift);
+    ((_memHandle *)h)->attributes = (((_memHandle *)h)->attributes & ~MEM_ATTR_purgeMask) | (purgeLevel << MEM_ATTR_purgeShift);
     return purgeLevel;
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------------------------------------------
 
-#if  MEM_ENABLE_OWNER_ID
+#if MEM_ENABLE_OWNER_ID
 
 //----------------------------------------------------------------------------------------------------------------- MemPurgeAll
 //..............................................................................................................................
 
-void MemPurgeAll(dword ownerID)
+void MemPurgeAll(Sint32 ownerID)
 {
-    _memHandle* m = memRootHandle; // -- VARIABLE SETUP --
+    _memHandle *m = memRootHandle; // -- VARIABLE SETUP --
 
     assert(MemCheckID(ownerID)); // -- VALIDATE INPUT --
 
     do
     {
-        if (m->ownerID == (short) ownerID)
-            MemPurgeHandle((handle) m);
+        if (m->ownerID == (short)ownerID)
+            MemPurgeHandle((handle)m);
         m = m->nextMemHandle;
-    }
-    while (m);
+    } while (m);
 }
 
 //-------------------------------------------------------------------------------------------------------------- MemSetPurgeAll
 //..............................................................................................................................
 
-void MemSetPurgeAll(dword purgeLevel, dword ownerID)
+void MemSetPurgeAll(Sint32 purgeLevel, Sint32 ownerID)
 {
-    _memHandle* m = memRootHandle; // -- VARIABLE SETUP --
+    _memHandle *m = memRootHandle; // -- VARIABLE SETUP --
 
     assert(MemCheckID(ownerID)); // -- VALIDATE INPUT --
 
     do
     {
-        if (m->ownerID == (short) ownerID)
-            m->attributes = (m->attributes & ~MEM_ATTR_purgeMask)
-            | (purgeLevel << MEM_ATTR_purgeShift);
-        m = m-> nextMemHandle;
-    }
-    while (m);
+        if (m->ownerID == (short)ownerID)
+            m->attributes = (m->attributes & ~MEM_ATTR_purgeMask) | (purgeLevel << MEM_ATTR_purgeShift);
+        m = m->nextMemHandle;
+    } while (m);
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
@@ -709,68 +709,68 @@ void MemSetPurgeAll(dword purgeLevel, dword ownerID)
 //==============================================================================================================================
 //============================================================================================================= FUNCTIONS: TRASH
 
-#if  MEM_ENABLE_TRASH
+#if MEM_ENABLE_TRASH
 
 //----------------------------------------------------------------------------------------------------------------- MemGetTrash
 //..............................................................................................................................
 
-pointer MemGetTrash(dword size)
+pointer MemGetTrash(Sint32 size)
 {
     pointer temp; // -- VARIABLE SETUP --
 
     // -- ALLOCATE TRASH
-    if ((dword) memTrashCurrent + size > (dword) memTrashEnd) //		will overflow -- return start, bump pointer
+    if ((Sint32)memTrashCurrent + size > (Sint32)memTrashEnd) //		will overflow -- return start, bump pointer
     {
-        memTrashCurrent = (pointer) ((dword) memTrashStart + size);
+        memTrashCurrent = (pointer)((Sint32)memTrashStart + size);
         return memTrashStart;
     }
 
     temp = memTrashCurrent; //		return current, bump pointer
-    memTrashCurrent = (pointer) ((dword) memTrashCurrent + size);
+    memTrashCurrent = (pointer)((Sint32)memTrashCurrent + size);
     return temp;
 }
 
 //------------------------------------------------------------------------------------------------------------ MemGetTrashAlign
 //..............................................................................................................................
 
-pointer MemGetTrashAlign(dword size, dword align)
+pointer MemGetTrashAlign(Sint32 size, Sint32 align)
 {
     pointer temp; // -- VARIABLE SETUP --
 
     // -- ALIGN TRASH POINTER
-    memTrashCurrent = (pointer) (((dword) memTrashCurrent + (align - 1)) & (-align));
+    memTrashCurrent = (pointer)(((Sint32)memTrashCurrent + (align - 1)) & (-align));
 
-    if ((dword) memTrashCurrent + size > (dword) memTrashEnd) //		will overflow -- return aligned start, bump pointer
-    { //		align start
-        temp = (pointer) (((dword) memTrashStart + (align - 1)) & (-align));
-        memTrashCurrent = (pointer) ((dword) temp + size);
+    if ((Sint32)memTrashCurrent + size > (Sint32)memTrashEnd) //		will overflow -- return aligned start, bump pointer
+    {                                                         //		align start
+        temp = (pointer)(((Sint32)memTrashStart + (align - 1)) & (-align));
+        memTrashCurrent = (pointer)((Sint32)temp + size);
         return temp;
     }
 
     temp = memTrashCurrent; //		return current, bump pointer
-    memTrashCurrent = (pointer) ((dword) memTrashCurrent + size);
+    memTrashCurrent = (pointer)((Sint32)memTrashCurrent + size);
     return temp;
 }
 
 //------------------------------------------------------------------------------------------------------------- MemGetTrashSize
 //..............................................................................................................................
 
-dword MemGetTrashSize(void)
+Sint32 MemGetTrashSize(void)
 {
-    return (dword) memTrashEnd - (dword) memTrashStart + 1;
+    return (Sint32)memTrashEnd - (Sint32)memTrashStart + 1;
 }
 
 //------------------------------------------------------------------------------------------------------------- MemSetTrashSize
 //..............................................................................................................................
 
-void MemSetTrashSize(dword trashSize)
+void MemSetTrashSize(Sint32 trashSize)
 {
-    memTrashHandle = (_memHandle*) MemSetHandleSize((handle) memTrashHandle, trashSize);
+    memTrashHandle = (_memHandle *)MemSetHandleSize((handle)memTrashHandle, trashSize);
     if (memTrashHandle)
     {
         memTrashStart = memTrashHandle->memory;
         memTrashCurrent = memTrashStart;
-        memTrashEnd = (pointer) ((dword) memTrashStart + trashSize - 1);
+        memTrashEnd = (pointer)((Sint32)memTrashStart + trashSize - 1);
     }
     else
     {
@@ -788,22 +788,21 @@ void MemSetTrashSize(dword trashSize)
 //==============================================================================================================================
 //============================================================================================================== FUNCTIONS: INFO
 
-#if  MEM_ENABLE_INFO_SOME||MEM_ENABLE_INFO_FULL
+#if MEM_ENABLE_INFO_SOME || MEM_ENABLE_INFO_FULL
 
 //------------------------------------------------------------------------------------------------------------------ MemFreeMem
 //..............................................................................................................................
 
-dword MemFreeMem(void)
+Sint32 MemFreeMem(void)
 {
-    dword accum = 0; // -- VARIABLE SETUP --
-    _memHandle* m = memRootHandle;
+    Sint32 accum = 0; // -- VARIABLE SETUP --
+    _memHandle *m = memRootHandle;
 
     do // -- TALLY UP THE FREE MEMORY --
     {
         accum += m->freeAfter;
         m = m->nextMemHandle;
-    }
-    while (m);
+    } while (m);
 
     return accum;
 }
@@ -811,17 +810,16 @@ dword MemFreeMem(void)
 //------------------------------------------------------------------------------------------------------------------ MemUsedMem
 //..............................................................................................................................
 
-dword MemUsedMem(void)
+Sint32 MemUsedMem(void)
 {
-    dword accum = 0; // -- VARIABLE SETUP --
-    _memHandle* m = memRootHandle;
+    Sint32 accum = 0; // -- VARIABLE SETUP --
+    _memHandle *m = memRootHandle;
 
     do // -- TALLY UP THE USED MEMORY
     {
         accum += m->size;
         m = m->nextMemHandle;
-    }
-    while (m);
+    } while (m);
 
     return accum;
 }
@@ -830,23 +828,22 @@ dword MemUsedMem(void)
 //------------------------------------------------------------------------------------------------------------------------------
 
 #endif //	MEM_ENABLE_INFO_SOME || MEM_ENABLE_INFO_FULL
-#if  MEM_ENABLE_INFO_FULL
+#if MEM_ENABLE_INFO_FULL
 
 //----------------------------------------------------------------------------------------------------------------- MemMaxBlock
 //..............................................................................................................................
 
-dword MemMaxBlock(void)
+Sint32 MemMaxBlock(void)
 {
-    dword best = 0; // -- VARIABLE SETUP --
-    _memHandle* m = memRootHandle;
+    Sint32 best = 0; // -- VARIABLE SETUP --
+    _memHandle *m = memRootHandle;
 
     do // -- SCAN FOR THE LARGEST FREE SPACE --
     {
         if (m->freeAfter > best)
             best = m->freeAfter;
         m = m->nextMemHandle;
-    }
-    while (m);
+    } while (m);
 
     return best;
 }
@@ -854,9 +851,9 @@ dword MemMaxBlock(void)
 //----------------------------------------------------------------------------------------------------------------- MemTotalMem
 //..............................................................................................................................
 
-dword MemTotalMem(void)
+Sint32 MemTotalMem(void)
 {
-    return (dword) memHeapTail - (dword) memHeapHead + 1;
+    return (Sint32)memHeapTail - (Sint32)memHeapHead + 1;
 }
 
 //----------------------------------------------------------------------------------------------------------------- MemStartMem
@@ -878,7 +875,7 @@ pointer MemEndMem(void)
 //----------------------------------------------------------------------------------------------------------- MemHandlesInitial
 //..............................................................................................................................
 
-dword MemHandlesInitial(void)
+Sint32 MemHandlesInitial(void)
 {
     return memInitialHandles;
 }
@@ -886,7 +883,7 @@ dword MemHandlesInitial(void)
 //-------------------------------------------------------------------------------------------------------------- MemHandlesStep
 //..............................................................................................................................
 
-dword MemHandlesStep(void)
+Sint32 MemHandlesStep(void)
 {
     return memStepHandles;
 }
@@ -894,17 +891,16 @@ dword MemHandlesStep(void)
 //------------------------------------------------------------------------------------------------------------- MemTotalHandles
 //..............................................................................................................................
 
-dword MemTotalHandles(void)
+Sint32 MemTotalHandles(void)
 {
-    dword accum = 0; // -- VARIABLE SETUP
-    _memHandleBlock* h = memHeapHead;
+    Sint32 accum = 0; // -- VARIABLE SETUP
+    _memHandleBlock *h = memHeapHead;
 
     do // -- TALLY UP THE HANDLE COUNT --
     {
         accum += h->totalCount;
         h = h->nextHandleBlock;
-    }
-    while (h);
+    } while (h);
 
     return accum;
 }
@@ -912,17 +908,16 @@ dword MemTotalHandles(void)
 //-------------------------------------------------------------------------------------------------------------- MemFreeHandles
 //..............................................................................................................................
 
-dword MemFreeHandles(void)
+Sint32 MemFreeHandles(void)
 {
-    dword accum = 0; // -- VARIABLE SETUP --
-    _memHandleBlock* h = memHeapHead;
+    Sint32 accum = 0; // -- VARIABLE SETUP --
+    _memHandleBlock *h = memHeapHead;
 
     do // -- TALLY UP THE AVAILABLE HANDLES --
     {
         accum += h->freeCount;
         h = h->nextHandleBlock;
-    }
-    while (h);
+    } while (h);
 
     return accum;
 }
@@ -930,17 +925,16 @@ dword MemFreeHandles(void)
 //-------------------------------------------------------------------------------------------------------------- MemUsedHandles
 //..............................................................................................................................
 
-dword MemUsedHandles(void)
+Sint32 MemUsedHandles(void)
 {
-    dword accum = 0; // -- VARIABLE SETUP --
-    _memHandleBlock* h = memHeapHead;
+    Sint32 accum = 0; // -- VARIABLE SETUP --
+    _memHandleBlock *h = memHeapHead;
 
     do // -- TALLY UP THE USED HANDLES --
     {
         accum += (h->totalCount - h->freeCount);
         h = h->nextHandleBlock;
-    }
-    while (h);
+    } while (h);
 
     return accum;
 }
@@ -953,16 +947,16 @@ dword MemUsedHandles(void)
 //==============================================================================================================================
 //=========================================================================================================== FUNCTIONS: COMPACT
 
-#if  MEM_ENABLE_COMPACT
+#if MEM_ENABLE_COMPACT
 
 //--------------------------------------------------------------------------------------------------------------- MemCompactMem
 //..............................................................................................................................
 
-_memHandle* _MemGetBigHole(_memHandle* butNot)
+_memHandle *_MemGetBigHole(_memHandle *butNot)
 {
-    _memHandle* scan = memRootHandle;
-    dword bestSize = 0;
-    _memHandle* bestHole = NULL;
+    _memHandle *scan = memRootHandle;
+    Sint32 bestSize = 0;
+    _memHandle *bestHole = NULL;
 
     while (scan)
     {
@@ -976,14 +970,14 @@ _memHandle* _MemGetBigHole(_memHandle* butNot)
         }
         scan = scan->nextMemHandle;
     }
-    return ( bestHole);
+    return (bestHole);
 }
 
-_memHandle* _MemGetSmallHole(_memHandle* butNot, int bigEnough)
+_memHandle *_MemGetSmallHole(_memHandle *butNot, int bigEnough)
 {
-    _memHandle* scan = memRootHandle;
-    dword bestSize = 0x7FFFFFFF;
-    _memHandle* bestHole = NULL;
+    _memHandle *scan = memRootHandle;
+    Sint32 bestSize = 0x7FFFFFFF;
+    _memHandle *bestHole = NULL;
 
     while (scan)
     {
@@ -997,14 +991,14 @@ _memHandle* _MemGetSmallHole(_memHandle* butNot, int bigEnough)
         }
         scan = scan->nextMemHandle;
     }
-    return ( bestHole);
+    return (bestHole);
 }
 
-_memHandle* _MemGetBigBlock(_memHandle* butNot)
+_memHandle *_MemGetBigBlock(_memHandle *butNot)
 {
-    _memHandle* scan = memRootHandle;
-    dword bestSize = 0;
-    _memHandle* bestBlock = NULL;
+    _memHandle *scan = memRootHandle;
+    Sint32 bestSize = 0;
+    _memHandle *bestBlock = NULL;
 
     while (scan)
     {
@@ -1018,14 +1012,14 @@ _memHandle* _MemGetBigBlock(_memHandle* butNot)
         }
         scan = scan->nextMemHandle;
     }
-    return ( bestBlock);
+    return (bestBlock);
 }
 
-_memHandle* _MemGetSmallBlock(_memHandle* butNot, int bigEnough)
+_memHandle *_MemGetSmallBlock(_memHandle *butNot, int bigEnough)
 {
-    _memHandle* scan = memRootHandle;
-    dword bestSize = 0x7FFFFFFF;
-    _memHandle* bestBlock = NULL;
+    _memHandle *scan = memRootHandle;
+    Sint32 bestSize = 0x7FFFFFFF;
+    _memHandle *bestBlock = NULL;
 
     while (scan)
     {
@@ -1039,34 +1033,40 @@ _memHandle* _MemGetSmallBlock(_memHandle* butNot, int bigEnough)
         }
         scan = scan->nextMemHandle;
     }
-    return ( bestBlock);
+    return (bestBlock);
 }
 
-dword _MemGetAlignMask(dword attr)
+Sint32 _MemGetAlignMask(Sint32 attr)
 {
-    if (attr & MEM_ATTR_align2) return _MEM_alignmask2;
-    if (attr & MEM_ATTR_align4) return _MEM_alignmask4;
-    if (attr & MEM_ATTR_align16) return _MEM_alignmask16;
+    if (attr & MEM_ATTR_align2)
+        return _MEM_alignmask2;
+    if (attr & MEM_ATTR_align4)
+        return _MEM_alignmask4;
+    if (attr & MEM_ATTR_align16)
+        return _MEM_alignmask16;
 
     return _MEM_alignmask1;
 }
 
-dword _MemGetAlignSize(dword attr)
+Sint32 _MemGetAlignSize(Sint32 attr)
 {
-    if (attr & MEM_ATTR_align2) return 2;
-    if (attr & MEM_ATTR_align4) return 4;
-    if (attr & MEM_ATTR_align16) return 16;
+    if (attr & MEM_ATTR_align2)
+        return 2;
+    if (attr & MEM_ATTR_align4)
+        return 4;
+    if (attr & MEM_ATTR_align16)
+        return 16;
 
     return 1;
 }
 
-#define MEM_ATTR_nomove  (MEM_ATTR_fixed+MEM_ATTR_locked)
+#define MEM_ATTR_nomove (MEM_ATTR_fixed + MEM_ATTR_locked)
 
 #if MEM_ENABLE_RELEASE
 
 long MemCompactRelease(long reqMax, long reqTotal)
 {
-    dword poss;
+    Sint32 poss;
 
     poss = MemMaxBlock() + memGainable;
 
@@ -1074,16 +1074,16 @@ long MemCompactRelease(long reqMax, long reqTotal)
         MemCompactMem();
 
     poss = MemMaxBlock();
-    return ( poss);
+    return (poss);
 }
 
 #endif
 
 void MemCompactMem(void)
 {
-    _memHandle* m;
-    _memHandle* next;
-    dword slide;
+    _memHandle *m;
+    _memHandle *next;
+    Sint32 slide;
     pointer dest;
 
     m = memRootHandle;
@@ -1101,7 +1101,7 @@ void MemCompactMem(void)
                 {
                     // see how far we can actually slide
                     slide = m->freeAfter & _MemGetAlignMask(next->attributes);
-                    dest = (pointer) (((dword) next->memory) - slide);
+                    dest = (pointer)(((Sint32)next->memory) - slide);
                     // move the RAM
                     MemBlockMove(next->memory, dest, next->size);
                     // this block loses that much
@@ -1131,11 +1131,11 @@ void MemCompactMem(void)
 //---------------------------------------------------------------------------------------------------------------- MemBlockMove
 //..............................................................................................................................
 
-void MemBlockMove(pointer sourcePtr, pointer destPtr, dword count)
+void MemBlockMove(pointer sourcePtr, pointer destPtr, Sint32 count)
 {
     // -- VARIABLE SETUP --
-    char* s = sourcePtr; //		copy of input pointers
-    char* d = destPtr;
+    char *s = sourcePtr; //		copy of input pointers
+    char *d = destPtr;
 
     // -- DO THE COPY --
     if (s > d) //	source is above dest -- do forward copy
@@ -1146,20 +1146,19 @@ void MemBlockMove(pointer sourcePtr, pointer destPtr, dword count)
     else //	dest is above source -- do reverse copy
     {
         while (count--)
-            *(d + count) = *(s + count); //	
+            *(d + count) = *(s + count); //
     }
-
 }
 
 //------------------------------------------------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------------------------------------------------
 
-#if  MEM_ENABLE_BLOCK_COPY
+#if MEM_ENABLE_BLOCK_COPY
 
 //---------------------------------------------------------------------------------------------------------------- MemPtrToHand
 //..............................................................................................................................
 
-void MemPtrToHand(pointer sourcePtr, handle destHandle, dword count)
+void MemPtrToHand(pointer sourcePtr, handle destHandle, Sint32 count)
 {
     assert(MemCheckHandle(destHandle)); // -- VALIDATE INPUT --
     assert(MemGetHandleSize(destHandle) >= count);
@@ -1170,7 +1169,7 @@ void MemPtrToHand(pointer sourcePtr, handle destHandle, dword count)
 //--------------------------------------------------------------------------------------------------------------- MemHandToHand
 //..............................................................................................................................
 
-void MemHandToHand(handle sourceHandle, handle destHandle, dword count)
+void MemHandToHand(handle sourceHandle, handle destHandle, Sint32 count)
 {
     assert(MemCheckHandle(destHandle)); // -- VALIDATE INPUT --
     assert(MemCheckHandle(sourceHandle));
@@ -1183,7 +1182,7 @@ void MemHandToHand(handle sourceHandle, handle destHandle, dword count)
 //---------------------------------------------------------------------------------------------------------------- MemHandToPtr
 //..............................................................................................................................
 
-void MemHandToPtr(handle sourceHandle, pointer destPtr, dword count)
+void MemHandToPtr(handle sourceHandle, pointer destPtr, Sint32 count)
 {
     assert(MemCheckHandle(sourceHandle)); // -- VALIDATE INPUT --
     assert(MemGetHandleSize(sourceHandle) >= count);
@@ -1199,16 +1198,16 @@ void MemHandToPtr(handle sourceHandle, pointer destPtr, dword count)
 //==============================================================================================================================
 //============================================================================================================= FUNCTIONS: DEBUG
 
-#if  MEM_ENABLE_DEBUG
+#if MEM_ENABLE_DEBUG
 
 //----------------------------------------------------------------------------------------------------------------- MemValidate
 //..............................................................................................................................
 
-bool MemValidate(void)
+Bool MemValidate(void)
 {
-    _memHandle* a;
-    _memHandle* b;
-    dword end;
+    _memHandle *a;
+    _memHandle *b;
+    Sint32 end;
 
     a = memRootHandle;
     b = a->nextMemHandle;
@@ -1220,56 +1219,56 @@ bool MemValidate(void)
         if (a->memory != a->memory & _MemGetAlignMask(a->attributes))
         {
             //			printf("a->memory: %p   required alignment: %x\n", a->memory, _MemGetAlignMask( a->attributes ) );
-            return ( NO);
+            return (NO);
         }
         if (b != NULL)
         {
             assert(b->memory);
 
-            end = a->size + a->freeAfter + (dword) a->memory;
+            end = a->size + a->freeAfter + (Sint32)a->memory;
 
-            if (end != (dword) b->memory)
+            if (end != (Sint32)b->memory)
             {
                 //				printf( "a: %p b: %p. a->mem: %p a->free: %x end: %x b->mem: %p\n",
                 //					a, b, a->memory, end, b->memory );
 
-                return ( NO);
+                return (NO);
             }
             b = b->nextMemHandle;
         }
         a = a->nextMemHandle;
     }
-    return ( YES);
+    return (YES);
 }
 
 //-------------------------------------------------------------------------------------------------------------------- MemHavoc
 
-static dword memSeed = 0x1969;
+static Sint32 memSeed = 0x1969;
 
-dword _MemRand(void)
+Sint32 _MemRand(void)
 {
     memSeed = memSeed * 1103515245L + 12345L;
 
     memSeed &= 0x7FFFFFFF;
 
-    return ( memSeed);
+    return (memSeed);
 }
 
-dword _MemRandom(dword range)
+Sint32 _MemRandom(Sint32 range)
 {
-    return ( _MemRand() % range);
+    return (_MemRand() % range);
 }
 
 //..............................................................................................................................
 
 void MemHavoc(void)
 {
-    _memHandle* a;
-    _memHandle* b;
-    dword fore;
-    dword back;
+    _memHandle *a;
+    _memHandle *b;
+    Sint32 fore;
+    Sint32 back;
     pointer dest;
-    dword mask;
+    Sint32 mask;
 
     a = memRootHandle;
     b = a->nextMemHandle;
@@ -1288,44 +1287,44 @@ void MemHavoc(void)
             {
                 if (fore > back)
                 {
-                    //					printf("a memory contents: %2X b memory contents: %2X\n", 
+                    //					printf("a memory contents: %2X b memory contents: %2X\n",
                     //						*(char*)a->memory, *(char*)b->memory );
                     // move forwards
                     fore = _MemRandom(fore) + 1;
                     fore &= mask;
                     if (fore)
                     {
-                        dest = (pointer) (((dword) b->memory) + fore);
-                        //						printf("moving %p to %p, %x bytes\n", 
+                        dest = (pointer)(((Sint32)b->memory) + fore);
+                        //						printf("moving %p to %p, %x bytes\n",
                         //							b->memory, dest, b->size );
                         MemBlockMove(b->memory, dest, b->size);
                         b->memory = dest;
                         a->freeAfter += fore;
                         b->freeAfter -= fore;
 
-                        assert((long) a->freeAfter >= 0);
-                        assert((long) b->freeAfter >= 0);
+                        assert((long)a->freeAfter >= 0);
+                        assert((long)b->freeAfter >= 0);
                     }
                 }
                 else
                 {
-                    //					printf("a memory contents: %2X b memory contents: %2X\n", 
+                    //					printf("a memory contents: %2X b memory contents: %2X\n",
                     //						*(char*)a->memory, *(char*)b->memory );
                     // move backwards
                     back = _MemRandom(back) + 1;
                     back &= mask;
                     if (back)
                     {
-                        dest = (pointer) (((dword) b->memory) - back);
-                        //						printf("moving %p to %p, %x bytes\n", 
+                        dest = (pointer)(((Sint32)b->memory) - back);
+                        //						printf("moving %p to %p, %x bytes\n",
                         //							b->memory, dest, b->size );
                         MemBlockMove(b->memory, dest, b->size);
                         b->memory = dest;
                         a->freeAfter -= back;
                         b->freeAfter += back;
 
-                        assert((long) a->freeAfter >= 0);
-                        assert((long) b->freeAfter >= 0);
+                        assert((long)a->freeAfter >= 0);
+                        assert((long)b->freeAfter >= 0);
                     }
                 }
             }
@@ -1339,9 +1338,10 @@ void MemHavoc(void)
 //---------------------------------------------------------------------------------------------------------------- MemCheckATTR
 //..............................................................................................................................
 
-bool MemCheckATTR(dword attributes)
+Bool MemCheckATTR(Sint32 attributes)
 {
-    if (attributes & ~MEM_ATTR_LEGAL) return NO;
+    if (attributes & ~MEM_ATTR_LEGAL)
+        return NO;
     return YES;
 }
 
@@ -1362,13 +1362,13 @@ bool MemCheckATTR(dword attributes)
 //		newbie			-- new block to add (attributes, size, memory set correctly)
 //------------------------------------------------------------------------------------------------------------------------------
 
-void _Memattach_memHandle(_memHandle* exist, _memHandle* newbie)
+void _Memattach_memHandle(_memHandle *exist, _memHandle *newbie)
 {
-    _memHandle* t; // -- VARIABLE SETUP --
+    _memHandle *t; // -- VARIABLE SETUP --
 
-    assert(MemCheckHandle((handle) exist)); // -- VALIDATE INPUT --
-    assert((dword) exist->memory + exist->size <= (dword) newbie->memory);
-    assert((dword) exist->memory + exist->size + exist->freeAfter >= (dword) newbie->memory + newbie->size);
+    assert(MemCheckHandle((handle)exist)); // -- VALIDATE INPUT --
+    assert((Sint32)exist->memory + exist->size <= (Sint32)newbie->memory);
+    assert((Sint32)exist->memory + exist->size + exist->freeAfter >= (Sint32)newbie->memory + newbie->size);
     assert(MemCheckATTR(newbie->attributes));
     assert(MemCheckID(newbie->ownerID));
 
@@ -1381,14 +1381,14 @@ void _Memattach_memHandle(_memHandle* exist, _memHandle* newbie)
     exist->nextMemHandle = newbie;
 
     // -- BALANCE SIZES -- //
-    exist->freeAfter = (dword) ((dword) newbie->memory - (dword) exist->memory - exist->size);
+    exist->freeAfter = (Sint32)((Sint32)newbie->memory - (Sint32)exist->memory - exist->size);
     if (t)
-        newbie->freeAfter = (dword) t->memory - (dword) newbie->memory - newbie->size;
+        newbie->freeAfter = (Sint32)t->memory - (Sint32)newbie->memory - newbie->size;
     else
-        newbie->freeAfter = (dword) memHeapTail + 1 - (dword) newbie->memory - newbie->size;
+        newbie->freeAfter = (Sint32)memHeapTail + 1 - (Sint32)newbie->memory - newbie->size;
 
-    // -- SWALLOW SMALL HOLES -- //
-#if  MEM_FLAG_ALLOC_HOLES
+        // -- SWALLOW SMALL HOLES -- //
+#if MEM_FLAG_ALLOC_HOLES
     if (newbie->freeAfter <= MEM_VAL_HOLE_SIZE) //		check newbie for hole
     {
         newbie->size += newbie->freeAfter;
@@ -1400,8 +1400,6 @@ void _Memattach_memHandle(_memHandle* exist, _memHandle* newbie)
         exist->freeAfter = 0;
     }
 #endif
-
-
 }
 
 //----------------------------------------------------------------------------------------------------- _Memcreate_handleBlock
@@ -1412,15 +1410,15 @@ void _Memattach_memHandle(_memHandle* exist, _memHandle* newbie)
 //	   	linkflag		--	clear for first call, set for all subsequent call
 //..............................................................................................................................
 
-pointer _Memcreate_handleBlock(pointer location, dword count, bool linkflag)
+pointer _Memcreate_handleBlock(pointer location, Sint32 count, Bool linkflag)
 {
     // -- VARIABLE SETUP --
-#define    ll ((_memHandleBlock*) (location))  //		convenience
-    _memHandleBlock* last;
-    //	pointer				p	= (pointer) ((dword)location + sizeof (_memHandleBlock) + count * sizeof(pointer));
+#define ll ((_memHandleBlock *)(location)) //		convenience
+    _memHandleBlock *last;
+    //	pointer				p	= (pointer) ((Sint32)location + sizeof (_memHandleBlock) + count * sizeof(pointer));
 
     // _memHandleBlock struct now includes one pointer
-    pointer p = (pointer) ((dword) location + sizeof (_memHandleBlock) + (count - 1) * sizeof (pointer));
+    pointer p = (pointer)((Sint32)location + sizeof(_memHandleBlock) + (count - 1) * sizeof(pointer));
 
     if (linkflag) // -- SETUP THE LINKS OF HANDLE BLOCKS --
     {
@@ -1434,7 +1432,7 @@ pointer _Memcreate_handleBlock(pointer location, dword count, bool linkflag)
     }
     else
         ll->prevHandleBlock = 0; //		special case for first handle block
-    ll->nextHandleBlock = 0; //		new link ll is now at the end
+    ll->nextHandleBlock = 0;     //		new link ll is now at the end
 
     // -- INITIALIZE THE HANDLE BLOCK COUNTS
     ll->freeCount = count;
@@ -1444,13 +1442,13 @@ pointer _Memcreate_handleBlock(pointer location, dword count, bool linkflag)
     while (count--) // -- CREATE THE TABLE OF HANDLES --
     {
         ll->mb[count] = p;
-        ((_memHandle*) (ll->mb[count]))->handleBlock = ll; //		and link back to handle tables from _memHandles
-        p = (pointer) ((dword) p + sizeof (_memHandle));
+        ((_memHandle *)(ll->mb[count]))->handleBlock = ll; //		and link back to handle tables from _memHandles
+        p = (pointer)((Sint32)p + sizeof(_memHandle));
     }
 
     return location;
 
-#undef  ll
+#undef ll
 }
 
 //---------------------------------------------------------------------------------------------------------- _Memfree_memHandle
@@ -1459,9 +1457,9 @@ pointer _Memcreate_handleBlock(pointer location, dword count, bool linkflag)
 // in:	block		-- handle to free
 //------------------------------------------------------------------------------------------------------------------------------
 
-void _Memfree_memHandle(_memHandle* block)
+void _Memfree_memHandle(_memHandle *block)
 {
-    _memHandleBlock* h = block->handleBlock; // -- VARIABLE SETUP --
+    _memHandleBlock *h = block->handleBlock; // -- VARIABLE SETUP --
 
     h->mb[h->freeCount++] = block; // -- FREE THE HANDLE --
     memFreeHandles++;
@@ -1471,8 +1469,8 @@ void _Memfree_memHandle(_memHandle* block)
 
 void _Memguarantee_new_memHandle(void)
 {
-    _memHandleBlock* h = memHeapHead; // -- VARIABLE SETUP --
-    _memHandle* m;
+    _memHandleBlock *h = memHeapHead; // -- VARIABLE SETUP --
+    _memHandle *m;
 
     if (memFreeHandles > 1)
         return;
@@ -1487,7 +1485,7 @@ void _Memguarantee_new_memHandle(void)
             m->ownerID = _MEM_ID_SYSTEM;
             m->attributes = MEM_ATTR_locked + MEM_ATTR_fixed + MEM_ATTR_system;
             _Meminsert_new_memHandle_permanent(m); //			find memory block
-            assert(m->memory); //			VALIDATE CREATION, then create new handle block
+            assert(m->memory);                     //			VALIDATE CREATION, then create new handle block
             _Memcreate_handleBlock(m->memory, memStepHandles, YES);
             return;
         }
@@ -1504,27 +1502,26 @@ void _Memguarantee_new_memHandle(void)
 // 		it and a handle from the new block is returned.
 //..............................................................................................................................
 
-_memHandle* _Memget_new_memHandle(void)
+_memHandle *_Memget_new_memHandle(void)
 {
-    _memHandleBlock* h = memHeapHead; // -- VARIABLE SETUP --
-    _memHandle* m;
-
+    _memHandleBlock *h = memHeapHead; // -- VARIABLE SETUP --
+    _memHandle *m;
 
     while (1) // -- ALLOCATE MEM HANDLE --
     {
         if (h->freeCount) //		found a free handle
         {
-            memFreeHandles--; //		update handles available
-            if (memFreeHandles) //		last handle?
-                return h->mb[--h->freeCount]; //			no, send it out
+            memFreeHandles--;                 //		update handles available
+            if (memFreeHandles)               //		last handle?
+                return h->mb[--h->freeCount]; //			NO, send it out
             else
             {
                 m = h->mb[--h->freeCount]; // 		-- Use this handle to allocate more handles
-                m ->size = _Memsize_handleBlock(memStepHandles);
+                m->size = _Memsize_handleBlock(memStepHandles);
                 m->ownerID = _MEM_ID_SYSTEM;
                 m->attributes = MEM_ATTR_locked + MEM_ATTR_fixed + MEM_ATTR_system;
                 _Meminsert_new_memHandle_permanent(m); //			find memory block
-                assert(m->memory); //			VALIDATE CREATION, then create new handle block
+                assert(m->memory);                     //			VALIDATE CREATION, then create new handle block
                 _Memcreate_handleBlock(m->memory, memStepHandles, YES);
                 return _Memget_new_memHandle(); //			get a new handle from the new block
             }
@@ -1547,18 +1544,21 @@ _memHandle* _Memget_new_memHandle(void)
 // out:	returns null if error occured
 //..............................................................................................................................
 
-bool _Meminsert_new_memHandle_permanent(_memHandle* newBlock)
+Bool _Meminsert_new_memHandle_permanent(_memHandle *newBlock)
 {
-    _memHandle* m = memFirstGap; // -- VARIABLE SETUP --
-    _memHandle* best = 0;
-    dword bval = (dword) memHeapTail - (dword) memHeapHead;
+    _memHandle *m = memFirstGap; // -- VARIABLE SETUP --
+    _memHandle *best = 0;
+    Sint32 bval = (Sint32)memHeapTail - (Sint32)memHeapHead;
     pointer temp;
-    dword alignmask = _MEM_alignmask1;
+    Sint32 alignmask = _MEM_alignmask1;
 
     // -- GENERATE ALIGNMENT MASK --
-    if ((newBlock->attributes) & MEM_ATTR_align2) alignmask = _MEM_alignmask2;
-    if ((newBlock->attributes) & MEM_ATTR_align4) alignmask = _MEM_alignmask4;
-    if ((newBlock->attributes) & MEM_ATTR_align16) alignmask = _MEM_alignmask16;
+    if ((newBlock->attributes) & MEM_ATTR_align2)
+        alignmask = _MEM_alignmask2;
+    if ((newBlock->attributes) & MEM_ATTR_align4)
+        alignmask = _MEM_alignmask4;
+    if ((newBlock->attributes) & MEM_ATTR_align16)
+        alignmask = _MEM_alignmask16;
 
     newBlock->memory = 0; // -- ALLOW FOR SECONDARY TYPE OF ERROR CHECKING --
 
@@ -1567,11 +1567,11 @@ bool _Meminsert_new_memHandle_permanent(_memHandle* newBlock)
         //		must have enough space to begin with and the best yet
         if ((m->freeAfter >= newBlock->size) && (m->freeAfter <= bval))
         {
-            temp = (pointer) (
-                    ((dword) ((dword) m->memory + m->size + m->freeAfter) //	get end of free block
-                    - newBlock->size) //		get beginning of alloc block
-                    & alignmask); //		align alloc block
-            if ((dword) temp >= ((dword) m->memory + m->size)) //		ensure that aligned block is still valid
+            temp = (pointer)(
+                ((Sint32)((Sint32)m->memory + m->size + m->freeAfter) //	get end of free block
+                 - newBlock->size)                                    //		get beginning of alloc block
+                & alignmask);                                         //		align alloc block
+            if ((Sint32)temp >= ((Sint32)m->memory + m->size))        //		ensure that aligned block is still valid
             {
                 newBlock->memory = temp;
                 best = m;
@@ -1579,10 +1579,10 @@ bool _Meminsert_new_memHandle_permanent(_memHandle* newBlock)
             }
         }
         m = m->nextMemHandle;
-    }
-    while (m);
+    } while (m);
 
-    if (!best) return BAD; // -- UNABLE TO FIND SUITABLE BLOCK --
+    if (!best)
+        return BAD; // -- UNABLE TO FIND SUITABLE BLOCK --
 
     _Memattach_memHandle(best, newBlock); // -- ATTACH newBlock TO LIST --
 
@@ -1599,16 +1599,19 @@ bool _Meminsert_new_memHandle_permanent(_memHandle* newBlock)
 // out:	returns null if error occured
 //..............................................................................................................................
 
-bool _Meminsert_new_memHandle_transient(_memHandle* newBlock)
+Bool _Meminsert_new_memHandle_transient(_memHandle *newBlock)
 {
-    _memHandle* m = memFirstGap; // -- VARIABLE SETUP --
+    _memHandle *m = memFirstGap; // -- VARIABLE SETUP --
     pointer temp;
-    dword alignmask = _MEM_alignmask1;
+    Sint32 alignmask = _MEM_alignmask1;
 
     // -- GENERATE ALIGNMENT MASK --
-    if ((newBlock->attributes) & MEM_ATTR_align2) alignmask = _MEM_alignmask2;
-    if ((newBlock->attributes) & MEM_ATTR_align4) alignmask = _MEM_alignmask4;
-    if ((newBlock->attributes) & MEM_ATTR_align16) alignmask = _MEM_alignmask16;
+    if ((newBlock->attributes) & MEM_ATTR_align2)
+        alignmask = _MEM_alignmask2;
+    if ((newBlock->attributes) & MEM_ATTR_align4)
+        alignmask = _MEM_alignmask4;
+    if ((newBlock->attributes) & MEM_ATTR_align16)
+        alignmask = _MEM_alignmask16;
 
     newBlock->memory = 0; // -- ALLOW FOR SECONDARY TYPE OF ERROR CHECKING --
 
@@ -1616,21 +1619,21 @@ bool _Meminsert_new_memHandle_transient(_memHandle* newBlock)
     {
         if (m->freeAfter >= newBlock->size) //		must have enough space to begin with
         {
-            temp = (pointer) (
-                    ((dword) ((dword) m->memory + m->size + m->freeAfter) //	get end of free block
-                    - newBlock->size) //		get beginning of alloc block
-                    & alignmask); //		align alloc block
-            if ((dword) temp >= ((dword) m->memory + m->size)) //		ensure that aligned block is still valid
+            temp = (pointer)(
+                ((Sint32)((Sint32)m->memory + m->size + m->freeAfter) //	get end of free block
+                 - newBlock->size)                                    //		get beginning of alloc block
+                & alignmask);                                         //		align alloc block
+            if ((Sint32)temp >= ((Sint32)m->memory + m->size))        //		ensure that aligned block is still valid
             {
                 newBlock->memory = temp;
                 break;
             }
         }
         m = m->nextMemHandle;
-    }
-    while (m);
+    } while (m);
 
-    if (!m) return BAD; // -- UNABLE TO FIND SUITABLE BLOCK --
+    if (!m)
+        return BAD; // -- UNABLE TO FIND SUITABLE BLOCK --
 
     _Memattach_memHandle(m, newBlock); // -- ATTACH newBlock TO LIST --
 
@@ -1644,20 +1647,20 @@ bool _Meminsert_new_memHandle_transient(_memHandle* newBlock)
 // in:	numhandles		--	the number of handles the handle block will manage
 //..............................................................................................................................
 
-dword _Memsize_handleBlock(dword numhandles)
+Sint32 _Memsize_handleBlock(Sint32 numhandles)
 {
-    return sizeof (_memHandleBlock) // 		the header
-            + sizeof (pointer) * numhandles //		the table of handle blocks
-            + sizeof (_memHandle) * numhandles; //		the handle blocks themselves
+    return sizeof(_memHandleBlock)            // 		the header
+           + sizeof(pointer) * numhandles     //		the table of handle blocks
+           + sizeof(_memHandle) * numhandles; //		the handle blocks themselves
 }
 
 //------------------------------------------------------------------------------------------------------- _Memsize_handleBlock
 
 #if MEM_ENABLE_FRA
 
-RecordAllocator* MemInitFRA(int elsize, int num)
+RecordAllocator *MemInitFRA(int elsize, int num)
 {
-    RecordAllocator* fra;
+    RecordAllocator *fra;
     unsigned short index = 0;
     int i;
 
@@ -1665,18 +1668,18 @@ RecordAllocator* MemInitFRA(int elsize, int num)
     assert(num <= 1024);
     assert(elsize * num <= 65536L);
 
-    fra = (RecordAllocator*) Memmalloc(sizeof ( RecordAllocator));
+    fra = (RecordAllocator *)Memmalloc(sizeof(RecordAllocator));
     if (fra == NULL)
-        return ( NULL);
+        return (NULL);
 
     fra->elsize = elsize;
     fra->num = num;
 
-    fra->table = (unsigned short*) Memmalloc(sizeof (unsigned short) * num);
+    fra->table = (unsigned short *)Memmalloc(sizeof(unsigned short) * num);
     if (fra->table == NULL)
     {
         Memfree(fra);
-        return ( NULL);
+        return (NULL);
     }
 
     for (i = 0; i < num; i++)
@@ -1687,30 +1690,30 @@ RecordAllocator* MemInitFRA(int elsize, int num)
 
     fra->stack = fra->table + num;
 
-    fra->data = (char*) Memmalloc(num * elsize);
+    fra->data = (char *)Memmalloc(num * elsize);
     if (fra->data == NULL)
     {
         Memfree(fra->table);
         Memfree(fra);
-        return ( NULL);
+        return (NULL);
     }
 
-    return ( fra);
+    return (fra);
 }
 
-char* MemAllocFRA(RecordAllocator* fra)
+char *MemAllocFRA(RecordAllocator *fra)
 {
     if (fra->stack == fra->table)
-        return ( NULL);
+        return (NULL);
 
     assert(fra != NULL);
     assert(fra->elsize <= 1024);
     assert(fra->num <= 1024);
 
-    return ( fra->data + *(--fra->stack));
+    return (fra->data + *(--fra->stack));
 }
 
-void MemFreeFRA(RecordAllocator* fra, char* p)
+void MemFreeFRA(RecordAllocator *fra, char *p)
 {
     assert(fra->stack != fra->table + fra->num);
     assert(fra != NULL);
@@ -1721,7 +1724,7 @@ void MemFreeFRA(RecordAllocator* fra, char* p)
     *fra->stack++ = p - fra->data;
 }
 
-void MemShutdownFRA(RecordAllocator* fra)
+void MemShutdownFRA(RecordAllocator *fra)
 {
     assert(fra != NULL);
     assert(fra->elsize <= 1024);

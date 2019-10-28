@@ -8,7 +8,15 @@
         "list.h": "c",
         "sl_def.h": "c",
         "eventlistener.h": "c",
-        "event.h": "c"
+        "event.h": "c",
+        "*.tcc": "cpp",
+        "list": "cpp",
+        "string": "cpp",
+        "istream": "cpp",
+        "memory": "cpp",
+        "ostream": "cpp",
+        "streambuf": "cpp",
+        "typeinfo": "cpp"
     }
     
 }

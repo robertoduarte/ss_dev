@@ -20,12 +20,12 @@
 #undef assert
 
 #ifdef NDEBUG
-#define assert( test )  ((void)0)
+#define assert(test) ((void)0)
 #else
-void _assert(char* message);
+void _assert(char *message);
 
 #define _STR(x) _VAL(x)
 #define _VAL(x) #x
-#define assert( test ) ( (test) ? ((void)0) : _sassert( #test , "file " __FILE__ ", line " _STR( __LINE__ ) "." ) )
+#define assert(test) ((test) ? ((void)0) : _sassert(#test, "file " __FILE__ ", line " _STR(__LINE__) "."))
 
 #endif
