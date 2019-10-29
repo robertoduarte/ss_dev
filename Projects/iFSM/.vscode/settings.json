@@ -14,7 +14,8 @@
         "sega_int.h": "c",
         "machine.h": "c",
         "sega_tim.h": "c",
-        "player.h": "c"
+        "player.h": "c",
+        "debuglog.h": "c"
     },
     "cmake.configureOnOpen": false
     

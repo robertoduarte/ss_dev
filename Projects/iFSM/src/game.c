@@ -5,7 +5,7 @@
 // #include "Enemy.h"
 // #include "Item.h"
 #include "Utils/mem_mgr.h"
-#include "Utils/list.h"
+// #include "Utils/list.h"
 // #include "Controller/control.h"
 
 Object g_object_array[4];
@@ -54,10 +54,20 @@ void exampleOfMapping()
     InputMap_mapAction(&player1.inputMap, INPUT_JUMP, PER_DGT_TA, &jumpHandler);
 }
 
+
+
+#include "Utils/debuglog.h"
+
+
+
+
+
 void Game_init()
 {
     slInitSystem(TV_320x240, NULL, 1);
     slPerspective(DEGtoANG(60.0));
+    
+
 
     // use 512K of work RAM for general heap
     // handle set size = 16, trash RAM = 2K
@@ -67,22 +77,13 @@ void Game_init()
     g_object_array[1] = new_Enemy();
     g_object_array[2] = new_Item();
     g_object_array[3] = new_Input();
+
+    Debug debug = debugConstructor();
+    debug->get;
 }
 
 
 
-// int GetInput(Input i)
-// {
-//     if (i.gamepadInput == 1)
-//     {
-//         slPrint(i.gamepadInput, slLocate(0, 15));
-//         return i.gamepadInput;
-//     }
-//     // return i.gamepadInput;
-// }
-
-///*/********************DEBUG LOG
- 
 int Game_run()
 {
     int gamepadInput = Smpc_Peripheral[0].data;

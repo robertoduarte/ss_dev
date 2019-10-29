@@ -1,6 +1,8 @@
 #include <sgl.h>
 #include "Utils/mem_mgr.h"
 #include "Player.h"
+#include "Utils/debuglog.h"
+
 
 static ObjectHeader player_header = {
     PLAYER_TYPE_ID,
