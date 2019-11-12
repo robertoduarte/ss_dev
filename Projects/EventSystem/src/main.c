@@ -1,5 +1,6 @@
 #include <sgl.h>
 #include "Utils/mem_mgr.h"
+#include "Utils/rbtree.h"
 
 #include "EventSystem/EventManager.h"
 
@@ -7,8 +8,6 @@ void init()
 {
     slInitSystem(TV_320x240, NULL, 1);
     slPerspective(DEGtoANG(60.0));
-
-    // use 512K of work RAM for general heap
     // handle set size = 16, trash RAM = 2K
     MemInit((pointer)0x06040000, (pointer)0x060BFFFF, 16, 16, 0x800);
 }
@@ -22,25 +21,36 @@ void exampleEventListener(Event *event)
     }
 }
 
+void printInorder(RedBlackNode *node)
+{
+    if (node == NULL)
+        return;
+    printInorder(node->left);
+    static int i = 0;
+    slPrintFX(node->data, slLocate(0, i));
+    i++;
+    printInorder(node->right);
+}
+
 int main(void)
 {
     init();
 
-    EventManager_Init();
-    EventManager_AddListener(TestEvent, &exampleEventListener);
+    //EventManager_Init();
+    //EventManager_AddListener(TestEvent, &exampleEventListener);
 
-    while (1)
-    {
-        EventManager_QueueEvent(TestEvent, (void *)3);
-        EventManager_QueueEvent(TestEvent, (void *)4);
+    RedBlackNode *TestTree = NULL;
 
-        EventManager_AbortEvent(TestEvent, 1);
+    Insert(&TestTree, 1, toFIXED(10));
+    Insert(&TestTree, 6, toFIXED(60));
+    Insert(&TestTree, 5, toFIXED(50));
+    Insert(&TestTree, 3, toFIXED(30));
+    Insert(&TestTree, 2, toFIXED(20));
+    Insert(&TestTree, 4, toFIXED(40));
 
-        EventManager_TriggerEvent(TestEvent, (void *)1);
-        EventManager_TriggerEvent(TestEvent, (void *)2);
+    Delete(&TestTree, 2);
 
-        EventManager_Update();
-        slSynch();
-    }
+    printInorder(TestTree);
+
     return 1;
 }
