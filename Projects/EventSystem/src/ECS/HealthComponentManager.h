@@ -8,10 +8,10 @@ typedef struct
     Uint16 maxHealth;
 } HealthComponent;
 
-void HealthManager_Initialize(Sint32 maxComponents);
+void HealthManager_Initialize(Uint16 max);
 
 void HealthManager_AddComponent(Uint16 entityID, HealthComponent healthComponent);
 
-void HealthManager_UpdateComponent(Uint16 entityID);
+void HealthManager_TestComponent(Uint16 entityID);
 
 #endif // !HEALTH_MANAGER_H

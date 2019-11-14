@@ -1,26 +1,40 @@
 #include "HealthComponentManager.h"
 #include "../Utils/mem_mgr.h"
-#include "../Utils/rbtree.h"
+#include "../Utils/map.h"
 
-static RedBlackNode *entityComponentMap;
+static Map entityComponentMap;
 static HealthComponent *healthComponentArray;
-static Sint32 lastComponentIndex = -1;
-static Sint32 _maxComponents = 0;
+static Sint32 lastPosition = 0;
+static Sint32 maxPositions = 0;
 
-void HealthManager_Initialize(Sint32 maxComponents)
+#define ActualIndex(index) (index - 1)
+
+void HealthManager_Initialize(Uint16 max)
 {
-    _maxComponents = maxComponents;
-    healthComponentArray = (HealthComponent *)Memmalloc(sizeof(HealthComponent) * maxComponents);
+    maxPositions = max;
+    healthComponentArray = (HealthComponent *)Memmalloc(sizeof(HealthComponent) * maxPositions);
 }
 
 void HealthManager_AddComponent(Uint16 entityID, HealthComponent healthComponent)
 {
-    lastComponentIndex++;
-    healthComponentArray[lastComponentIndex] = healthComponent;
-    Insert(&entityComponentMap, entityID, lastComponentIndex);
+    if (lastPosition++ > maxPositions)
+        return; // TODO! handle error!
+    healthComponentArray[ActualIndex(lastPosition)] = healthComponent;
+    Map_Set(entityComponentMap, entityID, lastPosition);
 }
-void HealthManager_UpdateComponent(Uint16 entityID)
+void HealthManager_TestComponent(Uint16 entityID)
 {
-    Sint32 componentIndex = GetData(entityComponentMap, entityID);
-    slPrintFX(toFIXED(healthComponentArray[componentIndex].currentHealth), slLocate(0, 0));
+    Sint32 componentIndex = Map_Get(entityComponentMap, entityID);
+    slPrintFX(toFIXED(healthComponentArray[ActualIndex(componentIndex)].currentHealth), slLocate(0, 0));
+}
+
+void HealthManager_RemoveComponent(Uint16 entityID)
+{
+    Sint32 componentIndex;
+    if (componentIndex = Map_Get(entityComponentMap, entityID))
+    {
+        healthComponentArray[ActualIndex(componentIndex)] = healthComponentArray[ActualIndex(lastPosition)];
+        lastPosition--;
+        Map_Remove(entityComponentMap, entityID);
+    }
 }

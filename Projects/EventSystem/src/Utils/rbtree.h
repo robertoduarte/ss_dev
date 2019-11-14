@@ -13,7 +13,7 @@ typedef struct _RBNode
 
 void Insert(RedBlackNode **root, Uint16 key, void *data);
 
-void *GetData(RedBlackNode *root, Uint16 key);
+RedBlackNode *Search(RedBlackNode *rootNode, Uint16 key);
 
 Bool Delete(RedBlackNode **root, Uint16 key);
 

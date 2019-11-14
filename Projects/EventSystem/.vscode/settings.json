@@ -20,7 +20,8 @@
         "entitymanager.h": "c",
         "multi_mem_mgr.h": "c",
         "rbtree.h": "c",
-        "rbtree2.h": "c"
+        "rbtree2.h": "c",
+        "map.h": "c"
     }
     
 }

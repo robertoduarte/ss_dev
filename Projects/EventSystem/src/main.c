@@ -58,7 +58,7 @@ int main(void)
 
     HealthManager_Initialize(10);
     HealthManager_AddComponent(1, hC);
-    HealthManager_UpdateComponent(1);
+    HealthManager_TestComponent(1);
 
     return 1;
 }

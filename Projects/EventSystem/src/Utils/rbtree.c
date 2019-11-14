@@ -197,7 +197,7 @@ void Insert(RedBlackNode **root, Uint16 key, void *data)
     }
 }
 
-inline RedBlackNode *Search(RedBlackNode *rootNode, Uint16 key)
+RedBlackNode *Search(RedBlackNode *rootNode, Uint16 key)
 {
     if (rootNode == NULL || rootNode->key == key)
         return rootNode;
@@ -206,11 +206,6 @@ inline RedBlackNode *Search(RedBlackNode *rootNode, Uint16 key)
         return Search(rootNode->right, key);
     else
         return Search(rootNode->left, key);
-}
-
-void *GetData(RedBlackNode *root, Uint16 key)
-{
-    return Search(root, key)->data;
 }
 
 void DeleteFixup(RedBlackNode **root, RedBlackNode *node)
