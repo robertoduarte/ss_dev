@@ -3,7 +3,7 @@
 #include "Utils/rbtree.h"
 
 #include "EventSystem/EventManager.h"
-
+#include "ECS/HealthComponentManager.h"
 void init()
 {
     slInitSystem(TV_320x240, NULL, 1);
@@ -39,18 +39,26 @@ int main(void)
     //EventManager_Init();
     //EventManager_AddListener(TestEvent, &exampleEventListener);
 
-    RedBlackNode *TestTree = NULL;
+    // RedBlackNode *TestTree = NULL;
 
-    Insert(&TestTree, 1, toFIXED(10));
-    Insert(&TestTree, 6, toFIXED(60));
-    Insert(&TestTree, 5, toFIXED(50));
-    Insert(&TestTree, 3, toFIXED(30));
-    Insert(&TestTree, 2, toFIXED(20));
-    Insert(&TestTree, 4, toFIXED(40));
+    // Insert(&TestTree, 1, toFIXED(10));
+    // Insert(&TestTree, 6, toFIXED(60));
+    // Insert(&TestTree, 5, toFIXED(50));
+    // Insert(&TestTree, 3, toFIXED(30));
+    // Insert(&TestTree, 2, toFIXED(20));
+    // Insert(&TestTree, 4, toFIXED(40));
 
-    Delete(&TestTree, 2);
+    // Delete(&TestTree, 2);
 
-    printInorder(TestTree);
+    //printInorder(TestTree);
+
+    HealthComponent hC = {
+        10,
+        20};
+
+    HealthManager_Initialize(10);
+    HealthManager_AddComponent(1, hC);
+    HealthManager_UpdateComponent(1);
 
     return 1;
 }
