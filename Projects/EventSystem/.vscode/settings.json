@@ -21,7 +21,14 @@
         "multi_mem_mgr.h": "c",
         "rbtree.h": "c",
         "rbtree2.h": "c",
-        "map.h": "c"
+        "map.h": "c",
+        "componentmanager.h": "c",
+        "limits": "c",
+        "entity.h": "c",
+        "healthcomponentmanager.h": "c",
+        "entitysystem.h": "c",
+        "componentmanagertemplate.h": "c",
+        "componentmanagers.h": "c"
     }
     
 }

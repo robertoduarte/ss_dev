@@ -68,7 +68,7 @@ void InsertFixup(RedBlackNode **root, RedBlackNode *node)
     RedBlackNode *parent_pt = NULL;
     RedBlackNode *grand_parent_pt = NULL;
 
-    while ((node != root) && (node->color != BLACK) &&
+    while ((node != *root) && (node->color != BLACK) &&
            (node->parent->color == RED))
     {
 
@@ -109,7 +109,7 @@ void InsertFixup(RedBlackNode **root, RedBlackNode *node)
                    pt is left child of its parent 
                    Right-rotation required */
                 RightRotate(root, grand_parent_pt);
-                SwapColor(parent_pt->color, grand_parent_pt->color);
+                SwapColor(parent_pt, grand_parent_pt);
                 node = parent_pt;
             }
         }
@@ -146,7 +146,7 @@ void InsertFixup(RedBlackNode **root, RedBlackNode *node)
                    pt is right child of its parent 
                    Left-rotation required */
                 LeftRotate(root, grand_parent_pt);
-                SwapColor(parent_pt->color, grand_parent_pt->color);
+                SwapColor(parent_pt, grand_parent_pt);
                 node = parent_pt;
             }
         }
@@ -197,7 +197,7 @@ void Insert(RedBlackNode **root, Uint16 key, void *data)
     }
 }
 
-RedBlackNode *Search(RedBlackNode *rootNode, Uint16 key)
+inline RedBlackNode *Search(RedBlackNode *rootNode, Uint16 key)
 {
     if (rootNode == NULL || rootNode->key == key)
         return rootNode;

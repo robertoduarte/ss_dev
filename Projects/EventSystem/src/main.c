@@ -3,13 +3,18 @@
 #include "Utils/rbtree.h"
 
 #include "EventSystem/EventManager.h"
-#include "ECS/HealthComponentManager.h"
+#include "ECS/ComponentManagers.h"
+
 void init()
 {
     slInitSystem(TV_320x240, NULL, 1);
     slPerspective(DEGtoANG(60.0));
     // handle set size = 16, trash RAM = 2K
     MemInit((pointer)0x06040000, (pointer)0x060BFFFF, 16, 16, 0x800);
+    EntitySystem_Initialize();
+    HealthManager_Initialize(10);
+    MotionManager_Initialize(10);
+    TransformManager_Initialize(10);
 }
 
 void exampleEventListener(Event *event)
@@ -20,18 +25,6 @@ void exampleEventListener(Event *event)
         slPrintFX(toFIXED((int)event->arg), slLocate(0, (int)event->arg));
     }
 }
-
-void printInorder(RedBlackNode *node)
-{
-    if (node == NULL)
-        return;
-    printInorder(node->left);
-    static int i = 0;
-    slPrintFX(node->data, slLocate(0, i));
-    i++;
-    printInorder(node->right);
-}
-
 int main(void)
 {
     init();
@@ -39,26 +32,22 @@ int main(void)
     //EventManager_Init();
     //EventManager_AddListener(TestEvent, &exampleEventListener);
 
-    // RedBlackNode *TestTree = NULL;
+    EntitySystem_AssignId();
+    EntitySystem_AssignId();
+    EntityId test = EntitySystem_AssignId();
+    EntitySystem_AssignId();
+    EntitySystem_FreeId(test);
 
-    // Insert(&TestTree, 1, toFIXED(10));
-    // Insert(&TestTree, 6, toFIXED(60));
-    // Insert(&TestTree, 5, toFIXED(50));
-    // Insert(&TestTree, 3, toFIXED(30));
-    // Insert(&TestTree, 2, toFIXED(20));
-    // Insert(&TestTree, 4, toFIXED(40));
+    EntityId entityId = EntitySystem_AssignId();
 
-    // Delete(&TestTree, 2);
+    slPrintFX(toFIXED(entityId), slLocate(0, 0));
 
-    //printInorder(TestTree);
+    Health hC = {entityId, 10, 20};
 
-    HealthComponent hC = {
-        10,
-        20};
+    HealthManager_AddComponent(hC);
+    HealthManager_RemoveComponent(entityId);
 
-    HealthManager_Initialize(10);
-    HealthManager_AddComponent(1, hC);
-    HealthManager_TestComponent(1);
+    slPrintFX(toFIXED(HealthManager_GetComponent(entityId)->currentHealth), slLocate(0, 1));
 
     return 1;
 }

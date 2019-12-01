@@ -17,4 +17,15 @@ RedBlackNode *Search(RedBlackNode *rootNode, Uint16 key);
 
 Bool Delete(RedBlackNode **root, Uint16 key);
 
+// void printInorder(RedBlackNode *node)
+// {
+//     if (node == NULL)
+//         return;
+//     printInorder(node->left);
+//     static int i = 0;
+//     slPrintFX((FIXED)node->data, slLocate(0, i));
+//     i++;
+//     printInorder(node->right);
+// }
+
 #endif // !RBTREE_H
