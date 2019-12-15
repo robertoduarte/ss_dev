@@ -85,7 +85,7 @@ void LstAddNodeByKey(List *list, Node *n);
 void LstUnlinkNode(List *list, Node *n);
 Node *LstFindNodeByKey(List *list, long key);
 void LstIterate(List *list, int (*callback)(Node *n));
-void LstIterateValue(List *list, int (*callback)(Node *n, Sint32 v1, Sint32 *v2), Sint32 val1, Sint32 *val2);
+void LstIterateValue(List *list, int (*callback)(Node *n, int v1, int *v2), int val1, int *val2);
 void LstChangeKey(List *list, Node *n, long key);
 
 #endif

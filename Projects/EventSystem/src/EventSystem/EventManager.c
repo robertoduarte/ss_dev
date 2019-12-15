@@ -1,6 +1,6 @@
 #include "EventManager.h"
 #include "../Utils/list.h"
-#include "../Utils/mem_mgr.h"
+
 
 #define EVENT_QUEUE_COUNT 2
 static int currentQueue = 0;
@@ -39,8 +39,8 @@ void EventManager_Update()
 
         //Removing event node from list freeing its memory
         LstUnlinkNode(&eventQueue[currentQueue], nextEventNode);
-        Memfree((void *)nextEventNode->key);
-        Memfree((void *)nextEventNode);
+        free((void *)nextEventNode->key);
+        free((void *)nextEventNode);
     }
 
     //Switching queue for next frame
@@ -50,10 +50,10 @@ void EventManager_Update()
 
 void EventManager_QueueEvent(EventType eventType, void *args)
 {
-    Event *event = (Event *)Memmalloc(sizeof(Event));
+    Event *event = (Event *)malloc(sizeof(Event));
     event->type = eventType;
     event->arg = args;
-    Node *node = (Node *)Memmalloc(sizeof(Node));
+    Node *node = (Node *)malloc(sizeof(Node));
     node->key = (long)event;
     LstAddNodeToTail(&eventQueue[currentQueue], node);
 }
@@ -69,7 +69,7 @@ void EventManager_AbortEvent(EventType eventType, int allOfType)
         if (!allOfType)
             break;
         previousEventNode = LstPrevNode(eventQueuePtr, previousEventNode);
-        Memfree(eventToFree);
+        free(eventToFree);
     }
 }
 
@@ -90,7 +90,7 @@ void EventManager_TriggerEvent(EventType eventType, void *args)
 
 void EventManager_AddListener(EventType eventType, EventListenerCallback eventListenerCallback)
 {
-    Node *node = Memmalloc(sizeof(Node));
+    Node *node = malloc(sizeof(Node));
     node->key = (long)eventListenerCallback;
     LstAddNodeToTail(&eventTypeListenerList[eventType], node);
 }
@@ -99,5 +99,5 @@ void EventManager_RemoveListener(EventType eventType, EventListenerCallback even
 {
     Node *node = LstFindNodeByKey(&eventTypeListenerList[eventType], (long)eventListenerCallback);
     LstUnlinkNode(&eventTypeListenerList[eventType], node);
-    Memfree(node);
+    free(node);
 }

@@ -44,6 +44,9 @@ typedef enum
     VideoStarted,       //A cinematic has started.
     VideoEnded,         //A cinematic has ended.
 
+    // Entity events
+    UpdateEntity,
+    RemoveEntity,
     // Test Event
     TestEvent,
 

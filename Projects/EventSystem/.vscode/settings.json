@@ -28,7 +28,10 @@
         "healthcomponentmanager.h": "c",
         "entitysystem.h": "c",
         "componentmanagertemplate.h": "c",
-        "componentmanagers.h": "c"
+        "componentmanagers.h": "c",
+        "SL_DEF.H": "cpp",
+        "stddef.h": "c",
+        "components.h": "c"
     }
     
 }

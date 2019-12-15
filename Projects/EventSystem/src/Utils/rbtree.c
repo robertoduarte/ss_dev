@@ -1,5 +1,4 @@
 #include "rbtree.h"
-#include "mem_mgr.h"
 #include "SL_DEF.H"
 
 typedef enum _Color
@@ -10,7 +9,7 @@ typedef enum _Color
 
 inline void SwapColor(RedBlackNode *nodeA, RedBlackNode *nodeB)
 {
-    Uint16 nodeAColor = nodeA->color;
+    unsigned short nodeAColor = nodeA->color;
     nodeA->color = nodeB->color;
     nodeB->color = nodeAColor;
 }
@@ -177,9 +176,9 @@ inline void AssignParent(RedBlackNode *root, RedBlackNode *node)
     node->parent = parent;
 }
 
-void Insert(RedBlackNode **root, Uint16 key, void *data)
+void Insert(RedBlackNode **root, unsigned short key, void *data)
 {
-    RedBlackNode *newNode = (RedBlackNode *)Memmalloc(sizeof(RedBlackNode));
+    RedBlackNode *newNode = (RedBlackNode *)malloc(sizeof(RedBlackNode));
     newNode->key = key;
     newNode->data = data;
     newNode->left = newNode->right = newNode->parent = NULL;
@@ -197,7 +196,7 @@ void Insert(RedBlackNode **root, Uint16 key, void *data)
     }
 }
 
-inline RedBlackNode *Search(RedBlackNode *rootNode, Uint16 key)
+inline RedBlackNode *Search(RedBlackNode *rootNode, unsigned short key)
 {
     if (rootNode == NULL || rootNode->key == key)
         return rootNode;
@@ -304,7 +303,7 @@ RedBlackNode *TreeMinimum(RedBlackNode *subTreeRoot)
     return subTreeRoot;
 }
 
-Bool Delete(RedBlackNode **root, Uint16 key)
+Bool Delete(RedBlackNode **root, unsigned short key)
 {
     RedBlackNode *node = Search(*root, key);
     if (node == NULL)
@@ -314,7 +313,7 @@ Bool Delete(RedBlackNode **root, Uint16 key)
 
     RedBlackNode *x;
 
-    Uint16 originalColor = node->color;
+    unsigned short originalColor = node->color;
 
     if (node->left == NULL)
     {
@@ -344,7 +343,7 @@ Bool Delete(RedBlackNode **root, Uint16 key)
         minimumNode->left->parent = minimumNode;
         minimumNode->color = node->color;
     }
-    Memfree(node);
+    free(node);
 
     if (originalColor == BLACK)
         DeleteFixup(root, x);

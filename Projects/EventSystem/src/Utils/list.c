@@ -308,7 +308,7 @@ void LstIterate(List *list, int (*callback)(Node *n))
 	:note:	stops when any callback returns HALT (0)
 ------------------------------------------------------------------------ */
 
-void LstIterateValue(List *list, int (*callback)(Node *n, Sint32 v1, Sint32 *v2), Sint32 val1, Sint32 *val2)
+void LstIterateValue(List *list, int (*callback)(Node *n, int v1, int *v2), int val1, int *val2)
 {
     Node *cur;
     Node *next;

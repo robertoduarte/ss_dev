@@ -5,17 +5,17 @@
 
 typedef struct _RBNode
 {
-    Uint16 key;
-    Uint16 color;
+    unsigned short key;
+    unsigned short color;
     void *data;
     struct _RBNode *left, *right, *parent;
 } RedBlackNode;
 
-void Insert(RedBlackNode **root, Uint16 key, void *data);
+void Insert(RedBlackNode **root, unsigned short key, void *data);
 
-RedBlackNode *Search(RedBlackNode *rootNode, Uint16 key);
+RedBlackNode *Search(RedBlackNode *rootNode, unsigned short key);
 
-Bool Delete(RedBlackNode **root, Uint16 key);
+Bool Delete(RedBlackNode **root, unsigned short key);
 
 // void printInorder(RedBlackNode *node)
 // {
