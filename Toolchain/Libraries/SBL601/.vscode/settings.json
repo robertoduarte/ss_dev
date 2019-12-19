@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "MEM_MALL.C": "cpp"
+        "MEM_MALL.C": "cpp",
+        "SMPMEM0.C": "cpp",
+        "MEM_FREE.C": "cpp",
+        "MEM_INIT.C": "cpp"
     }
 }

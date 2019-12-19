@@ -2,22 +2,22 @@
 	#define	__MACHINE_H
 	
 	static inline void	nop( void ){
-		asm volatile ( "nop": : );
+		__asm__ volatile ( "nop": : );
 	}
 	static inline void	sleep( void ){
-		asm volatile ( "sleep": : );
+		__asm__ volatile ( "sleep": : );
 	}
 	static inline int	tas( unsigned char	*b ){
-		asm volatile ( "tas.b\t@%0": : "r" (b) );
+		__asm__ volatile ( "tas.b\t@%0": : "r" (b) );
 		return	( int )( *b );
 	}
 	static inline void	set_sr( unsigned int	sr ){
-		asm volatile ( "ldc\t%0,sr": : "r" (sr) );
+		__asm__ volatile ( "ldc\t%0,sr": : "r" (sr) );
 	}
 	static inline unsigned int	get_sr( void ){
 		unsigned int	sr;
 		
-		asm volatile ( "stc\tsr,%0": "=r" (sr) );
+		__asm__ volatile ( "stc\tsr,%0": "=r" (sr) );
 		return	sr;
 	}
 	static inline unsigned int	get_imask( void ){
@@ -33,21 +33,21 @@
 		set_sr( sr );
 	}
 	static inline void	set_vbr( void	*vbr ){
-		asm volatile ( "ldc\t%0,vbr": : "r" (vbr) );
+		__asm__ volatile ( "ldc\t%0,vbr": : "r" (vbr) );
 	}
 	static inline void	*get_vbr( void ){
 		void	*vbr;
 		
-		asm volatile( "stc\tvbr,%0": "=r" (vbr) );
+		__asm__ volatile( "stc\tvbr,%0": "=r" (vbr) );
 		return	vbr;
 	}
 	static inline void	set_gbr( void	*gbr ){
-		asm volatile ( "ldc\t%0,gbr": : "r" (gbr) );
+		__asm__ volatile ( "ldc\t%0,gbr": : "r" (gbr) );
 	}
 	static inline void	*get_gbr( void ){
 		void	*gbr;
 		
-		asm volatile( "stc\tgbr,%0": "=r" (gbr) );
+		__asm__ volatile( "stc\tgbr,%0": "=r" (gbr) );
 		return	gbr;
 	}
 	
