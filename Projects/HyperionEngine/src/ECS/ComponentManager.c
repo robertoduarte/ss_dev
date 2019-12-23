@@ -1,7 +1,6 @@
 #include "ComponentManager.h"
 #include <string.h>
 #include <..\..\sh-coff\include\malloc.h>
-#include <SL_DEF.H>
 
 struct ComponentManager
 {
@@ -9,8 +8,8 @@ struct ComponentManager
     short lastComponent;
     short entityCapacity;
     short componentCapacity;
-    short *entityComponentMap;
-    short *componentEntityMap;
+    short *componentFromEntity;
+    short *entityFromComponent;
     void *components;
 };
 
@@ -24,95 +23,127 @@ ComponentManager *New_ComponentManager(short componentSize, short entityCapacity
 
     manager->lastComponent = -1;
 
-    manager->entityComponentMap = malloc(sizeof(manager->entityComponentMap[0]) * manager->entityCapacity);
-    manager->componentEntityMap = malloc(sizeof(manager->componentEntityMap[0]) * manager->componentCapacity);
     manager->components = malloc(manager->componentSize * manager->componentCapacity);
+    manager->componentFromEntity = malloc(sizeof(manager->componentFromEntity[0]) * manager->entityCapacity);
+    manager->entityFromComponent = malloc(sizeof(manager->entityFromComponent[0]) * manager->componentCapacity);
+    for (int i = 0; i < manager->entityCapacity; i++)
+    {
+        manager->entityFromComponent[i] = -1;
+    }
 
     return manager;
 }
 
 void ComponentManager_Delete(ComponentManager *manager)
 {
-    free(manager->componentEntityMap);
-    free(manager->entityComponentMap);
+    free(manager->entityFromComponent);
+    free(manager->componentFromEntity);
     free(manager->components);
     free(manager);
 }
 
-short ComponentManager_AssignComponent(ComponentManager *manager, short entityId)
+void *ComponentAt(ComponentManager *manager, short componentPosition)
 {
-    if (!(manager->lastComponent + 1 < manager->componentCapacity))
-    {
-        return -1;
-    }
-
-    manager->lastComponent++;
-    manager->componentEntityMap[manager->lastComponent] = entityId;
-    manager->entityComponentMap[entityId] = manager->lastComponent;
-    void *componentPtr = (char *)manager->components + (manager->componentSize * manager->lastComponent);
-    memset(componentPtr, 0, manager->componentSize);
-
-    return manager->lastComponent;
+    return (char *)manager->components + (manager->componentSize * componentPosition);
 }
 
-int ComponentExists(ComponentManager *manager, short componentId)
-{
-    return (componentId >= 0 && componentId <= manager->lastComponent);
-}
-
-int EntityExists(ComponentManager *manager, short entityId)
+inline Bool WithinRange(ComponentManager *manager, short entityId)
 {
     return (entityId >= 0 && entityId < manager->entityCapacity);
 }
 
-short ComponentManager_EntityFromComponent(ComponentManager *manager, short componentId)
+inline Bool EntityUsed(ComponentManager *manager, short entityId)
 {
-    return (ComponentExists(manager, componentId)) ? manager->componentEntityMap[componentId] : -1;
+    return (manager->componentFromEntity[entityId] != -1);
 }
 
-short ComponentManager_ComponentFromEntity(ComponentManager *manager, short entityId)
+int ComponentManager_CheckEntity(ComponentManager *manager, short entityId)
 {
-    return (EntityExists(manager, entityId)) ? manager->entityComponentMap[entityId] : -1;
+    return WithinRange(manager, entityId) && EntityUsed(manager, entityId);
 }
 
-void *ComponentManager_ComponentAt(ComponentManager *manager, short componentId)
-{
-    return (ComponentExists(manager, componentId)) ? (char *)manager->components + (manager->componentSize * componentId) : NULL;
-}
+#ifndef CM_UNSAFE
+#define ENTITY_CHECK(manager, entityId) ComponentManager_CheckEntity(manager, entityId)
+#else
+#define ENTITY_CHECK(manager, entityId) 1
+#endif // !CM_UNSAFE
 
-void ComponentManager_RemoveComponent(ComponentManager *manager, short componentId)
+Bool ComponentManager_CreateComponent(ComponentManager *manager, short entityId)
 {
-    if (ComponentExists(manager, componentId))
+    if (manager->lastComponent + 1 < manager->componentCapacity)
     {
-        if (!componentId == manager->lastComponent)
+        manager->lastComponent++;
+        manager->entityFromComponent[manager->lastComponent] = entityId;
+        manager->componentFromEntity[entityId] = manager->lastComponent;
+        memset(ComponentAt(manager, manager->lastComponent), 0, manager->componentSize);
+        return TRUE;
+    }
+    else
+    {
+        return FALSE;
+    }
+}
+
+void *ComponentManager_GetComponent(ComponentManager *manager, short entityId)
+{
+    return (ENTITY_CHECK(manager, entityId)) ? ComponentAt(manager, manager->componentFromEntity[entityId]) : NULL;
+}
+
+void ComponentManager_RemoveComponent(ComponentManager *manager, short entityId)
+{
+    if (ENTITY_CHECK(manager, entityId))
+    {
+        short componentPosition = manager->componentFromEntity[entityId];
+        if (!componentPosition == manager->lastComponent)
         {
-            void *componentToRemove = ComponentManager_ComponentAt(manager, componentId);
-            void *lastComponent = ComponentManager_ComponentAt(manager, manager->lastComponent);
+            void *componentToRemove = ComponentAt(manager, componentPosition);
+            void *lastComponent = ComponentAt(manager, manager->lastComponent);
             memcpy(componentToRemove, lastComponent, manager->componentSize);
 
-            short entityId = manager->componentEntityMap[manager->lastComponent];
-            manager->componentEntityMap[componentId] = entityId;
-            manager->entityComponentMap[entityId] = componentId;
+            short entityId = manager->entityFromComponent[manager->lastComponent];
+            manager->entityFromComponent[componentPosition] = entityId;
+            manager->componentFromEntity[entityId] = componentPosition;
         }
         manager->lastComponent--;
     }
 }
 
-void ComponentManager_RemoveComponentByEntity(ComponentManager *manager, short entityId)
+void ComponentManager_UpdateEntityId(ComponentManager *manager, short oldId, short newId)
 {
-    if (EntityExists(manager, entityId))
+    if (ENTITY_CHECK(manager, oldId))
     {
-        ComponentManager_RemoveComponent(manager, manager->entityComponentMap[entityId]);
+        short componentPosition = manager->componentFromEntity[oldId];
+        manager->componentFromEntity[oldId] = -1;
+        manager->componentFromEntity[newId] = componentPosition;
+        manager->entityFromComponent[componentPosition] = newId;
     }
 }
 
-void ComponentManager_UpdateEntity(ComponentManager *manager, short oldId, short newId)
+short ComponentManager_First(ComponentManager *manager)
 {
-    short componentId = ComponentManager_ComponentFromEntity(manager, oldId);
-    if (componentId != -1)
+    return manager->entityFromComponent[0];
+}
+
+short ComponentManager_Next(ComponentManager *manager, short entityId)
+{
+    if (ENTITY_CHECK(manager, entityId))
     {
-        manager->entityComponentMap[oldId] = -1;
-        manager->entityComponentMap[newId] = componentId;
-        manager->componentEntityMap[componentId] = newId;
+        short next = manager->componentFromEntity[entityId] + 1;
+        if (next < manager->componentCapacity)
+            return manager->entityFromComponent[next];
+        else
+            return -1;
     }
+    else
+    {
+        return -1;
+    }
+}
+
+Bool ComponentManager_Done(ComponentManager *manager, short entityId)
+{
+    if (ENTITY_CHECK(manager, entityId) && manager->componentFromEntity[entityId] <= manager->lastComponent)
+        return FALSE;
+    else
+        return TRUE;
 }

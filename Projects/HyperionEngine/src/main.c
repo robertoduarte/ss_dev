@@ -14,24 +14,25 @@ int main(void)
 {
     init();
 
-    ComponentManager *healthManager = New_ComponentManager(sizeof(Health), 10, 10);
+    ComponentManager *healthManager = New_ComponentManager(sizeof(Health), 30, 10);
 
-    ComponentManager_AssignComponent(healthManager, 1);
-    short componentId = ComponentManager_AssignComponent(healthManager, 2);
+    ComponentManager_CreateComponent(healthManager, 1);
+    ComponentManager_CreateComponent(healthManager, 4);
+    ComponentManager_CreateComponent(healthManager, 20);
+    ComponentManager_CreateComponent(healthManager, 9);
+    ComponentManager_CreateComponent(healthManager, 7);
+    ComponentManager_CreateComponent(healthManager, 12);
 
-    slPrintFX(toFIXED(ComponentManager_EntityFromComponent(healthManager, componentId)), slLocate(0, 0));
+    int line = 0;
+    for (short entityId = ComponentManager_First(healthManager); !ComponentManager_Done(healthManager, entityId); entityId = ComponentManager_Next(healthManager, entityId))
+    {
+        slPrintFX(toFIXED(entityId), slLocate(0, ++line));
+        ((Health*)ComponentManager_GetComponent(healthManager, entityId))->current=line+1;
+    }
+    for (short entityId = ComponentManager_First(healthManager); !ComponentManager_Done(healthManager, entityId); entityId = ComponentManager_Next(healthManager, entityId))
+    {
+        slPrintFX(toFIXED(((Health *)ComponentManager_GetComponent(healthManager, entityId))->current), slLocate(0, ++line));
+    }
 
-    Health *healthPtr = ComponentManager_ComponentAt(healthManager, componentId);
-
-    healthPtr->current = 9;
-    healthPtr->max = 10;
-
-    ComponentManager_UpdateEntity(healthManager, 2, 3);
-
-    healthPtr = ComponentManager_ComponentAt(healthManager, ComponentManager_ComponentFromEntity(healthManager, 3));
-
-    slPrintFX(toFIXED(healthPtr->current), slLocate(0, 1));
-    slPrintFX(toFIXED(sizeof(Health)), slLocate(0, 2));
-    
     return 1;
 }
