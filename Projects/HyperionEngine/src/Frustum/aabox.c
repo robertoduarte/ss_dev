@@ -1,46 +1,24 @@
 #include "aabox.h"
-#include "fxMath.h"
 
-void AABox_setBox(AABox* aabox, FIXED halfExtent, FIXED x, FIXED y, FIXED z)
+inline AABox CreateAABox(FIXED halfExtent, FIXED x, FIXED y, FIXED z)
 {
-    aabox->halfExtent = halfExtent;
-    aabox->center[X] = x;
-    aabox->center[Y] = y;
-    aabox->center[Z] = z;
+    return (AABox){(FxPoint){x, y, z}, halfExtent};
 }
 
-void AABox_getVertexP(AABox* aabox, VECTOR normal, FIXED result[XYZ])
+inline FxPoint AABox_getVertexP(AABox *aabox, FxVector normal)
 {
-    if (normal[X] >= 0)
-        result[X] = fxAdd(aabox->center[X], aabox->halfExtent);
-    else
-        result[X] = fxSub(aabox->center[X], aabox->halfExtent);
-
-    if (normal[Y] >= 0)
-        result[Y] = fxAdd(aabox->center[Y], aabox->halfExtent);
-    else
-        result[Y] = fxSub(aabox->center[Y], aabox->halfExtent);
-
-    if (normal[Z] >= 0)
-        result[Z] = fxAdd(aabox->center[Z], aabox->halfExtent);
-    else
-        result[Z] = fxSub(aabox->center[Z], aabox->halfExtent);
+    FxPoint result;
+    result.x = (normal.x >= 0) ? aabox->center.x + aabox->halfExtent : aabox->center.x - aabox->halfExtent;
+    result.y = (normal.y >= 0) ? aabox->center.y + aabox->halfExtent : aabox->center.y - aabox->halfExtent;
+    result.z = (normal.z >= 0) ? aabox->center.z + aabox->halfExtent : aabox->center.z - aabox->halfExtent;
+    return result;
 }
 
-void AABox_getVertexN(AABox* aabox, VECTOR normal, FIXED result[XYZ])
+inline FxPoint AABox_getVertexN(AABox *aabox, FxVector normal)
 {
-    if (normal[X] >= 0)
-        result[X] = fxSub(aabox->center[X], aabox->halfExtent);
-    else
-        result[X] = fxAdd(aabox->center[X], aabox->halfExtent);
-
-    if (normal[Y] >= 0)
-        result[Y] = fxSub(aabox->center[Y], aabox->halfExtent);
-    else
-        result[Y] = fxAdd(aabox->center[Y], aabox->halfExtent);
-
-    if (normal[Z] >= 0)
-        result[Z] = fxSub(aabox->center[Z], aabox->halfExtent);
-    else
-        result[Z] = fxAdd(aabox->center[Z], aabox->halfExtent);
+    FxPoint result;
+    result.x = (normal.x >= 0) ? aabox->center.x - aabox->halfExtent : aabox->center.x + aabox->halfExtent;
+    result.y = (normal.y >= 0) ? aabox->center.y - aabox->halfExtent : aabox->center.y + aabox->halfExtent;
+    result.z = (normal.z >= 0) ? aabox->center.z - aabox->halfExtent : aabox->center.z + aabox->halfExtent;
+    return result;
 }

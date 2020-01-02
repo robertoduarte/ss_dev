@@ -1,9 +1,9 @@
 #include <SGL.H>
+#include <SEGA_TIM.H>
 #include "EventSystem/EventManager.h"
 #include "ECS\ComponentManager.h"
 #include "ECS\Components.h"
 #include "ECS\Entity.h"
-#include "Frustum\fxMath.h"
 
 static POINT point_SQUARE[] = {
     POStoFIXED(0, 0, 0)};
@@ -17,14 +17,16 @@ static ATTR attribute_SQUARE[] = {
 
 PDATA PD_SQUARE = {point_SQUARE, 4, polygon_SQUARE, 1, attribute_SQUARE};
 
-#define MAX_ENTITIES 500
+#define MAX_ENTITIES 1800
 
 void init()
 {
-    slInitSystem(TV_320x240, NULL, 1);
+    slInitSystem(TV_320x240, NULL,2);
     slPerspective(DEGtoANG(60.0));
+    slDynamicFrame(ON);
     slSetScreenDist(toFIXED(1));
     Entity_Init(MAX_ENTITIES);
+    TIM_FRT_INIT(8);
 }
 
 int main(void)
@@ -38,6 +40,7 @@ int main(void)
 
     int x = -160;
     int y = -120;
+    
     ComponentManager_Foreach(positionManager,
     COMPONENT_LAMBDA(Position,
         {
@@ -58,29 +61,34 @@ int main(void)
     while (1)
     {
 
+        TIM_FRT_SET_16(0);
         ComponentManager_Foreach(positionManager,
         COMPONENT_LAMBDA(Position,
-                        {
-                            component->x = fxAdd(component->x, toFIXED(100));
-                            if (component->x > toFIXED(160))
-                            {
-                                component->y = fxAdd(component->y, toFIXED(1));
-                                component->x = fxSub(component->x,toFIXED(320));
-                            }
+            {
+                component->x += toFIXED(319);
+            if (component->x > toFIXED(160))
+            {
+                component->y += toFIXED(1);
+                component->x -= toFIXED(320);
+            }
+            if (component->y > toFIXED(120))
+                component->y -= toFIXED(240);
+            }));
+        
 
-                            if (component->y > toFIXED(120))
-                                component->y = fxSub(component->y, toFIXED(240));
-                        }));
         ComponentManager_Foreach(positionManager,
         COMPONENT_LAMBDA(Position,
-                        {
-                            slPushMatrix();
-                            {
-                                slTranslate(component->x, component->y, component->z);
-                                slPutPolygon(&PD_SQUARE);
-                            }
-                            slPopMatrix();
-                        }));
+            {
+                slPushMatrix();
+                {
+                    (*point_SQUARE)[X] = component->x;
+                    (*point_SQUARE)[Y] = component->y;
+                    (*point_SQUARE)[Z] = component->z;
+                    slPutPolygon(&PD_SQUARE);
+                }
+                slPopMatrix();
+            }));
+        slPrintFX(TIM_FRT_CNT_TO_MCR(TIM_FRT_GET_16()), slLocate(0, 0));
         slSynch();
     }
 

@@ -1,15 +1,28 @@
 #include "frustum.h"
 
-void Frustum_init(Frustum *frustum, Sint16 fov, ASPECT_RATIO ratio, FIXED nearDistance, FIXED farDistance)
+typedef enum
+{
+    TOP_PLANE,
+    BOTTOM_PLANE,
+    LEFT_PLANE,
+    RIGHT_PLANE,
+    NEAR_PLANE,
+    FAR_PLANE
+} FRUSTUM_PLANE;
+
+Frustum CreateFrustum(Sint16 fov, ASPECT_RATIO ratio, FIXED nearDistance, FIXED farDistance)
 {
     FIXED tangent = slTan(DEGtoANG(fov / 2));
 
-    frustum->farDistance = farDistance;
-    frustum->nearDistance = nearDistance;
-    frustum->nearHeight = fxMult(nearDistance, tangent);
-    frustum->nearWidth = fxMult(frustum->nearHeight, ratio);
-    frustum->farHeight = fxMult(farDistance, tangent);
-    frustum->farWidth = fxMult(frustum->farHeight, ratio);
+    Frustum frustum;
+    frustum.farDistance = farDistance;
+    frustum.nearDistance = nearDistance;
+    frustum.nearHeight = slMulFX(nearDistance, tangent);
+    frustum.nearWidth = slMulFX(frustum.nearHeight, ratio);
+    frustum.farHeight = slMulFX(farDistance, tangent);
+    frustum.farWidth = slMulFX(frustum.farHeight, ratio);
+
+    return frustum;
 }
 
 void Frustum_updateCam(Frustum *frustum)
@@ -17,90 +30,61 @@ void Frustum_updateCam(Frustum *frustum)
     FIXED matrix[4][3];
     slGetMatrix(matrix);
 
-    FIXED *xAxis = matrix[0];
-    FIXED *yAxis = matrix[1];
-    FIXED *zAxis = matrix[2];
-    FIXED *position = matrix[3];
+    FxPoint xAxis = (FxPoint){matrix[0][X], matrix[0][Y], matrix[0][Z]};
+    FxPoint yAxis = (FxPoint){matrix[1][X], matrix[1][Y], matrix[1][Z]};
+    FxPoint zAxis = (FxPoint){matrix[2][X], matrix[2][Y], matrix[2][Z]};
+    FxPoint position = (FxPoint){matrix[3][X], matrix[3][Y], matrix[3][Z]};
 
-    VECTOR nearTopLeft;
-    VECTOR nearTopRight;
-    VECTOR nearBottomLeft;
-    VECTOR nearBottomRight;
-    VECTOR farTopLeft;
-    VECTOR farTopRight;
-    VECTOR farBottomLeft;
-    VECTOR farBottomRight;
-    VECTOR nearCentre;
-    VECTOR farCentre;
-
-    VECTOR auxiliarVector1;
-    VECTOR auxiliarVector2;
-    VECTOR auxiliarVector3;
+    FxVector auxiliarVector1;
+    FxVector auxiliarVector2;
 
     // compute the center of the near and far planes
-    fxVectorMult(auxiliarVector1, zAxis, frustum->nearDistance);
-    fxVectorAdd(nearCentre, position, auxiliarVector1);
-
-    fxVectorMult(auxiliarVector1, zAxis, frustum->farDistance);
-    fxVectorAdd(farCentre, position, auxiliarVector1);
+    FxVector nearCentre = fxVectorAdd(position, fxVectorMult(zAxis, frustum->nearDistance));
+    FxVector farCentre = fxVectorAdd(position, fxVectorMult(zAxis, frustum->farDistance));
 
     // compute the 8 corners of the frustum
-    fxVectorMult(auxiliarVector1, yAxis, frustum->nearHeight);
-    fxVectorMult(auxiliarVector2, xAxis, frustum->nearWidth);
+    auxiliarVector1 = fxVectorMult(yAxis, frustum->nearHeight);
+    auxiliarVector2 = fxVectorMult(xAxis, frustum->nearWidth);
 
-    fxVectorAdd(auxiliarVector3, nearCentre, auxiliarVector1);
-    fxVectorSub(nearTopLeft, auxiliarVector3, auxiliarVector2);
+    FxVector nearTopLeft = fxVectorSub(fxVectorAdd(nearCentre, auxiliarVector1), auxiliarVector2);
+    FxVector nearTopRight = fxVectorAdd(fxVectorAdd(nearCentre, auxiliarVector1), auxiliarVector2);
+    FxVector nearBottomLeft = fxVectorSub(fxVectorSub(nearCentre, auxiliarVector1), auxiliarVector2);
+    FxVector nearBottomRight = fxVectorAdd(fxVectorSub(nearCentre, auxiliarVector1), auxiliarVector2);
 
-    fxVectorAdd(auxiliarVector3, nearCentre, auxiliarVector1);
-    fxVectorAdd(nearTopRight, auxiliarVector3, auxiliarVector2);
+    auxiliarVector1 = fxVectorMult(yAxis, frustum->farHeight);
+    auxiliarVector2 = fxVectorMult(xAxis, frustum->farWidth);
 
-    fxVectorSub(auxiliarVector3, nearCentre, auxiliarVector1);
-    fxVectorSub(nearBottomLeft, auxiliarVector3, auxiliarVector2);
+    FxVector farTopLeft = fxVectorSub(fxVectorAdd(farCentre, auxiliarVector1), auxiliarVector2);
+    FxVector farTopRight = fxVectorAdd(fxVectorAdd(farCentre, auxiliarVector1), auxiliarVector2);
+    FxVector farBottomLeft = fxVectorSub(fxVectorSub(farCentre, auxiliarVector1), auxiliarVector2);
+    FxVector farBottomRight = fxVectorAdd(fxVectorSub(farCentre, auxiliarVector1), auxiliarVector2);
 
-    fxVectorSub(auxiliarVector3, nearCentre, auxiliarVector1);
-    fxVectorAdd(nearBottomRight, auxiliarVector3, auxiliarVector2);
-
-    fxVectorMult(auxiliarVector1, yAxis, frustum->farHeight);
-    fxVectorMult(auxiliarVector2, xAxis, frustum->farWidth);
-
-    fxVectorAdd(auxiliarVector3, farCentre, auxiliarVector1);
-    fxVectorSub(farTopLeft, auxiliarVector3, auxiliarVector2);
-
-    fxVectorAdd(auxiliarVector3, farCentre, auxiliarVector1);
-    fxVectorAdd(farTopRight, auxiliarVector3, auxiliarVector2);
-
-    fxVectorSub(auxiliarVector3, farCentre, auxiliarVector1);
-    fxVectorSub(farBottomLeft, auxiliarVector3, auxiliarVector2);
-
-    fxVectorSub(auxiliarVector3, farCentre, auxiliarVector1);
-    fxVectorAdd(farBottomRight, auxiliarVector3, auxiliarVector2);
-
-    Plane_set3Points(&frustum->plane[TOP_PLANE], nearTopRight, nearTopLeft, farTopLeft);
-    Plane_set3Points(&frustum->plane[BOTTOM_PLANE], nearBottomLeft, nearBottomRight, farBottomRight);
-    Plane_set3Points(&frustum->plane[LEFT_PLANE], nearTopLeft, nearBottomLeft, farBottomLeft);
-    Plane_set3Points(&frustum->plane[RIGHT_PLANE], nearBottomRight, nearTopRight, farBottomRight);
-    Plane_set3Points(&frustum->plane[NEAR_PLANE], nearTopLeft, nearTopRight, nearBottomRight);
-    Plane_set3Points(&frustum->plane[FAR_PLANE], farTopRight, farTopLeft, farBottomLeft);
+    frustum->plane[TOP_PLANE] = CreatePlane(nearTopRight, nearTopLeft, farTopLeft);
+    frustum->plane[BOTTOM_PLANE] = CreatePlane(nearBottomLeft, nearBottomRight, farBottomRight);
+    frustum->plane[LEFT_PLANE] = CreatePlane(nearTopLeft, nearBottomLeft, farBottomLeft);
+    frustum->plane[RIGHT_PLANE] = CreatePlane(nearBottomRight, nearTopRight, farBottomRight);
+    frustum->plane[NEAR_PLANE] = CreatePlane(nearTopLeft, nearTopRight, nearBottomRight);
+    frustum->plane[FAR_PLANE] = CreatePlane(farTopRight, farTopLeft, farBottomLeft);
 }
 
-FRUSTUM_INTERSECTION Frustum_pointInFrustum(Frustum *frustum, POINT p)
+FRUSTUM_INTERSECTION Frustum_pointInFrustum(Frustum *frustum, FxPoint p)
 {
     for (int i = 0; i < 6; i++)
     {
-        if (Plane_distance(&frustum->plane[i], p) < 0)
+        if (PlaneDistance(&frustum->plane[i], p) < 0)
             return OUTSIDE_FRUSTUM;
     }
     return INSIDE_FRUSTUM;
 }
 
-FRUSTUM_INTERSECTION Frustum_sphereInFrustum(Frustum *frustum, POINT p, FIXED radius)
+FRUSTUM_INTERSECTION Frustum_sphereInFrustum(Frustum *frustum, FxPoint p, FIXED radius)
 {
     int result = INSIDE_FRUSTUM;
     FIXED distance;
 
     for (int i = 0; i < 6; i++)
     {
-        distance = Plane_distance(&frustum->plane[i], p);
+        distance = PlaneDistance(&frustum->plane[i], p);
         if (distance < -radius)
             return OUTSIDE_FRUSTUM;
         else if (distance < radius)
@@ -111,14 +95,11 @@ FRUSTUM_INTERSECTION Frustum_sphereInFrustum(Frustum *frustum, POINT p, FIXED ra
 
 FRUSTUM_INTERSECTION Frustum_boxInFrustum(Frustum *frustum, AABox *b)
 {
-    VECTOR vertex;
     for (int i = 0; i < 6; i++)
     {
-        AABox_getVertexP(b, frustum->plane[i].normal, vertex);
-        if (Plane_distance(&frustum->plane[i], vertex) < 0)
+        if (PlaneDistance(&frustum->plane[i], AABox_getVertexN(b, frustum->plane[i].normal)) < 0)
         {
-            AABox_getVertexN(b, frustum->plane[i].normal, vertex);
-            if (Plane_distance(&frustum->plane[i], vertex) > 0)
+            if (PlaneDistance(&frustum->plane[i], AABox_getVertexP(b, frustum->plane[i].normal)) > 0)
                 return INTERSECTS_FRUSTUM;
             else
                 return OUTSIDE_FRUSTUM;

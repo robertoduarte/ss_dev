@@ -21,7 +21,7 @@ SBLIDIR = $(SBLDIR)/include
 
 LIBS = $(SGLLDIR)/SEGA_SYS.A $(SGLLDIR)/LIBCD.A $(SGLLDIR)/LIBSGL.A -lm
 
-CCFLAGS = -Wall -std=c99 -m2 -c -O0 -I$(SGLIDIR) -I$(SBLIDIR)
+CCFLAGS = -Wall -std=c99 -m2 -c -O3 -I$(SGLIDIR) -I$(SBLIDIR)
 
 LDFLAGS = -T$(LDFILE) -Wl,-Map,$(BUILD_MAP),-e,___Start -nostartfiles
 

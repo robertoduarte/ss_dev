@@ -52,7 +52,10 @@
         "algorithm": "c",
         "vectormath.h": "c",
         "fxmath.h": "c",
-        "cube.h": "c"
+        "cube.h": "c",
+        "sega_tim.h": "c",
+        "SEGA_TIM.H": "cpp",
+        "plane.h": "c"
     }
     
 }

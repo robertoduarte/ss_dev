@@ -1,25 +1,28 @@
 #ifndef fxVectorH
 #define fxVectorH
 
-#include "fxMath.h"
+#include <SL_DEF.H>
 
-void fx3dSet(FIXED result[XYZ], FIXED x, FIXED y, FIXED z);
+typedef struct
+{
+    FIXED x;
+    FIXED y;
+    FIXED z;
+} FxPoint;
 
-void fx3dCopy(FIXED result[XYZ], FIXED source[XYZ]);
+#define FxVector FxPoint
 
-void fxVectorAdd(VECTOR dest, VECTOR a, VECTOR b);
+FxVector fxVectorAdd(FxVector a, FxVector b);
 
-void fxVectorSub(VECTOR dest, VECTOR a, VECTOR b);
+FxVector fxVectorSub(FxVector a, FxVector b);
 
-void fxVectorCross(VECTOR dest, VECTOR a, VECTOR b);
+FxVector fxVectorCross(FxVector a, FxVector b);
 
-void fxVectorMult(VECTOR dest, VECTOR a, FIXED b);
+FxVector fxVectorMult(FxVector a, FIXED b);
 
-void fxVectorDiv(VECTOR dest, VECTOR a, FIXED b);
+FxVector fxVectorDiv(FxVector a, FIXED b);
 
-void fxVectorNormalize(VECTOR vector);
-
-FIXED fxVectorInnerProduct(VECTOR a, VECTOR b);
+FxVector fxVectorNormalize(FxVector vector);
 
 #endif /* fxVectorH */
 

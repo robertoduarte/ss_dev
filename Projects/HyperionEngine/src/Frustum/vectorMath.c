@@ -1,58 +1,63 @@
 #include "vectorMath.h"
 
-void fx3dSet(FIXED result[XYZ], FIXED x, FIXED y, FIXED z)
+static const FIXED fxMaximum = 0x7FFFFFFF; /*!< the maximum value of FIXED */
+static const FIXED fxMinimum = 0x80000000; /*!< the minimum value of FIXED */
+static const FIXED fxOverflow = 0x80000000;
+
+FxVector fxVectorAdd(FxVector a, FxVector b)
 {
-    result[X] = x;
-    result[Y] = y;
-    result[Z] = z;
+    return (FxVector){a.x + b.x, a.y + b.y, a.z + b.z};
 }
 
-void fx3dCopy(FIXED result[XYZ], FIXED source[XYZ])
+FxVector fxVectorSub(FxVector a, FxVector b)
 {
-    result[X] = source[X];
-    result[Y] = source[Y];
-    result[Z] = source[Z];
+    return (FxVector){a.x - b.x, a.y - b.y, a.z - b.z};
 }
 
-void fxVectorAdd(VECTOR dest, VECTOR a, VECTOR b)
+FxVector fxVectorCross(FxVector a, FxVector b)
 {
-    dest[X] = fxAdd(a[X], b[X]);
-    dest[Y] = fxAdd(a[Y], b[Y]);
-    dest[Z] = fxAdd(a[Z], b[Z]);
+    return (FxVector){(slMulFX(a.z, b.y) - slMulFX(a.y, b.z)),
+                      -(slMulFX(a.x, b.z) - slMulFX(a.z, b.x)),
+                      (slMulFX(a.y, b.x) - slMulFX(a.x, b.y))};
 }
 
-void fxVectorSub(VECTOR dest, VECTOR a, VECTOR b)
+FxVector fxVectorMult(FxVector a, FIXED b)
 {
-    dest[X] = fxSub(a[X], b[X]);
-    dest[Y] = fxSub(a[Y], b[Y]);
-    dest[Z] = fxSub(a[Z], b[Z]);
+    return (FxVector){slMulFX(a.x, b), slMulFX(a.y, b), slMulFX(a.z, b)};
 }
 
-void fxVectorCross(VECTOR dest, VECTOR a, VECTOR b)
+FxVector fxVectorDiv(FxVector a, FIXED b)
 {
-    dest[X] = fxSub(fxMult(a[Z], b[Y]), fxMult(a[Y], b[Z]));
-    dest[Y] = -fxSub(fxMult(a[X], b[Z]), fxMult(a[Z], b[X]));
-    dest[Z] = fxSub(fxMult(a[Y], b[X]), fxMult(a[X], b[Y]));
+    return (FxVector){slDivFX(a.x, b), slDivFX(a.y, b), slDivFX(a.z, b)};
 }
 
-void fxVectorMult(VECTOR dest, VECTOR a, FIXED b)
+FIXED fxScale(FIXED value, char scale)
 {
-    dest[X] = fxMult(a[X], b);
-    dest[Y] = fxMult(a[Y], b);
-    dest[Z] = fxMult(a[Z], b);
-}
-
-void fxVectorDiv(VECTOR dest, VECTOR a, FIXED b)
-{
-    dest[X] = fxDiv(a[X], b);
-    dest[Y] = fxDiv(a[Y], b);
-    dest[Z] = fxDiv(a[Z], b);
+    if (scale > 0)
+    {
+        FIXED temp = value << scale;
+        if (temp >> scale != value)
+        {
+            return fxOverflow;
+        }
+        else
+            return temp;
+    }
+    else if (scale < 0)
+    {
+        return value >> -scale;
+    }
+    else
+    {
+        return value;
+    }
 }
 
 static unsigned char clz(unsigned x)
 {
     unsigned char result = 0;
-    if (x == 0) return 32;
+    if (x == 0)
+        return 32;
     while (!(x & 0xF0000000))
     {
         result += 4;
@@ -82,10 +87,10 @@ static unsigned char ilog2(unsigned char v)
     return result;
 }
 
-FIXED fxVectorLength(VECTOR vector)
+FIXED fxVectorLength(FxVector vector)
 {
-    FIXED *a = &vector[X];
-    unsigned char a_stride = &vector[Y] - &vector[X];
+    FIXED *a = &vector.x;
+    unsigned char a_stride = &vector.y - &vector.x;
     unsigned char n = 3;
 
     FIXED sum = 0;
@@ -94,7 +99,7 @@ FIXED fxVectorLength(VECTOR vector)
     // Calculate inclusive OR of all values to find out the maximum.
     {
         unsigned char i;
-        const FIXED *p = (FIXED*) a;
+        const FIXED *p = (FIXED *)a;
         for (i = 0; i < n; i++, p += a_stride)
         {
             max |= ABS(*p);
@@ -109,8 +114,8 @@ FIXED fxVectorLength(VECTOR vector)
     while (n--)
     {
         FIXED val = fxScale(*a, scale);
-        FIXED product = fxMult(val, val);
-        sum = fxAdd(sum, product);
+        FIXED product = slMulFX(val, val);
+        sum = sum + product;
 
         a += a_stride;
     }
@@ -120,33 +125,22 @@ FIXED fxVectorLength(VECTOR vector)
         return sum;
     }
 
-    FIXED result = fxSqrt(sum);
+    FIXED result = slSquartFX(sum);
     return fxScale(result, -scale);
 }
 
-void fxVectorNormalize(VECTOR vector)
+FxVector fxVectorNormalize(FxVector vector)
 {
     FIXED length = fxVectorLength(vector);
 
     if (length)
     {
-        vector[X] = fxDiv(length, vector[X]);
-        vector[Y] = fxDiv(length, vector[Y]);
-        vector[Z] = fxDiv(length, vector[Z]);
+        return (FxVector){slDivFX(length, vector.x),
+                          slDivFX(length, vector.y),
+                          slDivFX(length, vector.z)};
     }
     else
     {
-        vector[X] = 0;
-        vector[Y] = 0;
-        vector[Z] = 0;
+        return (FxVector){0, 0, 0};
     }
-}
-
-FIXED fxVectorInnerProduct(VECTOR a, VECTOR b)
-{
-    FIXED auxiliarVector;
-    auxiliarVector = fxMult(a[X], b[X]);
-    auxiliarVector = fxAdd(auxiliarVector, fxMult(a[Y], b[Y]));
-    auxiliarVector = fxAdd(auxiliarVector, fxMult(a[Z], b[Z]));
-    return auxiliarVector;
 }

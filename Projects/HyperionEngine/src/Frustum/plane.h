@@ -5,14 +5,13 @@
 
 typedef struct
 {
-    VECTOR normal;
-    POINT point;
+    FxVector normal;
+    FxPoint point;
     FIXED d;
 } Plane;
 
-void Plane_set3Points(Plane* plane, POINT vertex1, POINT vertex2, POINT vertex3);
+inline Plane CreatePlane(FxPoint vertex1, FxPoint vertex2, FxPoint vertex3);
 
-FIXED Plane_distance(Plane* plane, POINT point);
+inline FIXED PlaneDistance(Plane *plane, FxPoint point);
 
 #endif /* PLANE_H */
-

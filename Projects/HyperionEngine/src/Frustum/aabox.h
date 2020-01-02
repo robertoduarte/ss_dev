@@ -2,16 +2,19 @@
 #define AABOX_H
 
 #include <sl_def.h>
+#include "vectorMath.h"
 
 typedef struct
 {
-    POINT center;
+    FxPoint center;
     FIXED halfExtent;
 } AABox;
 
-void AABox_getVertexP(AABox* aabox, VECTOR normal, FIXED result[XYZ]);
+inline AABox CreateAABox(FIXED halfExtent, FIXED x, FIXED y, FIXED z);
 
-void AABox_getVertexN(AABox* aabox, VECTOR normal, FIXED result[XYZ]);
+inline FxPoint AABox_getVertexP(AABox *aabox, FxVector normal);
+
+inline FxPoint AABox_getVertexN(AABox *aabox, FxVector normal);
 
 #endif /* AABOX_H */
 

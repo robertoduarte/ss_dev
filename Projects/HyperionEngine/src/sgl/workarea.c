@@ -11,8 +11,8 @@
 
 /*---- [2.This part must not be modified] ---------------------------------*/
 
-#define  MAX_VERTICES  3000 /* number of vertices that can be used */
-#define  MAX_POLYGONS  3000 /* number of polygons that can be used */
+#define  MAX_VERTICES  2500 /* number of vertices that can be used */
+#define  MAX_POLYGONS  1800 /* number of polygons that can be used */
 #define  MAX_EVENTS  0 /* number of events that can be used   */
 #define  MAX_WORKS  0 /* number of works that can be used    */
 
