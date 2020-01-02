@@ -42,7 +42,7 @@ void ComponentManager_Delete(ComponentManager *manager)
     free(manager);
 }
 
-void *ComponentAt(ComponentManager *manager, short componentPosition)
+inline void *ComponentAt(ComponentManager *manager, short componentPosition)
 {
     return (char *)manager->components + (manager->componentSize * componentPosition);
 }
@@ -146,4 +146,12 @@ Bool ComponentManager_Done(ComponentManager *manager, short entityId)
         return FALSE;
     else
         return TRUE;
+}
+
+void ComponentManager_Foreach(ComponentManager *manager, Callback callback)
+{
+    for (int i = 0; i <= manager->lastComponent; i++)
+    {
+        callback(ComponentAt(manager, i),manager->entityFromComponent[i]);
+    }
 }

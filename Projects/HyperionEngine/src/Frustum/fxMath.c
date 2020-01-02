@@ -212,7 +212,7 @@ FIXED fxSqrt(FIXED value)
 
         if (n == 0)
         {
-            // Then process it again to get the lowest 8 bits.
+            // Then COMPONENT_LAMBDA it again to get the lowest 8 bits.
             if (num > 65535)
             {
                 // The remainder 'num' is too large to be shifted left

@@ -1,10 +1,13 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-typedef struct{
+typedef struct
+{
     short oldEntityId;
     short newEntityId;
 } EntityUpdate;
+
+inline void Entity_Init(short entityCapacity);
 
 inline short Entity_AssignId();
 

@@ -13,15 +13,7 @@ inline void Entity_Init(short entityCapacity)
 
 inline short Entity_AssignId()
 {
-    if (!(LastEntity + 1 < EntityCapacity))
-    {
-        return -1;
-    }
-    else
-    {
-        LastEntity++;
-        return LastEntity;
-    }
+    return (!(LastEntity + 1 < EntityCapacity)) ? -1 : ++LastEntity;
 }
 
 inline void Entity_FreeId(short entityId)

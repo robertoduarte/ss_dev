@@ -51,7 +51,8 @@
         "frustum.h": "c",
         "algorithm": "c",
         "vectormath.h": "c",
-        "fxmath.h": "c"
+        "fxmath.h": "c",
+        "cube.h": "c"
     }
     
 }

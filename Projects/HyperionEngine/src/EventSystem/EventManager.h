@@ -1,22 +1,23 @@
 #ifndef EVENTMANAGER_H
 #define EVENTMANAGER_H
-
+#include "SL_DEF.H"
 #include "Event.h"
-// Event Callback Definition
-typedef void (*EventListenerCallback)(Event *);
 
-void EventManager_Init();
+// Event Listener function definition
+typedef void (*EventListener)(Event *);
+
+void EventManager_Init(short eventCapacity, short eventHandlerCapacity);
 
 void EventManager_Update();
 
-void EventManager_QueueEvent(EventType eventType, unsigned args);
+Bool EventManager_QueueEvent(EventType type, unsigned arg);
 
-void EventManager_AbortEvent(EventType eventType, int allOfType);
+void EventManager_AbortEvent(EventType type, Bool allOfType);
 
-void EventManager_TriggerEvent(EventType eventType, unsigned args);
+void EventManager_TriggerEvent(EventType type, unsigned arg);
 
-void EventManager_AddListener(EventType eventType, EventListenerCallback eventListenerCallback);
+Bool EventManager_AddListener(EventType type, EventListener eventListener);
 
-void EventManager_RemoveListener(EventType eventType, EventListenerCallback eventListenerCallback);
+Bool EventManager_RemoveListener(EventType type, EventListener eventListener);
 
 #endif /* EVENTMANAGER_H */

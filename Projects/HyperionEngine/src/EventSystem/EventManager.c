@@ -1,102 +1,137 @@
 #include "EventManager.h"
-#include "../Utils/list.h"
 #include <..\..\sh-coff\include\malloc.h>
 
 #define EVENT_QUEUE_COUNT 2
-static int currentQueue = 0;
-static List eventQueue[EVENT_QUEUE_COUNT];
-static List eventTypeListenerList[EventTypeCount];
 
-void EventManager_Init()
+typedef struct
 {
+    short capacity;
+    short last;
+    Event *events;
+} EventList;
+
+typedef struct
+{
+    short capacity;
+    short last;
+    EventListener *EventHandlers;
+} EventHandlerList;
+
+static Bool Initialized = FALSE;
+static int currentQueue;
+static EventList eventLists[EVENT_QUEUE_COUNT];
+static EventHandlerList eventHandlerLists[EventTypeCount];
+
+void EventManager_Init(short eventCapacity, short eventHandlerCapacity)
+{
+    if (Initialized)
+        return;
+
+    currentQueue = 0;
+
+    short capacity = ABS(eventCapacity);
     for (int i = 0; i < EVENT_QUEUE_COUNT; i++)
     {
-        LstInitList(&eventQueue[i]);
+        eventLists[i].last = -1;
+        eventLists[i].capacity = capacity;
+        eventLists[i].events = malloc(sizeof(Event) * capacity);
     }
+
+    capacity = ABS(eventHandlerCapacity);
     for (int i = 0; i < EventTypeCount; i++)
     {
-        LstInitList(&eventTypeListenerList[i]);
+        eventHandlerLists[i].last = -1;
+        eventHandlerLists[i].capacity = capacity;
+        eventHandlerLists[i].EventHandlers = malloc(sizeof(EventListener) * capacity);
     }
+    Initialized = TRUE;
+    
+}
+
+void TriggerEvent(Event *event)
+{
+    if (event->type >= EventTypeCount)
+        return;
+    for (int j = 0; j <= eventHandlerLists[event->type].last; j++)
+    {
+        eventHandlerLists[event->type].EventHandlers[j](event);
+    }
+}
+void EventManager_TriggerEvent(EventType type, unsigned arg)
+{
+    Event event = {type, arg};
+    TriggerEvent(&event);
 }
 
 void EventManager_Update()
 {
-    List *eventQueuePtr = &eventQueue[currentQueue];
-    Node *nextEventNode;
-    while ((nextEventNode = LstFirstNode(eventQueuePtr)))
+    for (int i = 0; i <= eventLists[currentQueue].last; i++)
     {
-        Event *nextEvent = (Event *)nextEventNode->key;
-
-        List *eventTypeListenerListPtr = &eventTypeListenerList[nextEvent->type];
-        Node *nextListenerNode = LstFirstNode(eventTypeListenerListPtr);
-        while (nextListenerNode != 0)
-        {
-            EventListenerCallback nextEventListener = (EventListenerCallback)nextListenerNode->key;
-            nextEventListener(nextEvent);
-            nextListenerNode = LstNextNode(eventTypeListenerListPtr, nextListenerNode);
-        }
-
-        //Removing event node from list freeing its memory
-        LstUnlinkNode(&eventQueue[currentQueue], nextEventNode);
-        free((void *)nextEventNode->key);
-        free((void *)nextEventNode);
+        TriggerEvent(&eventLists[currentQueue].events[i]);
     }
-
     //Switching queue for next frame
     if (currentQueue++ == EVENT_QUEUE_COUNT)
         currentQueue = 0;
 }
 
-void EventManager_QueueEvent(EventType eventType, unsigned args)
+Bool EventManager_QueueEvent(EventType type, unsigned arg)
 {
-    Event *event = (Event *)malloc(sizeof(Event));
-    event->type = eventType;
-    event->arg = args;
-    Node *node = (Node *)malloc(sizeof(Node));
-    node->key = (long)event;
-    LstAddNodeToTail(&eventQueue[currentQueue], node);
-}
-
-void EventManager_AbortEvent(EventType eventType, int allOfType)
-{
-    List *eventQueuePtr = &eventQueue[currentQueue];
-    Node *previousEventNode = LstLastNode(eventQueuePtr);
-    while (previousEventNode != 0)
+    EventList *eventList = &eventLists[currentQueue];
+    if (eventList->last + 1 < eventList->capacity)
     {
-        LstUnlinkNode(eventQueuePtr, previousEventNode);
-        Event *eventToFree = (Event *)previousEventNode;
-        if (!allOfType)
-            break;
-        previousEventNode = LstPrevNode(eventQueuePtr, previousEventNode);
-        free(eventToFree);
+        eventList->last++;
+        eventList->events[eventList->last].type = type;
+        eventList->events[eventList->last].arg = arg;
+        return TRUE;
+    }
+    else
+    {
+        return FALSE;
     }
 }
 
-void EventManager_TriggerEvent(EventType eventType, unsigned args)
+Bool EventManager_AddListener(EventType type, EventListener eventListener)
 {
-
-    Event event = {eventType, args};
-
-    List *eventTypeListenerListPtr = &eventTypeListenerList[eventType];
-    Node *nextListenerNode = LstFirstNode(eventTypeListenerListPtr);
-    while (nextListenerNode != 0)
+    EventHandlerList *eventHanlderList = &eventHandlerLists[type];
+    if (eventHanlderList->last + 1 < eventHanlderList->capacity)
     {
-        EventListenerCallback nextEventListener = (EventListenerCallback)nextListenerNode->key;
-        nextEventListener(&event);
-        nextListenerNode = LstNextNode(eventTypeListenerListPtr, nextListenerNode);
+        eventHanlderList->last++;
+        eventHanlderList->EventHandlers[eventHanlderList->last] = eventListener;
+        return TRUE;
+    }
+    else
+    {
+        return FALSE;
     }
 }
 
-void EventManager_AddListener(EventType eventType, EventListenerCallback eventListenerCallback)
+Bool EventManager_RemoveListener(EventType type, EventListener eventListener)
 {
-    Node *node = malloc(sizeof(Node));
-    node->key = (long)eventListenerCallback;
-    LstAddNodeToTail(&eventTypeListenerList[eventType], node);
+    EventHandlerList *eventHanlderList = &eventHandlerLists[type];
+    for (int i = 0; i <= eventHanlderList->last; i++)
+    {
+        if (eventHanlderList->EventHandlers[i] == eventListener)
+        {
+            if (i != eventHanlderList->last)
+            {
+                eventHanlderList->EventHandlers[i] = eventHanlderList->EventHandlers[eventHanlderList->last];
+            }
+            eventHanlderList->last--;
+            return TRUE;
+        }
+    }
+    return FALSE;
 }
 
-void EventManager_RemoveListener(EventType eventType, EventListenerCallback eventListenerCallback)
+void EventManager_AbortEvent(EventType type, Bool allOfType)
 {
-    Node *node = LstFindNodeByKey(&eventTypeListenerList[eventType], (long)eventListenerCallback);
-    LstUnlinkNode(&eventTypeListenerList[eventType], node);
-    free(node);
+    for (int i = eventLists[currentQueue].last; i >= 0; i--)
+    {
+        if (eventLists[currentQueue].events[i].type == type)
+        {
+            eventLists[currentQueue].events[i].type = DisabledEvent;
+            if (!allOfType)
+                break;
+        }
+    }
 }

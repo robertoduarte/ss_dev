@@ -51,7 +51,8 @@ typedef enum
     TestEvent,
 
     // Number of event types
-    EventTypeCount
+    EventTypeCount,
+    DisabledEvent
 } EventType;
 
 typedef struct
@@ -59,12 +60,6 @@ typedef struct
     EventType type;
     unsigned arg;
 } Event;
-
-typedef struct
-{
-    EventType type;
-    unsigned arguments[];
-} Event2;
 
 
 
