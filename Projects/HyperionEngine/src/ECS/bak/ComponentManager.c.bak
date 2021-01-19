@@ -1,0 +1,135 @@
+#include <string.h>
+#include "ComponentManager.h"
+#include "../Utils/SatMalloc.h"
+#include "EntityManager.h"
+#include "EntityManager.h"
+
+typedef short ArchetypeIndex;
+typedef short ComponentIndex;
+
+typedef struct
+{
+    ArchetypeIndex archetypeIndex;
+    ComponentIndex componentIndex;
+} ComponentMap;
+
+typedef struct
+{
+    ArchetypeId id;
+    EntityId *entityReference;
+    void *archetypes;
+} ArchetypeManager;
+
+struct ComponentManager
+{
+    size_t componentSize;
+    size_t componentCapacity;
+    int lastComponent;
+    int *componentFromEntity;
+    int *entityFromComponent;
+    void *components;
+};
+
+ComponentManager *New_ComponentManager(size_t componentSize, size_t componentCapacity)
+{
+    ComponentManager *manager = malloc(sizeof(ComponentManager));
+
+    manager->componentSize = componentSize;
+    manager->componentCapacity = componentCapacity;
+    manager->lastComponent = -1;
+    manager->components = malloc(manager->componentSize * manager->componentCapacity);
+    manager->componentFromEntity = malloc(sizeof(manager->componentFromEntity[0]) * ENTITY_CAPACITY);
+    manager->entityFromComponent = malloc(sizeof(manager->entityFromComponent[0]) * manager->componentCapacity);
+
+    for (int i = 0; i < ENTITY_CAPACITY; i++)
+        manager->entityFromComponent[i] = -1;
+
+    return manager;
+}
+
+void ComponentManager_Delete(ComponentManager *manager)
+{
+    free(manager->entityFromComponent);
+    free(manager->componentFromEntity);
+    free(manager->components);
+    free(manager);
+}
+
+static void *ComponentAt(ComponentManager *manager, int componentPosition)
+{
+    return (char *)manager->components + (manager->componentSize * componentPosition);
+}
+
+static bool WithinRange(ComponentManager *manager, EntityId entityId)
+{
+    return (entityId >= 0 && entityId < ENTITY_CAPACITY);
+}
+
+static bool EntityUsed(ComponentManager *manager, EntityId entityId)
+{
+    return (manager->componentFromEntity[entityId] != -1);
+}
+
+bool ComponentManager_CheckEntity(ComponentManager *manager, EntityId entityId)
+{
+    return WithinRange(manager, entityId) && EntityUsed(manager, entityId);
+}
+
+bool ComponentManager_CreateComponent(ComponentManager *manager, EntityId entityId)
+{
+    if (manager->lastComponent + 1 < manager->componentCapacity)
+    {
+        manager->lastComponent++;
+        manager->entityFromComponent[manager->lastComponent] = entityId;
+        manager->componentFromEntity[entityId] = manager->lastComponent;
+        memset(ComponentAt(manager, manager->lastComponent), 0, manager->componentSize);
+        return true;
+    }
+    else
+        return false;
+}
+
+void *ComponentManager_GetComponent(ComponentManager *manager, EntityId entityId)
+{
+    return (ComponentManager_CheckEntity(manager, entityId)) ? ComponentAt(manager, manager->componentFromEntity[entityId]) : NULL;
+}
+
+void ComponentManager_RemoveComponent(ComponentManager *manager, EntityId entityId)
+{
+    if (ComponentManager_CheckEntity(manager, entityId))
+    {
+        int componentPosition = manager->componentFromEntity[entityId];
+        if (!componentPosition == manager->lastComponent)
+        {
+            void *componentToRemove = ComponentAt(manager, componentPosition);
+            void *lastComponent = ComponentAt(manager, manager->lastComponent);
+            memcpy(componentToRemove, lastComponent, manager->componentSize);
+            int entityId = manager->entityFromComponent[manager->lastComponent];
+            manager->entityFromComponent[componentPosition] = entityId;
+            manager->componentFromEntity[entityId] = componentPosition;
+        }
+        manager->lastComponent--;
+    }
+}
+
+void ComponentManager_UpdateEntityId(ComponentManager *manager, EntityId oldId, EntityId newId)
+{
+    if (ComponentManager_CheckEntity(manager, oldId))
+    {
+        int componentPosition = manager->componentFromEntity[oldId];
+        manager->componentFromEntity[oldId] = -1;
+        manager->componentFromEntity[newId] = componentPosition;
+        manager->entityFromComponent[componentPosition] = newId;
+    }
+}
+
+void ComponentManager_Foreach(ComponentManager *manager, Callback callback)
+{
+    for (int i = 0; i <= manager->lastComponent; i++)
+        callback(ComponentAt(manager, i), manager->entityFromComponent[i]);
+}
+
+int ComponentManager_LastComponentIndex(ComponentManager *manager)
+{
+    return manager->lastComponent;
+}

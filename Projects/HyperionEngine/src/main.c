@@ -1,96 +1,99 @@
-#include <SGL.H>
+#include <SL_DEF.H>
 #include <SEGA_TIM.H>
-#include "EventSystem/EventManager.h"
-#include "ECS\ComponentManager.h"
-#include "ECS\Components.h"
-#include "ECS\Entity.h"
+#include "Utils\Debug.h"
+#include "EventSystem\EventManager.h"
+#include "InputSystem\InputSystem.h"
+#include "Geometry\Frustum.h"
+#include "Assets\Cube.h"
+#include "Assets\Model.h"
+#include "ECS/EntityManager.h"
+#include "ECS/Component.h"
 
-static POINT point_SQUARE[] = {
-    POStoFIXED(0, 0, 0)};
+// extern Uint16 TotalPolygons;
+// Debug_PrintLine("Poly count: %u", TotalPolygons);
+// TIM_FRT_INIT(TIM_CKS_128);
+// TIM_FRT_SET_16(0);
+// Debug_PrintLine("Ticks elapsed %d", TIM_FRT_GET_16());
+// Debug_PrintMsg("File:%s Line:%d", __FILE__, __LINE__);
 
-static POLYGON polygon_SQUARE[] = {
-    NORMAL(0.0, 0.0, -1.0),
-    VERTICES(0,0, 0, )};
+Fxp3D posistion = {0, 0, 0};
+Angle angleX = 0;
+Angle angleY = 0;
 
-static ATTR attribute_SQUARE[] = {
-    ATTRIBUTE(Single_Plane, SORT_MIN, No_Texture, C_RGB(8, 28, 0), No_Gouraud, MESHoff, sprPolygon, UseLight)};
+const Angle increment = DEG_TO_ANGLE(1);
 
-PDATA PD_SQUARE = {point_SQUARE, 4, polygon_SQUARE, 1, attribute_SQUARE};
-
-#define MAX_ENTITIES 1800
-
-void init()
+void HandleInput(EventType type, Action action)
 {
-    slInitSystem(TV_320x240, NULL,2);
-    slPerspective(DEGtoANG(60.0));
-    slDynamicFrame(ON);
-    slSetScreenDist(toFIXED(1));
-    Entity_Init(MAX_ENTITIES);
-    TIM_FRT_INIT(8);
+    switch (action)
+    {
+    case (Action_TurnRight):
+        angleY += increment;
+        break;
+    case (Action_TurnLeft):
+        angleY -= increment;
+        break;
+    case (Action_TurnDown):
+        angleX -= increment;
+        break;
+    case (Action_TurnUp):
+        angleX += increment;
+        break;
+    default:
+        break;
+    }
 }
 
-int main(void)
+int main()
 {
-    init();
-    ComponentManager *positionManager = New_ComponentManager(sizeof(Position), MAX_ENTITIES, MAX_ENTITIES);
-    for (int i = 0; i < MAX_ENTITIES; i++)
-    {
-        ComponentManager_CreateComponent(positionManager, Entity_AssignId());
-    }
+    slInitSystem(TV_320x240, NULL, 1);
+    slPerspective(DEG_TO_ANGLE(60.0));
 
-    int x = -160;
-    int y = -120;
-    
-    ComponentManager_Foreach(positionManager,
-    COMPONENT_LAMBDA(Position,
-        {
-            component->x = toFIXED(x);
-            component->y = toFIXED(y);
-            component->z = toFIXED(1);
-            x++;
-            if (x > 160)
-            {
-                y++;
-                x -=360;
-            }
+    int x = 10;
+    while (x--)
+        Debug_PrintMsg("Created entity: %d.",
+                       EntityManager_CreateEntity(ComponentId_Position | ComponentId_Motion));
 
-            if (y > 120)
-                y -=240;
-        }));
+    EventManager_AddListener(Action_Event, (EventListener)HandleInput);
+
+    Frustum frustum = CreateFrustum(DEG_TO_ANGLE(62.0), AspectRatio_320x256, FXP_SET(200.0), FXP_SET(6000.0));
+
+    Fxp matrix[4][3];
+
+    Fxp test = FXP_SET(399);
 
     while (1)
     {
+        InputSystem_Update();
+        EventManager_Update();
+        slPushMatrix();
+        {
+            slRotY(angleY);
+            slRotX(angleX);
+            slGetMatrix(matrix);
 
-        TIM_FRT_SET_16(0);
-        ComponentManager_Foreach(positionManager,
-        COMPONENT_LAMBDA(Position,
-            {
-                component->x += toFIXED(319);
-            if (component->x > toFIXED(160))
-            {
-                component->y += toFIXED(1);
-                component->x -= toFIXED(320);
-            }
-            if (component->y > toFIXED(120))
-                component->y -= toFIXED(240);
-            }));
-        
+            Frustum_Update(&frustum, matrix);
 
-        ComponentManager_Foreach(positionManager,
-        COMPONENT_LAMBDA(Position,
+            Fxp3D objectPosition = {0, 0, test};
+            Fxp objectSize = FXP_SET(50);
+
+            if (Frustum_BoxInFrustum(&frustum, &objectPosition, objectSize))
             {
                 slPushMatrix();
                 {
-                    (*point_SQUARE)[X] = component->x;
-                    (*point_SQUARE)[Y] = component->y;
-                    (*point_SQUARE)[Z] = component->z;
-                    slPutPolygon(&PD_SQUARE);
+                    slTranslate(objectPosition.x, objectPosition.y, objectPosition.z);
+                    slPutPolygon(&MeshModel);
+                    slPutPolygon(&PD_CUBE);
                 }
                 slPopMatrix();
-            }));
-        slPrintFX(TIM_FRT_CNT_TO_MCR(TIM_FRT_GET_16()), slLocate(0, 0));
+                Debug_PrintLine("INSIDE");
+            }
+            else
+            {
+                Debug_PrintLine("OUTSIDE");
+            }
+        }
+        slPopMatrix();
         slSynch();
     }
-
     return 1;
 }

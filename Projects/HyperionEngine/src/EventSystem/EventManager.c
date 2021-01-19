@@ -1,137 +1,126 @@
 #include "EventManager.h"
-#include <..\..\sh-coff\include\malloc.h>
-
-#define EVENT_QUEUE_COUNT 2
+#include "../Utils/Vector.h"
 
 typedef struct
 {
-    short capacity;
-    short last;
-    Event *events;
-} EventList;
+    EventType type;
+    unsigned int arg;
+} Event;
 
-typedef struct
+VECT_GENERATE_TYPE(Event);                                      //Creates EventVector type
+VECT_GENERATE_TYPE(EventListener);                              //Creates EventListenerVector type
+VECT_GENERATE_NAME(EventListenerVector *, EventListenerVector); //Creates EventListenerVectorVector type
+
+static EventVector *g_queues[2] = {NULL, NULL};
+static unsigned int g_currentQueue = 0;
+
+static EventListenerVectorVector *g_eventTypeListeners = NULL;
+
+static void CheckQueues()
 {
-    short capacity;
-    short last;
-    EventListener *EventHandlers;
-} EventHandlerList;
-
-static Bool Initialized = FALSE;
-static int currentQueue;
-static EventList eventLists[EVENT_QUEUE_COUNT];
-static EventHandlerList eventHandlerLists[EventTypeCount];
-
-void EventManager_Init(short eventCapacity, short eventHandlerCapacity)
-{
-    if (Initialized)
-        return;
-
-    currentQueue = 0;
-
-    short capacity = ABS(eventCapacity);
-    for (int i = 0; i < EVENT_QUEUE_COUNT; i++)
+    if (!g_queues[0])
     {
-        eventLists[i].last = -1;
-        eventLists[i].capacity = capacity;
-        eventLists[i].events = malloc(sizeof(Event) * capacity);
-    }
-
-    capacity = ABS(eventHandlerCapacity);
-    for (int i = 0; i < EventTypeCount; i++)
-    {
-        eventHandlerLists[i].last = -1;
-        eventHandlerLists[i].capacity = capacity;
-        eventHandlerLists[i].EventHandlers = malloc(sizeof(EventListener) * capacity);
-    }
-    Initialized = TRUE;
-    
-}
-
-void TriggerEvent(Event *event)
-{
-    if (event->type >= EventTypeCount)
-        return;
-    for (int j = 0; j <= eventHandlerLists[event->type].last; j++)
-    {
-        eventHandlerLists[event->type].EventHandlers[j](event);
+        g_queues[0] = EventVector_Init(1);
+        g_queues[1] = EventVector_Init(1);
     }
 }
-void EventManager_TriggerEvent(EventType type, unsigned arg)
+
+static EventVector *NextQueue()
 {
-    Event event = {type, arg};
-    TriggerEvent(&event);
+    CheckQueues();
+    return g_queues[!g_currentQueue];
+}
+
+static EventVector *CurrentQueue()
+{
+    CheckQueues();
+    return g_queues[g_currentQueue];
+}
+
+static void SwitchQueues()
+{
+    g_currentQueue = !g_currentQueue;
+}
+
+static void ResetQueue(EventVector *queue)
+{
+    queue->size = 0;
+}
+
+static EventListenerVectorVector *EventTypeListeners()
+{
+    if (!g_eventTypeListeners)
+    {
+        g_eventTypeListeners = EventListenerVectorVector_Init(1);
+        for (EventType i = 0; i < EventType_Count; i++)
+            EventListenerVectorVector_Push(g_eventTypeListeners, EventListenerVector_Init(1));
+    }
+    return g_eventTypeListeners;
+}
+
+void EventManager_TriggerEvent(EventType type, unsigned int arg)
+{
+    if (type >= EventTypeListeners()->size)
+        return;
+
+    EventListenerVector *eventListenerVector = EventListenerVectorVector_At(EventTypeListeners(), type);
+
+    for (int i = 0; i < eventListenerVector->size; i++)
+        EventListenerVector_At(eventListenerVector, i)(type, arg);
+}
+
+static void Update()
+{
+    for (int i = 0; i < CurrentQueue()->size; i++)
+    {
+        Event event = EventVector_At(CurrentQueue(), i);
+        EventManager_TriggerEvent(event.type, event.arg);
+    }
 }
 
 void EventManager_Update()
 {
-    for (int i = 0; i <= eventLists[currentQueue].last; i++)
-    {
-        TriggerEvent(&eventLists[currentQueue].events[i]);
-    }
-    //Switching queue for next frame
-    if (currentQueue++ == EVENT_QUEUE_COUNT)
-        currentQueue = 0;
+    Update();
+    ResetQueue(CurrentQueue());
+    SwitchQueues();
 }
 
-Bool EventManager_QueueEvent(EventType type, unsigned arg)
+void EventManager_QueueEvent(EventType type, unsigned int arg)
 {
-    EventList *eventList = &eventLists[currentQueue];
-    if (eventList->last + 1 < eventList->capacity)
-    {
-        eventList->last++;
-        eventList->events[eventList->last].type = type;
-        eventList->events[eventList->last].arg = arg;
-        return TRUE;
-    }
-    else
-    {
-        return FALSE;
-    }
+    EventVector_Push(NextQueue(), (Event){type, arg});
 }
 
-Bool EventManager_AddListener(EventType type, EventListener eventListener)
+void EventManager_AddListener(EventType type, EventListener eventListener)
 {
-    EventHandlerList *eventHanlderList = &eventHandlerLists[type];
-    if (eventHanlderList->last + 1 < eventHanlderList->capacity)
-    {
-        eventHanlderList->last++;
-        eventHanlderList->EventHandlers[eventHanlderList->last] = eventListener;
-        return TRUE;
-    }
-    else
-    {
-        return FALSE;
-    }
+    EventListenerVector *eventListenerVector = EventListenerVectorVector_At(EventTypeListeners(), type);
+    for (int i = 0; i < eventListenerVector->size; i++)
+        if (EventListenerVector_At(eventListenerVector, i) == eventListener)
+            return;
+
+    EventListenerVector_Push(eventListenerVector, eventListener);
 }
 
-Bool EventManager_RemoveListener(EventType type, EventListener eventListener)
+bool EventManager_RemoveListener(EventType type, EventListener eventListener)
 {
-    EventHandlerList *eventHanlderList = &eventHandlerLists[type];
-    for (int i = 0; i <= eventHanlderList->last; i++)
-    {
-        if (eventHanlderList->EventHandlers[i] == eventListener)
+    EventListenerVector *eventListenerVector = EventListenerVectorVector_At(EventTypeListeners(), type);
+
+    for (int i = 0; i <= eventListenerVector->size; i++)
+        if (EventListenerVector_At(eventListenerVector, i) == eventListener)
         {
-            if (i != eventHanlderList->last)
-            {
-                eventHanlderList->EventHandlers[i] = eventHanlderList->EventHandlers[eventHanlderList->last];
-            }
-            eventHanlderList->last--;
-            return TRUE;
+            EventListenerVector_Remove(eventListenerVector, i);
+            return true;
         }
-    }
-    return FALSE;
+
+    return false;
 }
 
-void EventManager_AbortEvent(EventType type, Bool allOfType)
+void EventManager_AbortEvent(EventType type, bool allOfType)
 {
-    for (int i = eventLists[currentQueue].last; i >= 0; i--)
-    {
-        if (eventLists[currentQueue].events[i].type == type)
+    for (int i = NextQueue()->size - 1; i >= 0; i--)
+        if (EventVector_At(NextQueue(), i).type == type)
         {
-            eventLists[currentQueue].events[i].type = DisabledEvent;
+            EventVector_Remove(NextQueue(), i);
             if (!allOfType)
                 break;
         }
-    }
 }

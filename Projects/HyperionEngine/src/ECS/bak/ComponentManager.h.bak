@@ -1,0 +1,32 @@
+#ifndef COMPONENT_MANAGER_H
+#define COMPONENT_MANAGER_H
+
+#include "EntityManager.h"
+
+#include <stdbool.h>
+#include <stdlib.h>
+
+typedef struct ComponentManager ComponentManager;
+
+typedef void (*Callback)(void *component, int entityId);
+
+#define COMPONENT_LAMBDA(type, body) \
+    ({ void COMPONENT_LAMBDA(void *c, int entityId) {type* component = c; body} COMPONENT_LAMBDA; })
+
+ComponentManager *New_ComponentManager(size_t componentSize, size_t componentCapacity);
+
+void ComponentManager_Delete(ComponentManager *manager);
+
+bool ComponentManager_CreateComponent(ComponentManager *manager, EntityId entityId);
+
+bool ComponentManager_CheckEntity(ComponentManager *manager, EntityId entityId);
+
+void *ComponentManager_GetComponent(ComponentManager *manager, EntityId entityId);
+
+void ComponentManager_RemoveComponent(ComponentManager *manager, EntityId entityId);
+
+void ComponentManager_UpdateEntityId(ComponentManager *manager, EntityId oldId, EntityId newId);
+
+void ComponentManager_Foreach(ComponentManager *manager, Callback callback);
+
+#endif // !COMPONENT_MANAGER_H

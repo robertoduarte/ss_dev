@@ -6,7 +6,12 @@
         "assert.h": "c",
         "eventmanager.h": "c",
         "list.h": "c",
-        "sl_def.h": "c"
+        "sl_def.h": "c",
+        "sega_sys.h": "c",
+        "SEGA_SYS.H": "cpp",
+        "DEMO.C": "cpp",
+        "CD_CTRL.C": "cpp",
+        "GAME.C": "cpp"
     }
     
 }
