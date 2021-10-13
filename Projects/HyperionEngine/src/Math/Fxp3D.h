@@ -30,4 +30,3 @@ Fxp3D Fxp3D_Normalize(Fxp3DPtr vector);
 Fxp3D Fxp3D_CalcNormal(Fxp3DPtr vertex1, Fxp3DPtr vertex2, Fxp3DPtr vertex3);
 
 Fxp3D Fxp3D_Invert(Fxp3DPtr vector);
-

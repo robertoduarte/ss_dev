@@ -21,4 +21,3 @@ char *SatStrDup(const char *src);
 #define realloc SatRealloc
 #define memmove SatMemMove
 #define strdup SatStrDup
-

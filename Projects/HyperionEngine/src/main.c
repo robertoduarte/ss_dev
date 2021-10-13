@@ -1,54 +1,33 @@
-#include <SL_DEF.H>
-#include <SEGA_TIM.H>
-#include "Utils\Debug.h"
-#include "Utils\RBTree.h"
-#include "Utils\SatMalloc.h"
-
-#include "EventSystem\EventManager.h"
-#include "InputSystem\InputSystem.h"
-#include "Geometry\Frustum.h"
-#include "Assets\Cube.h"
-#include "Assets\Model.h"
+#include <yaul.h>
+#include <assert.h>
+#include <stdlib.h>
 #include "ECS/ECS.h"
 
-// extern Uint16 TotalPolygons;
-// Debug_PrintLine("Poly count: %u", TotalPolygons);
-// TIM_FRT_INIT(TIM_CKS_128);
-// TIM_FRT_SET_16(0);
-// Debug_PrintLine("Ticks elapsed %d", TIM_FRT_GET_16());
-// Debug_PrintLine("File:%s Line:%d", __FILE__, __LINE__);
-
-Fxp3D posistion = {0, 0, 0};
-Angle angleX = 0;
-Angle angleY = 0;
-
-const Angle increment = DEG_TO_ANGLE(1);
-
-void HandleInput(EventType type, Action action)
+void _vblank_out_handler(void *work __unused)
 {
-    switch (action)
-    {
-    case (Action_TurnRight):
-        angleY += increment;
-        break;
-    case (Action_TurnLeft):
-        angleY -= increment;
-        break;
-    case (Action_TurnDown):
-        angleX -= increment;
-        break;
-    case (Action_TurnUp):
-        angleX += increment;
-        break;
-    default:
-        break;
-    }
+    smpc_peripheral_intback_issue();
 }
 
-int main()
+void user_init(void)
 {
-    slInitSystem(TV_320x240, NULL, 1);
-    slPerspective(DEG_TO_ANGLE(60.0));
+    vdp2_tvmd_display_res_set(VDP2_TVMD_INTERLACE_NONE, VDP2_TVMD_HORZ_NORMAL_A,
+                              VDP2_TVMD_VERT_224);
+
+    vdp2_scrn_back_screen_color_set(VDP2_VRAM_ADDR(3, 0x01FFFE),
+                                    COLOR_RGB1555(1, 0, 3, 15));
+
+    vdp_sync_vblank_out_set(_vblank_out_handler);
+
+    cpu_intc_mask_set(0);
+
+    vdp2_tvmd_display_set();
+}
+
+int main(void)
+{
+    dbgio_dev_default_init(DBGIO_DEV_VDP2_ASYNC);
+    dbgio_dev_font_load();
+    dbgio_dev_font_load_wait();
 
     ECS_Init();
     ECS_Get_Motion(ECS_CreateEntity(CId_Motion))->acceleration.x = 10;
@@ -59,69 +38,31 @@ int main()
     ECS_AddComponents(id, CId_Motion);
     ECS_Get_Motion(id)->acceleration.x = 20;
 
-    ECS_ForEach(CId_Motion, LAMBDA(
-    {
-        Debug_PrintLine("Hello from id: %d!", id);
-        Debug_PrintLine("X Acceleration: %d", ECS_Access_Motion(accessor)->acceleration.x);
-        Debug_WaitForInput();
-    }));
-    Debug_PrintLine("");
-    ECS_ForEach(CId_Health, LAMBDA(
-    {
-        Debug_PrintLine("Hello from id: %d!", id);
-        Debug_PrintLine("Current Health: %d", ECS_Access_Health(accessor)->current);
-        Debug_WaitForInput();
-    }));
-    Debug_PrintLine("");
-    ECS_ForEach(CId_Motion|CId_Health, LAMBDA(
-    {
-        Debug_PrintLine("Hello from id: %d!", id);
-        Debug_PrintLine("X Acceleration: %d", ECS_Access_Motion(accessor)->acceleration.x);
-        Debug_PrintLine("Current Health: %d", ECS_Access_Health(accessor)->current);
-        Debug_WaitForInput();
-    }));
-
-    EventManager_AddListener(Action_Event, (EventListener)HandleInput);
-
-    Frustum frustum = CreateFrustum(DEG_TO_ANGLE(62.0), AspectRatio_320x256, FXP_SET(200.0), FXP_SET(6000.0));
-
-    Fxp matrix[4][3];
-
-    Fxp test = FXP_SET(399);
-
-    while (1)
-    {
-        InputSystem_Update();
-        EventManager_Update();
-        slPushMatrix();
+    ECS_ForEach(CId_Motion,LAMBDA(
         {
-            slRotY(angleY);
-            slRotX(angleX);
-            slGetMatrix(matrix);
+            dbgio_printf("Hello from id: %d!\n", id);
+            dbgio_printf("X Acceleration: %d\n", ECS_Access_Motion(accessor)->acceleration.x);
+        }));
 
-            Frustum_Update(&frustum, matrix);
+    dbgio_printf("\n");
 
-            Fxp3D objectPosition = {0, 0, test};
-            Fxp objectSize = FXP_SET(50);
+    ECS_ForEach(CId_Health, LAMBDA(
+        {
+            dbgio_printf("Hello from id: %d!\n", id);
+            dbgio_printf("Current Health: %d\n", ECS_Access_Health(accessor)->current);
+        }));
 
-            if (Frustum_BoxInFrustum(&frustum, &objectPosition, objectSize))
-            {
-                slPushMatrix();
-                {
-                    slTranslate(objectPosition.x, objectPosition.y, objectPosition.z);
-                    slPutPolygon(&MeshModel);
-                    slPutPolygon(&PD_CUBE);
-                }
-                slPopMatrix();
-                // Debug_PrintLine("INSIDE");
-            }
-            else
-            {
-                // Debug_PrintLine("OUTSIDE");
-            }
-        }
-        slPopMatrix();
-        slSynch();
-    }
+    dbgio_printf("\n");
+
+    ECS_ForEach(CId_Motion | CId_Health,LAMBDA(
+        {
+            dbgio_printf("Hello from id: %d!\n", id);
+            dbgio_printf("X Acceleration: %d\n", ECS_Access_Motion(accessor)->acceleration.x);
+            dbgio_printf("Current Health: %d\n", ECS_Access_Health(accessor)->current);
+        }));
+        
+    dbgio_flush();
+    vdp_sync();
+
     return 1;
 }

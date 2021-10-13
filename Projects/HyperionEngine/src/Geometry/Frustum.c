@@ -1,9 +1,11 @@
 #include "frustum.h"
 
-Frustum CreateFrustum(Angle fov, AspectRatio ratio, Fxp nearDistance, Fxp farDistance)
+#include "AABBox.h"
+
+Frustum CreateFrustum(Fxp verticalFov, Fxp ratio, Fxp nearDistance, Fxp farDistance)
 {
     Frustum frustum;
-    frustum.farHeight = Angle_Tan(fov / 2);
+    frustum.farHeight = Fxp_Tan(verticalFov);
     frustum.farWidth = Fxp_Mult(frustum.farHeight, ratio);
     frustum.nearDistance = nearDistance;
     frustum.farDistance = farDistance;
@@ -46,7 +48,7 @@ void Frustum_Update(Frustum *frustum, Fxp matrix[4][3])
 
 bool Frustum_PointInFrustum(Frustum *frustum, Fxp3DPtr position)
 {
-    for (int i = 0; i < Plane_Count; i++)
+    for (unsigned int i = 0; i < Plane_Count; i++)
     {
         if (Plane3D_Distance(&frustum->plane[i], position) < 0)
             return false;
@@ -57,7 +59,7 @@ bool Frustum_PointInFrustum(Frustum *frustum, Fxp3DPtr position)
 bool Frustum_SphereInFrustum(Frustum *frustum, Fxp3DPtr position, Fxp size)
 {
     Fxp radius = Fxp_Div(size, FXP_SET(2));
-    for (int i = 0; i < Plane_Count; i++)
+    for (unsigned int i = 0; i < Plane_Count; i++)
     {
         if (Plane3D_Distance(&frustum->plane[i], position) < -radius)
             return false;
@@ -68,7 +70,7 @@ bool Frustum_SphereInFrustum(Frustum *frustum, Fxp3DPtr position, Fxp size)
 bool Frustum_BoxInFrustum(Frustum *frustum, Fxp3DPtr position, Fxp size)
 {
     Fxp3D vertexN;
-    for (int i = 0; i < Plane_Count; i++)
+    for (unsigned int i = 0; i < Plane_Count; i++)
     {
         vertexN = AABBox_GetVertex(position, size, &frustum->plane[i].normal, VertexType_N);
         if (Plane3D_Distance(&frustum->plane[i], &vertexN) < 0)

@@ -1,3 +1,3 @@
 @ECHO Off
-call ../../toolchain/setenv.bat
+call ..\..\Toolchain\setenv.bat 
 make clean

@@ -4,7 +4,7 @@
 
 #define ENTITY_CAPACITY 512
 
-typedef int EntityId;
+typedef short EntityId;
 
 typedef unsigned int ArchetypeId;
 

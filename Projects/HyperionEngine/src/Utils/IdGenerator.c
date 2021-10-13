@@ -16,8 +16,8 @@
 
 struct IdGenerator
 {
-    unsigned int capacity;
-    unsigned int totalBlocks;
+    int capacity;
+    int totalBlocks;
     BLOCK_TYPE *idBits;
 };
 

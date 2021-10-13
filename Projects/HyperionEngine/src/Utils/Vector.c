@@ -1,15 +1,9 @@
 #include "SatMalloc.h"
-#include "Debug.h"
-#include <SGL.H>
 #include "Vector.h"
 
 void exit(int);
 
-void Vector_Error(const char *error)
-{
-    Debug_PrintLine(error);
-    exit(1);
-}
+#define Vector_Error(_) {};
 
 Vector *Vector_Init(size_t dataSize, unsigned int capacity)
 {

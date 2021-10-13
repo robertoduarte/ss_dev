@@ -1,3 +1,3 @@
 @ECHO Off
-call ../../toolchain/setenv.bat
-make build
+call ..\..\Toolchain\setenv.bat
+make

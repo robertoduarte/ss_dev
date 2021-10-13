@@ -10,6 +10,10 @@ Fxp Fxp_Mult(Fxp a, Fxp b);
 
 Fxp Fxp_Div(Fxp a, Fxp b);
 
+void Fxp_AsyncDivSet(Fxp a, Fxp b);
+
+Fxp Fxp_AsyncDivGet();
+
 Fxp Fxp_Sqrt(Fxp value);
 
 Fxp Fxp_Max(Fxp a, Fxp b);
@@ -19,3 +23,5 @@ Fxp Fxp_Square(Fxp value);
 Fxp Fxp_Abs(Fxp value);
 
 float Fxp_ToFloat(Fxp value);
+
+Fxp Fxp_Tan(Fxp value);

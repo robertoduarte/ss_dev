@@ -11,8 +11,8 @@
 
 typedef struct
 {
-    int size;
-    int capacity;
+    unsigned int size;
+    unsigned int capacity;
     size_t dataSize;
     void *data;
 } Vector;
@@ -45,8 +45,8 @@ void *Vector_GetInsertPtr(Vector *v, unsigned int pos);
 #define VECT_GENERATE_NAME(TYPE, NAME)                                      \
     typedef struct                                                          \
     {                                                                       \
-        int size;                                                           \
-        int capacity;                                                       \
+        unsigned int size;                                                  \
+        unsigned int capacity;                                               \
         size_t dataSize;                                                    \
         TYPE *data;                                                         \
     } NAME##Vector;                                                         \

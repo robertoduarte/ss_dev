@@ -65,13 +65,13 @@ void EventManager_TriggerEvent(EventType type, unsigned int arg)
 
     EventListenerVector *eventListenerVector = EventListenerVectorVector_At(EventTypeListeners(), type);
 
-    for (int i = 0; i < eventListenerVector->size; i++)
+    for (unsigned int i = 0; i < eventListenerVector->size; i++)
         EventListenerVector_At(eventListenerVector, i)(type, arg);
 }
 
 static void Update()
 {
-    for (int i = 0; i < CurrentQueue()->size; i++)
+    for (unsigned int i = 0; i < CurrentQueue()->size; i++)
     {
         Event event = EventVector_At(CurrentQueue(), i);
         EventManager_TriggerEvent(event.type, event.arg);
@@ -93,7 +93,7 @@ void EventManager_QueueEvent(EventType type, unsigned int arg)
 void EventManager_AddListener(EventType type, EventListener eventListener)
 {
     EventListenerVector *eventListenerVector = EventListenerVectorVector_At(EventTypeListeners(), type);
-    for (int i = 0; i < eventListenerVector->size; i++)
+    for (unsigned int i = 0; i < eventListenerVector->size; i++)
         if (EventListenerVector_At(eventListenerVector, i) == eventListener)
             return;
 
@@ -104,7 +104,7 @@ bool EventManager_RemoveListener(EventType type, EventListener eventListener)
 {
     EventListenerVector *eventListenerVector = EventListenerVectorVector_At(EventTypeListeners(), type);
 
-    for (int i = 0; i <= eventListenerVector->size; i++)
+    for (unsigned int i = 0; i <= eventListenerVector->size; i++)
         if (EventListenerVector_At(eventListenerVector, i) == eventListener)
         {
             EventListenerVector_Remove(eventListenerVector, i);

@@ -1,6 +1,5 @@
 #include "ECS.h"
 
-#include "../Utils/Debug.h"
 #include "../Utils/RBTree.h"
 #include "../Utils/Vector.h"
 #include "../Utils/SatMalloc.h"
@@ -54,8 +53,7 @@ static bool g_init = false;
 /*------------------- Macros -------------------*/
 
 #define INIT_CHECK \
-    if (!g_init)   \
-    Debug_ExitMsg("ECS Not Initialized!")
+    // if (!g_init) Debug_ExitMsg("ECS Not Initialized!")
 
 #define AS_ARCHETYPE_SIZE_SUM(type, archetype) (archetype & AS_ID(type) ? sizeof(type) : 0) +
 #define ARCHETYPE_SIZE(archetype) (TYPES(AS_ARCHETYPE_SIZE_SUM, archetype) 0)
@@ -80,7 +78,7 @@ void ECS_Init()
 static void ArchetypeInit(ArchetypeManager *archetype, ArchetypeId type)
 {
     archetype->archetypeId = type;
-    for (int i = 0; i < COUNT(TYPES); i++)
+    for (unsigned int i = 0; i < COUNT(TYPES); i++)
     {
         archetype->map.pos[i] = COMPONENT_POSITION(type, i);
     }
@@ -233,8 +231,8 @@ TYPES(AS_GETTER_DEF)
 EntityId ECS_CreateEntity(ArchetypeId types)
 {
     INIT_CHECK;
-    if (!types)
-        Debug_ExitMsg("Trying to create entity without types!");
+    // if (!types)
+        // Debug_ExitMsg("Trying to create entity without types!");
 
     EntityId id = IdGenerator_GenerateId(g_idGenerator);
     ECS_AddComponents(id, types);
@@ -252,10 +250,10 @@ static void Process(RBNode *node, ArchetypeId components, ECS_Callback callback)
     if ((manager->archetypeId & components) == components)
     {
         ComponentAccessor accessor;
-        for (int i = 0; i < manager->entityIds->size; i++)
+        accessor.map = &manager->map;
+        for (unsigned int i = 0; i < manager->entityIds->size; i++)
         {
             accessor.ptr = Vector_GetPtrAt(manager->types, i);
-            accessor.map = &manager->map;
             callback(&accessor, EntityIdVector_At(manager->entityIds, i));
         }
     }

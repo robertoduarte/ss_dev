@@ -14,6 +14,16 @@
             }
         },
         {
+            "label": "Run with Mednafen",
+            "type": "shell",
+            "command": ".vscode/scripts/run_with_mednafen.bat",
+            "problemMatcher": [],
+            "presentation": {
+                "showReuseMessage": false,
+                "clear": true
+            }
+        },
+        {
             "label": "Build",
             "type": "shell",
             "command": ".vscode/scripts/build.bat",
