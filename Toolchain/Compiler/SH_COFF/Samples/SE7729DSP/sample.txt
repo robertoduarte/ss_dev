@@ -1,3 +1,0 @@
-App1: Basic program to blink LED's at specified intervals.
-App2: Basic program to blink LED's one by one.
-App3: C++ sample application.
