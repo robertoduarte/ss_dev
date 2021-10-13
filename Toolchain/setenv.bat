@@ -18,9 +18,9 @@ SET YAUL_OPTION_BUILD_ASSERT=0
 SET SILENT=1
 SET MAKE_ISO_XORRISO=%TOOLCHAIN_DIR%msys_trimmed/usr/bin/xorriso
 
-git submodule update --init --recursive
-
 IF NOT EXIST %TOOLCHAIN_DIR%Libraries/libyaul/build/libyaul/release/libyaul.a (
-  cd %TOOLCHAIN_DIR%Libraries/libyaul
+  cd %TOOLCHAIN_DIR%Libraries/
+  git clone --recurse-submodules https://github.com/ijacquez/libyaul.git
+  cd libyaul
   make install
 )
