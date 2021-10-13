@@ -19,19 +19,20 @@ SBLDIR = $(TOOLCHAIN_DIR)/Libraries/sbl601/segalib
 SBLLDIR = $(SBLDIR)/lib
 SBLIDIR = $(SBLDIR)/include
 
-LIBS = $(SGLLDIR)/SEGA_SYS.A $(SGLLDIR)/LIBCD.A $(SGLLDIR)/LIBSGL.A -lm
+LIBS = $(SGLLDIR)/SEGA_SYS.A $(SGLLDIR)/LIBCD.A $(SGLLDIR)/LIBSGL.A
 
 CCFLAGS = -Wall -std=c99 -m2 -c -O3 -I$(SGLIDIR) -I$(SBLIDIR)
 
-LDFLAGS = -T$(LDFILE) -Wl,-Map,$(BUILD_MAP),-e,___Start -nostartfiles
+LDFLAGS = -m2 -T$(LDFILE) -Wl,-Map,$(BUILD_MAP),-e,___Start -nostartfiles
 
+# Compile all objects
 %.o : %.c 
 	sh-coff-gcc $< $(CCFLAGS) -o $@
 
-compile_objects : $(OBJECTS)
+link_objects : $(OBJECTS)
 	sh-coff-gcc $(LDFLAGS) $(OBJECTS) $(LIBS) -o $(BUILD_COFF)
 	
-convert_binary : compile_objects
+convert_binary : link_objects
 	sh-coff-objcopy -O binary $(BUILD_COFF) $(BUILD_FOLDER)/0.bin
 
 create_iso : convert_binary

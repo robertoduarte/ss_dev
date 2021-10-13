@@ -1,37 +1,127 @@
-#include <SGL.H>
-#include "EventSystem/EventManager.h"
-#include "ECS\ComponentManager.h"
-#include "ECS\Components.h"
-#include <..\..\sh-coff\include\malloc.h>
+#include <SL_DEF.H>
+#include <SEGA_TIM.H>
+#include "Utils\Debug.h"
+#include "Utils\RBTree.h"
+#include "Utils\SatMalloc.h"
 
-void init()
+#include "EventSystem\EventManager.h"
+#include "InputSystem\InputSystem.h"
+#include "Geometry\Frustum.h"
+#include "Assets\Cube.h"
+#include "Assets\Model.h"
+#include "ECS/ECS.h"
+
+// extern Uint16 TotalPolygons;
+// Debug_PrintLine("Poly count: %u", TotalPolygons);
+// TIM_FRT_INIT(TIM_CKS_128);
+// TIM_FRT_SET_16(0);
+// Debug_PrintLine("Ticks elapsed %d", TIM_FRT_GET_16());
+// Debug_PrintLine("File:%s Line:%d", __FILE__, __LINE__);
+
+Fxp3D posistion = {0, 0, 0};
+Angle angleX = 0;
+Angle angleY = 0;
+
+const Angle increment = DEG_TO_ANGLE(1);
+
+void HandleInput(EventType type, Action action)
 {
-    slInitSystem(TV_320x240, NULL, 2);
-    slPerspective(DEGtoANG(60.0));
+    switch (action)
+    {
+    case (Action_TurnRight):
+        angleY += increment;
+        break;
+    case (Action_TurnLeft):
+        angleY -= increment;
+        break;
+    case (Action_TurnDown):
+        angleX -= increment;
+        break;
+    case (Action_TurnUp):
+        angleX += increment;
+        break;
+    default:
+        break;
+    }
 }
 
-int main(void)
+int main()
 {
-    init();
+    slInitSystem(TV_320x240, NULL, 1);
+    slPerspective(DEG_TO_ANGLE(60.0));
 
-    ComponentManager *healthManager = New_ComponentManager(sizeof(Health), 10, 10);
+    ECS_Init();
+    ECS_Get_Motion(ECS_CreateEntity(CId_Motion))->acceleration.x = 10;
+    ECS_Get_Health(ECS_CreateEntity(CId_Health))->current = 200;
 
-    ComponentManager_AssignComponent(healthManager, 1);
-    short componentId = ComponentManager_AssignComponent(healthManager, 2);
+    EntityId id = ECS_CreateEntity(CId_Health);
+    ECS_Get_Health(id)->current = 100;
+    ECS_AddComponents(id, CId_Motion);
+    ECS_Get_Motion(id)->acceleration.x = 20;
 
-    slPrintFX(toFIXED(ComponentManager_EntityFromComponent(healthManager, componentId)), slLocate(0, 0));
+    ECS_ForEach(CId_Motion, LAMBDA(
+    {
+        Debug_PrintLine("Hello from id: %d!", id);
+        Debug_PrintLine("X Acceleration: %d", ECS_Access_Motion(accessor)->acceleration.x);
+        Debug_WaitForInput();
+    }));
+    Debug_PrintLine("");
+    ECS_ForEach(CId_Health, LAMBDA(
+    {
+        Debug_PrintLine("Hello from id: %d!", id);
+        Debug_PrintLine("Current Health: %d", ECS_Access_Health(accessor)->current);
+        Debug_WaitForInput();
+    }));
+    Debug_PrintLine("");
+    ECS_ForEach(CId_Motion|CId_Health, LAMBDA(
+    {
+        Debug_PrintLine("Hello from id: %d!", id);
+        Debug_PrintLine("X Acceleration: %d", ECS_Access_Motion(accessor)->acceleration.x);
+        Debug_PrintLine("Current Health: %d", ECS_Access_Health(accessor)->current);
+        Debug_WaitForInput();
+    }));
 
-    Health *healthPtr = ComponentManager_ComponentAt(healthManager, componentId);
+    EventManager_AddListener(Action_Event, (EventListener)HandleInput);
 
-    healthPtr->current = 9;
-    healthPtr->max = 10;
+    Frustum frustum = CreateFrustum(DEG_TO_ANGLE(62.0), AspectRatio_320x256, FXP_SET(200.0), FXP_SET(6000.0));
 
-    ComponentManager_UpdateEntity(healthManager, 2, 3);
+    Fxp matrix[4][3];
 
-    healthPtr = ComponentManager_ComponentAt(healthManager, ComponentManager_ComponentFromEntity(healthManager, 3));
+    Fxp test = FXP_SET(399);
 
-    slPrintFX(toFIXED(healthPtr->current), slLocate(0, 1));
-    slPrintFX(toFIXED(sizeof(Health)), slLocate(0, 2));
-    
+    while (1)
+    {
+        InputSystem_Update();
+        EventManager_Update();
+        slPushMatrix();
+        {
+            slRotY(angleY);
+            slRotX(angleX);
+            slGetMatrix(matrix);
+
+            Frustum_Update(&frustum, matrix);
+
+            Fxp3D objectPosition = {0, 0, test};
+            Fxp objectSize = FXP_SET(50);
+
+            if (Frustum_BoxInFrustum(&frustum, &objectPosition, objectSize))
+            {
+                slPushMatrix();
+                {
+                    slTranslate(objectPosition.x, objectPosition.y, objectPosition.z);
+                    slPutPolygon(&MeshModel);
+                    slPutPolygon(&PD_CUBE);
+                }
+                slPopMatrix();
+                // Debug_PrintLine("INSIDE");
+            }
+            else
+            {
+                // Debug_PrintLine("OUTSIDE");
+            }
+        }
+        slPopMatrix();
+        slSynch();
+    }
     return 1;
 }

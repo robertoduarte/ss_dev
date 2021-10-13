@@ -1,5 +1,4 @@
-#ifndef CUBE_H
-#define CUBE_H
+#pragma once
 
 #include <sgl.h>
 
@@ -30,12 +29,12 @@ static POLYGON polygon_CUBE[] = {
 };
 
 static ATTR attribute_CUBE[] = {
-    ATTRIBUTE(Single_Plane, SORT_MIN, No_Texture, C_RGB(0, 20, 28), No_Gouraud, MESHoff, sprPolyLine, UseLight),
-    ATTRIBUTE(Single_Plane, SORT_MIN, No_Texture, C_RGB(28, 8, 0), No_Gouraud, MESHoff, sprPolyLine, UseLight),
-    ATTRIBUTE(Single_Plane, SORT_MIN, No_Texture, C_RGB(8, 28, 0), No_Gouraud, MESHoff, sprPolyLine, UseLight),
-    ATTRIBUTE(Single_Plane, SORT_MIN, No_Texture, C_RGB(28, 20, 0), No_Gouraud, MESHoff, sprPolyLine, UseLight),
-    ATTRIBUTE(Single_Plane, SORT_MIN, No_Texture, C_RGB(16, 0, 28), No_Gouraud, MESHoff, sprPolyLine, UseLight),
-    ATTRIBUTE(Single_Plane, SORT_MIN, No_Texture, C_RGB(28, 20, 16), No_Gouraud, MESHoff, sprPolyLine, UseLight),
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(0, 20, 28), No_Gouraud, MESHoff, /*sprPolygon*/ sprPolyLine, UseLight),
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(28, 8, 0), No_Gouraud, MESHoff, /*sprPolygon*/ sprPolyLine, UseLight),
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(8, 28, 0), No_Gouraud, MESHoff, /*sprPolygon*/ sprPolyLine, UseLight),
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(28, 20, 0), No_Gouraud, MESHoff, /*sprPolygon*/ sprPolyLine, UseLight),
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(16, 0, 28), No_Gouraud, MESHoff, /*sprPolygon*/ sprPolyLine, UseLight),
+    ATTRIBUTE(Dual_Plane, SORT_CEN, No_Texture, C_RGB(28, 20, 16), No_Gouraud, MESHoff, /*sprPolygon*/ sprPolyLine, UseLight),
 };
 
 PDATA PD_CUBE = {
@@ -44,5 +43,3 @@ PDATA PD_CUBE = {
     polygon_CUBE,
     sizeof(polygon_CUBE) / sizeof(POLYGON),
     attribute_CUBE};
-
-#endif /* CUBE_H */

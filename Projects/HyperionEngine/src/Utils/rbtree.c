@@ -1,23 +1,16 @@
-#include "rbtree.h"
-#include <sega_xpt.h>
-#include <..\..\sh-coff\include\malloc.h>
+#include "RBTree.h"
+#include "SatMalloc.h"
 
-typedef enum _Color
+static void SwapColor(RBNode *nodeA, RBNode *nodeB)
 {
-    BLACK,
-    RED
-} Color;
-
-inline void SwapColor(RedBlackNode *nodeA, RedBlackNode *nodeB)
-{
-    unsigned short nodeAColor = nodeA->color;
+    int nodeAColor = nodeA->color;
     nodeA->color = nodeB->color;
     nodeB->color = nodeAColor;
 }
 
-inline void LeftRotate(RedBlackNode **rootNode, RedBlackNode *node)
+static void LeftRotate(RBNode **rootNode, RBNode *node)
 {
-    RedBlackNode *rightNode = node->right;
+    RBNode *rightNode = node->right;
 
     node->right = rightNode->left;
 
@@ -39,9 +32,9 @@ inline void LeftRotate(RedBlackNode **rootNode, RedBlackNode *node)
     node->parent = rightNode;
 }
 
-inline void RightRotate(RedBlackNode **rootNode, RedBlackNode *node)
+static void RightRotate(RBNode **rootNode, RBNode *node)
 {
-    RedBlackNode *leftNode = node->left;
+    RBNode *leftNode = node->left;
 
     node->left = leftNode->right;
 
@@ -63,34 +56,34 @@ inline void RightRotate(RedBlackNode **rootNode, RedBlackNode *node)
     node->parent = leftNode;
 }
 
-void InsertFixup(RedBlackNode **root, RedBlackNode *node)
+static void InsertFixup(RBNode **root, RBNode *node)
 {
-    RedBlackNode *parent_pt = NULL;
-    RedBlackNode *grand_parent_pt = NULL;
+    RBNode *parentPtr = NULL;
+    RBNode *grandParentPtr = NULL;
 
-    while ((node != *root) && (node->color != BLACK) &&
-           (node->parent->color == RED))
+    while ((node != *root) && (node->color != Color_Black) &&
+           (node->parent->color == Color_red))
     {
 
-        parent_pt = node->parent;
-        grand_parent_pt = node->parent->parent;
+        parentPtr = node->parent;
+        grandParentPtr = node->parent->parent;
 
         /*  Case : A 
-            Parent of pt is left child of Grand-parent of pt */
-        if (parent_pt == grand_parent_pt->left)
+            Parent is left child of Grand-parent */
+        if (parentPtr == grandParentPtr->left)
         {
 
-            RedBlackNode *uncle_pt = grand_parent_pt->right;
+            RBNode *unclePtr = grandParentPtr->right;
 
             /* Case : 1 
-               The uncle of pt is also red 
+               The uncle is also red 
                Only Recoloring required */
-            if (uncle_pt != NULL && uncle_pt->color == RED)
+            if (unclePtr != NULL && unclePtr->color == Color_red)
             {
-                grand_parent_pt->color = RED;
-                parent_pt->color = BLACK;
-                uncle_pt->color = BLACK;
-                node = grand_parent_pt;
+                grandParentPtr->color = Color_red;
+                parentPtr->color = Color_Black;
+                unclePtr->color = Color_Black;
+                node = grandParentPtr;
             }
 
             else
@@ -98,67 +91,67 @@ void InsertFixup(RedBlackNode **root, RedBlackNode *node)
                 /* Case : 2 
                    pt is right child of its parent 
                    Left-rotation required */
-                if (node == parent_pt->right)
+                if (node == parentPtr->right)
                 {
-                    LeftRotate(root, parent_pt);
-                    node = parent_pt;
-                    parent_pt = node->parent;
+                    LeftRotate(root, parentPtr);
+                    node = parentPtr;
+                    parentPtr = node->parent;
                 }
 
                 /* Case : 3 
                    pt is left child of its parent 
                    Right-rotation required */
-                RightRotate(root, grand_parent_pt);
-                SwapColor(parent_pt, grand_parent_pt);
-                node = parent_pt;
+                RightRotate(root, grandParentPtr);
+                SwapColor(parentPtr, grandParentPtr);
+                node = parentPtr;
             }
         }
 
         /* Case : B 
-           Parent of pt is right child of Grand-parent of pt */
+           Parent is right child of Grand-parent */
         else
         {
-            RedBlackNode *uncle_pt = grand_parent_pt->left;
+            RBNode *unclePtr = grandParentPtr->left;
 
             /*  Case : 1 
-                The uncle of pt is also red 
+                The uncle is also red 
                 Only Recoloring required */
-            if ((uncle_pt != NULL) && (uncle_pt->color == RED))
+            if ((unclePtr != NULL) && (unclePtr->color == Color_red))
             {
-                grand_parent_pt->color = RED;
-                parent_pt->color = BLACK;
-                uncle_pt->color = BLACK;
-                node = grand_parent_pt;
+                grandParentPtr->color = Color_red;
+                parentPtr->color = Color_Black;
+                unclePtr->color = Color_Black;
+                node = grandParentPtr;
             }
             else
             {
                 /* Case : 2 
                    pt is left child of its parent 
                    Right-rotation required */
-                if (node == parent_pt->left)
+                if (node == parentPtr->left)
                 {
-                    RightRotate(root, parent_pt);
-                    node = parent_pt;
-                    parent_pt = node->parent;
+                    RightRotate(root, parentPtr);
+                    node = parentPtr;
+                    parentPtr = node->parent;
                 }
 
                 /* Case : 3 
                    pt is right child of its parent 
                    Left-rotation required */
-                LeftRotate(root, grand_parent_pt);
-                SwapColor(parent_pt, grand_parent_pt);
-                node = parent_pt;
+                LeftRotate(root, grandParentPtr);
+                SwapColor(parentPtr, grandParentPtr);
+                node = parentPtr;
             }
         }
     }
 
-    (*root)->color = BLACK;
+    (*root)->color = Color_Black;
 }
 
-inline void AssignParent(RedBlackNode *root, RedBlackNode *node)
+static void AssignParent(RBNode *root, RBNode *node)
 {
-    RedBlackNode *parent = NULL;
-    RedBlackNode *nodeIterator = root;
+    RBNode *parent = NULL;
+    RBNode *nodeIterator = root;
     while (nodeIterator != NULL)
     {
         parent = nodeIterator;
@@ -177,110 +170,79 @@ inline void AssignParent(RedBlackNode *root, RedBlackNode *node)
     node->parent = parent;
 }
 
-void Insert(RedBlackNode **root, unsigned short key, void *data)
+static void DeleteFixup(RBNode **root, RBNode *node)
 {
-    RedBlackNode *newNode = (RedBlackNode *)malloc(sizeof(RedBlackNode));
-    newNode->key = key;
-    newNode->data = data;
-    newNode->left = newNode->right = newNode->parent = NULL;
-
-    if (*root == NULL)
-    {
-        newNode->color = BLACK;
-        *root = newNode;
-    }
-    else
-    {
-        AssignParent(*root, newNode);
-        newNode->color = RED;
-        InsertFixup(root, newNode);
-    }
-}
-
-inline RedBlackNode *Search(RedBlackNode *rootNode, unsigned short key)
-{
-    if (rootNode == NULL || rootNode->key == key)
-        return rootNode;
-
-    if (rootNode->key < key)
-        return Search(rootNode->right, key);
-    else
-        return Search(rootNode->left, key);
-}
-
-void DeleteFixup(RedBlackNode **root, RedBlackNode *node)
-{
-    while (node != *root && node->color == BLACK)
+    while (node != *root && node->color == Color_Black)
     {
         if (node == node->parent->left)
         {
-            RedBlackNode *sibling = node->parent->right;
-            if (sibling->color == RED)
+            RBNode *sibling = node->parent->right;
+            if (sibling->color == Color_red)
             {
-                sibling->color = BLACK;
-                node->parent->color = RED;
+                sibling->color = Color_Black;
+                node->parent->color = Color_red;
                 LeftRotate(root, node->parent);
                 sibling = node->parent->right;
             }
-            if (sibling->left->color == BLACK && sibling->right->color == BLACK)
+            if (sibling->left->color == Color_Black && sibling->right->color == Color_Black)
             {
-                sibling->color = RED;
+                sibling->color = Color_red;
                 node = node->parent;
                 continue;
             }
-            else if (sibling->right->color == BLACK)
+            else if (sibling->right->color == Color_Black)
             {
-                sibling->left->color = BLACK;
-                sibling->color = RED;
+                sibling->left->color = Color_Black;
+                sibling->color = Color_red;
                 RightRotate(root, sibling);
                 sibling = node->parent->right;
             }
-            if (sibling->right->color == RED)
+            if (sibling->right->color == Color_red)
             {
                 sibling->color = node->parent->color;
-                node->parent->color = BLACK;
-                sibling->right->color = BLACK;
+                node->parent->color = Color_Black;
+                sibling->right->color = Color_Black;
                 LeftRotate(root, node->parent);
                 node = *root;
             }
         }
         else
         {
-            RedBlackNode *sibling = node->parent->left;
-            if (sibling->color == RED)
+            RBNode *sibling = node->parent->left;
+            if (sibling->color == Color_red)
             {
-                sibling->color = BLACK;
-                node->parent->color = RED;
+                sibling->color = Color_Black;
+                node->parent->color = Color_red;
                 RightRotate(root, node->parent);
                 sibling = node->parent->left;
             }
-            if (sibling->right->color == BLACK && sibling->left->color == BLACK)
+            if (sibling->right->color == Color_Black && sibling->left->color == Color_Black)
             {
-                sibling->color = RED;
+                sibling->color = Color_red;
                 node = node->parent;
                 continue;
             }
-            else if (sibling->left->color == BLACK)
+            else if (sibling->left->color == Color_Black)
             {
-                sibling->right->color = BLACK;
-                sibling->color = RED;
+                sibling->right->color = Color_Black;
+                sibling->color = Color_red;
                 LeftRotate(root, sibling);
                 sibling = node->parent->left;
             }
-            if (sibling->left->color == RED)
+            if (sibling->left->color == Color_red)
             {
                 sibling->color = node->parent->color;
-                node->parent->color = BLACK;
-                sibling->left->color = BLACK;
+                node->parent->color = Color_Black;
+                sibling->left->color = Color_Black;
                 RightRotate(root, node->parent);
                 node = *root;
             }
         }
     }
-    node->color = BLACK;
+    node->color = Color_Black;
 }
 
-void Transplant(RedBlackNode **root, RedBlackNode *target, RedBlackNode *replacement)
+static void Transplant(RBNode **root, RBNode *target, RBNode *replacement)
 {
     if (target->parent == NULL)
     {
@@ -295,7 +257,7 @@ void Transplant(RedBlackNode **root, RedBlackNode *target, RedBlackNode *replace
     replacement->parent = target->parent;
 }
 
-RedBlackNode *TreeMinimum(RedBlackNode *subTreeRoot)
+static RBNode *TreeMinimum(RBNode *subTreeRoot)
 {
     while (subTreeRoot->left != NULL)
     {
@@ -304,35 +266,82 @@ RedBlackNode *TreeMinimum(RedBlackNode *subTreeRoot)
     return subTreeRoot;
 }
 
-int Delete(RedBlackNode **root, unsigned short key)
+static RBNode *Search(RBNode *rootNode, int key)
 {
-    RedBlackNode *node = Search(*root, key);
+    if (rootNode == NULL || rootNode->key == key)
+        return rootNode;
+
+    if (rootNode->key < key)
+        return Search(rootNode->right, key);
+    else
+        return Search(rootNode->left, key);
+}
+
+void RBTree_Insert(RBNode **root, int key, void *data)
+{
+    RBNode *newNode = (RBNode *)malloc(sizeof(RBNode));
+    newNode->key = key;
+    newNode->data = data;
+    newNode->left = newNode->right = newNode->parent = NULL;
+
+    if (*root == NULL)
+    {
+        newNode->color = Color_Black;
+        *root = newNode;
+    }
+    else
+    {
+        AssignParent(*root, newNode);
+        newNode->color = Color_red;
+        InsertFixup(root, newNode);
+    }
+}
+
+void *RBTree_AllocAndInsert(RBNode **root, int key, size_t size)
+{
+    void *data = malloc(size);
+
+    if (data)
+        RBTree_Insert(root, key, data);
+
+    return data;
+}
+
+void *RBTree_Search(RBNode *root, int key)
+{
+    RBNode *search = Search(root, key);
+    return (search) ? search->data : NULL;
+}
+
+bool RBTree_Delete(RBNode **root, int key)
+{
+    RBNode *node = Search(*root, key);
     if (node == NULL)
     {
-        return FALSE;
+        return false;
     }
 
-    RedBlackNode *x;
+    RBNode *temp;
 
-    unsigned short originalColor = node->color;
+    int originalColor = node->color;
 
     if (node->left == NULL)
     {
-        x = node->right;
+        temp = node->right;
         Transplant(root, node, node->right);
     }
     else if (node->right == NULL)
     {
-        x = node->left;
+        temp = node->left;
         Transplant(root, node, node->left);
     }
     else
     {
-        RedBlackNode *minimumNode = TreeMinimum(node->right);
+        RBNode *minimumNode = TreeMinimum(node->right);
         originalColor = minimumNode->color;
-        x = minimumNode->right;
+        temp = minimumNode->right;
         if (minimumNode->parent == node)
-            x->parent = minimumNode;
+            temp->parent = minimumNode;
         else
         {
             Transplant(root, minimumNode, minimumNode->right);
@@ -346,7 +355,13 @@ int Delete(RedBlackNode **root, unsigned short key)
     }
     free(node);
 
-    if (originalColor == BLACK)
-        DeleteFixup(root, x);
-    return TRUE;
+    if (originalColor == Color_Black)
+        DeleteFixup(root, temp);
+    return true;
+}
+
+bool RBTree_FreeAndDelete(RBNode **root, int key)
+{
+    free(RBTree_Search(*root, key));
+    return RBTree_Delete(root, key);
 }

@@ -5,18 +5,22 @@
     "tasks": [
         {
             "label": "Run with Yabause",
+            "type": "shell",
             "command": ".vscode/scripts/run_with_yabause.bat",
             "problemMatcher": [],
             "presentation": {
-                "showReuseMessage": false
+                "showReuseMessage": false,
+                "clear": true
             }
         },
         {
             "label": "Build",
+            "type": "shell",
             "command": ".vscode/scripts/build.bat",
             "problemMatcher": [],
             "presentation": {
-                "showReuseMessage": false
+                "showReuseMessage": false,
+                "clear": true
             },
             "group": {
                 "kind": "build",
@@ -25,10 +29,12 @@
         },
         {
             "label": "Clean",
+            "type": "shell",
             "command": ".vscode/scripts/clean.bat",
             "problemMatcher": [],
             "presentation": {
-                "showReuseMessage": false
+                "showReuseMessage": false,
+                "clear": true
             }
         }
     ]

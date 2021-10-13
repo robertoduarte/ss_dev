@@ -1,19 +1,31 @@
-#ifndef RBTREE_H
-#define RBTREE_H
+#pragma once
 
-typedef struct _RBNode
+#include <stdbool.h>
+#include <stdlib.h>
+
+typedef enum Color
 {
-    unsigned short key;
-    unsigned short color;
+    Color_Black,
+    Color_red
+} Color;
+
+struct RBNode
+{
+    int key;
+    Color color;
     void *data;
-    struct _RBNode *left, *right, *parent;
-} RedBlackNode;
+    struct RBNode *left, *right, *parent;
+};
 
-void Insert(RedBlackNode **root, unsigned short key, void *data);
+typedef struct RBNode RBNode;
 
-RedBlackNode *Search(RedBlackNode *rootNode, unsigned short key);
+void RBTree_Insert(RBNode** tree, int key, void *data);
 
-int Delete(RedBlackNode **root, unsigned short key);
+void *RBTree_AllocAndInsert(RBNode **tree, int key, size_t size);
 
+void *RBTree_Search(RBNode *tree, int key);
 
-#endif // !RBTREE_H
+bool RBTree_Delete(RBNode **tree, int key);
+
+bool RBTree_FreeAndDelete(RBNode **tree, int key);
+
