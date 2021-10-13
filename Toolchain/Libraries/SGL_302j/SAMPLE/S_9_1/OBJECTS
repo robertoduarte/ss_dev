@@ -1,6 +1,0 @@
-# source_program
-SRCS = main.c scl_func.c scl_data.c spr_data.c
-
-SYSOBJS = $(CMNDIR)/cinit.o $(SGLLDR)/sglarea.o
-OBJS = $(SRCS:.c=.o)
-LIBS = -lsgl

@@ -1,7 +1,0 @@
-#include	"sgl.h"
-#include	"../scroll/yama.cel"
-#include	"../scroll/yama.map"
-#include	"../scroll/yama.pal"
-#include	"../scroll/am2.cel"
-#include	"../scroll/am2.map"
-#include	"../scroll/am2.pal"

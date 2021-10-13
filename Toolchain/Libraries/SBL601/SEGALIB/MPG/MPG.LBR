@@ -1,7 +1,0 @@
-create sega_mpg.lib
-add mpg_sys.obj
-add mpg_mve.obj
-add mpg_mve2.obj
-add mpg_spc.obj
-add mpg_win.obj
-exit

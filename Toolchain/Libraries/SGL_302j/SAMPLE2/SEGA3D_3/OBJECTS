@@ -1,6 +1,0 @@
-# source_program
-SRCS = main.c polygon.c pad.c texture.c scroll.c action.c
-
-SYSOBJS = $(CMNDIR)/cinit.o $(SGLLDR)/sglarea.o
-OBJS = $(SRCS:.c=.o)
-LIBS = -lsgl

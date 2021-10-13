@@ -1,5 +1,0 @@
-# source_program
-SRCS = main.c polygon.c workarea.c
-
-OBJS = $(CMNDIR)/cinit.o $(SRCS:.c=.o)
-LIBS = -lsgl

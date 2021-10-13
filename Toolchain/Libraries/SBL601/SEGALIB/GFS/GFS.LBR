@@ -1,9 +1,0 @@
-create sega_gfs.lib
-add gfs.obj
-add gfs_dir.obj
-add gfs_buf.obj
-add gfs_trn.obj
-add gfs_cdf.obj
-add gfs_cdb.obj
-add gfs_cdc.obj
-exit

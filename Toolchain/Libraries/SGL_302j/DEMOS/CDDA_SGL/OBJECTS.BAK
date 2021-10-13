@@ -1,6 +1,0 @@
-# source_program
-SRCS = src/main.c gfxsrc/car.c
-
-SYSOBJS = $(CMNDIR)/cinit.o $(SGLLDR)/sglarea.o
-OBJS = $(SRCS:.c=.o)
-LIBS = -lsgl

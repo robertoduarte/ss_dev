@@ -1,3 +1,0 @@
-create  sega_dsp.lib
-add	dsp_ctrl.obj
-exit

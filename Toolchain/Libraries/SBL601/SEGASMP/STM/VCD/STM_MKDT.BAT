@@ -1,9 +1,0 @@
-smp_mkdt dummy.dat 2048
-smp_mkdt smp_stm.fn1 204800
-smp_mkdt smp_stm.fn2 409600
-smp_mkdt smp_stm.fn3 819200
-smp_mkdt smp_stm.1st 102400
-smp_mkdt smp_stm.2nd 102400
-smp_mkdt smp_stm.3rd 102400
-smp_mkdt smp_stm.4th 102400
-smp_mkdt smp_stm.5th 102400

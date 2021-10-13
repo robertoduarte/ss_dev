@@ -1,8 +1,0 @@
-# source_program
-SRCS =	main.c list.c mem_mgr.c vector.c tree.c ailand.c actor.c		\
-	ai.c aictrl.c satrend.c demo.c aisaucer.c saturn.c texture.c	\
-	collide.c aitarget.c
-
-
-OBJS = $(CMNDIR)/cinit.o $(SRCS:.c=.o)
-LIBS = $(SGLLDR)/libsgl.a $(SBLLDR)/sega_per.a $(GCCLDR)/libgcc.a $(GCCLDR)/libc.a $(GCCLDR)/libgcc.a $(GCCLDR)/libm.a $(GCCLDR)/libgcc.a 

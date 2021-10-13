@@ -1,6 +1,0 @@
-# source_program
-SRCS = main.c polygon.c
-
-SYSOBJS = $(CMNDIR)/cinit.o $(SGLLDR)/sglarea.o
-OBJS = $(SRCS:.c=.o)
-LIBS = $(SGLLDR)/sega_sys.a -lcd -lsgl

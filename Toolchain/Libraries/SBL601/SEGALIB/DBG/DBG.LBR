@@ -1,5 +1,0 @@
-create  sega_dbg.lib
-add     dbg_disp.obj
-add     dbg_moni.obj
-add     dbg_intr.obj
-exit
