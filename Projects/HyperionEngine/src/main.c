@@ -16,7 +16,7 @@ void user_init(void)
     vdp2_scrn_back_screen_color_set(VDP2_VRAM_ADDR(3, 0x01FFFE),
                                     COLOR_RGB1555(1, 0, 3, 15));
 
-    vdp_sync_vblank_out_set(_vblank_out_handler);
+    vdp_sync_vblank_out_set(_vblank_out_handler, NULL);
 
     cpu_intc_mask_set(0);
 
@@ -27,7 +27,6 @@ int main(void)
 {
     dbgio_dev_default_init(DBGIO_DEV_VDP2_ASYNC);
     dbgio_dev_font_load();
-    dbgio_dev_font_load_wait();
 
     ECS_Init();
     ECS_Get_Motion(ECS_CreateEntity(CId_Motion))->acceleration.x = 10;
@@ -62,7 +61,8 @@ int main(void)
         }));
         
     dbgio_flush();
-    vdp_sync();
+    vdp2_sync();
+    vdp2_sync_wait();
 
     return 1;
 }
