@@ -1,3 +1,8 @@
 build/
 *.iso
 *.cue
+Toolchain/Compiler/sh2eb-elf/sh2eb-elf/include/
+Toolchain/Compiler/sh2eb-elf/sh2eb-elf/lib/
+Emulators/mednafen/b/
+Emulators/mednafen/sav/
+Emulators/mednafen/mpr-17933.bin

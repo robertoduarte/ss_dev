@@ -1,3 +1,677 @@
+-- 1.29.0: --
+
+January 12, 2022:
+	PCE, PCE-Fast: Initialize VCE color table memory at power-on to roughly(without probabilistic bit randomness) match test results from a
+	PC Engine Duo instead of just zeroing it; fixes unreadable letters in the password entry screen of "Order of the Griffon".
+
+	Added test for potential splatting-related bug in qemu's PPC64 VSX "xscvdpsp" instruction emulation that messes up OwlResampler when compiled with gcc.
+
+January 11, 2022:
+	PCE: Added patch in the "notes" subdir for extending the upper range of the "pce.slend" setting to 241(not applied in Mednafen due to increasing
+	the probability of an extra 8ms of input lag with some games).
+
+January 9, 2022:
+	VB: Fixed a couple inaccuracies in the VSU modulation emulation, fixing a few sound effects in "Virtual Boy Wario Land".
+
+January 7, 2022:
+	SNES-Faust: Fixed S-DSP pitch modulation being half as strong as it should be.
+
+December 29, 2021:
+	SNES: Fixed wrong compile-time endian detection on little-endian PPC64.
+
+December 24, 2021:
+	PCE: Fixed incomplete initialization of the VDC BG tile cache; fixes glitches after the boss explodes in "R-Type" under certain
+	conditions(more likely to occur in forks of Mednafen).
+
+December 20, 2021:
+	NES: Added missing mapper 90 variables to save states.
+
+December 5, 2021:
+	Placing a "%d" or "%b" specifier at the beginning of a filesys.fname_* setting format string will now cause the generated path to be used as-is, rather
+	than potentially being prefixed with the corresponding filesys.path_* setting or the Mednafen base directory.  Fixes a regression introduced in
+	1.28.0-UNSTABLE that caused IPS patch files to be loaded from the wrong location when the user had loaded a game via a relative path.
+
+November 29, 2021:
+	Added support for playing the SCSP-generated music from most Sega Model 2A, 2B, 2C, and 3 games, via the new experimental "sasplay" module.
+
+November 15, 2021:
+	SNES: Fixed compilation error for little-endian PPC64 with LTO enabled.
+
+	Fixed compilation error after running configure with --disable-fancy-scalers.
+
+-- 1.28.0-UNSTABLE: --
+
+November 7, 2021:
+	SNES: Updated libco to latest.
+
+November 5, 2021:
+	Paths included in informational and error messages are now outputted with ASCII control characters non-reversibly transformed by inverting bit 6
+	and prefixing with a "^" character.
+
+	When loading a game from a ZIP archive, the path used within the ZIP archive is now outputted in an informational message.
+
+	The paths of CD images specified within M3U files are now outputted in informational messages as they are loaded.
+
+November 3, 2021:
+	Added support for loading CD images from ZIP archives when the "cd.image_memcache" setting is set to "1".
+
+	Implemented an M3U recursion limit of 9, adjustable by the new setting "cd.m3u.recursion_limit".
+
+	Implemented a limit of 25 on the total number of CD images loaded while processing M3U files, adjustable via the new setting "cd.m3u.disc_limit".
+
+	Implemented a size sanity limit of 65535 bytes for PSF tag source data.
+
+October 28, 2021:
+	Changed handling of single gzip/Zstd compressed files to treat the .gz/.zst suffix as the second part of the extension, instead of the whole extension,
+	with respect to Mednafen data file path construction and naming.
+
+	Added undocumented setting "filesys.old_gz_naming", that can be set to "1" by the user to restore the old data file naming behavior for gzip-compressed files for
+	backwards-compatibility reasons.
+
+October 27, 2021:
+	Added Zstandard decompression support to game loading, with both naked files("zst" extension) and ZIP archives.
+
+October 21, 2021:
+	SS: Don't send CD data sectors to partition buffers when the disc hasn't gone through the authentication process.
+
+October 19, 2021:
+	SS: Moved some CDB CD reading variable initialization into StartSeek() to reduce the amount of redundant error-prone code.
+
+	SS: Don't erroneously signal CDB EHST HIRQ when ending a TOC or file info data transfer.
+
+October 18, 2021:
+	SS: Implemented more aspects of the CD block disc authentication process.  Fixes abort to CD player screen when trying to start a game demo in
+	Gremlin Interactive's "Demo Disc".
+
+	SS: fixed a few issues with CD block directory reading and handling of directories with more than 256 entries.
+
+October 6, 2021:
+	SS: Added commented-out partial fix for end-of-level hang in "Loaded".
+
+	SS: Changed midsync event time initializing to use SS_SetEventNT() instead of doing it directly(and breaking when the midsync event isn't the last enumerated
+	event)
+
+	SS: Added a dev build event order sanity check to ForceEventUpdates().
+
+October 5, 2021:
+	SS: Implemented a delay when the SMPC joystick read process is aborted due to time over or due to the Break bit being 1, per tests on a SS, and fixed
+	timing granularity issues with the processing of the Break/Continue bits; fixes unresponsive input in "Discworld", and abort to CD player screen in the
+	USA and Europe releases of "Primal Rage".
+
+October 1, 2021:
+	SS: Added "Senkutsu Katsuryu Taisen: Chaos Seed" to the internal database of games to enable full cache emulation with, to fix the inability to skip
+	the intro FMV.
+
+	An empty string for a setting that expects a numeric value is now rejected instead of being treated as 0.
+
+September 29, 2021:
+	Misformatted setting file lines are now rejected with an error instead of silently ignored.
+
+September 27, 2021:
+	SS: Fixed a mistake in an invocation of the SH-2 emulation Branch() macro that caused an expensive debugger function to be called even when the debugger was
+	not active, hurting performance.
+
+September 26, 2021:
+	Settings file parsing error messages now include line numbers when relevant.
+
+	SS: Removed MDFN_COLD from SH7095::SetDebugMode(), as it causes newer gcc's optimizer to make bad assumptions and place the main CPU execution loop in the
+	cold text section.
+
+September 25, 2021:
+	Providing an empty string for a setting that expects an integer or real number will now result in an error, instead of being treated as 0.
+
+	Modified the settings code to use the new string<->integer conversion functions, for stricter parsing(nonsense like "0x -0x1" is no longer allowed)
+	and better error messages in certain cases.
+
+	Added new string<->integer utility conversion functions.
+
+September 21, 2021:
+	SS: Implemented a simple optimization in the VDP1 drawing code, reducing executable size by about 900KB on x86_64 Linux.
+
+	Added MDFNI_SaveSettingsCompact(), to be used in the future for settings backups.
+
+September 14, 2021:
+	Added tests for clamp_to_u8(), clamp_to_u16(), and MDFN_abs64().
+
+	Added the MDFN_abs64() function.
+
+	Rewrote the sign_*_to_s*() macros and clamp_to_u8/u16() functions.
+
+September 13, 2021:
+	Added MemoryStream::get_line_mem() function to allow for more efficient parsing of large line-delimited text files.
+
+	Added MDFN_memdupstr() function, stuck the guts of the settings handling code in a class, and reworked the settings file loading code
+	to be a bit faster.
+
+	Added inline FileStream::put_char() function, and optimized the settings file saving code.
+
+September 10, 2021:
+	Reworked how setting generation at startup works a bit to reduce the number of memory allocations, and added setting flags to mark strings
+	that should be free()'d when MDFNI_Kill()->MDFN_KillSettings() is called at exit, to reduce noise when checking for memory leaks.
+
+	Fixed currently-benign memory leak in the FPS display code.
+
+	SexyAL: Fixed memory leak in dummy sound driver.
+
+September 9, 2021:
+	SexyAL: Modified the ALSA driver code to not use a VLA for the noninterleaved multichannel support.
+
+September 8, 2021:
+	Fixed an instance of undefined behavior in SwiftResampler.
+
+September 7, 2021:
+	Added a couple more compiler bug/sanity tests.
+
+September 6, 2021:
+	Rewrote some of the small inline utility functions in CDUtility.h, and added tests for the rewritten utility functions to
+	ensure correctness and stable semantics.
+
+	Added test for gcc bug #97760.
+
+August 28, 2021:
+	Added crc32_cdrom_edc() function(to be used later), reimplemented crc16_ccitt() with the new generic fast CRC calculation template function,
+	and added a few CRC calculation sanity tests run at startup.
+
+August 24, 2021:
+	SS: Fixed an off-by-150 bug in the CDB code, present since the first release with Saturn emulation, that caused the read hinting at the start of emulated
+	seeks to not have the desired effect.
+
+	SS: Implemented emulation of the CDB Scan command.
+
+August 16, 2021:
+	SS: Optimized the SCSP sound CPU interrupt level calculation code.
+
+August 14, 2021:
+	SS: Fixed a few inaccuracies in the relative timing of SCSP timer increments across different prescaler rates, per tests on a SS.
+
+August 13, 2021:
+	SS: Added emulation of the SCSP MIDI interface output logic and approximate timing.
+
+August 10, 2021:
+	SS: Fixed a few inaccuracies in the relative timing of SCSP EG level updates across different rates, per tests on a SS.
+
+July 21, 2021:
+	Typedef signed char and unsigned char to int8 and uint8 respectively, instead of relying on int8_t and uint8_t, in case they're ever
+	implemented without the aliasing properties of char types, which Mednafen code relies on.
+
+July 17, 2021:
+	SS: When a CDB seek is started very shortly after another seek, don't elide the previous seek's startup side effects; fixes the CD audio player in
+	the North America/Europe BIOS, which broke with 1.26.0-UNSTABLE.
+
+	Compile with -Wstack-usage=32768 to check for excessive stack usage in functions.
+
+July 15, 2021:
+	VB: Added "left" and "right" options to the "vb.3dmode" setting, to allow for more easily showing only the left or right view.
+
+July 11, 2021:
+	Added setting "video.cursorvis", to control the window manager default cursor visibility.
+
+June 26, 2021:
+	Use AtomicFIFO for the main thread->emulation thread event queue, and fixed related excessive(100+ KB) stack usage in a couple functions.
+
+June 20, 2021:
+	SS: Added "Saturn Super Vol. 2" to the internal database of games to use the data cache read bypass kludge with, to fix the flickering title
+	screen in the "Golden Axe: The Duel" demo.
+
+	SS: The VA0/VA1 motherboard's memory mapping behavior for Low-RAM is now emulated instead of VA2's, to fix a crash in "Myst" in the generator room.
+
+	SS: The emulated reset button mapped to Mednafen's reset command key(F10 default) will now respect the "ckdelay" setting.
+
+	Added a quick configure script test to check if disabling PIC/PIE breaks the compiler/linker, and if it does, PIC/PIE is not disabled,
+	to prevent a link-time failure on Haiku.
+
+June 19, 2021:
+	Use AC_TRY_LINK() instead of AC_TRY_COMPILE() in the configure script test for AVX inline assembly availability, to handle toolchain setups where
+	the assembler is run at link time instead of compile time.
+
+	Added setting "video.force_bbclear", default value of "0", which when set to "1" will force clearing of the backbuffer before drawing every frame.
+
+-- 1.27.1: --
+
+June 4, 2021:
+	SS: Added "Herc's Adventures" to the internal database of games to enable SH-2 read/write VDP1 draw slowdown with, to fix a few graphical glitches.
+
+May 28, 2021:
+	Error out in the configure script when iconv is not found, rather than later during compilation.
+
+May 26, 2021:
+	SNES: Applied untested fix for an issue with libco on PPC64 ELFv2 systems.
+
+May 18, 2021:
+	SS: Corrected a few inaccuracies in the handling of SCSP EG phase transitions, per tests on a SS.
+
+May 12, 2021:
+	Renamed intl/VERSION to intl/VERSION.txt to prevent a conflict with a system C++ header file on case-insensitive filesystems(problem introduced in 1.27.0-UNSTABLE).
+
+April 29, 2021:
+	Demo: Use #pragma(pack) instead of __attribute__((packed)), to work around a bug/design flaw in older versions of gcc that caused the demo module's save
+	state test to fail when compiled for a Windows target(where ms_struct is the default structure layout).
+
+April 28, 2021:
+	Increased verbosity of bad Q subchannel data error messages in the CloneCD CD image loader.
+
+	Fixed crashing with non-glibc iconv implementations when the user specifies an unsupported character encoding in the debugger's memory editor.
+
+-- 1.27.0-UNSTABLE: --
+
+March 29, 2021:
+	SS: Corrected threshold and semantics of envelope level-based blocking of slots' access to SCSP RAM, per tests on a SS.
+
+March 13, 2021:
+	SS: Fixed a big-endian target incompatibility in the SCSP emulation code.
+
+	Use ternary operator instead of std::min in endian.h, as doing so somehow causes gcc to produce smaller and faster machine code.
+
+	PSX: Removed incorrect filtering of CD-XA ADPCM sectors based on the file and channel numbers of the first ADPCM sector played,
+	originally added in 0.9.24-WIP to fix the speech playback in "Yarudora Series Vol.1: Double Cast", but made unnecessary by later sector buffering
+	accuracy improvements; fixes missing audio in the FMVs of "Blue's Clues: Blue's Big Musical".
+
+March 12, 2021:
+	PSX: Adjusted which sectors are processed and reflected by GetLocP after SeekP completes to only those before the seek target(which is slightly different
+	than SeekL behavior, which also includes the target and a few after, at least with a typical PS1 CD); fixes hangs at different points in
+	some versions of "Tomb Raider", a problem initially fixed in 0.9.38.3, but regressed in 1.22.0-UNSTABLE.
+
+March 9, 2021:
+	VB: Block writes to VSU registers and memories when A0 and A1 are not both 0, per tip from "enthusi".
+
+March 7, 2021:
+	SS: Implemented incomplete(regarding stack frame data) M68K address error handling, and implemented M68K halting when accessing addresses where any of
+	A21-A23 is 1.  Fixes major audio distortion during boss battles in "Lunar: Silver Star Story" due to SCSP DSP register corruption that occurred when
+	the game crashed the sound CPU during bootup.
+
+	SNES-Faust: Don't call event handlers in read/write handlers if the read/write is from DMA/HDMA, to avoid problematic recursion and related issues.
+
+	SNES-Faust: Fixed clearing of pending SuperFX IRQ on reset/power; fixes hang/crash in "Stunt Race FX" upon performing a virtual power toggle after the
+	game boots up.
+
+March 4, 2021:
+	SNES-Faust: Added commented-out fix for "Speedy Gonzales", to enable later.
+
+	SNES-Faust: Added detection heuristics and support for mapping LoROM RAM into $8000-$FFFF, to fix save game saving/loading in "Light Fantasy",
+	"PGA Tour Golf", and "Ys III".
+
+February 23, 2021:
+	SNES-Faust: Added commented-out fix for "Kishin Douji Zenki Tenchi Meidou", to enable on a per-game basis in the future due to a minor negative
+	performance impact.
+
+February 19, 2021:
+	SNES-Faust: Reworked cart header detection and cart type detection logic a bit, fixes "Yuuyu no Quiz de Go! Go!".
+
+February 17, 2021:
+	SNES-Faust: Return open bus in bits 4 through 6 for reads from $4210; fixes early hang in "Super Professional Baseball II".
+
+	SNES-Faust: Return open bus in bits 0 through 6 for reads from $4211; fixes early hang in "Yuujin Janjuu Gakuen 2".
+
+	SNES-Faust: Added support for special ROM mapping required by "Derby Stallion 96" and "Sound Novel Tsukuru".
+
+February 16, 2021:
+	SNES-Faust: Changed power-on APU RAM initialization pattern; fixes hangs in "Ihatov Monogatari" and "Kyuuyaku Megami Tensei".
+
+February 3, 2021:
+	Fixed an off-by-1 error in the multithreaded CD reader that would cause a hang if a read was attempted for the sector at LBA 449849.
+
+January 31, 2021:
+	Fixed a design flaw that caused the creation of empty backup counter files when automatically attempting to back up a nonvolatile memory save file that
+	does not exist.
+
+January 28, 2021:
+	SNES-Faust: Disabled the PPU brightness modulation sanity check when compiling a non-dev build, and fixed array misalignment that was causing the code to
+	segfault when compiled with stack smashing protection enabled on newer gcc.
+
+January 25, 2021:
+	Resync console scroll to the last drawn line of the target unwrapped line in the scrollback buffer, not the first, otherwise the console will erroneously
+	scroll up on windowed<->fullscreen transitions when the last line is wider than the console viewport, confusing the user.
+
+January 24, 2021:
+	Fixed rendering of Unicode combining characters, fixed handling of combining characters when entering text in the console and debugger prompt, added support
+	for pasting into the debugger prompt, cleaned up rendering of the debugger prompt box, implemented automatic scrolling when entering text in the debugger prompt,
+	made console text entry automatic scrolling bidirectional, changed console scrollback buffer beginning/end scroll key combos to CTRL+Home/CTRL+End instead of
+	SHIFT+Home and SHIFT+End, added support for clearing multiple characters at once in the console and debugger prompts by pressing CTRL with Backspace/Delete.
+
+January 19, 2021:
+	Added support for reinitializing game controllers while Mednafen is running by pressing Shift+F3.
+
+	Aborting the input configuration process for a virtual device will now discard the new configuration data, instead of combining it with the old configuration data
+	for the not-configured buttons as previously done.
+
+January 12, 2021:
+	Added "upper_center" and "center" options to the "fps.position" setting.
+
+January 7, 2021:
+	WonderSwan: Fixed RTC month field being incorrectly treated as 0-based instead of 1-based.
+
+	Give the user feedback when they try to toggle a graphics layer that doesn't exist or isn't toggleable.
+
+	NGP: Sanitize some sound-related variables on state load to prevent potential memory corruption.
+
+January 6, 2021:
+	SMS: Sanitize more variables on state load.
+
+	NES: Fixed a few instances of missing variable initialization on poweron.
+
+January 5, 2021:
+	GB: Sanitize a few variables on state load.
+
+January 4, 2021:
+	Automatically create any missing parent directories to the Mednafen base directory on startup.
+
+	Create each Mednafen data directory(e.g. firmware, sav, snaps, etc.) at startup based on the current value of the filesys.path_* setting instead of based on
+	its default value, unless the corresponding filesys.fname_* setting is not set to its default value, in which case the directory is not created.
+
+January 2, 2021:
+	NES: Sanitize more sound emulation variables on state load.
+
+January 1, 2021:
+	NES: Added missing VRC6 variables to save states.
+
+	GBA: Backup save game memory files on game load
+
+	SMS: Fixed a bug that could cause the emulated reset button state to get stuck as pressed if a hard reset occurred within about 20 frames after a soft reset.
+
+December 31, 2020:
+	GBA: Added a few missing variables to save states.
+
+	GB: Added a few missing variables to save states.
+
+	PCE-Fast: Renamed encapsulating namespace from "PCE_Fast" to "MDFN_IEN_PCE_FAST", to match the convention of all other emulation modules.
+
+	Made Emulated* MDFNGI objects constant, copied over to a dynamically-allocated MDFNGI assigned to MDFNGameInfo on game load.
+
+December 30, 2020:
+	Dynamically-allocate QTRecord LZO work memory.
+
+	Apple2: Dynamically allocate state helper floppy disk object.
+
+	PCE-Fast: Fixed massive overallocation of memory for the VDC background tile cache.
+
+December 29, 2020:
+	Optimized MDFN_FastArraySet() for non-ideal counts.
+
+	Utilized MDFN_HIDE in more places.
+
+December 28, 2020:
+	Removed incomplete YCbCr MDFN_Surface support unused since 0.9.x, and likely to remain unused.
+
+	Added support for 16bpp graphics output to core Mednafen code and the majority of emulation modules(excluding "pce", "pcfx", "psx", "snes", "ss", and "vb"),
+	and added setting "video.glformat" to allow for using this support with OpenGL.
+
+December 25, 2020:
+	PSX: Initialize some missed state on reset/poweron.
+
+December 24, 2020:
+	Completely rewrote the save state preview image resizing code, so that now it's only somewhat wrong, instead of mostly wrong as before.
+
+December 22, 2020:
+	GB: Use fastcall on 32-bit x86, for a tiny performance boost.
+
+	Use MDFN_RESTRICT macro instead of __restrict__.
+
+	NGP: Use fastcall calling convention on 32-bit x86 to boost performance a little bit.
+
+	Apple2: Disabled some expensive asserts when compiling without MDFN_ENABLE_DEV_BUILD defined.
+
+December 20, 2020:
+	Birthed pernicious human date/time calculation functions to replace the usage of _gmtime64() and _localtime64() on Windows, for Windows 9x compatibility.
+
+December 14, 2020:
+	Set icon using Win32 API functions on Windows instead of relying on SDL_SetWindowIcon(), and use alternate, smaller(and boxier!) window icons when running
+	on Windows 9x so the poor beetle doesn't look splatted.
+
+December 12, 2020:
+	Don't call SetConsoleOutputCP() on startup on Windows, as it messes up the cmd.exe console on Windows 7(at least) even when Mednafen has exited,
+	and for Windows 9x compatibility.
+
+	Pass a pointer to a dummy variable, instead of NULL, as the output thread identifier pointer argument to _beginthreadex(), for Windows 9x compatibility.
+
+	Allow for the absence of GetConsoleWindow() on Windows, for Windows 9x compatibility.
+
+	Automatically attempt to lock file offset 0xFFFFFFFF if the attempt to lock offset 0xFFFFFFFFFFFFFFFF fails with an invalid parameter error on Windows,
+	for Windows 9x compatibility.
+
+	Use SetFilePointer(), GetFileSize(), and LockFile() instead of SetFilePointerEx(), GetFileSizeEx(), and LockFileEx() on Windows, for Windows 9x compatibility.
+
+December 10, 2020:
+	Dropped usage of and dependency on libsndfile, and added a direct dependency on libFLAC. The only CD image audio file formats/encodings other than raw supported
+	now are: FLAC, Ogg Vorbis, Musepack, and uncompressed PCM in AIFF/AIFC, AU/SND, W64, and WAV.
+
+	Require the first four bytes of the tentative Ogg Vorbis file to be "OggS" before calling ov_open_callbacks(), to prevent unnecessary excessive reads when trying
+	to determine the type of the audio file, and to avoid treating a non-Vorbis file as Vorbis under certain conditions.
+
+	Open the main settings file for both reading+writing on startup instead of just reading, to allow file locking to work over NFS, and as a quick check to make
+	sure the file is writeable before it's too late upon exit.
+
+December 1, 2020:
+	Made various changes to the Windows support code, to allow for compiling a non-Unicode Windows build.
+
+November 24, 2020:
+	Implemented stream buffering in the FileStream class, now using read(), write(), etc. instead of fread(), fwrite(), etc.
+
+-- 1.26.1: --
+
+November 8, 2020:
+	PSX: Fixed various inaccuracies in the SPU reverb emulation code.
+
+	PSX: Fixed quasi-benign dereferencing of a null pointer in the GPU code when playing a PSF.
+
+November 3, 2020:
+	SNES-Faust: Fixed a crash when an MSU1-enabled game tried to play MSU1 audio but no audio tracks existed.
+
+	SNES-Faust: Only create MSU1 multithreaded audio reader object if at least one audio track is available.
+
+November 2, 2020:
+	SNES-Faust: Fixed a design flaw in the MSU1 audio track loading code that broke loading of audio tracks when the game's filename included a "%" character.
+
+November 1, 2020:
+	SS: Fixed compilation errors after configuring with --disable-debugger.
+
+	SS: Fixed compilation errors with clang.
+
+-- 1.26.0-UNSTABLE: --
+
+October 26, 2020:
+	SS: Added "The Lost World: Jurassic Park" to the internal database of games to enable full cache emulation with, to fix most rock face graphical glitches.
+
+October 25, 2020:
+	SS: Added "Corpse Killer" to the internal database of games to enable full cache emulation with, to fix the glitchy rotation-zoom effect.
+
+October 24, 2020:
+	SS: Fixed major bug, existing since Saturn save state support was added, in the SCU save state code that caused wrong state to be saved(and later restored)
+	when an SCU DMA level in indirect mode was active.
+
+	SS: Added "Kaitei Daisensou"/"In the Hunt" to the internal database of games to enable SH-2 read/write VDP1 draw slowdown with, to fix FMV tearing.
+
+	SS: Added "Zero Divide" to the internal database of games to use the data cache read bypass kludge with, to fix a graphical glitch with character portraits.
+
+October 23, 2020:
+	SS: Made changes to prevent the CDB emulation from reporting PLAY status until the second sector is read after a seek completes; fixes game-breaking
+	problems in "Break Point", "DJ Wars", "Hop Step Idol", and "Tennis Arena".
+
+	SS: Fixed inaccuracies with how CDB playback buffer full auto-pause and resume works; fixes occasional hangs of finite duration in "Dragon Force II" and
+	"World Cup France '98: Road to Win" when trying to skip FMVs.
+
+October 22, 2020:
+	SS: Added "Mujintou Monogatari R: Futari no Love Love Island" to the internal database of games to use the data cache read bypass kludge with,
+	to fix glitches when character portrait graphics change.
+
+October 21, 2020:
+	SS: Added "Doraemon: Nobita to Fukkatsu no Hoshi" to the internal database of games to use the data cache read bypass kludge with,
+	to fix the blank Game Over screen.
+
+	SS: When a CDB 'Get CD Device Connection' command is issued very shortly after a 'Reset Selector' command, the 'Get CD Device Connection' command
+	will now be executed before the resetting effects of the 'Reset Selector' command occur.  Fixes startup hang in the USA version of "Independence Day".
+
+October 20, 2020:
+	SS: Slowed down emulated VDP1 pixel plotting performance by a bit less than 20%(10% in 8bpp mode); fixes prematurely cut-off voices in "Paneltia Story",
+	and reduces tearing in "Yu-No".
+
+October 18, 2020:
+	SS: Added "3D Baseball", "The Crow", "NBA Action", "NFL Quarterback Club 96", "Solar Eclipse", and "Titan Wars" to the internal database of games to
+	enable full cache emulation with, to fix minor FMV glitches.
+
+	SS: Added "Thunder Force Gold Pack 1" to the internal database of games to enable full cache emulation with, to fix the glitchy ship sprite in the ending
+	of "Thunder Force III".
+
+	SS: Added the Europe releases of "Virtua Cop" and "Virtua Cop 2" to the internal database of games to enable full cache emulation with, to fix
+	startup hangs.
+
+	SS: Added "Yu-No" to the internal database of games to enable full cache emulation with, to fix the problem of the intro FMV ending too soon.
+
+	SS: Added "Horror Tour" to the internal database of games to enable full cache emulation with, to fix graphical glitches on the save and load screens.
+
+	SS: Added "Falcom Classics II" to the internal database of games to enable SH-2 read/write VDP1 draw slowdown with, to fix tearing in the intro FMV of "Ys II".
+
+	SS: Added "Tokimeki Memorial: Forever With You" to the internal database of games to enable SH-2 read/write VDP1 draw slowdown with, to fix the glitchy
+	arm sprite in the Konami intro.
+
+	SS: Added "Virtua Fighter Kids" to the internal database of games to use the data cache read bypass kludge with, to fix a major FMV glitch.
+
+October 17, 2020:
+	SS: Made a very small SSE2-based optimization to the cache tag evaluation code.
+
+October 16, 2020:
+	SS: Removed incorrect write mirrors for the SH-2 CCR register; fixes FMV glitches in "NFL Quarterback Club 97".
+
+	SS: When full cache emulation is enabled(e.g. via database), alternate slave CPU and bus sharing emulation code will be used, to reduce
+	disproportionate sharing of the bus(it's still not perfect, however).
+
+	SS: SH-2 PC-relative MOV.W and MOV.L loads are now correctly treated as instruction fetches instead of data fetches with respect to the
+	OD/ID bits of CCR.
+
+	SS: The SH-2 WB/EX pipeline stall emulation logic is now always enabled, instead of only being enabled in full cache emulation mode as it was previously.
+
+October 12, 2020:
+	SS: Moved SH-2 cache entry invalid bit from bit31 of the internal combined tag variable to bit0, for slightly better code generation.
+
+October 11, 2020:
+	SS: Slave SH-2 on/off is now handled outside of the regular event handling system to prevent a crash under certain conditions.
+
+October 9, 2020:
+	SS: Extended the handling of VDP1 command execution slowdown on SH-2 CPU reads/writes to also include SH-2 DMA accesses.
+
+October 5, 2020:
+	SS: Bumped up minimum seek timing delay, to compensate for upcoming general CPU timing improvements in the games sensitive to seek timing.
+
+October 4, 2020:
+	SS: The SR value loaded with RTE is now properly masked.
+
+October 2, 2020:
+	SS: Allow the SMPC joystick reading process to be aborted earlier on, while still waiting for vblank to end; fixes another hang in "QuoVadis".
+
+	SS: Added "Wolf Fang SS: Kuuga 2001" to the internal database of games to enable SH-2 CPU read/write VDP1 draw slowdown with, to
+	fix glitchy graphics in the player's robot.
+
+	SS: Added "Mahjong Doukyuusei Special" to the internal database of games to use the data cache read bypass kludge with, to fix the missing
+	background graphics layer on disc 2.
+
+	SS: Added "Kidou Senkan Nadesico: Yappari Saigo wa Ai ga Katsu" to the internal database of games to use full cache emulation with, to fix a hang.
+
+	SS: Implemented emulation of the timing effects of the B-bus write buffer on SH-2 CPU writes; fixes hang in "QuoVadis".
+
+September 4, 2020:
+	SNES-Faust: Fixed bug in the multithreaded PPU renderer that could cause massive graphics corruption when a game interleaves reads and writes to
+	VRAM without resetting the VRAM address, like in "NBA Pro Basketball: Bulls vs Blazers".
+
+August 28, 2020:
+	SS: Delay CDB status position info update by about 44us after a seek request(via Play command, or otherwise); fixes missing graphics in
+	the intro of "Magical Drop 3".
+
+-- 1.25.0-UNSTABLE: --
+
+June 27, 2020:
+	SS: Implemented more accurate emulation of VDP1 drawing of excessively-large primitives.
+	It's not perfect, there's still something weird going on with antialiasing, and the effects on gradient shading
+	and texturing are not fully emulated, but it's enough to fix missing graphics in the attract mode of "Virtua Cop",
+	and a hang after defeating the final boss in "Rayman".
+
+	SS: Fixed an off-by-1 inaccuracy in the edge stepping code for sprites and polygons, with minor visible effects in
+	non-rectangular sprites/polygons.
+
+June 26, 2020:
+	SS, MD: Fixed/Implemented M68K MULU and MULS instruction timing.
+
+June 24, 2020:
+	SS: Added wait states to M68K writes; fixes hang in "Lunar" after the Meribia pub singer's singing, that was caused by a timer being
+	reloaded too quickly in an interrupt handler.
+
+June 13, 2020:
+	SS: Allow VDP1 primitive drawing code to be suspended(and later resumed) mid-drawing when it's consumed too much emulated time; fixes excessive CPU usage during
+	the FMV in "Dark Seed II".
+
+June 4, 2020:
+	SS: Added "Senken Kigyouden", "Xian Jian Qi Xia Zhuan", "Virtua Fighter", and "Virtua Fighter Remix" to the internal database of games to
+	enable full cache emulation with, to fix graphical glitches.
+
+May 17, 2020:
+	SS: Implemented more complete emulation of SCSP's buggy(inter-slot contamination) linear interpolation on FM carrier slots.
+
+-- 1.24.3: --
+
+May 1, 2020:
+	SS: Implemented more complete emulation of the SCSP short waveform mode, after running further tests; fixes excessive distortion in a
+	sound effect in "Sega Ages: OutRun", a regression introduced in Mednafen 1.24.2.
+
+-- 1.24.2: --
+
+April 25, 2020:
+	Fixed broken support for systems without any usable OpenGL implementation available.
+
+April 24, 2020:
+	Apple2:  Adjust disk angle variable upon disk change, partially sanitize the disk angle variable on state load, and print out a debug error
+	message instead of triggering an assert() in the disk reading code, to prevent Mednafen from aborting out in certain circumstances involving disk
+	changing and state loading.
+
+April 21, 2020:
+	Apple2: Added missing keyboard reading variable to save states.
+
+April 7, 2020:
+	SS: Fixed a few inaccuracies with the SCSP waveform loop handling.
+
+April 6, 2020:
+	SS: Added emulation of SCSP slot short waveform mode bit.
+
+April 5, 2020:
+	SS: Implemented the buggy linear interpolation that occurs on the SCSP when FM is used.
+
+April 3, 2020:
+	SS: Added emulation of SCSP slot EG bypass bit.
+
+	SS: Implemented SCSP register mirroring.
+
+-- 1.24.1: --
+
+February 27, 2020:
+	NES: Changed some macros in the CPU emulation code to not have leading underscores.
+
+February 25, 2020:
+	Use sem_clockwait() or sem_clockwait_np() when available, instead of sem_timedwait().
+
+	NES: Don't memset() MDFN_PixelFormat object.
+
+February 23, 2020:
+	Fixed build errors on FreeBSD relating to the multithreading code.
+
+February 22, 2020:
+	Fixed broken semaphore emulation code used on non-Windows platforms when sem_timedwait() is not available(1.24.0-UNSTABLE regression).
+
+February 15, 2020:
+	Altered Linux joystick API detection in the configure script, to avoid compiling with Linux joystick support in lieu of SDL joystick support on *BSD systems
+	with Linux header files installed.
+
+February 11, 2020:
+	Fixed AltiVec-related build errors on 64-bit POWER/PPC.
+
+	SS: Added kludges to fix NBG2/NBG3 background layer offset problems in "Fighters Megamix".
+
+February 2, 2020:
+	SNES-Faust: Replaced assert() in the DSP-1 emulation code with a SNES_DBG()
+
+January 23, 2020:
+	PSX: Implemented a partial fix for missing notes/instruments in the music of "Dragon Ball GT: Final Bout".
+
+December 30, 2019:
+	PSX: Don't ignore the sample loop address set via ADPCM header when the loop address register was written only before the end of voice on startup delay.
+	Fixes sound effect glitches in "Re-Loaded: The Hardcore Sequel".
+
 -- 1.24.0-UNSTABLE: --
 
 December 19, 2019:
