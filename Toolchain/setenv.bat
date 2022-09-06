@@ -14,7 +14,7 @@ SET YAUL_OPTION_DEV_CARTRIDGE=0
 SET YAUL_OPTION_MALLOC_IMPL=tlsf
 SET YAUL_OPTION_SPIN_ON_ABORT=1
 SET YAUL_OPTION_BUILD_GDB=0
-SET YAUL_OPTION_BUILD_ASSERT=0
+SET YAUL_OPTION_BUILD_ASSERT=1
 SET SILENT=1
 SET MAKE_ISO_XORRISO=%TOOLCHAIN_DIR%msys_trimmed/usr/bin/xorriso
 
@@ -22,5 +22,6 @@ IF NOT EXIST %TOOLCHAIN_DIR%Libraries/libyaul/build/libyaul/release/libyaul.a (
   cd %TOOLCHAIN_DIR%Libraries/
   git clone --recurse-submodules https://github.com/ijacquez/libyaul.git
   cd libyaul
+  git checkout 4816a73104b8e5c8a322488f0fc2eabe07ad982a
   make install
 )
