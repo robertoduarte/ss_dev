@@ -1,6 +1,6 @@
 python
 import sys
-sys.path.insert(0, '/home/mrkotfw/x-tools/HOST-x86_64-w64-mingw32/sh2eb-elf/share/gcc-8.4.0/python')
+sys.path.insert(0, '/home/builder/repository/pacman/mingw-w64/yaul-tool-chain/libyaul-build-scripts/opt/tool-chains/sh2eb-elf/share/gcc-11.2.0/python')
 from libstdcxx.v6.printers import register_libstdcxx_printers
 register_libstdcxx_printers (None)
 end
