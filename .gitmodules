@@ -1,3 +1,0 @@
-[submodule "Toolchain/Libraries/libyaul"]
-	path = Toolchain/Libraries/libyaul
-	url = https://github.com/ijacquez/libyaul.git

@@ -1,0 +1,155 @@
+Starting Mednafen 1.29.0
+ Build information:
+   Compiled with gcc 4.9.4
+   Running with MinGW-W64 Runtime 5.0 (alpha - rev. 0) 0000-00-00
+   Compiled against zlib 1.2.8, running with zlib 1.2.8(flags=0x00000065)
+   Compiled against libiconv 15.1, running with libiconv 15.1
+   Compiled against SDL 2.0.8(hg-11835:f622a4457a25), running with SDL 2.0.8(hg-11835:f622a4457a25)
+   Running with libFLAC 1.3.2
+ Base directory: C:\Users\rdduarte\ss_dev-master\Emulators\mednafen
+ Emulation modules: apple2 nes snes gb gba pce lynx md pcfx ngp psx ss ssfplay vb wswan sms gg sasplay snes_faust pce_fast demo cdplay
+ Opening lockfile...
+ Loading settings from "C:\Users\rdduarte\ss_dev-master\Emulators\mednafen\mednafen.cfg"...
+  Loaded 7579 valid settings and 0 unknown settings.
+ Initializing joysticks...
+ Loading "C:\Users\rdduarte\ss_dev-master\Emulators\mednafen\Bug! (US)\Bug! (US).cue"...
+  Loading SBI file "C:\Users\rdduarte\ss_dev-master\Emulators\mednafen\Bug! (US)\Bug! (US).sbi"...
+   Error: Error opening file "C:\Users\rdduarte\ss_dev-master\Emulators\mednafen\Bug! (US)\Bug! (US).sbi": No such file or directory
+
+   CD 1 TOC:
+    Disc Type: 0x00 (CD-DA or Mode 1)
+    First Track:  1
+    Last Track:  73
+    Track  1, MSF: 00:02:00, LBA:      0  DATA
+    Track  2, MSF: 12:41:43, LBA:  56968  AUDIO
+    Track  3, MSF: 14:50:57, LBA:  66657  AUDIO
+    Track  4, MSF: 15:37:64, LBA:  70189  AUDIO
+    Track  5, MSF: 16:23:39, LBA:  73614  AUDIO
+    Track  6, MSF: 17:08:01, LBA:  76951  AUDIO
+    Track  7, MSF: 17:52:02, LBA:  80252  AUDIO
+    Track  8, MSF: 17:59:42, LBA:  80817  AUDIO
+    Track  9, MSF: 18:11:42, LBA:  81717  AUDIO
+    Track 10, MSF: 18:17:42, LBA:  82167  AUDIO
+    Track 11, MSF: 18:23:42, LBA:  82617  AUDIO
+    Track 12, MSF: 18:29:42, LBA:  83067  AUDIO
+    Track 13, MSF: 18:35:42, LBA:  83517  AUDIO
+    Track 14, MSF: 18:41:42, LBA:  83967  AUDIO
+    Track 15, MSF: 18:47:42, LBA:  84417  AUDIO
+    Track 16, MSF: 18:53:42, LBA:  84867  AUDIO
+    Track 17, MSF: 18:59:42, LBA:  85317  AUDIO
+    Track 18, MSF: 19:05:42, LBA:  85767  AUDIO
+    Track 19, MSF: 19:11:42, LBA:  86217  AUDIO
+    Track 20, MSF: 19:17:42, LBA:  86667  AUDIO
+    Track 21, MSF: 19:23:42, LBA:  87117  AUDIO
+    Track 22, MSF: 19:29:42, LBA:  87567  AUDIO
+    Track 23, MSF: 19:35:42, LBA:  88017  AUDIO
+    Track 24, MSF: 19:41:42, LBA:  88467  AUDIO
+    Track 25, MSF: 19:47:42, LBA:  88917  AUDIO
+    Track 26, MSF: 19:53:42, LBA:  89367  AUDIO
+    Track 27, MSF: 19:59:42, LBA:  89817  AUDIO
+    Track 28, MSF: 20:05:42, LBA:  90267  AUDIO
+    Track 29, MSF: 20:11:42, LBA:  90717  AUDIO
+    Track 30, MSF: 20:17:42, LBA:  91167  AUDIO
+    Track 31, MSF: 20:23:42, LBA:  91617  AUDIO
+    Track 32, MSF: 20:29:42, LBA:  92067  AUDIO
+    Track 33, MSF: 20:35:42, LBA:  92517  AUDIO
+    Track 34, MSF: 20:41:45, LBA:  92970  AUDIO
+    Track 35, MSF: 20:47:49, LBA:  93424  AUDIO
+    Track 36, MSF: 20:53:55, LBA:  93880  AUDIO
+    Track 37, MSF: 20:59:55, LBA:  94330  AUDIO
+    Track 38, MSF: 21:05:55, LBA:  94780  AUDIO
+    Track 39, MSF: 21:11:55, LBA:  95230  AUDIO
+    Track 40, MSF: 21:17:55, LBA:  95680  AUDIO
+    Track 41, MSF: 21:23:55, LBA:  96130  AUDIO
+    Track 42, MSF: 21:29:55, LBA:  96580  AUDIO
+    Track 43, MSF: 21:35:55, LBA:  97030  AUDIO
+    Track 44, MSF: 21:41:55, LBA:  97480  AUDIO
+    Track 45, MSF: 21:47:55, LBA:  97930  AUDIO
+    Track 46, MSF: 21:53:55, LBA:  98380  AUDIO
+    Track 47, MSF: 21:59:55, LBA:  98830  AUDIO
+    Track 48, MSF: 22:05:55, LBA:  99280  AUDIO
+    Track 49, MSF: 22:11:55, LBA:  99730  AUDIO
+    Track 50, MSF: 22:17:55, LBA: 100180  AUDIO
+    Track 51, MSF: 22:23:55, LBA: 100630  AUDIO
+    Track 52, MSF: 22:29:55, LBA: 101080  AUDIO
+    Track 53, MSF: 22:35:55, LBA: 101530  AUDIO
+    Track 54, MSF: 22:41:55, LBA: 101980  AUDIO
+    Track 55, MSF: 22:47:55, LBA: 102430  AUDIO
+    Track 56, MSF: 22:53:55, LBA: 102880  AUDIO
+    Track 57, MSF: 22:59:55, LBA: 103330  AUDIO
+    Track 58, MSF: 23:05:55, LBA: 103780  AUDIO
+    Track 59, MSF: 23:11:55, LBA: 104230  AUDIO
+    Track 60, MSF: 23:20:47, LBA: 104897  AUDIO
+    Track 61, MSF: 23:26:47, LBA: 105347  AUDIO
+    Track 62, MSF: 23:32:47, LBA: 105797  AUDIO
+    Track 63, MSF: 23:38:47, LBA: 106247  AUDIO
+    Track 64, MSF: 23:48:22, LBA: 106972  AUDIO
+    Track 65, MSF: 24:00:33, LBA: 107883  AUDIO
+    Track 66, MSF: 24:14:25, LBA: 108925  AUDIO
+    Track 67, MSF: 24:21:17, LBA: 109442  AUDIO
+    Track 68, MSF: 24:32:02, LBA: 110252  AUDIO
+    Track 69, MSF: 24:42:53, LBA: 111053  AUDIO
+    Track 70, MSF: 24:48:53, LBA: 111503  AUDIO
+    Track 71, MSF: 24:54:53, LBA: 111953  AUDIO
+    Track 72, MSF: 25:00:53, LBA: 112403  AUDIO
+    Track 73, MSF: 25:06:53, LBA: 112853  AUDIO
+    Leadout: 113153  AUDIO
+
+ Skipping module "apple2" per "apple2.enable" setting.
+ Skipping module "nes" per "nes.enable" setting.
+ Skipping module "snes" per "snes.enable" setting.
+ Skipping module "gb" per "gb.enable" setting.
+ Skipping module "gba" per "gba.enable" setting.
+ Skipping module "pce" per "pce.enable" setting.
+ Skipping module "lynx" per "lynx.enable" setting.
+ Skipping module "md" per "md.enable" setting.
+ Skipping module "pcfx" per "pcfx.enable" setting.
+ Skipping module "ngp" per "ngp.enable" setting.
+ Skipping module "psx" per "psx.enable" setting.
+ Using module: ss(Sega Saturn)
+  Loading override settings from "C:\Users\rdduarte\ss_dev-master\Emulators\mednafen\ss.cfg"...
+   Failed: Error opening file "C:\Users\rdduarte\ss_dev-master\Emulators\mednafen\ss.cfg": No such file or directory
+  Loading override settings from "C:\Users\rdduarte\ss_dev-master\Emulators\mednafen\pgconfig\Bug! (US).ss.cfg"...
+   Failed: Error opening file "C:\Users\rdduarte\ss_dev-master\Emulators\mednafen\pgconfig\Bug! (US).ss.cfg": No such file or directory
+
+  SGID: GM-81004
+  SGNAME: BUG
+  SGAREA: U
+  CPU Cache Emulation Mode: Data only
+  Region: 0x4
+  Cart: 4MiB Extended RAM
+
+  Displayed scanlines: [0,239]
+  Correct Aspect Ratio: Enabled
+  Show H Overscan: Enabled
+  H Blend: Disabled
+
+  Multitap on Saturn Port 1: Disabled
+  Multitap on Saturn Port 2: Disabled
+
+ Loading cheats from "C:\Users\rdduarte\ss_dev-master\Emulators\mednafen\cheats\ss.cht"...
+  Error opening file "C:\Users\rdduarte\ss_dev-master\Emulators\mednafen\cheats\ss.cht": No such file or directory
+
+ Initializing sound...
+  Using "WASAPI(Shared mode)" audio driver with SexyAL's default device selection.
+   Format: 16 bits(signed, 2 bytes, little-endian)
+   Rate: 44100
+   Channels: 2
+   Buffer size: 1411 sample frames(31.995465 ms)
+   Latency: 1411 sample frames(31.995465 ms)
+ Initializing video...
+  Driver: OpenGL
+  Display Mode: 1920 x 1080 x 24 bpp @ 60Hz  (Window: 1920 x 1080)
+  Shader: none
+  Fullscreen: Yes
+  Special Scaler: None
+  Scanlines: 100% opacity
+  Destination Rectangle: X=356, Y=60, W=1208, H=960
+  OpenGL Implementation: NVIDIA Corporation NVIDIA GeForce 940MX/PCIe/SSE2 4.6.0 NVIDIA 511.79
+  Checking extensions:
+   GL_ARB_texture_non_power_of_two found.
+   GL_ARB_sync found.
+  Using non-power-of-2 sized textures.
+  Checking maximum texture size...
+   Apparently it is at least: 16384 x 16384
+  Using GL_RGBA - GL_BGRA, GL_UNSIGNED_INT_8_8_8_8_REV for texture source data.
