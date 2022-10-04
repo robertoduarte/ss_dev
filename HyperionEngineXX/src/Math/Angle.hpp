@@ -7,45 +7,68 @@ class Angle
 private:
     uint16_t value;
 
-    static constexpr uint16_t sinTable[] =
-        {0x0000, 0x648, 0xC8F, 0x12D5, 0x1917, 0x1F56, 0x2590, 0x2BC4,
-         0x31F1, 0x3817, 0x3E33, 0x4447, 0x4A50, 0x504D, 0x563E, 0x5C22,
-         0x61F7, 0x67BD, 0x6D74, 0x7319, 0x78AD, 0x7E2E, 0x839C, 0x88F5,
-         0x8E39, 0x9368, 0x987F, 0x9D7F, 0xA267, 0xA736, 0xABEB, 0xB085,
-         0xB504, 0xB968, 0xBDAE, 0xC1D8, 0xC5E4, 0xC9D1, 0xCD9F, 0xD14D,
-         0xD4DB, 0xD848, 0xDB94, 0xDEBE, 0xE1C5, 0xE4AA, 0xE76B, 0xEA09,
-         0xEC83, 0xEED8, 0xF109, 0xF314, 0xF4FA, 0xF6BA, 0xF853, 0xF9C7,
-         0xFB14, 0xFC3B, 0xFD3A, 0xFE13, 0xFEC4, 0xFF4E, 0xFFB1, 0xFFEC,
-         0xFFFF};
-
-    constexpr Fxp GetValue(const uint8_t &index) const
+    struct TrigMetaData
     {
-        // Extract interpolation multiplier from second half of value (8bits)
-        int32_t interpolationMultiplier = value & 0xFF;
+        Fxp preCalculation;
+        uint32_t interpolation;
+    };
 
-        // Pre calculated interpolation multiplicand.
-        // Since multiplicand only has 6 variations a branchless expression
-        // was used instead of a table or conditional expressions.
-        //  0 to 20 = 6
-        // 21 to 30 = 5
-        // 31 to 39 = 4
-        // 41 to 46 = 3
-        // 47 to 53 = 2
-        // 54 to 60 = 1
-        // 61 to 64 = 0
-        int32_t interpolationMultiplicand =
-            (index < 61) + (index < 54) + (index < 47) +
-            (index < 40) + (index < 31) + (index < 21);
+    static constexpr TrigMetaData sinLut[] = {{0.000000f, 205556},
+                                              {0.098017f, 203577},
+                                              {0.195090f, 199637},
+                                              {0.290285f, 193774},
+                                              {0.382683f, 186045},
+                                              {0.471397f, 176524},
+                                              {0.555570f, 165303},
+                                              {0.634393f, 152491},
+                                              {0.707107f, 138210},
+                                              {0.773010f, 122597},
+                                              {0.831470f, 105804},
+                                              {0.881921f, 87992},
+                                              {0.923880f, 69333},
+                                              {0.956940f, 50006},
+                                              {0.980785f, 30197},
+                                              {0.995185f, 10098},
+                                              {1.000000f, 0}};
 
-        int32_t interpolation = interpolationMultiplier * interpolationMultiplicand;
+    static constexpr Fxp SinInternal(uint16_t angle)
+    {
+        bool secondHalf = angle > 32767;
+        angle += ((-secondHalf) & 32768);
 
-        // Compensation for missing bit on index 64 for 1.0 fixed point value.
-        // Table has 16bit integers and cannot store value 1.0 on index 64 so:
-        // (65535 + 1) = 65536 = 1.0 fixed point.
-        int32_t index64compensation = index == 64;
+        // If it is in the second quarter invert the index
+        angle -= (-(angle > 16383)) & ((angle - 16384) * 2);
 
-        return sinTable[index] + index64compensation + interpolation;
+        // Extract index
+        size_t index = angle >> 10;
+
+        // Extract Multiplier
+        int32_t interpolationMultiplier = angle & 0x3FF;
+
+        // Calculate interpolation with scaled 32 bit integer multiplication to reduce rounding errors
+        int32_t interpolation = (interpolationMultiplier * sinLut[index].interpolation) >> 15;
+
+        int32_t ret = sinLut[index].preCalculation.value + interpolation;
+
+        return ((-(!secondHalf)) & ret) + ((-(secondHalf)) & -ret);
     }
+
+    struct TanLutBlock
+    {
+        uint16_t indexSubtractor;
+        uint16_t indexShift;
+        uint16_t interpolationScaleShift;
+        uint16_t multiplierMask;
+        TrigMetaData lut[5];
+    };
+
+    static constexpr TanLutBlock tanLut[] =
+        {{0x0000, 12, 9, 0x0FFF, {{0.0f, 3393}, {0.41421f, 4798}, {1.00000f, 11585}, {0.0f, 0}, {0.0f, 0}}},
+         {0x3000, 10, 8, 0x03FF, {{2.41421f, 14456}, {3.29656f, 28357}, {5.02734f, 83981}, {0.0f, 0}, {0.0f, 0}}},
+         {0x3C00, 8, 0, 0x00FF, {{10.15317f, 871}, {13.55667f, 1740}, {20.35547f, 5217}, {0.0f, 0}, {0.0f, 0}}},
+         {0x3F00, 6, 0, 0x003F, {{40.73548f, 13909}, {54.31875f, 27816}, {81.48324f, 83445}, {0.0f, 0}, {0.0f, 0}}},
+         {0x3FC0, 4, 0, 0x000F, {{162.97262f, 222516}, {217.29801f, 445031}, {325.94830f, 1335090}, {0.0f, 0}, {0.0f, 0}}},
+         {0x3FF0, 2, 0, 0x0003, {{651.89814f, 3560237}, {869.19781f, 7120473}, {1303.79704f, 21361417}, {2607.59446f, 494148084}, {(int32_t)2147483647, 0}}}};
 
     constexpr Angle(const uint16_t &value) : value(value) {}
 
@@ -61,57 +84,43 @@ public:
     {
         return turns.value < 0 ? -turns.value : turns.value;
     }
-
+    
     constexpr Fxp Sin() const
     {
-        // Extract table index from first half of value.
-        // First 8bits from 16, 256 possible values.
-        uint8_t index = value >> 8;
-
-        // Re-use first quadrant values
-        if ((index & 128) == 0)
-        {
-            if ((index & 64) == 0)
-                return GetValue(index); // 0 to 63
-            else
-                return GetValue(128 - index); // 64 to 127
-        }
-        else
-        {
-            if ((index & 64) == 0)
-                return -GetValue(index - 128); // 128 to 191
-            else
-                return -GetValue(256 - index); // 192 to 255
-        }
+        return SinInternal(value);
     }
 
     constexpr Fxp Cos() const
     {
-        // Extract table index from first half of value.
-        // First 8bits from 16, 256 possible values.
-        uint8_t index = value >> 8;
-
-        // Re-use sinTable first quadrant values for cosine
-        if ((index & 128) == 0)
-        {
-            if ((index & 64) == 0)
-                return GetValue(64 - index); // 0 to 63
-            else
-                return -GetValue(index - 64); // 64 to 127
-        }
-        else
-        {
-            if ((index & 64) == 0)
-                return -GetValue(128 - index); // 128 to 191
-            else
-                return GetValue(index - 192); // 192 to 255
-        }
+        return SinInternal(value + 16384);
     }
 
-    inline Fxp Tan() const
+    constexpr Fxp Tan() const
     {
-        Fxp::AsyncDivSet(1.0F, Cos());
-        return Sin() * Fxp::AsyncDivGet();
+        uint16_t temp = value + ((-(value > 32767)) & 32768);
+        bool secondQuarter = value > 16384;
+        // If it is in the second quarter invert the index
+        temp -= (-secondQuarter) & ((temp - 16384) * 2);
+
+        // Determine table index
+        size_t lutBlock = (temp >= 0x3000) +
+                          (temp >= 0x3C00) +
+                          (temp >= 0x3F00) +
+                          (temp >= 0x3FC0) +
+                          (temp >= 0x3FF0);
+
+        // Extract index
+        size_t index = (temp - tanLut[lutBlock].indexSubtractor) >> tanLut[lutBlock].indexShift;
+
+        // Extract Multiplier
+        int32_t interpolationMultiplier = temp & tanLut[lutBlock].multiplierMask;
+
+        // Calculate interpolation with scaled 32 bit integer multiplication to reduce rounding errors
+        int32_t interpolation = (interpolationMultiplier * tanLut[lutBlock].lut[index].interpolation) >> tanLut[lutBlock].interpolationScaleShift;
+
+        int32_t ret = tanLut[lutBlock].lut[index].preCalculation.value + interpolation;
+
+        return ((-(!secondQuarter)) & ret) + ((-(secondQuarter)) & -ret);
     }
 
     constexpr Angle &operator+=(const Angle &a)
