@@ -97,10 +97,10 @@ const LOKUP_CACHE_TYPE(fix16_t) tanTable4[] = {{FLOAT_TO_FIXED_POINT(162.97262f)
                                                {FLOAT_TO_FIXED_POINT(217.29801f), 7120505},
                                                {FLOAT_TO_FIXED_POINT(325.94830f), 21361448}};
 
-const LOKUP_CACHE_TYPE(fix16_t) tanTable5[] = {{FLOAT_TO_FIXED_POINT(51.89814f), 14240951},
-                                               {FLOAT_TO_FIXED_POINT(69.19781f), 28481894},
-                                               {FLOAT_TO_FIXED_POINT(303.79704f), 85445668},
-                                               {FLOAT_TO_FIXED_POINT(607.59446f), 365979601},
+const LOKUP_CACHE_TYPE(fix16_t) tanTable5[] = {{FLOAT_TO_FIXED_POINT(651.89814f), 14240951},
+                                               {FLOAT_TO_FIXED_POINT(869.19781f), 28481894},
+                                               {FLOAT_TO_FIXED_POINT(1303.79704f), 85445668},
+                                               {FLOAT_TO_FIXED_POINT(2607.59446f), 365979601},
                                                {(fix16_t)2147483647, 0}};
 
 const LOKUP_CACHE_TYPE(Angle) aTan2Table[] = {{0, 20853},
@@ -266,7 +266,7 @@ static inline fix16_t fix16_t_abs(const fix16_t value)
     return value < 0 ? -value : value;
 }
 
-fix16_t Trigonometry_Atan2(const fix16_t x, const fix16_t y)
+Angle Trigonometry_Atan2(const fix16_t x, const fix16_t y)
 {
     Angle result = x < 0 ? (y < 0 ? PI : -PI) : 0;
 
