@@ -23,4 +23,4 @@ fix16_t Trigonometry_Cos(const Angle angle);
 
 fix16_t Trigonometry_Tan(Angle angle);
 
-fix16_t Trigonometry_Atan2(const fix16_t x, const fix16_t y);
+Angle Trigonometry_Atan2(const fix16_t x, const fix16_t y);
