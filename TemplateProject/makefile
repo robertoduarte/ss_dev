@@ -2,7 +2,7 @@ ifeq ($(strip $(YAUL_INSTALL_ROOT)),)
   $(error Undefined YAUL_INSTALL_ROOT (install root directory))
 endif
 
-include $(YAUL_INSTALL_ROOT)/share/pre.common.mk
+include $(YAUL_INSTALL_ROOT)/share/build.pre.mk
 
 SH_PROGRAM:= build
 SH_SRCS+= $(patsubst ./%,%,$(shell find src/ -name '*.cxx'))
@@ -21,8 +21,9 @@ IP_TITLE:= HYPERION ENGINE
 IP_MASTER_STACK_ADDR:= 0x06004000
 IP_SLAVE_STACK_ADDR:= 0x06001000
 IP_1ST_READ_ADDR:= 0x06004000
+IP_1ST_READ_SIZE:= 0
 
 M68K_PROGRAM:=
 M68K_OBJECTS:=
 
-include $(YAUL_INSTALL_ROOT)/share/post.common.mk
+include $(YAUL_INSTALL_ROOT)/share/build.post.iso-cue.mk

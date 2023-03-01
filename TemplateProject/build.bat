@@ -18,7 +18,7 @@ SET YAUL_OPTION_SPIN_ON_ABORT=1
 SET YAUL_OPTION_BUILD_GDB=0
 SET YAUL_OPTION_BUILD_ASSERT=1
 SET SILENT=1
-SET MAKE_ISO_XORRISO=%COMMON_DIR%msys_trimmed/usr/bin/xorriso
+SET MAKE_ISO_XORRISO=%COMMON_DIR%msys_trimmed/usr/bin/xorrisofs
 
 IF NOT EXIST %PROJECT_DIR%yaul/ (
   @REM Extract latest libyaul gcc and copy libwinpthread-1.dll so that intellisense works on vscode
@@ -30,7 +30,12 @@ IF NOT EXIST %PROJECT_DIR%yaul/ (
   cd %PROJECT_DIR%yaul/
   git clone https://github.com/ijacquez/libyaul.git
   cd libyaul
-  git checkout 2c3df1a1a2ee08da70599c9042717bf34cb96685
+
+  git checkout 47e2d38f22ada0de55ae8e1ffedfd572ec9090c9
+  @REM Patching strstr.c tlsf.c for this specific commit
+  xcopy /y "%PROJECT_DIR%patch\strstr.c" "libyaul\lib\string\strstr.c"
+  xcopy /y "%PROJECT_DIR%patch\tlsf.c" "libyaul\kernel\mm\tlsf.c"
+
   cmd /c make install
   cd %PROJECT_DIR%
 )
